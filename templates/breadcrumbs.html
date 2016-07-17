@@ -1,0 +1,16 @@
+{% block breadcrumbs %}
+{% if breadcrumbs.count > 0 %}
+<div class="container">
+  <ol class="breadcrumbs">
+    <li class="crumb">
+      <a href="/" title="Home" class="link fa fa-home"><span>Home</span></a>
+    </li>
+    {% for breadcrumb in breadcrumbs %}
+    <li class="crumb">
+      <a href="{{ breadcrumb.url }}" title="{{ breadcrumb.title }}"b class="link">{{ breadcrumb.title }}</a>
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endif %}
+{% endblock %}

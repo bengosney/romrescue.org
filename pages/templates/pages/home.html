@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load cropping %}
+
+{% block no-title %}{% endblock %}
+
+{% block content %}
+  <div class="home_headers cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-slides="> div">
+    {% for header in headers %}
+      <div class="home_header">
+	<div class="title">{{ header.strapline }}</div>
+	<div class="sub-title">{{ header.subline }}</div>
+	<img src="{% cropped_thumbnail header "cropped" upscale=True %}" class="img-responsive" />
+      </div>
+    {% endfor %}
+  </div>
+  <div class="home-content">
+    {{ page.body|safe }}
+  </div>
+  {% include 'dogs/list_inner.html' %}
+{% endblock %}

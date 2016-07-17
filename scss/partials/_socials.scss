@@ -1,0 +1,18 @@
+.social-links {
+  @include clearfix;
+  padding: .25em .5em;
+
+  .inner {
+    float: right;
+    
+    a {
+      &:before {
+        padding-right: .5em;
+      }
+
+      &:hover {
+        color: $color-primary-1;
+      }
+    }
+  }
+}

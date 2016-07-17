@@ -1,0 +1,77 @@
+@font-face {
+  font-family:"icons";
+  src:url("/media/fonts/icons.eot?bee35658b7e1607eb0a89fa1de44233b");
+  src:url("/media/fonts/icons.eot?#iefix") format("embedded-opentype"),
+		url("/media/fonts/icons.woff?bee35658b7e1607eb0a89fa1de44233b") format("woff"),
+		url("/media/fonts/icons.ttf?bee35658b7e1607eb0a89fa1de44233b") format("truetype");
+  font-weight:normal;
+  font-style:normal;
+}
+
+%icon-base {
+  &:before {
+    font-family: "icons";
+    -webkit-font-smoothing: antialiased;
+  }
+  b {
+    // hide text
+    height: 0;
+    display: block;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+$icons_icons: (
+
+dog-and-a-man:\f100,
+
+dog-and-pets-house:\f101,
+
+dog-bitting-a-stick-playing-with-a-man:\f102,
+
+dog-checked-by-a-veterinary:\f103,
+
+dog-having-a-bubbles-bath:\f104,
+
+dog-in-front-of-a-man:\f105,
+
+dog-learning-man-instructions:\f106,
+
+dog-playing-with-a-man:\f107,
+
+dog-puppy-and-his-owner-looking-to-opposite-directions:\f108,
+
+dog-puppy-sitting-in-front-of-his-man:\f109,
+
+dog-shitting:\f10a,
+
+dog-smelling-a-bone:\f10b,
+
+dog-with-belt-walking-with-a-man:\f10c,
+
+dog-with-first-aid-kit-bag:\f10d,
+
+dog-with-owner:\f10e,
+
+man-carrying-a-dog-with-a-belt-to-walk:\f10f,
+
+man-combing-a-dog:\f110,
+
+man-on-his-knees-to-cuddle-his-dog:\f111,
+
+man-throwing-a-disc-and-dog-jumping-to-catch-it:\f112,
+
+paws-up-dog-playing-with-a-man:\f113,
+
+);
+
+@mixin icons($icon) {
+
+  @extend %icon-base;
+
+  &:before {
+      content: map-get($icons_icons, $icon);
+  }
+}

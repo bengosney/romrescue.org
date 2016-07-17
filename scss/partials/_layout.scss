@@ -1,0 +1,28 @@
+body {
+  overflow-y: scroll;
+}
+
+.primary {
+  &.background {
+    background: $primary;
+    &, a {
+      color: #fff;
+    }
+  }
+}
+
+.main-container {
+  box-shadow: 0 0 15px 0 #828282;
+}
+
+.container .container {
+  width: auto;
+}
+
+.cf {
+  @include clearfix;
+}
+
+.main-content {
+  min-height: calc(100vh - 271px);
+}

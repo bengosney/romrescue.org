@@ -1,0 +1,40 @@
+@font-face {
+  font-family:"<%= fontBaseName %>";<% if ("eot") { %>
+  src:<%= fontSrc1 %>;<% }%>
+  src:<%= fontSrc2 %>;
+  font-weight:normal;
+  font-style:normal;
+}
+
+%icon-base {
+  &:before {
+    font-family: "<%= fontBaseName %>";
+    -webkit-font-smoothing: antialiased;
+    display: inline;
+    width: auto;
+    height: auto;
+    line-height: normal;
+    vertical-align: baseline;
+    margin-top: 0;
+  }
+}
+
+$<%= fontBaseName %>_icons: (
+<% for (var glyphIdx = 0; glyphIdx < glyphs.length; glyphIdx++) { %>
+<%= glyphs[glyphIdx] %>:"<% if (addLigatures) { %><%= glyphs[glyphIdx] %><% } else { %>\<%= codepoints[glyphIdx] %><% } %>",
+<% } %>
+);
+
+@mixin <%= fontBaseName %>($icon) {
+  @extend %icon-base;
+  &:before {
+      content: map-get($<%= fontBaseName %>_icons, $icon);
+      @content;
+  }
+}
+
+@each $icon, $content in $<%= fontBaseName %>_icons {
+ .icon-#{$icon} {
+     @include <%= fontBaseName %>($icon);
+ }
+}

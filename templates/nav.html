@@ -1,0 +1,26 @@
+{% load mptt_tags %}
+{% block nav %}
+  <nav class="navbar">
+    <div class="container">
+      <div class="item">
+	<div id="navbar" class="nav-wrapper">
+          <ul class="nav navbar-nav navbar-right">
+	    {% recursetree nav_items %}
+	    <li class="dropdown {{ node.nav_class }}">
+	      {% if not node.is_leaf_node %}	
+		<a href="{{ node.url }}" data-toggle="dropdown" role="button" aria-expanded="false" >{{ node.nav_title_actual }}</a>
+		<ul class="dropdown-menu" role="menu">
+		  {{ children }}
+		</ul>
+	      {% else %}
+		<a href="{{ node.url }}">{{ node.nav_title_actual }}</a>
+	      {% endif %}
+            </li>
+	  {% endrecursetree %}
+          </ul>
+	</div>
+      </div>
+    </div>
+  </nav>
+{% endblock %}
+

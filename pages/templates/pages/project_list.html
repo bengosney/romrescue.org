@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block content %}
+<h1> {{ list_item.title }}</h1>
+<div class="body-text">
+  {{ list_item.body | safe }}
+</div>
+<div id="project-list">
+  {% for item in object_list %}
+  <div class="project-item">
+    <h2>
+      <a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a>
+    </h2>
+    <div class="detail-row">
+      <div class="description">
+        {{ item.body | safe | striptags | truncatechars:"350" }}
+	<a href="{{ item.url }}" title="details of {{ item.title }}">More Details</a>
+      </div>
+      {% thumbnail item.projectphoto_set.all.0.image "375x200" crop="center" as im %}
+      <div class="image">
+        <a href="{{ item.url }}" title="{{ item.title }}">
+          <img src="{{ im.url }}" class="item" />
+        </a>
+      </div>
+      {% endthumbnail %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

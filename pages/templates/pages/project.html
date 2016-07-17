@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block outer_content %}
+<div class="header-image">
+  <div class="cycle-slideshow">
+    {% for photo in project.projectphoto_set.all %}
+    {% thumbnail photo.image "1400x600" crop="center" as im %}
+    <img src="{{ im.url }}" class="item" />
+    {% endthumbnail %}
+    {% endfor %}
+  </div>
+  <div class="img-overlay">
+    <div class="container">
+      <h1>{{ project.title }}</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <p>{{ project.body|safe }}</p>
+
+  <div class="project-images">
+    {% for photo in project.projectphoto_set.all %}
+      <div class="item">
+        <div class="image-wrap">
+	  {% thumbnail photo.image "1200x900" crop=center upscale=false as imbig %}
+	  <a href="{{ imbig.url }}" class="lightbox" rel="project-photo">
+	    {% thumbnail photo.image "356x200" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+	    {% endthumbnail %}
+	  </a>
+	  {% endthumbnail %}
+	</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

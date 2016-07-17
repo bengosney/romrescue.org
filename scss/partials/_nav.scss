@@ -1,0 +1,23 @@
+.nav {
+  li:hover > ul {
+    display: block;    
+  }
+
+  > li {
+    &:hover, &:focus {
+      & > a {
+        background: $color-primary-1;
+      }
+    }
+  }
+}
+
+.navbar {
+  background: $primary;
+  border-radius: 0;
+
+  a {
+    color: #fff;
+    transition: background .2s ease-in-out;
+  }
+}

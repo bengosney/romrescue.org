@@ -1,0 +1,28 @@
+.home_headers {
+  .home_header {
+    position: relative;
+    
+    .title, .sub-title {
+      position: absolute;
+      font-family: $title_font;
+      display: inline-block;
+      color: #fff;
+      background: rgba($color-primary-0, .8);
+      line-height: 1em;
+      padding: 10px 20px;
+    }
+
+    .title {
+      top: 3rem;
+      left: 3rem;
+      #color: $color-primary-0;
+      font-size: 34px;
+    }
+    .sub-title {
+      top: 9rem;
+      left: 3rem;
+      #color: $color-primary-3;
+      font-size: 28px;
+    }
+  }
+}

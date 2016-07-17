@@ -1,0 +1,51 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 22/06/2016 15:08
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-dog-and-a-man:before { content: "\f100"; }
+.flaticon-dog-and-pets-house:before { content: "\f101"; }
+.flaticon-dog-bitting-a-stick-playing-with-a-man:before { content: "\f102"; }
+.flaticon-dog-checked-by-a-veterinary:before { content: "\f103"; }
+.flaticon-dog-having-a-bubbles-bath:before { content: "\f104"; }
+.flaticon-dog-in-front-of-a-man:before { content: "\f105"; }
+.flaticon-dog-learning-man-instructions:before { content: "\f106"; }
+.flaticon-dog-playing-with-a-man:before { content: "\f107"; }
+.flaticon-dog-puppy-and-his-owner-looking-to-opposite-directions:before { content: "\f108"; }
+.flaticon-dog-puppy-sitting-in-front-of-his-man:before { content: "\f109"; }
+.flaticon-dog-shitting:before { content: "\f10a"; }
+.flaticon-dog-smelling-a-bone:before { content: "\f10b"; }
+.flaticon-dog-with-belt-walking-with-a-man:before { content: "\f10c"; }
+.flaticon-dog-with-first-aid-kit-bag:before { content: "\f10d"; }
+.flaticon-dog-with-owner:before { content: "\f10e"; }
+.flaticon-man-carrying-a-dog-with-a-belt-to-walk:before { content: "\f10f"; }
+.flaticon-man-combing-a-dog:before { content: "\f110"; }
+.flaticon-man-on-his-knees-to-cuddle-his-dog:before { content: "\f111"; }
+.flaticon-man-throwing-a-disc-and-dog-jumping-to-catch-it:before { content: "\f112"; }
+.flaticon-paws-up-dog-playing-with-a-man:before { content: "\f113"; }

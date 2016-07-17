@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}{% endblock %}{% block no-title %} | {% endblock %}{% block title-default %}SOS Romanian Rescues{% endblock %}</title>
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="/media/favicon.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Bitter|Raleway" rel="stylesheet">
+    <link href="/media/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-container">
+      <header>
+	{% include "header.html" %}
+	{% include "nav.html" %}
+      </header>
+      {% block page_header %}{% endblock %}
+      <div class="container main-content">
+	{% block content %}
+	{% endblock %}
+      </div>
+      <footer>
+	<div class="container">
+	  <div class="row">
+	    <div class="col-md-4">
+	      {% include "social-links.html" %}
+	    </div>
+	    <div class="col-md-4">
+	      <div class="inner">
+		SOS Romanian Rescue &copy;{% now "Y" %} | All Rights Reserved
+	      </div>
+	    </div>
+	    <div class="col-md-4">
+	      <div class="inner">
+		Charity Number : 1160999
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </footer>
+    </div>
+    </div>
+    {% block js_footer %}{% endblock %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/media/js/script.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!--
+	<script type="text/javascript" src="{% static 'django_ajax/js/jquery.ajax.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'django_ajax/js/jquery.ajax-plugin.min.js' %}"></script>
+	-->
+  </body>
+</html>

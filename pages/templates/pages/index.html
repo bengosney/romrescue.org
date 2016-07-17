@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block content %}
+  <div>
+    <h1 id="main_header">{{ page.title }}</h1>
+    <p>{{ page.body|safe }}</p>
+  </div>
+
+  {% if success_message %}
+    <div class="success_message">
+      {{ success_message|safe }}
+    </div>
+  {% endif %}
+  {% if form %}
+    <div>
+      <form method="post">
+	{% csrf_token %}
+	{{ form|crispy }}
+	<button type="submit">{% trans "Submit" %}</button>
+      </form>
+    </div>
+  {% endif %}
+{% endblock %}

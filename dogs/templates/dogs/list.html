@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %}Looking for a home{% endblock %}
+
+{% block content %}
+  <h1>Looking for a home</h1>
+  {% include 'dogs/list_inner.html' %}
+{% endblock %}

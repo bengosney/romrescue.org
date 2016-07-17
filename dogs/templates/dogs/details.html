@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load humanize %}
+{% load cropping %}
+
+{% block title %}{{ dog.name }}{% endblock %}
+
+{% block content %}
+  <div class="dog-details">
+    <div class="row">
+      <div class="col-xs-12">
+	<h1>{{ dog.name }}</h1>
+      </div>
+      <div class="col-md-8 col-sm-6">
+	<div class="dog-photos">
+	  <div class="cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-center-horz="true" data-cycle-center-vert="true" data-cycle-pager=".cycle-pager">
+	    {% for img in dog.dogphoto_set.all %}
+	      <img 
+		 src="{{ img.main.url }}" 
+		 data-cycle-pager-template='<img src="{% cropped_thumbnail img "thumbnail" scale=.25 %}" />'
+	         class="img-responsive"
+	      />
+	       {% endfor %}
+	  </div>
+	  <div class="cycle-pager"></div>
+	</div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+	<div class="dog-details dog-section">
+	  <h2>About {{ dog.name }}</h2>
+	  <div class="detail-table container">
+	    <div class="row"><div class="col-md-6">Age</div><div class="col-md-6">{{ dog.age|title }}</div></div>
+	    <div class="row"><div class="col-md-6">Gender</div><div class="col-md-6">{{ dog.gender|title }}</div></div>
+	    <div class="row"><div class="col-md-6">Size</div><div class="col-md-6">{{ dog.size|title }}</div></div>
+	    <div class="row"><div class="col-md-6">Location</div><div class="col-md-6">{{ dog.location|title }}</div></div>
+	  </div>
+	</div>
+	<div class="dog-share dog-section">
+	  <h2>Share {{ dog.name }}'s story</h2>
+	  <div class="row">
+	    <div class="col-md-6">
+	      <a 
+		 href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
+		 title="Share {{ dog.name }} on Facebook"
+		 class="icon-facebook-square"
+		 rel="external"
+		 target="_blank"
+		 ><span>Facebook</span></a>
+	    </div>
+	    <div class="col-md-6">
+	      <a 
+		 href="https://twitter.com/home?status={{ request.build_absolute_uri|urlencode }}"
+		 title="Share {{ dog.name }} on Twitter"
+		 class="icon-twitter-square"
+		 rel="external"
+		 target="_blank"
+		 ><span>Twitter</span></a>
+	    </div>
+	  </div>
+	</div>
+	{% if dog.keypoints.count %}
+	  <div class="dog-keypoints dog-section">
+	    <h2>Things to know</h2>
+	    <div class="row">
+	      {% for point in dog.keypoints.all %}
+		<div class="col-md-12 point">
+		  <div class="point-inner">		    
+		    <h4 class="{% if point.icon %}icon-{{ point.icon }} {% endif  %}title">{{ point.title }}</h4>
+		    <p>{{ point.details }}</p>
+		  </div>
+		</div>
+	      {% endfor %}
+	    </div>
+	  </div>
+	{% endif %}
+      </div>
+      <div class="col-xs-12">
+	<div class="body">
+	  <h2>{{ dog.name }}'s story</h2>
+	  {{ dog.description|safe }}
+	</div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

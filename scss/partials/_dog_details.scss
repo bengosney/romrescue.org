@@ -1,0 +1,114 @@
+.dog-details {
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .cycle-slideshow { 
+    width: 100% 
+  }
+  
+  .dog-photos {
+    .cycle-slideshow {
+      text-align: center;
+      & > img {
+        margin: auto;
+      }
+    }
+    .cycle-pager {
+      padding-top: .5em;
+      text-align: center;
+      img {
+        border: .5em solid #fff;    
+        transition: border .2s ease-in-out;
+        cursor: pointer;
+        &.cycle-pager-active{
+          border-color: $primary;
+        }
+      }
+    }
+  }
+
+  .dog-keypoints {
+    .point {
+      .point-inner {
+        padding: 1em;
+        background: $color-primary-1;       
+      }
+
+      & + .point {
+        margin-top: 1em;
+      }
+
+      .title {
+        &:before {
+          float: right;
+          font-size: 2.5em;
+          padding-left: .25em;
+          color: #fff;
+        }
+      }
+    }
+    
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+.dog-share {
+  a {
+    $colour: $primary;
+    $padding: .5em;
+    
+    color: $colour;
+    border: 1px solid $colour;
+    padding: $padding / 2 $padding;
+    line-height: 1em;
+    border-radius: $padding;
+    display: inline-block;
+    //font-size: 1.5em;
+
+    &:before {
+      display: inline-block;
+      float: left;
+      font-size: 1.5em;
+    }
+
+    span {
+      padding-left: $padding;
+      display: inline-block;      
+      padding-top: .25em;
+    }
+
+    &:hover {
+      background: $color-primary-1;
+    }
+  }
+}
+
+.dog-section {
+  padding-top: 2em;
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.detail-table {
+  .row {
+    div {
+      padding: .5em 1em;
+    }
+
+    &:nth-child(even) {
+      background: lighten($color-primary-1, 10%);
+    }
+      
+    &:nth-child(odd) {
+      background: $color-primary-1;
+    }
+  }
+}
