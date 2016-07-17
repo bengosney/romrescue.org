@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'image_cropping',
     'imagekit',
-    'dynamic_forms',
     'crispy_forms',
     'polymorphic_tree',
     'polymorphic',
@@ -76,7 +75,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'dynamic_forms.middlewares.FormModelMiddleware',
 ]
 
 ROOT_URLCONF = 'romrescue.urls'

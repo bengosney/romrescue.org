@@ -20,7 +20,6 @@ from django.views.static import serve
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-     url(r'^dynamic_forms/', include('dynamic_forms.urls', namespace='dynamic_forms')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^dogs/', include('dogs.urls')),
     url(r'^', include('pages.urls')),
