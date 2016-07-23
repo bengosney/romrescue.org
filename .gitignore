@@ -10,6 +10,7 @@ tramp
 
 /media/uploads
 /media/CACHE
+/media/images
 *.pyc
 /.coverage
 /.hypothesis
