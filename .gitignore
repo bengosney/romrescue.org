@@ -8,11 +8,14 @@ auto-save-list
 tramp
 .\#*
 
-/media/uploads
-/media/CACHE
-/media/images
 *.pyc
 /.coverage
 /.hypothesis
 .sass-cache
 node_modules
+
+/media/uploads
+/media/CACHE
+/media/images
+/icons/111158-dogs
+/icons/Font-Awesome-SVG-PNG
