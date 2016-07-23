@@ -1,3 +1,16 @@
-/node_modules
-/.sass-cache
+# -*- mode: gitignore; -*-
 *~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+/media/uploads
+*.pyc
+/.coverage
+/.hypothesis
+.sass-cache
+node_modules
