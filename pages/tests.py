@@ -1,6 +1,5 @@
 from .admin import ContactAdmin
-from .models import Page, SocialLink, HomePageBlock, Empty, \
-    SocialLink, ProjectPhoto, ContactSubmission
+from .models import *
 
 import mock
 
@@ -65,32 +64,6 @@ class SocialMethodTests(TestCase):
         self.assertEqual(social.url, '/%s/' % expected)
 
 
-class HomePageBlockMethodTests(TestCase):
-
-    def test_img(self):
-        """
-        admin_image
-        """
-
-        file_mock = mock.MagicMock(spec=File, name='FileMock')
-        file_mock.name = 'test1.jpg'
-
-        hpb = HomePageBlock(image=file_mock)
-
-        self.assertEqual(hpb.admin_image(),
-                         '<img src="/media/%s" height="75"/>' % file_mock.name)
-
-    def test_unicode(self):
-        """
-        _unicode_
-        """
-
-        expected = 'title'
-        hpb = HomePageBlock(strapline=expected)
-
-        self.assertEqual(unicode(hpb), expected)
-
-
 class EmptyNodeMethodTests(TestCase):
 
     def test_unicode(self):
@@ -126,21 +99,6 @@ class SocialNodeMethodTests(TestCase):
         empty = SocialLink(social=expected)
 
         self.assertEqual(unicode(empty), expected)
-
-
-class ProjectPhotoMethodTests(TestCase):
-
-    def test_img(self):
-        """
-        Image
-        """
-
-        file_mock = mock.MagicMock(spec=File, name='FileMock')
-        file_mock.name = 'test1.jpg'
-
-        pp = ProjectPhoto(image=file_mock)
-
-        self.assertEqual(unicode(pp), file_mock.name)
 
 
 class ContactSubmissionMethodTest(TestCase):

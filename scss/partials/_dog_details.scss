@@ -1,12 +1,25 @@
 .dog-details {
 
+  &.success {
+    .dog-photos {
+      width: 50%;
+      float: right;
+      padding: 0 0 1em 1em;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     padding-top: 0;
   }
 
   .cycle-slideshow { 
-    width: 100% 
+    width: 100%;
+    min-height: 400px;
+
+    img + img {
+      display: none;
+    }
   }
   
   .dog-photos {

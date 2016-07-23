@@ -1,4 +1,4 @@
-from .models import node
+from .models import node, ModuleList
 
 
 def get_nav_items(request):
@@ -19,13 +19,14 @@ def get_nav_items(request):
 
 
 def get_breadcrumbs(request):
-    nodes = node.objects.all()
+    full_path = request.get_full_path()
 
-    id = 0
-    for nav_node in nodes:
-        if nav_node.url == request.get_full_path():
+    if full_path == '/':
+        return None
+
+    for nav_node in node.objects.all():
+        if nav_node.url == full_path:
             return nav_node.get_ancestors(include_self=True)
-
 
 
 def nav_items(request):

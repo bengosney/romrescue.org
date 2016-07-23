@@ -93,7 +93,7 @@ class node(PolymorphicMPTTModel):
         blank=True
     )
 
-    is_home_page = models.BooleanField()
+    is_home_page = models.BooleanField(default=False)
 
     created = fields.CreationDateTimeField()
     modified = fields.ModificationDateTimeField()
@@ -140,6 +140,10 @@ class node(PolymorphicMPTTModel):
                 pass
         super(node, self).save(*args, **kwargs)
 
+    @staticmethod
+    def get_nav_tree():
+        pass
+
 class Empty(node):
 
     class Meta(PolymorphicMPTTModel.Meta):
@@ -151,7 +155,7 @@ class Empty(node):
 
     @property
     def url(self):
-        return '/#'
+        return '#%s' % self.slug
 
 
 
@@ -186,9 +190,13 @@ class SocialLink(node):
 
 
 class Page(node):
+    FORM_CHOICES = (
+        ('ContactForm', 'Contact Form'),
+        ('FosteringForm', 'Fostering Form'),
+    )
+
     body = RichTextField(_("Body"))
-    form = models.CharField(max_length=100, blank=True, null=True)
-    #form = models.ForeignKey(FormModel, blank=True, null=True)
+    form = models.CharField(max_length=100, blank=True, null=True, choices=FORM_CHOICES)
     success_message = RichTextField(_("Success Message"), blank=True, null=True)
 
     def getFormClass(self):
@@ -208,7 +216,7 @@ class Page(node):
 class ModuleList(node):
     MODULE_OPTIONS = [
         ('dogs:AdoptionList', _('Adoption List')),
-        ('Success', _('Success'))
+        ('dogs:SuccessList', _('Success List'))
     ]
 
     module = models.CharField(
@@ -266,3 +274,14 @@ class HomePageHeader(models.Model):
 
     class Meta(object):
         ordering = ('position',)
+
+
+class FosteringSubmission(models.Model):
+    name = models.CharField(_("Full Name"), max_length=150)
+    email = models.EmailField(_("Email"))
+    contact_number = models.CharField(_("Contact Number"), max_length=20)
+
+    created = fields.CreationDateTimeField()
+
+    def __unicode__(self):
+        return self.name

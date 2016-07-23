@@ -36,7 +36,7 @@ class KeyPoints(models.Model):
 
 class Status(models.Model):
     title = models.CharField(_('Title'), max_length=50)
-    body = RichTextField(_("Body"), blank=True)
+    body = RichTextField(_("Body"), blank=True, null=True)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
     def __unicode__(self):
@@ -73,19 +73,19 @@ class Dog(models.Model):
     ]
 
     name = models.CharField(max_length=30)
-    dob = models.DateField()
+    dob = models.DateField(blank=True, null=True)
     gender = models.CharField(max_length=6, choices=GENDERS)
     size = models.CharField(max_length=15, choices=SIZES)
     location = models.ForeignKey(Status)
     description = RichTextField(_("Body"))
     status = models.CharField(max_length=8, choices=STATUS, default=STATUS_LOOKING)
 
-    keypoints = models.ManyToManyField(KeyPoints)
+    keypoints = models.ManyToManyField(KeyPoints, blank=True, null=True)
 
     slug = fields.AutoSlugField(populate_from='name')
     created = fields.CreationDateTimeField()
     modified = fields.ModificationDateTimeField()
-    position = models.PositiveIntegerField(default=0, blank=False, null=False)
+    position = models.PositiveIntegerField(default=0)
 
 
     def __unicode__(self):
@@ -96,10 +96,17 @@ class Dog(models.Model):
         verbose_name = _('Dog')
         verbose_name_plural = _('Dogs')
 
+    @property
+    def title(self):
+        return self.name
 
     @property
     def url(self):
         return reverse_lazy('dogs:DogDetails', kwargs={'slug':self.slug})
+
+    @property
+    def succcess_url(self):
+        return reverse_lazy('dogs:SuccessDetail', kwargs={'slug':self.slug})
 
     @property
     def age(self):
@@ -140,3 +147,4 @@ class DogPhoto(models.Model):
         ordering = ('position',)
         verbose_name = _('Photo')
         verbose_name_plural = _('Photos')
+

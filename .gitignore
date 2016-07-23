@@ -9,6 +9,7 @@ tramp
 .\#*
 
 /media/uploads
+/media/CACHE
 *.pyc
 /.coverage
 /.hypothesis

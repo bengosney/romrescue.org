@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-8 col-sm-6">
 	<div class="dog-photos">
-	  <div class="cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-center-horz="true" data-cycle-center-vert="true" data-cycle-pager=".cycle-pager">
+	  <div class="cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-center-horz="true" data-cycle-center-vert="true" data-cycle-pager=".cycle-pager" data-cycle-auto-height="container">
 	    {% for img in dog.dogphoto_set.all %}
 	      <img 
 		 src="{{ img.main.url }}" 

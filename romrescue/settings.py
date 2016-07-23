@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.sites',
+    'django_nose',
     'django_extensions',
     'debug_toolbar',
     'easy_thumbnails',
@@ -160,3 +161,12 @@ THUMBNAIL_PROCESSORS = (
 ) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
 SITE_ID = 2
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+#TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=pages,dogs',
+]
