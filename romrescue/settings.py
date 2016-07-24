@@ -106,13 +106,15 @@ WSGI_APPLICATION = 'romrescue.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'romrescue',
-        'USER': 'romrescue',
-        'PASSWORD': 'pS1IzChoCoaNg7YW',
-        'HOST': '127.0.0.1',
+        'USER': os.environ.get('SNAP_DB_PG_USER') or 'romrescue',
+        'PASSWORD': os.environ.get('SNAP_DB_PG_PASSWORD') or 'pS1IzChoCoaNg7YW',
+        'HOST': os.environ.get('SNAP_DB_PG_HOST') or '127.0.0.1',
     }
 }
 
