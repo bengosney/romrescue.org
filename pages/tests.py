@@ -2,113 +2,136 @@ from .admin import ContactAdmin
 from .models import *
 
 import mock
+import string
 
 from django.test import TestCase
 from django.core.files import File
 from django.contrib.admin.sites import AdminSite
+from django.db import transaction
+
+
+from hypothesis.extra.django.models import models
+from hypothesis.extra.django.models import add_default_field_mapping
+from hypothesis.strategies import text
+from hypothesis import given
+
+
+def sane_text():
+    from hypothesis.strategies import text
+
+    return text(
+        min_size=1,
+        max_size=255,
+	average_size=20,
+	alphabet="%s%s" % (string.ascii_letters, string.digits)
+    )
 
 
 class PageMethodTests(TestCase):
-
-    def test_nav_title_title(self):
+    @given(sane_text())
+    def test_nav_title_title(self, expected):
         """
         Page nav title should return title
         """
 
-        expected = 'just title'
         page = Page(title=expected)
 
         self.assertEqual(page.nav_title_actual, expected)
 
-    def test_nav_title_nav(self):
+    @given(text(min_size=5), text(min_size=5))
+    def test_nav_title_nav(self, expected, title):
         """
         Page nav title should return nav_title
         """
 
-        expected = 'nav title'
-        title = 'just title'
         page = Page(title=title, nav_title=expected)
 
         self.assertEqual(page.nav_title_actual, expected)
-        self.assertNotEqual(page.nav_title_actual, title)
+        if expected != title:
+            self.assertNotEqual(page.nav_title_actual, title)
 
-    def test_url(self):
+    @given(sane_text())
+    def test_url(self, expected):
         """
         Page url
         """
 
-        expected = 'title'
-        page = Page(title=expected)
-        page.save()
+        with transaction.atomic():
+            page = Page(title=expected)
+            page.save()
 
-        self.assertEqual(page.url, '/%s/' % expected)
+        self.assertEqual(page.url, '/%s/' % page.slug)
 
-    def test_unicode(self):
+    @given(sane_text())
+    def test_unicode(self, expected):
         """
         _unicode_
         """
 
-        expected = 'title'
         page = Page(title=expected)
 
         self.assertEqual(unicode(page), expected)
 
 
 class SocialMethodTests(TestCase):
+    @given(sane_text())
+    def test_url(self, expected):
+        """
+        Social URL
+        """
 
-    def test_url(self):
-        expected = 'title'
-        social = SocialLink(title=expected)
-        social.save()
+        with transaction.atomic():
+            social = SocialLink(title=expected)
+            social.save()
 
-        self.assertEqual(social.url, '/%s/' % expected)
+        self.assertEqual(social.url, '/%s/' % social.slug)
 
 
 class EmptyNodeMethodTests(TestCase):
-
-    def test_unicode(self):
+    @given(sane_text())
+    def test_unicode(self, expected):
         """
         _unicode_
         """
 
-        expected = 'title'
-        empty = Empty(title=expected)
+        with transaction.atomic():
+            empty = Empty(title=expected)
+            empty.save()
 
         self.assertEqual(unicode(empty), '%s - Empty Node' % expected)
 
-    def test_url(self):
+    @given(sane_text())
+    def test_url(self, expected):
         """
         Test the #URL
         """
 
-        expected = 'bob'
         empty = Empty(title=expected)
         empty.save()
 
-        self.assertEqual(empty.url, '#%s' % expected)
+        self.assertEqual(empty.url, '#%s' % empty.slug)
 
 
 class SocialNodeMethodTests(TestCase):
 
-    def test_unicode(self):
+    @given(sane_text())
+    def test_unicode(self, expected):
         """
         _unicode_
         """
 
-        expected = 'bob'
         empty = SocialLink(social=expected)
 
         self.assertEqual(unicode(empty), expected)
 
 
 class ContactSubmissionMethodTest(TestCase):
-
-    def test_unicode(self):
+    @given(sane_text())
+    def test_unicode(self, expected):
         """
         _unicode_
         """
 
-        expected = 'title'
         name = ContactSubmission(name=expected)
 
         self.assertEqual(unicode(name), expected)
