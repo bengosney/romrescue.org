@@ -18,21 +18,21 @@ module.exports = function (grunt) {
         ]
       },
       dist: {
-        src: 'media/css/*.css'
+        src: 'pages/static/css/*.css'
       }
     },
     compass: {
       dist: {
         options: {
           sassDir: 'scss',
-          cssDir: 'media/css',
+          cssDir: 'pages/static/css',
           environment: 'production'
         }
       },
       dev: {
         options: {
           sassDir: 'scss',
-          cssDir: 'media/css'
+          cssDir: 'pages/static/css'
         }
       }
     },
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
     webfont:{
       icons: {
 	src: 'icons/build/**/*.svg',
-	dest: 'media/fonts',
+	dest: 'pages/static/fonts',
 	options: {
           template: 'icons/template.css',
           stylesheet: 'scss',
@@ -92,7 +92,7 @@ module.exports = function (grunt) {
       },
       js: {
         src: ['js/external/**/*.js', 'js/polyfill/**/*.js', 'js/build/**/*.js', 'js/compiled/**/*.js'],
-        dest: 'media/js/script.js'
+        dest: 'pages/static/js/script.js'
       }
     },
     'closure-compiler': {
