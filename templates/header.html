@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 {% block header %}
 <div id="header">
   <div class="primary background socials">
@@ -6,7 +8,7 @@
   <div class="header-row">
     <div class="donate">{% include "donate.html" %}</div>
     <div class="logo">
-      <a href="/" title="SOS Romain Rescue"><img class="responsive" src="/media/logo.png" alt="SOS Romain Rescue" /></a>
+      <a href="/" title="SOS Romain Rescue"><img class="responsive" src="{% static "pages/logo.png" %}" alt="SOS Romain Rescue" /></a>
     </div>   
   </div>
 </div>
