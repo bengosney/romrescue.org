@@ -15,6 +15,7 @@ import os
 from easy_thumbnails.conf import Settings as thumbnail_settings
 
 import dj_database_url
+import rollbar
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,8 +38,8 @@ STATICFILES_DIRS = (
 SECRET_KEY = '%^lk@u&&mb-89_t6_*&z08dif8m-tf15cphny1gy2&dvnf)#5_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False
-DEBUG = True
+DEBUG = False
+#DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -90,6 +91,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'romrescue.urls'
@@ -184,3 +186,11 @@ NOSE_ARGS = [
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+ROLLBAR = {
+    'access_token': 'eb67f32be84f4e93a903a79bde5e8378',
+    'environment': 'development' if DEBUG else 'production',
+    'root': BASE_DIR,
+}
+rollbar.init(**ROLLBAR)
