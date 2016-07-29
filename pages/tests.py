@@ -41,7 +41,7 @@ class HomePageTest(TestCase):
         #response = self.client.get('/')
 
         #self.assertEqual(response.status_code, 200)
-        self.assetTrue(True)
+        self.assertTrue(True)
 
     def test_only_one_homepage(self):
         page_1 = self.get_page('page1', 'page1', True)
@@ -49,7 +49,7 @@ class HomePageTest(TestCase):
         page_2 = self.get_page('page2', 'page2', True)
         page_2.save()
 
-        pages = Page.objects.bfilter(is_home_page=True)
+        pages = Page.objects.filter(is_home_page=True)
 
         self.assertEqual(len(pages), 1)
 
@@ -77,15 +77,15 @@ class PageMethodTests(TestCase):
         if expected != title:
             self.assertNotEqual(page.nav_title_actual, title)
 
-    @given(sane_text())
-    def test_url(self, expected):
+    def test_url(self):
         """
         Page url
         """
 
-        with transaction.atomic():
-            page = Page(title=expected)
-            page.save()
+        expected = 'page title'
+
+        page = Page(title=expected)
+        page.save()
 
         self.assertEqual(page.url, '/%s/' % page.slug)
 
@@ -101,15 +101,14 @@ class PageMethodTests(TestCase):
 
 
 class SocialMethodTests(TestCase):
-    @given(sane_text())
-    def test_url(self, expected):
+    def test_url(self):
         """
         Social URL
         """
 
-        with transaction.atomic():
-            social = SocialLink(title=expected)
-            social.save()
+        expected = 'facebook'
+        social = SocialLink(title=expected)
+        social.save()
 
         self.assertEqual(social.url, '/%s/' % social.slug)
 
@@ -121,17 +120,17 @@ class EmptyNodeMethodTests(TestCase):
         _unicode_
         """
 
-        with transaction.atomic():
-            empty = Empty(title=expected)
-            empty.save()
+        empty = Empty(title=expected)
 
         self.assertEqual(unicode(empty), '%s - Empty Node' % expected)
 
-    @given(sane_text())
-    def test_url(self, expected):
+
+    def test_url(self):
         """
         Test the #URL
         """
+        
+        expected = 'empty node'
 
         empty = Empty(title=expected)
         empty.save()
