@@ -38,8 +38,7 @@ STATICFILES_DIRS = (
 SECRET_KEY = '%^lk@u&&mb-89_t6_*&z08dif8m-tf15cphny1gy2&dvnf)#5_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-#DEBUG = True
+DEBUG = False if os.environ.get('ENV') == 'production' else True
 
 ALLOWED_HOSTS = ['*']
 
