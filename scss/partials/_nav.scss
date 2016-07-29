@@ -21,3 +21,11 @@
     transition: background .2s ease-in-out;
   }
 }
+
+
+.navbar-toggle {
+  border-color: $rgba-primary-1;
+  .icon-bar {
+    background: $rgba-primary-1;
+  }
+}

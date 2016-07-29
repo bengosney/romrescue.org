@@ -1,5 +1,9 @@
 .dog-details {
 
+  .body {
+    padding-top: 1em;
+  }
+
   &.success {
     .dog-photos {
       width: 50%;

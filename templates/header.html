@@ -8,7 +8,10 @@
   <div class="header-row">
     <div class="donate">{% include "donate.html" %}</div>
     <div class="logo">
-      <a href="/" title="SOS Romain Rescue"><img class="responsive" src="{% static "pages/logo.png" %}" alt="SOS Romain Rescue" /></a>
+      <a href="/" title="SOS Romain Rescue">
+	<img class="img-responsive hidden-xs" src="{% static "pages/logo.png" %}" alt="SOS Romain Rescue" />
+	<img class="img-responsive visible-xs" src="{% static "pages/logo-only.png" %}" alt="SOS Romain Rescue" />
+      </a>
     </div>   
   </div>
 </div>
