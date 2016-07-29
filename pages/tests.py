@@ -5,10 +5,10 @@ import mock
 import string
 
 from django.test import TestCase
+from django.test import Client
 from django.core.files import File
 from django.contrib.admin.sites import AdminSite
 from django.db import transaction
-
 
 from hypothesis.extra.django.models import models
 from hypothesis.extra.django.models import add_default_field_mapping
@@ -25,6 +25,35 @@ def sane_text():
 	average_size=20,
 	alphabet="%s%s" % (string.ascii_letters, string.digits)
     )
+
+
+class HomePageTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def get_page(title, body, home=False):
+        return Page(title=title, body=body, is_home_page=home)
+
+    def test_homepage_200(self):
+        home = self.get_page('home', 'home page')
+        home.save(True)
+
+        response = self.client.get('/')
+
+        self.assertEqual(response.status_code, 200)
+
+        # Check that the rendered context contains 5 customers.
+        # self.assertEqual(len(response.context['customers']), 5)
+
+    def test_only_one_homepage(self):
+        page_1 = self.get_page('page1', 'page1', True)
+        page_1.save()
+        page_2 = self.get_page('page2', 'page2', True)
+        page_2.save()
+
+        pages = Page.objects.bfilter(is_home_page=True)
+
+        self.assertEqual(len(pages), 1)
 
 
 class PageMethodTests(TestCase):
