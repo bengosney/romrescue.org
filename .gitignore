@@ -19,3 +19,5 @@ node_modules
 /media/images
 /icons/111158-dogs
 /icons/Font-Awesome-SVG-PNG
+
+/set_aws_creds
