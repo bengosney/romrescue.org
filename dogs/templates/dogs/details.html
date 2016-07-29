@@ -8,13 +8,13 @@
 {% block headextra %}
   {% with dog.dogphoto_set.all|first as image %}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ dog.name }}'s story">
+    <meta name="twitter:title" content="{{ dog.name }} is looking for a home">
     <meta name="twitter:description" content="{{ dog.description|striptags|truncatechars:200 }}">
     <meta name="twitter:image" content="{{ image.main.url }}">
 
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="{{ dog.name }}" />
+    <meta property="og:title" content="{{ dog.name }} is looking for a home" />
     <meta property="og:description" content="{{ dog.description|striptags|truncatechars:200 }}" />
     <meta property="og:image" content="{{ image.main.url }}" />
   {% endwith %}
