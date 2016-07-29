@@ -5,6 +5,21 @@
 
 {% block title %}{{ dog.name }}{% endblock %}
 
+{% block headextra %}
+  {% with dog.dogphoto_set.all|first as image %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ dog.name }}'s story">
+    <meta name="twitter:description" content="{{ dog.description|striptags|truncatechars:200 }}">
+    <meta name="twitter:image" content="{{ image.main.url }}">
+
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ dog.name }}" />
+    <meta property="og:description" content="{{ dog.description|striptags|truncatechars:200 }}" />
+    <meta property="og:image" content="{{ image.main.url }}" />
+  {% endwith %}
+{% endblock %}
+
 {% block content %}
   <div class="dog-details">
     <div class="row">
@@ -15,12 +30,12 @@
 	<div class="dog-photos">
 	  <div class="cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-center-horz="true" data-cycle-center-vert="true" data-cycle-pager=".cycle-pager" data-cycle-auto-height="container">
 	    {% for img in dog.dogphoto_set.all %}
-	      <img 
-		 src="{{ img.main.url }}" 
-		 data-cycle-pager-template='<img src="{% cropped_thumbnail img "thumbnail" scale=.25 %}" />'
-	         class="img-responsive"
-	      />
-	       {% endfor %}
+	    <img 
+	       src="{{ img.main.url }}" 
+	       data-cycle-pager-template='<img src="{% cropped_thumbnail img "thumbnail" scale=.25 %}" />'
+	       class="img-responsive"
+	       />
+	    {% endfor %}
 	  </div>
 	  <div class="cycle-pager"></div>
 	</div>
