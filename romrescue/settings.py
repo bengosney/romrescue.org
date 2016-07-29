@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.sites',
+    'storages',
     'django_nose',
     'django_extensions',
     'debug_toolbar',
@@ -117,11 +118,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'romrescue.wsgi.application'
 
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'romrescue'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-
 
 DATABASES = {
     'default': {
