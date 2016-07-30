@@ -9,12 +9,11 @@
 
 <div class="row dog-list">
   {% for dog in dog_list %}
-  <div class="col-md-3 col-sm-6 col-xs-12">
+  <div class="col-md-3 col-xs-6">
     <a href="{{ dog.url }}" class="link">
       {% with dog.dogphoto_set.all|first as image %}
       <div class="image">
 	<img src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
-	<!--<img src="{{ image.thumbnail.url }}" class="img-responsive" />-->
       </div>
       {% endwith %}
       <h2>{{ dog.name }}</h2>

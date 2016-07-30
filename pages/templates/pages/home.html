@@ -18,7 +18,7 @@
     {{ page.body|safe }}
   </div>
   {% for dog in dog_list %}
-  <div class="col-md-3 col-sm-6 col-xs-12">
+  <div class="col-md-3 col-xs-6">
     <a href="{{ dog.url }}" class="link">
       {% with dog.dogphoto_set.all|first as image %}
       <div class="image">
