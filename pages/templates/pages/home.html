@@ -8,9 +8,9 @@
   <div class="home_headers cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-slides="> div">
     {% for header in headers %}
       <div class="home_header">
-	<div class="title">{{ header.strapline }}</div>
-	<div class="sub-title">{{ header.subline }}</div>
+	<div class="title">{{ header.strapline }}</div>	
 	<img src="{% cropped_thumbnail header "cropped" upscale=True %}" class="img-responsive" />
+	<div class="sub-title">{{ header.subline }}</div>
       </div>
     {% endfor %}
   </div>
