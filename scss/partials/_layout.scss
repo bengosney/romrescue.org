@@ -26,3 +26,10 @@ body {
 .main-content {
   min-height: calc(100vh - 271px);
 }
+
+@media (max-width: 755px) {
+  .container.outter-most {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
