@@ -1,33 +1,40 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 {% load cropping %}
+{% load staticfiles %}
 
 {% block no-title %}{% endblock %}
 
 {% block content %}
-  <div class="home_headers cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-slides="> div">
-    {% for header in headers %}
-      <div class="home_header">
-	<div class="title">{{ header.strapline }}</div>	
-	<img src="{% cropped_thumbnail header "cropped" upscale=True %}" class="img-responsive" />
-	<div class="sub-title">{{ header.subline }}</div>
-      </div>
-    {% endfor %}
+<div class="home_headers cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-slides="> div">
+  {% for header in headers %}
+  <div class="home_header">
+    <div class="title">{{ header.strapline }}</div>	
+    <img src="{% cropped_thumbnail header "cropped" upscale=True %}" class="img-responsive" />
+    <div class="sub-title">{{ header.subline }}</div>
   </div>
-  <div class="home-content">
-    {{ page.body|safe }}
-  </div>
+  {% endfor %}
+</div>
+<div class="home-content">
+  {{ page.body|safe }}
+</div>
+<div class="row dog-list">
   {% for dog in dog_list %}
   <div class="col-md-3 col-xs-6">
     <a href="{{ dog.url }}" class="link">
-      {% with dog.dogphoto_set.all|first as image %}
+      {% with dog.dogphoto_set.all|first as image %}      
       <div class="image">
+	{% if image.main.url %}
 	<img src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
-	<!--<img src="{{ image.thumbnail.url }}" class="img-responsive" />-->
+	{% else %}
+	<img src="{% static "pages/no-img.png" %}" class="img-responsive" />
+	{% endif %}
       </div>
       {% endwith %}
       <h2>{{ dog.name }}</h2>
     </a>
   </div>
   {% endfor %}
+</div>
+
 {% endblock %}

@@ -1,6 +1,14 @@
 .dog-list {
   .link {
+    @extend %clearfix;
+    display: block;
     text-decoration: none;
+
+    $padding: 1em;
+
+    background: $rgba-primary-1;
+    padding: $padding;
+    margin-bottom: $padding;
 
     .image {
       position: relative;
@@ -15,6 +23,15 @@
         opacity: 0;
         transition: all .2s ease-in-out;
       }
+
+      & + h2 {
+        margin-top: $padding / 2;
+      }
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0;
     }
 
     &:hover {

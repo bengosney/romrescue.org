@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 {% load cropping %}
+{% load staticfiles %}
 
 {% block title %}Looking for a home{% endblock %}
 
@@ -11,9 +12,13 @@
   {% for dog in dog_list %}
   <div class="col-md-3 col-xs-6">
     <a href="{{ dog.url }}" class="link">
-      {% with dog.dogphoto_set.all|first as image %}
+      {% with dog.dogphoto_set.all|first as image %}      
       <div class="image">
+	{% if image.main.url %}
 	<img src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
+	{% else %}
+	<img src="{% static "pages/no-img.png" %}" class="img-responsive" />
+	{% endif %}
       </div>
       {% endwith %}
       <h2>{{ dog.name }}</h2>
