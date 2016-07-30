@@ -19,6 +19,9 @@
   {{ page.body|safe }}
 </div>
 <div class="row dog-list">
+  {% if dog_list %}
+  <h3>Looking for a forever home</h3>
+  {% endif %}
   {% for dog in dog_list %}
   <div class="col-md-3 col-xs-6">
     <a href="{{ dog.url }}" class="link">
