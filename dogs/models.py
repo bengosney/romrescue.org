@@ -80,7 +80,7 @@ class Dog(models.Model):
     description = RichTextField(_("Body"))
     status = models.CharField(max_length=8, choices=STATUS, default=STATUS_LOOKING)
 
-    keypoints = models.ManyToManyField(KeyPoints, blank=True, null=True)
+    keypoints = models.ManyToManyField(KeyPoints, blank=True)
 
     slug = fields.AutoSlugField(populate_from='name')
     created = fields.CreationDateTimeField()
