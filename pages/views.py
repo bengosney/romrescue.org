@@ -1,6 +1,7 @@
 from vanilla import DetailView, ListView, CreateView, GenericModelView
 from django.shortcuts import get_object_or_404
 from django.http import Http404, HttpResponseRedirect
+from django.apps import apps
 
 from .models import Page, ModuleList, HomePageHeader
 from .forms import ContactForm
@@ -88,28 +89,17 @@ class ContactView(CreateView):
     template_name = 'pages/contact.html'
 
 
-class ModuleListView(ListView):
+class ModuleListView(DetailView):
     model = ModuleList
     base_model = ModuleList
     lookup_field = 'slug'
+    template_name = 'pages/modulelist.html'
 
     def get_context_data(self, **kwargs):
+        from dogs.views import AdoptionList
+
         context = super(self.__class__, self).get_context_data(**kwargs)
-        context['list_item'] = self.get_base_object()
+        context['list_html'] = AdoptionList.as_view()(self.request).rendered_content
 
         return context
-
-    def get_base_object(self):
-        queryset = self.base_model._default_manager.all()
-        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
-        lookup = {self.lookup_field: self.kwargs[lookup_url_kwarg]}
-        
-        return get_object_or_404(queryset, **lookup)
-
-    def get_queryset(self):
-        if self.model == self.base_model:            
-            self.list_item = self.get_base_object()
-            self.model = self.list_item.get_model()
-
-        return super(self.__class__, self).get_queryset()
 
