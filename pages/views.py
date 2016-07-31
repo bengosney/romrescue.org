@@ -94,12 +94,15 @@ class ModuleListView(DetailView):
     base_model = ModuleList
     lookup_field = 'slug'
     template_name = 'pages/modulelist.html'
-
+ 
     def get_context_data(self, **kwargs):
-        from dogs.views import AdoptionList
+        raw_string = 'dogs:AdoptionList'
+        app_name, view_name = raw_string.split(':')
+        view_module = __import__(app_name)
+        view_class = getattr(view_module.views, view_name)
 
         context = super(self.__class__, self).get_context_data(**kwargs)
-        context['list_html'] = AdoptionList.as_view()(self.request).rendered_content
+        context['list_html'] = view_class.as_view()(self.request).rendered_content
 
         return context
 

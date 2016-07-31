@@ -173,6 +173,7 @@ class ExternalLink(node):
 
 class SocialLink(node):
     TYPES = [
+
         ('twitter', 'Twitter'),
         ('facebook', 'Facebook'),
         ('instagram', 'Instagram'),

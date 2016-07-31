@@ -8,6 +8,7 @@ from image_cropping import ImageCroppingMixin
 from .models import ContactSubmission, Page, Empty, ModuleList, \
     ExternalLink, SocialLink, node, HomePageHeader
 
+from .decorators import get_registered_list_views
 
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
     GENERAL_FIELDSET = (None, {
@@ -36,12 +37,21 @@ class BaseChildNoSEOAdmin(BaseChildAdmin):
     pass
 
 
+class ModuleListAdmin(BaseChildAdmin):
+    def formfield_for_choice_field(self, db_field, request, **kwargs):
+        if db_field.name == "module":
+            kwargs['choices'] = get_registered_list_views()
+            print kwargs['choices']
+
+        return super(ModuleListAdmin, self).formfield_for_choice_field(db_field, request, **kwargs)
+
+
 class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
     base_model = node
     child_models = (
         (Page, BaseChildAdmin),
         (Empty, BaseChildNoSEOAdmin),
-        (ModuleList, BaseChildAdmin),
+        (ModuleList, ModuleListAdmin),
         (ExternalLink, BaseChildNoSEOAdmin),
         (SocialLink, BaseChildNoSEOAdmin),
     )
@@ -64,7 +74,7 @@ class ContactAdmin(admin.ModelAdmin):
         return False
 
 
-class HomePageHeaderAdmin(SortableAdminMixin, ImageCroppingMixin, admin.ModelAdmin):
+class HomePageHeaderAdmin(SortableAdminMixin, ImageCroppingMixin, admin.ModelAdmin): 
     model = HomePageHeader
     list_display = ('admin_image', 'strapline', 'subline',)
 
