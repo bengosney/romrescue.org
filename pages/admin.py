@@ -1,4 +1,6 @@
+
 from django.contrib import admin
+from django import forms
 
 from polymorphic_tree.admin import PolymorphicMPTTParentModelAdmin, \
     PolymorphicMPTTChildModelAdmin
@@ -38,12 +40,7 @@ class BaseChildNoSEOAdmin(BaseChildAdmin):
 
 
 class ModuleListAdmin(BaseChildAdmin):
-    def formfield_for_choice_field(self, db_field, request, **kwargs):
-        if db_field.name == "module":
-            kwargs['choices'] = get_registered_list_views()
-            print kwargs['choices']
-
-        return super(ModuleListAdmin, self).formfield_for_choice_field(db_field, request, **kwargs)
+    pass
 
 
 class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):

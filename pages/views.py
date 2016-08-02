@@ -96,10 +96,12 @@ class ModuleListView(DetailView):
     template_name = 'pages/modulelist.html'
  
     def get_context_data(self, **kwargs):
-        raw_string = 'dogs:AdoptionList'
-        app_name, view_name = raw_string.split(':')
-        view_module = __import__(app_name)
-        view_class = getattr(view_module.views, view_name)
+        raw_string = 'dogs.views.AdoptionList'
+        view_string = raw_string.split('.')
+        
+        view_class = __import__(view_string[0])
+        for part in view_string[1:]:
+            view_class = getattr(view_class, part)
 
         context = super(self.__class__, self).get_context_data(**kwargs)
         context['list_html'] = view_class.as_view()(self.request).rendered_content

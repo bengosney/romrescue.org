@@ -4,6 +4,7 @@ import importlib
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse, reverse_lazy, NoReverseMatch
+from django.utils.functional import lazy
 
 from django_extensions.db import fields
 
@@ -14,6 +15,9 @@ from polymorphic_tree.models import PolymorphicTreeForeignKey
 from imagekit.models import ImageSpecField
 from imagekit.processors import *
 from image_cropping import ImageRatioField
+
+from .decorators import get_registered_list_views, registered_list_views
+
 
 class node(PolymorphicMPTTModel):
     LIVE_STATUS = 1
@@ -215,31 +219,20 @@ class Page(node):
 
 
 class ModuleList(node):
-    MODULE_OPTIONS = [
-        ('dogs:AdoptionList', _('Adoption List')),
-        ('dogs:SuccessList', _('Success List'))
-    ]
-
     module = models.CharField(
         _("Module"),
-        choices=MODULE_OPTIONS,
-        max_length=200
+        max_length=200,
     )
+
     body = RichTextField(
         _("Body"),
         null=True,
         blank=True
     )
 
-    @property
-    def url(self):        
-        try:
-            url = reverse(self.module)
-        except NoReverseMatch as e:
-            url = '#'
-
-        return url
-
+    def __init__(self,  *args, **kwargs):
+        super(ModuleList, self).__init__(*args, **kwargs)
+        self._meta.get_field_by_name('module')[0].choices = lazy(get_registered_list_views, list)()
 
     class Meta:
         verbose_name = _("Module List")
