@@ -1,13 +1,8 @@
-{% extends "base.html" %}
 {% load thumbnail %}
 {% load cropping %}
 {% load staticfiles %}
 
-{% block title %}Looking for a home{% endblock %}
-
 {% block content %}
-<h1>Looking for a home</h1>
-
 <div class="row dog-list">
   {% for dog in dog_list %}
   <div class="col-md-3 col-xs-6">

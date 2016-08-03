@@ -7,7 +7,7 @@
 {% block content %}
   <div>
     <h1 id="main_header">{{ page.title }}</h1>
-    <p>{{ page.body|safe }}</p>
+    <div class="body-content">{{ page.body|safe }}</div>
   </div>
 
   {% if success_message %}

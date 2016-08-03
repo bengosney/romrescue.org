@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+<div>
+  <h1 id="main_header">{{ object.title }}</h1>
+  <div class="body-content">{{ object.body|safe }}</div>
+</div>
+<div class="list-contents">
+  {{ list_html }}
+</div>
+{% endblock %}

@@ -1,4 +1,6 @@
+
 from django.contrib import admin
+from django import forms
 
 from polymorphic_tree.admin import PolymorphicMPTTParentModelAdmin, \
     PolymorphicMPTTChildModelAdmin
@@ -8,6 +10,7 @@ from image_cropping import ImageCroppingMixin
 from .models import ContactSubmission, Page, Empty, ModuleList, \
     ExternalLink, SocialLink, node, HomePageHeader
 
+from .decorators import get_registered_list_views
 
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
     GENERAL_FIELDSET = (None, {
@@ -36,12 +39,16 @@ class BaseChildNoSEOAdmin(BaseChildAdmin):
     pass
 
 
+class ModuleListAdmin(BaseChildAdmin):
+    pass
+
+
 class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
     base_model = node
     child_models = (
         (Page, BaseChildAdmin),
         (Empty, BaseChildNoSEOAdmin),
-        (ModuleList, BaseChildAdmin),
+        (ModuleList, ModuleListAdmin),
         (ExternalLink, BaseChildNoSEOAdmin),
         (SocialLink, BaseChildNoSEOAdmin),
     )
@@ -64,7 +71,7 @@ class ContactAdmin(admin.ModelAdmin):
         return False
 
 
-class HomePageHeaderAdmin(SortableAdminMixin, ImageCroppingMixin, admin.ModelAdmin):
+class HomePageHeaderAdmin(SortableAdminMixin, ImageCroppingMixin, admin.ModelAdmin): 
     model = HomePageHeader
     list_display = ('admin_image', 'strapline', 'subline',)
 
