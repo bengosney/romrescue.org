@@ -16,7 +16,7 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import *
 from image_cropping import ImageRatioField
 
-from .decorators import get_registered_list_views, registered_list_views
+from .decorators import get_registered_list_views
 
 
 class node(PolymorphicMPTTModel):
