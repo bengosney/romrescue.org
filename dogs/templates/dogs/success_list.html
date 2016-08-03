@@ -1,20 +1,19 @@
-{% extends "base.html" %}
 {% load thumbnail %}
 {% load cropping %}
-
-{% block title %}Looking for a home{% endblock %}
+{% load staticfiles %}
 
 {% block content %}
-<h1>Success Stories</h1>
-
 <div class="row dog-list">
   {% for dog in dog_list %}
   <div class="col-md-3 col-sm-6 col-xs-12">
     <a href="{{ dog.succcess_url }}" class="link">
-      {% with dog.dogphoto_set.all|first as image %}
+      {% with dog.dogphoto_set.all|first as image %}      
       <div class="image">
+	{% if image.main.url %}
 	<img src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
-	<!--<img src="{{ image.thumbnail.url }}" class="img-responsive" />-->
+	{% else %}
+	<img src="{% static "pages/no-img.png" %}" class="img-responsive" />
+	{% endif %}
       </div>
       {% endwith %}
       <h2>{{ dog.name }}</h2>
