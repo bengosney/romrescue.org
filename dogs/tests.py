@@ -79,6 +79,12 @@ class DogTests(TestCase):
 
         self.assertEqual(dog.age, None)
 
+    def test_age_year_only(self):
+        two_years = datetime.date.today() - datetime.timedelta(days=731)
+        dog = self.get_dog('rover', two_years.year)
+
+        self.assertEqual(dog.age, '2 years')
+
 class DogPhotoTests(TestCase):
     def setUp(self):
         self.dog = DogTests.get_dog('rover')

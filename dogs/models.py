@@ -112,6 +112,9 @@ class Dog(models.Model):
     def age(self):        
         today = date.today()
 
+        if isinstance( self.dob, ( int, long ) ):
+            self.dob = today.replace(self.dob)
+
         try:
             age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
         except:
