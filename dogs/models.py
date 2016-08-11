@@ -109,9 +109,14 @@ class Dog(models.Model):
         return reverse_lazy('dogs:SuccessDetail', kwargs={'slug':self.slug})
 
     @property
-    def age(self):
+    def age(self):        
         today = date.today()
-        age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+
+        try:
+            age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+        except:
+            return None
+            
         diff = 'year'
         plural = 's'
         
