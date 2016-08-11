@@ -74,6 +74,11 @@ class DogTests(TestCase):
         self.assertEqual(dog.age, '2 years')
 
 
+    def test_age_invalid(self):
+        dog = self.get_dog('rover', 'invalid')
+
+        self.assertEqual(dog.age, None)
+
 class DogPhotoTests(TestCase):
     def setUp(self):
         self.dog = DogTests.get_dog('rover')
