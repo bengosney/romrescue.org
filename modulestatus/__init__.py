@@ -8,3 +8,7 @@ class ModelStatus():
         (HIDDEN_STATUS, 'Unpublished'),
         (DRAFT_STATUS, 'Draft'),
     ]
+
+    @staticmethod
+    def getName(status):
+        return " ".join([s[1] for s in ModelStatus.STATUS_CHOICES if s[0] == status])
