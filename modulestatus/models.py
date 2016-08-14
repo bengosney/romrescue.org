@@ -14,6 +14,5 @@ class statusMixin(models.Model):
     objects = statusManager()
     admin_objects = models.Manager()
 
-
     class Meta:
         abstract = True
