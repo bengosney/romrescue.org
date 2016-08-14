@@ -50,7 +50,7 @@ class Status(models.Model):
         verbose_name_plural = _('Status/Locations')
 
 
-class Dog(models.Model):
+class Dog(statusMixin, models.Model):
     GENDERS = [
         ('male', _('Male')),
         ('female', _('Female')),

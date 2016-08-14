@@ -15,7 +15,7 @@ class DogPhotoInline(SortableInlineAdminMixin, ImageCroppingMixin, admin.Tabular
     extra = 3
 
 
-class KeyPointsAdmin(statusAdmin, SortableAdminMixin, admin.ModelAdmin):
+class KeyPointsAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.KeyPoints
 
     def get_querysety(self, request):
@@ -38,7 +38,7 @@ class KeyPointsAdmin(statusAdmin, SortableAdminMixin, admin.ModelAdmin):
         return super(KeyPointsAdmin, self).formfield_for_choice_field(db_field, request, **kwargs)
 
 
-class DogAdmin(SortableAdminMixin, admin.ModelAdmin):
+class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.Dog
     inlines = [DogPhotoInline]
     filter_horizontal = ('keypoints',)
