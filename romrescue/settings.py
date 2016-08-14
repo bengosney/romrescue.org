@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'adminsortable2',
     'sorl.thumbnail',
+    'modulestatus',
     'pages',
     'dogs',
     'faqs',
