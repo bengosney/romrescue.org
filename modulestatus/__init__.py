@@ -4,7 +4,7 @@ class ModelStatus():
     HIDDEN_STATUS = 3
 
     STATUS_CHOICES = [
-        (LIVE_STATUS, 'Live'),
+        (LIVE_STATUS, 'Published'),
+        (HIDDEN_STATUS, 'Unpublished'),
         (DRAFT_STATUS, 'Draft'),
-        (HIDDEN_STATUS, 'Hidden'),
     ]
