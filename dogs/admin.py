@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from image_cropping import ImageCroppingMixin
 
+from modulestatus.admin import statusAdmin
+
 import json
 import os 
 
@@ -12,8 +14,18 @@ class DogPhotoInline(SortableInlineAdminMixin, ImageCroppingMixin, admin.Tabular
     model = models.DogPhoto
     extra = 3
 
-class KeyPointsAdmin(SortableAdminMixin, admin.ModelAdmin):
+
+class KeyPointsAdmin(statusAdmin, SortableAdminMixin, admin.ModelAdmin):
     model = models.KeyPoints
+
+    def get_querysety(self, request):
+        qs = self.model.admin_objects.get_queryset()
+
+        ordering = self.ordering or () 
+        if ordering:
+            qs = qs.order_by(*ordering)
+
+        return qs
 
     def formfield_for_choice_field(self, db_field, request, **kwargs):
         if db_field.name == "icon":

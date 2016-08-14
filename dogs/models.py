@@ -12,18 +12,20 @@ from django.core.urlresolvers import reverse, reverse_lazy
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import *
-
 from image_cropping import ImageRatioField
-
 from ckeditor_uploader.fields import RichTextUploadingField as RichTextField
 
 from icons.icons import ICON_CHOICE
 
-class KeyPoints(models.Model):
+from modulestatus.models import statusMixin
+
+
+class KeyPoints(statusMixin, models.Model):
     title = models.CharField(max_length=150)
     details = models.CharField(max_length=400)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
     icon = models.CharField(max_length=120, blank=True, choices=ICON_CHOICE)
+    
 
     def __unicode__(self):
         return self.title
