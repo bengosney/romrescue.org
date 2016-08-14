@@ -80,7 +80,7 @@ class Dog(models.Model):
     size = models.CharField(max_length=15, choices=SIZES)
     location = models.ForeignKey(Status)
     description = RichTextField(_("Body"))
-    status = models.CharField(max_length=8, choices=STATUS, default=STATUS_LOOKING)
+    dogStatus = models.CharField(max_length=8, choices=STATUS, default=STATUS_LOOKING)
 
     keypoints = models.ManyToManyField(KeyPoints, blank=True)
 

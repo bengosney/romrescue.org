@@ -9,7 +9,7 @@ class AdoptionList(ListView):
     template_name = 'dogs/list.html'
 
     def get_queryset(self):
-        return self.model._default_manager.filter(status=Dog.STATUS_LOOKING)
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING)
 
 
 class DogDetail(DetailView):
