@@ -1,10 +1,25 @@
-{% extends "base.html" %}
 {% load thumbnail %}
 {% load cropping %}
 {% load staticfiles %}
 
-{% block title %}Looking for a home{% endblock %}
-
 {% block content %}
-<h1>Team list</h1>
+
+<div class="container-fluid">
+  {% for member in object_list %}
+    <div class="member_block row">
+      <div class="pic col-sm-3">
+	<img src="{% cropped_thumbnail member "cropped" %}" class="img-responsive" />
+      </div>
+      <div class="writeup col-sm-9">
+	<h2>{{ member.name }}</h2>
+	<h3>{{ member.job }}</h3>
+	<p>
+	  {{ member.info }}
+	</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
 {% endblock %}
