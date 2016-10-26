@@ -11,6 +11,7 @@ from .models import ContactSubmission, Page, Empty, ModuleList, \
     ExternalLink, SocialLink, node, HomePageHeader
 
 from .decorators import get_registered_list_views
+from modulestatus.admin import statusAdmin
 
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
     GENERAL_FIELDSET = (None, {

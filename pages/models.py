@@ -18,9 +18,9 @@ from image_cropping import ImageRatioField
 
 from .decorators import get_registered_list_views
 
-from modulestatus import ModelStatus
+from modulestatus.models import statusMixin, PolymorphicMPTTStatusModel
 
-class node(PolymorphicMPTTModel):
+class node(PolymorphicMPTTModel, statusMixin):
     ICONS = [
         ('twitter', 'Twitter'),
         ('facebook', 'Facebook'),
@@ -34,11 +34,6 @@ class node(PolymorphicMPTTModel):
         null=True,
         related_name='children',
         verbose_name=_('parent')
-    )
-
-    status = models.IntegerField(
-        choices=ModelStatus.STATUS_CHOICES,
-        default=ModelStatus.LIVE_STATUS
     )
 
     title = models.CharField(
