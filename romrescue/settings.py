@@ -185,14 +185,6 @@ SITE_ID = 2
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-#TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-
-NOSE_ARGS = [
-    '--with-coverage',
-    '--cover-package=pages,dogs',
-]
-
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
@@ -201,4 +193,5 @@ ROLLBAR = {
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
-rollbar.init(**ROLLBAR)
+if not DEBUG:
+    rollbar.init(**ROLLBAR)
