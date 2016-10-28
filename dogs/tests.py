@@ -3,9 +3,11 @@ import string
 
 from django.test import TestCase
 from django.core.files import File
-from .models import *
-
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.test import Client
+
+from .models import *
+from .views import SuccessList, AdoptionList
 
 from hypothesis.extra.django.models import models
 from hypothesis.extra.django.models import add_default_field_mapping
@@ -22,6 +24,18 @@ add_default_field_mapping(RichTextField, text())
 add_default_field_mapping(fields.AutoSlugField, text())
 add_default_field_mapping(fields.CreationDateTimeField, datetimes())
 add_default_field_mapping(fields.ModificationDateTimeField, datetimes())
+
+
+class AdoptionListTests(TestCase):
+    def test_list_view(self):
+        response = self.client.get(reverse('dogs:AdoptionList'))
+        self.assertEqual(response.status_code, 200)
+
+
+class SuccessListTests(TestCase):
+    def test_list_view(self):
+        response = self.client.get(reverse('dogs:SuccessList'))
+        self.assertEqual(response.status_code, 200)
 
 
 class DogTests(TestCase):
