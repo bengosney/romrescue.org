@@ -1,10 +1,2 @@
 @import 'imports';
 
-div, span, body, p {
-  font-family: $body_font;
-}
-
-h1, h2, h3, h4, h5, h6, .title_font {
-  font-family: $title_font;
-  color: $primary;
-}
