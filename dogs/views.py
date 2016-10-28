@@ -30,4 +30,4 @@ class SuccessList(ListView):
     template_name = 'dogs/success_list.html'
 
     def get_queryset(self):
-        return self.model._default_manager.filter(status=Dog.STATUS_SUCCESS)
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_SUCCESS)
