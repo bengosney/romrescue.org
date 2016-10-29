@@ -1,4 +1,4 @@
-from .models import node, ModuleList
+from .models import node
 
 
 def get_nav_items(request):

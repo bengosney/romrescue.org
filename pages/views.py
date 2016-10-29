@@ -1,14 +1,9 @@
 from vanilla import DetailView, ListView, CreateView, GenericModelView
-from django.shortcuts import get_object_or_404
-from django.http import Http404, HttpResponseRedirect
-from django.apps import apps
+
+from django.http import HttpResponseRedirect
 
 from .models import Page, ModuleList, HomePageHeader
-from .forms import ContactForm
-
 from dogs.models import Dog
-
-import importlib
 
 
 class HomePage(ListView):

@@ -1,17 +1,16 @@
 from __future__ import unicode_literals
 
 import os
-import importlib
 
 from datetime import date
 
 from django.db import models
 from django_extensions.db import fields
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.core.urlresolvers import reverse_lazy
 
 from imagekit.models import ImageSpecField
-from imagekit.processors import *
+from imagekit.processors import ResizeToFit
 from image_cropping import ImageRatioField
 from ckeditor_uploader.fields import RichTextUploadingField as RichTextField
 

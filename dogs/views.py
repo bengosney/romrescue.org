@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from vanilla import DetailView, ListView, CreateView
+from vanilla import DetailView, ListView
 from .models import Dog
 from pages.decorators import register_list_view
 

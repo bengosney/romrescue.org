@@ -1,9 +1,6 @@
-import os
-import importlib
-
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse, reverse_lazy, NoReverseMatch
+from django.core.urlresolvers import reverse
 from django.utils.functional import lazy
 
 from django_extensions.db import fields
@@ -12,13 +9,11 @@ from ckeditor_uploader.fields import RichTextUploadingField as RichTextField
 from polymorphic_tree.models import PolymorphicMPTTModel
 from polymorphic_tree.models import PolymorphicTreeForeignKey
 
-from imagekit.models import ImageSpecField
-from imagekit.processors import *
 from image_cropping import ImageRatioField
 
 from .decorators import get_registered_list_views
 
-from modulestatus.models import statusMixin, PolymorphicMPTTStatusModel
+from modulestatus.models import statusMixin
 
 
 class node(PolymorphicMPTTModel, statusMixin):

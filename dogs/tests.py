@@ -1,17 +1,14 @@
 import datetime
-import string
 
 from django.test import TestCase
 from django.core.files import File
-from django.core.urlresolvers import reverse, reverse_lazy
-from django.test import Client
+from django.core.urlresolvers import reverse
 
-from .models import *
-from .views import SuccessList, AdoptionList
+from .models import Dog, DogPhoto, KeyPoints, Status
 
 from hypothesis.extra.django.models import models
 from hypothesis.extra.django.models import add_default_field_mapping
-from hypothesis.strategies import text, just, one_of
+from hypothesis.strategies import text
 from hypothesis.extra.datetime import datetimes
 from hypothesis import given
 

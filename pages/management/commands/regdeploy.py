@@ -1,8 +1,9 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 import requests
 import os
 import subprocess
+
 
 class Command(BaseCommand):
     help = 'Registers a deploy event'
@@ -10,9 +11,11 @@ class Command(BaseCommand):
     def rollbar_record_deploy(self):
         access_token = 'eb67f32be84f4e93a903a79bde5e8378'
         environment = 'production'
-        revision = os.environ.get('HEROKU_SLUG_COMMIT') or subprocess.check_output(['git', 'rev-parse', 'HEAD'])
+        git_hash = subprocess.check_output(['git', 'rev-parse', 'HEAD'])
+        revision = os.environ.get('HEROKU_SLUG_COMMIT') or git_hash
+
         local_username = 'Auto Deploy'
-        
+
         resp = requests.post('https://api.rollbar.com/api/1/deploy/', {
             'access_token': access_token,
             'environment': environment,

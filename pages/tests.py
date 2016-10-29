@@ -1,17 +1,16 @@
 from .admin import ContactAdmin
-from .models import *
 
-import mock
+from .models import (ContactSubmission,
+                     SocialLink,
+                     Empty,
+                     Page)
+
 import string
 
 from django.test import TestCase
 from django.test import Client
-from django.core.files import File
 from django.contrib.admin.sites import AdminSite
-from django.db import transaction
 
-from hypothesis.extra.django.models import models
-from hypothesis.extra.django.models import add_default_field_mapping
 from hypothesis.strategies import text
 from hypothesis import given
 

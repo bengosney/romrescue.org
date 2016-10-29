@@ -4,7 +4,7 @@ from django.db import models
 
 from . import ModelStatus
 from .managers import statusManager
-    
+
 
 class statusMixin(models.Model):
     status = models.IntegerField(

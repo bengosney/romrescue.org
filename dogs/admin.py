@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from image_cropping import ImageCroppingMixin
 
@@ -14,7 +13,7 @@ from . import models
 class DogPhotoInline(
         SortableInlineAdminMixin,
         ImageCroppingMixin,
-        admin.TabularInline):  # admin.StackedInline):
+        admin.TabularInline):
     model = models.DogPhoto
     extra = 3
 

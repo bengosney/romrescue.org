@@ -4,7 +4,7 @@ to hide discarded items from queries. Overrides delete
 methods to set flag and soft-delete instead of removing
 rows from the database.
 """
-from django.apps import apps
+
 from django.contrib.admin.utils import NestedObjects
 from django.db import models
 from django.db.models import signals
