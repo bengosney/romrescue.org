@@ -20,6 +20,7 @@ from .decorators import get_registered_list_views
 
 from modulestatus.models import statusMixin, PolymorphicMPTTStatusModel
 
+
 class node(PolymorphicMPTTModel, statusMixin):
     ICONS = [
         ('twitter', 'Twitter'),
@@ -98,7 +99,7 @@ class node(PolymorphicMPTTModel, statusMixin):
     @property
     def url(self):
         if self.is_home_page:
-            return '/';
+            return '/'
 
         try:
             url = reverse(
@@ -118,7 +119,6 @@ class node(PolymorphicMPTTModel, statusMixin):
         else:
             return self.title
 
-
     def save(self, *args, **kwargs):
         if self.is_home_page:
             try:
@@ -134,6 +134,7 @@ class node(PolymorphicMPTTModel, statusMixin):
     def get_nav_tree():
         pass
 
+
 class Empty(node):
 
     class Meta(PolymorphicMPTTModel.Meta):
@@ -146,7 +147,6 @@ class Empty(node):
     @property
     def url(self):
         return '#%s' % self.slug
-
 
 
 class ExternalLink(node):
@@ -187,12 +187,17 @@ class Page(node):
     )
 
     body = RichTextField(_("Body"))
-    form = models.CharField(max_length=100, blank=True, null=True, choices=FORM_CHOICES)
-    success_message = RichTextField(_("Success Message"), blank=True, null=True)
+    form = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        choices=FORM_CHOICES)
+    success_message = RichTextField(
+        _("Success Message"), blank=True, null=True)
 
     def getFormClass(self):
         from . import forms
-        
+
         return getattr(forms, self.form)
 
     @property
@@ -216,9 +221,10 @@ class ModuleList(node):
         blank=True
     )
 
-    def __init__(self,  *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(ModuleList, self).__init__(*args, **kwargs)
-        self._meta.get_field_by_name('module')[0].choices = lazy(get_registered_list_views, list)()
+        self._meta.get_field_by_name('module')[0].choices = lazy(
+            get_registered_list_views, list)()
 
     class Meta:
         verbose_name = _("Module List")

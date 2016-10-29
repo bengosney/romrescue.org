@@ -10,10 +10,10 @@ from dogs.models import Dog
 
 import importlib
 
+
 class HomePage(ListView):
     model = Page
     template_name = 'pages/home.html'
-    
 
     def get_context_data(self, **kwargs):
         context = super(self.__class__, self).get_context_data(**kwargs)
@@ -27,6 +27,7 @@ class HomePage(ListView):
 class DetailFormView(GenericModelView):
     success_url = None
     template_name_suffix = '_form'
+    base_message = 'Thank you for your submission'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -34,11 +35,12 @@ class DetailFormView(GenericModelView):
         success_message = None
 
         if 'success' in self.kwargs:
-            success_message = self.object.success_message or 'Thank you for your submission'
+            success_message = self.object.success_message or self.base_message
         else:
             form = self.get_form()
 
-        context = self.get_context_data(form=form, success_message=success_message)
+        context = self.get_context_data(
+            form=form, success_message=success_message)
 
         return self.render_to_response(context)
 
@@ -73,7 +75,7 @@ class DetailFormView(GenericModelView):
 
     def get_success_url(self):
         object = self.get_object()
-        
+
         return object.success_url
 
 
@@ -94,7 +96,7 @@ class ModuleListView(DetailView):
     base_model = ModuleList
     lookup_field = 'slug'
     template_name = 'pages/modulelist.html'
- 
+
     def get_context_data(self, **kwargs):
         view_string = self.object.module.split('.')
 
@@ -103,7 +105,7 @@ class ModuleListView(DetailView):
             view_class = getattr(view_class, part)
 
         context = super(self.__class__, self).get_context_data(**kwargs)
-        context['list_html'] = view_class.as_view()(self.request).rendered_content
+        context['list_html'] = view_class.as_view()(
+            self.request).rendered_content
 
         return context
-

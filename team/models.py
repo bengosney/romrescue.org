@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from image_cropping import ImageRatioField
 
+
 class TeamMember(models.Model):
     name = models.CharField(_("Name"), max_length=150)
     job = models.CharField(_("Job"), max_length=150)
@@ -26,5 +27,3 @@ class TeamMember(models.Model):
         ordering = ('position',)
         verbose_name = _("Team Member")
         verbose_name_plural = _("Team Members")
-
-        

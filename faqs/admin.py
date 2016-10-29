@@ -9,8 +9,8 @@ class AdoptionFAQAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 admin.site.register(models.AdoptionFAQ, AdoptionFAQAdmin)
 
+
 class FosteringFAQAdmin(SortableAdminMixin, admin.ModelAdmin):
     model = models.FosteringFAQ
 
 admin.site.register(models.FosteringFAQ, FosteringFAQAdmin)
-

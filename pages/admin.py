@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django import forms
 
@@ -13,6 +12,7 @@ from .models import ContactSubmission, Page, Empty, ModuleList, \
 from .decorators import get_registered_list_views
 from modulestatus.admin import statusAdmin
 
+
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
     GENERAL_FIELDSET = (None, {
         'fields': ('parent', 'status', 'title'),
@@ -25,7 +25,10 @@ class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
 
     NAV_FIELDSET = ('Navigation', {
         'classes': ('grp-collapse grp-closed',),
-        'fields': ('nav_title', 'nav_icon', 'nav_icon_only', 'active_url_helper'),
+        'fields': ('nav_title',
+                   'nav_icon',
+                   'nav_icon_only',
+                   'active_url_helper'),
     })
 
     base_model = node
@@ -72,7 +75,10 @@ class ContactAdmin(admin.ModelAdmin):
         return False
 
 
-class HomePageHeaderAdmin(SortableAdminMixin, ImageCroppingMixin, admin.ModelAdmin): 
+class HomePageHeaderAdmin(
+        SortableAdminMixin,
+        ImageCroppingMixin,
+        admin.ModelAdmin):
     model = HomePageHeader
     list_display = ('admin_image', 'strapline', 'subline',)
 

@@ -27,4 +27,7 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+    urlpatterns += url(r'^media/(?P<path>.*)$',
+                       serve,
+                       {'document_root': settings.MEDIA_ROOT,
+                        'show_indexes': True}),

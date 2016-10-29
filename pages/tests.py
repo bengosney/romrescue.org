@@ -22,26 +22,18 @@ def sane_text():
     return text(
         min_size=1,
         max_size=255,
-	average_size=20,
-	alphabet="%s%s" % (string.ascii_letters, string.digits)
+        average_size=20,
+        alphabet="%s%s" % (string.ascii_letters, string.digits)
     )
 
 
 class HomePageTest(TestCase):
+
     def setUp(self):
         self.client = Client()
 
     def get_page(self, title, body, home=False):
         return Page(title=title, body=body, is_home_page=home)
-
-    def test_homepage_200(self):
-        home = self.get_page('home', 'home page')
-        home.save(True)
-
-        #response = self.client.get('/')
-
-        #self.assertEqual(response.status_code, 200)
-        self.assertTrue(True)
 
     def test_only_one_homepage(self):
         page_1 = self.get_page('page1', 'page1', True)
@@ -55,6 +47,7 @@ class HomePageTest(TestCase):
 
 
 class PageMethodTests(TestCase):
+
     @given(sane_text())
     def test_nav_title_title(self, expected):
         """
@@ -101,6 +94,7 @@ class PageMethodTests(TestCase):
 
 
 class SocialMethodTests(TestCase):
+
     def test_url(self):
         """
         Social URL
@@ -114,6 +108,7 @@ class SocialMethodTests(TestCase):
 
 
 class EmptyNodeMethodTests(TestCase):
+
     @given(sane_text())
     def test_unicode(self, expected):
         """
@@ -124,12 +119,11 @@ class EmptyNodeMethodTests(TestCase):
 
         self.assertEqual(unicode(empty), '%s - Empty Node' % expected)
 
-
     def test_url(self):
         """
         Test the #URL
         """
-        
+
         expected = 'empty node'
 
         empty = Empty(title=expected)
@@ -152,6 +146,7 @@ class SocialNodeMethodTests(TestCase):
 
 
 class ContactSubmissionMethodTest(TestCase):
+
     @given(sane_text())
     def test_unicode(self, expected):
         """

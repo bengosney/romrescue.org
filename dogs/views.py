@@ -3,6 +3,7 @@ from vanilla import DetailView, ListView, CreateView
 from .models import Dog
 from pages.decorators import register_list_view
 
+
 @register_list_view
 class AdoptionList(ListView):
     model = Dog

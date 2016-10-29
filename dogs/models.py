@@ -25,7 +25,6 @@ class KeyPoints(statusMixin, models.Model):
     details = models.CharField(max_length=400)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
     icon = models.CharField(max_length=120, blank=True, choices=ICON_CHOICE)
-    
 
     def __unicode__(self):
         return self.title
@@ -80,7 +79,10 @@ class Dog(statusMixin, models.Model):
     size = models.CharField(max_length=15, choices=SIZES)
     location = models.ForeignKey(Status)
     description = RichTextField(_("Body"))
-    dogStatus = models.CharField(max_length=8, choices=STATUS, default=STATUS_LOOKING)
+    dogStatus = models.CharField(
+        max_length=8,
+        choices=STATUS,
+        default=STATUS_LOOKING)
 
     keypoints = models.ManyToManyField(KeyPoints, blank=True)
 
@@ -89,9 +91,8 @@ class Dog(statusMixin, models.Model):
     modified = fields.ModificationDateTimeField()
     position = models.PositiveIntegerField(default=0)
 
-
     def __unicode__(self):
-       return self.name
+        return self.name
 
     class Meta(object):
         ordering = ('position',)
@@ -104,27 +105,28 @@ class Dog(statusMixin, models.Model):
 
     @property
     def url(self):
-        return reverse_lazy('dogs:DogDetails', kwargs={'slug':self.slug})
+        return reverse_lazy('dogs:DogDetails', kwargs={'slug': self.slug})
 
     @property
     def succcess_url(self):
-        return reverse_lazy('dogs:SuccessDetail', kwargs={'slug':self.slug})
+        return reverse_lazy('dogs:SuccessDetail', kwargs={'slug': self.slug})
 
     @property
-    def age(self):        
+    def age(self):
         today = date.today()
 
-        if isinstance( self.dob, ( int, long ) ):
+        if isinstance(self.dob, (int, long)):
             self.dob = today.replace(self.dob)
 
         try:
-            age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+            age = today.year - self.dob.year - \
+                ((today.month, today.day) < (self.dob.month, self.dob.day))
         except:
             return None
-            
+
         diff = 'year'
         plural = 's'
-        
+
         if age == 0:
             age = today.month - self.dob.month
             diff = 'month'
@@ -146,15 +148,12 @@ class DogPhoto(models.Model):
 
     thumbnail = ImageRatioField('image', '375x300')
 
-
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
     def __unicode__(self):
         return os.path.basename(self.image.url)
 
-
     class Meta(object):
         ordering = ('position',)
         verbose_name = _('Photo')
         verbose_name_plural = _('Photos')
-

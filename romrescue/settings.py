@@ -46,9 +46,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'uploads')
 CKEDITOR_URL = MEDIA_URL
+CKEDITOR_JQUERY_URL = ('//ajax.googleapis.com/'
+                       'ajax/libs/jquery/2.1.1/jquery.min.js')
 
 # Application definition
 
@@ -131,35 +132,40 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+DB_USER = os.environ.get('SNAP_DB_PG_USER') or 'romrescue'
+DB_PASS = os.environ.get('SNAP_DB_PG_PASSWORD') or 'pS1IzChoCoaNg7YW'
+DB_HOST = os.environ.get('SNAP_DB_PG_HOST') or '127.0.0.1'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'romrescue',
-        'USER': os.environ.get('SNAP_DB_PG_USER') or 'romrescue',
-        'PASSWORD': os.environ.get('SNAP_DB_PG_PASSWORD') or 'pS1IzChoCoaNg7YW',
-        'HOST': os.environ.get('SNAP_DB_PG_HOST') or '127.0.0.1',
-    }
-}
+        'USER': DB_USER,
+        'PASSWORD': DB_PASS,
+        'HOST': DB_HOST,
+    }}
 
 if os.environ.get('DATABASE_URL'):
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 # Password validation
-# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+                 'UserAttributeSimilarityValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+                 'MinimumLengthValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+                 'CommonPasswordValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+                 'NumericPasswordValidator'),
     },
 ]
 
@@ -185,7 +191,8 @@ SITE_ID = 2
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = ('whitenoise.storage.'
+                       'CompressedManifestStaticFilesStorage')
 
 
 ROLLBAR = {

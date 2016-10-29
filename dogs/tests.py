@@ -27,12 +27,14 @@ add_default_field_mapping(fields.ModificationDateTimeField, datetimes())
 
 
 class AdoptionListTests(TestCase):
+
     def test_list_view(self):
         response = self.client.get(reverse('dogs:AdoptionList'))
         self.assertEqual(response.status_code, 200)
 
 
 class SuccessListTests(TestCase):
+
     def test_list_view(self):
         response = self.client.get(reverse('dogs:SuccessList'))
         self.assertEqual(response.status_code, 200)
@@ -47,7 +49,7 @@ class DogTests(TestCase):
         test_status.save()
 
         return Dog(
-            name=name, 
+            name=name,
             dob=dob,
             gender=Dog.GENDERS[1][0],
             size=Dog.SIZES[1][0],
@@ -63,13 +65,16 @@ class DogTests(TestCase):
         self.assertEqual(unicode(dog), name)
 
     def test_age_one_month(self):
-        one_month = datetime.date.today().replace(day=1) - datetime.timedelta(days=1)
+        first_of_month = datetime.date.today().replace(day=1)
+        one_month = first_of_month - datetime.timedelta(days=1)
 
         dog = self.get_dog('rover', one_month)
         self.assertEqual(dog.age, '1 month')
 
     def test_age_two_months(self):
-        one_month = datetime.date.today().replace(day=1) - datetime.timedelta(days=1)
+        first_of_month = datetime.date.today().replace(day=1)
+        one_month = first_of_month - datetime.timedelta(days=1)
+
         two_months = one_month.replace(day=1) - datetime.timedelta(days=1)
 
         dog = self.get_dog('rover', two_months)
@@ -87,7 +92,6 @@ class DogTests(TestCase):
         dog = self.get_dog('rover', two_years)
         self.assertEqual(dog.age, '2 years')
 
-
     def test_age_invalid(self):
         dog = self.get_dog('rover', 'invalid')
 
@@ -99,11 +103,12 @@ class DogTests(TestCase):
 
         self.assertEqual(dog.age, '2 years')
 
+
 class DogPhotoTests(TestCase):
+
     def setUp(self):
         self.dog = DogTests.get_dog('rover')
         self.dog.save()
-
 
     def skip_test_photo_name(self):
         filename = 'dog-photo'
@@ -116,13 +121,14 @@ class DogPhotoTests(TestCase):
 
 
 class KeyPointsTests(TestCase):
+
     @given(models(KeyPoints))
     def test_keypoint_title(self, point):
         self.assertEqual(unicode(point), point.title)
 
 
 class StatusTests(TestCase):
+
     @given(models(Status))
     def test_status_title(self, status):
         self.assertEqual(unicode(status), status.title)
-

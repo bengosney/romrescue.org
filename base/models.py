@@ -9,6 +9,7 @@ from django.contrib.admin.utils import NestedObjects
 from django.db import models
 from django.db.models import signals
 
+
 class DeleteNotPermitted(Exception):
     pass
 
@@ -22,14 +23,16 @@ class ObjectNotLive(models.ObjectIsVoid):
 
 
 class AppQuerySet(models.QuerySet):
+
     def _wrap(self, func, args, kwargs):
         """
-        If an object doesn't exist, check to see if it exists. If it doesn't, remove the
-        `is_void` filter and raise IsVoid exception if found.
+        If an object doesn't exist, check to see if it exists.
+        If it doesn't, remove the `is_void` filter and raise
+        IsVoid exception if found.
         """
         try:
             r = func(*args, **kwargs)
-        except self.model.DoesNotExist, e:
+        except self.model.DoesNotExist as e:
             for node in self.query.where.children[:]:
                 if hasattr(node, 'children'):
                     for child in node.children:
@@ -84,10 +87,12 @@ class AppManager(models.Manager):
 
 
 class AppModelMeta(type(models.Model)):
+
     def __new__(cls, name, parents, dct):
         new_class = super(AppModelMeta, cls).__new__(cls, name, parents, dct)
         if hasattr(new_class, 'DoesNotExist'):
-            new_class.IsVoid = type('IsVoid', (new_class.DoesNotExist, ObjectIsVoid), {})
+            new_class.IsVoid = type(
+                'IsVoid', (new_class.DoesNotExist, ObjectIsVoid), {})
         return new_class
 
 
