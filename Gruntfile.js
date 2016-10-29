@@ -95,6 +95,17 @@ module.exports = function (grunt) {
         dest: 'pages/static/pages/js/script.js'
       }
     },
+    flake8: {
+      options: {
+        errorsOnly: true
+      },
+      src: [
+        '**/*.py',
+        '!**/migrations/*.py',
+        '!node_modules/**/*.py',
+        '!icons/**/*.py'
+      ],
+    },
     'closure-compiler': {
       jscompile: {
         files: {
@@ -113,6 +124,10 @@ module.exports = function (grunt) {
         options: {
           spawn: false
         }
+      },
+      flake: {
+        files: ['**/*.py'],
+        tasks: ['flake8'],
       },
       js: {
         files: ['js/build/**/*', 'js/external/**/*', 'js/polyfils/**/*', 'js/compiled/**/*'],
