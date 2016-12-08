@@ -1,10 +1,12 @@
-from vanilla import DetailView, ListView, CreateView, GenericModelView
+from vanilla import DetailView, ListView, CreateView, GenericModelView, TemplateView
 
 from django.http import HttpResponseRedirect
 
 from .models import Page, ModuleList, HomePageHeader
 from dogs.models import Dog
 
+class error404(TemplateView):
+    template_name = 'pages/404.html'
 
 class HomePage(ListView):
     model = Page
