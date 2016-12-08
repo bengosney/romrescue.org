@@ -11,7 +11,7 @@ class TeamMember(models.Model):
     job = models.CharField(_("Job"), max_length=150)
     info = models.TextField(_("Info"), max_length=1000)
 
-    image = models.ImageField(upload_to='images/team')
+    image = models.ImageField(upload_to='images/team', blank=True, null=True)
     cropped = ImageRatioField('image', '400x400')
 
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
