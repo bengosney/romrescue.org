@@ -20,7 +20,12 @@ class TeamMember(models.Model):
         return self.name
 
     def admin_image(self):
-        return '<img src="%s" height="75"/>' % self.image.url
+        if not self.image:
+            img = 'http://placehold.it/75x75'
+        else:
+            img = self.image.url
+        return '<img src="%s" height="75"/>' % img
+    
     admin_image.allow_tags = True
 
     class Meta(object):
