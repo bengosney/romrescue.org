@@ -6,7 +6,8 @@
 
 <div class="container-fluid">
   {% for member in object_list %}
-    <div class="member_block row">
+  <div class="member_block row">
+    {% if member.image %}
       <div class="pic col-sm-3">
 	<img src="{% cropped_thumbnail member "cropped" %}" class="img-responsive" />
       </div>
@@ -17,6 +18,15 @@
 	  {{ member.info }}
 	</p>
       </div>
+      {% else %}
+      <div class="writeup col-sm-9">
+	<h2>{{ member.name }}</h2>
+	<h3>{{ member.job }}</h3>
+	<p>
+	  {{ member.info }}
+	</p>
+      </div>   
+      {% endif %}
     </div>
   {% endfor %}
 </div>
