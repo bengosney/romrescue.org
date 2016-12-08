@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^', include('pages.urls')),
 ]
 
-handler404 = 'pages.views.error404'
+#handler404 = 'pages.views.error404'
 
 if settings.DEBUG:
     urlpatterns += url(r'^media/(?P<path>.*)$',
