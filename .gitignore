@@ -21,3 +21,5 @@ node_modules
 /icons/Font-Awesome-SVG-PNG
 
 /set_aws_creds
+
+/latest.dump

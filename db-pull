@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Creating backup"
+heroku pg:backups:capture
+
+echo "Downloading backup"
+heroku pg:backups:download
+
+echo "Importing backup"
+PGPASSWORD="pS1IzChoCoaNg7YW" pg_restore --verbose --clean --no-acl --no-owner -h localhost -U romrescue -d romrescue latest.dump
