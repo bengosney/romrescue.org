@@ -15,7 +15,7 @@ class HomePage(ListView):
     def get_context_data(self, **kwargs):
         context = super(self.__class__, self).get_context_data(**kwargs)
         context['page'] = Page.objects.get(is_home_page=True)
-        context['dog_list'] = Dog.objects.all()[:4]
+        context['dog_list'] = Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING)[:4]
         context['headers'] = HomePageHeader.objects.all()
 
         return context
