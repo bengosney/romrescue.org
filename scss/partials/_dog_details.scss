@@ -131,3 +131,16 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .dog-details {
+    &.success {
+      .dog-photos {
+        float: none;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
