@@ -17,6 +17,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.views.static import serve
+from django.contrib.sitemaps.views import sitemap
+
+from .sitemaps import sitemaps
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,6 +27,7 @@ urlpatterns = [
     url(r'^dogs/', include('dogs.urls')),
     url(r'^team/', include('team.urls')),
     url(r'^', include('pages.urls')),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
 ]
 
 #handler404 = 'pages.views.error404'
