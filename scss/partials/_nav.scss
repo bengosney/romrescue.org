@@ -1,8 +1,4 @@
 .nav {
-  li:hover > ul {
-    display: block;    
-  }
-
   > li {
     &:hover, &:focus {
       & > a {
@@ -18,7 +14,7 @@
 
   a {
     color: #fff;
-    transition: background .2s ease-in-out;
+    transition: background color .2s ease-in-out;
   }
 }
 
@@ -27,5 +23,42 @@
   border-color: $rgba-primary-1;
   .icon-bar {
     background: $rgba-primary-1;
+  }
+}
+
+@media (min-width: 979px) {
+  ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+  }
+}
+
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+  color: $primary;
+  background: $color-primary-1;
+}
+
+  
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+  background: $color-primary-1;
+  color: $color-primary-3;
+}
+
+.nav>li {
+  i {
+    padding-left: .5em;
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown-menu>li>a {
+    color: $color-primary-1;
+  }
+
+  .nav>li {
+    i {
+      padding-left: 0;
+      float: right;
+    }
   }
 }
