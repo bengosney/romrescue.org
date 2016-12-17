@@ -57,4 +57,4 @@ tkreadonly==0.6.0
 Unidecode==0.4.19
 vishap==0.1.5
 Werkzeug==0.11.11
-whitenoise==3.2
+whitenoise==3.2.2
