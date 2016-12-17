@@ -2,7 +2,7 @@ boto==2.42.0
 brotlipy==0.3.0
 bugjar==0.1.0
 cffi==1.7.0
-coverage==4.1
+coverage==4.2
 dj-database-url==0.4.1
 Django==1.9.7
 django-admin-sortable2==0.6.4
