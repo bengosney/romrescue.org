@@ -4,7 +4,7 @@ bugjar==0.1.0
 cffi==1.9.1
 coverage==4.2
 dj-database-url==0.4.1
-Django==1.9.7 # pyup: >=1.9,<1.10
+Django==1.9.12 # pyup: >=1.9,<1.10
 django-admin-sortable2==0.6.6
 django-appconf==1.0.1
 django-autoslug==1.9.3
