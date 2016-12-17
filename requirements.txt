@@ -8,7 +8,7 @@ Django==1.9.7
 django-admin-sortable2==0.6.4
 django-appconf==1.0.1
 django-autoslug==1.9.3
-django-ckeditor==5.0.3
+django-ckeditor==5.1.1
 django-crispy-forms==1.6.0
 django-debug-toolbar==1.4
 django-dynamic-forms==0.5.1
