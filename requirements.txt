@@ -13,7 +13,7 @@ django-crispy-forms==1.6.0
 django-debug-toolbar==1.4
 django-dynamic-forms==0.5.2
 django-email-extras==0.3.3
-django-extensions==1.6.7
+django-extensions==1.7.5
 django-fobi==0.6.6
 django-forms-builder==0.12.3
 django-image-cropping==1.0.4
