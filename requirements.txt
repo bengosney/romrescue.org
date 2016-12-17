@@ -10,7 +10,7 @@ django-appconf==1.0.2
 django-autoslug==1.9.3
 django-ckeditor==5.1.1
 django-crispy-forms==1.6.0
-django-debug-toolbar==1.4
+django-debug-toolbar==1.6
 django-dynamic-forms==0.5.1
 django-email-extras==0.3.3
 django-extensions==1.7.5
