@@ -48,7 +48,7 @@ python-gnupg==0.3.8
 pytz==2016.6.1
 requests==2.10.0
 rollbar==0.13.2
-simplejson==3.8.2
+simplejson==3.10.0
 six==1.10.0
 sorl-thumbnail==12.3
 sphinx-me==0.3
