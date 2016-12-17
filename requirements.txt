@@ -1,4 +1,4 @@
-boto==2.42.0
+boto==2.45.0
 brotlipy==0.3.0
 bugjar==0.1.0
 cffi==1.7.0
