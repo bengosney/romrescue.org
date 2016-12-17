@@ -32,7 +32,7 @@ easy-thumbnails==2.3
 enum34==1.1.6
 fake-factory==0.5.3
 funcsigs==1.0.2
-future==0.15.0
+future==0.16.0
 gunicorn==19.6.0
 hypothesis==3.4.2
 mock==2.0.0
