@@ -133,6 +133,13 @@ AWS_STORAGE_BUCKET_NAME = 'romrescue'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=romrescue,pages,dogs,team',
+]
+
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DB_USER = os.environ.get('SNAP_DB_PG_USER') or 'romrescue'
