@@ -108,6 +108,36 @@
   }
 }
 
+.side-link {
+  background: $color-primary-1;
+  padding: 1em;
+  display: block;
+  margin-bottom: 1em;
+
+  span {
+    display: block;
+    color: $color-primary-0;
+    line-height: 1em;
+
+    &.subtitle {
+      text-transform: uppercase;
+      margin-bottom: .5em;
+    }
+    &.title {
+      font-size: 2em;
+    }
+  }
+
+  &:hover {
+    background: $color-primary-0;
+    span {
+      color: #fff;
+      //color: $color-primary-1;
+    }
+  }
+}
+  
+
 .dog-section {
   padding-top: 2em;
 

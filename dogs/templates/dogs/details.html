@@ -52,6 +52,7 @@
 	</div>
 	<div class="dog-share dog-section">
 	  <h2>Share {{ dog.name }}'s story</h2>
+
 	  <div class="row">
 	    <div class="col-xs-12">
 	      <a 
@@ -85,7 +86,32 @@
 	      {% endfor %}
 	    </div>
 	  </div>
-	{% endif %}
+	  {% endif %}
+	  <div class="dog-keypoints dog-section">
+	    <h2>Interested?</h2>
+	    <div class="row">
+	      <div class="col-md-12">
+		<a href="http://romrescue.s3.amazonaws.com/app/media/uploads/2017/01/31/pre-adoption-form-2017.docx" title="Pre adoption form" class="side-link">
+		  <span class="subtitle">
+		    Download
+		  </span>
+		  <span class="title">
+		    Pre adoption form
+		  </span>
+		</a>
+	      </div>
+	      <div class="col-md-12">
+		<a href="{% url 'pages:page' 'contact-us' %}" title="Contact Us" class="side-link">
+		  <span class="subtitle">
+		    Question?
+		  </span>
+		  <span class="title">
+		    Contact Us
+		  </span>
+		</a>
+	      </div>
+	    </div>
+	  </div>
       </div>
       <div class="col-xs-12">
 	<div class="body">
