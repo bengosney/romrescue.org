@@ -19,35 +19,73 @@
   <body>
     <div class="outter-most container">
       <div class="main-container">
-      <header>
-	{% include "header.html" %}
-	{% include "nav.html" %}
-      </header>
-      {% block page_header %}{% endblock %}
-      <div class="container main-content">
-	{% block content %}
-	{% endblock %}
-      </div>
-      <footer>
-	<div class="container">
-	  <div class="row">
-	    <div class="col-md-4">
-	      {% include "social-links.html" %}
-	    </div>
-	    <div class="col-md-4">
-	      <div class="inner">
-		SOS Romanian Rescue &copy;{% now "Y" %} | All Rights Reserved
+	<header>
+	  {% include "header.html" %}
+	  {% include "nav.html" %}
+	</header>
+	{% block page_header %}{% endblock %}
+	<div class="container main-content">
+	  {% block content %}
+	  {% endblock %}
+	</div>
+	<footer>
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-sm-12">
+		<!-- Begin MailChimp Signup Form -->
+		<div id="mc_embed_signup" class="signup">
+		  <div class="row">
+		    <div class="col-md-12">
+		      <h2>Keep up with the latest pupdates</h2>
+		    </div>
+		    <div class="col-md-7">
+		      <p>Signup for our news letter to keep up to date with our latest dogs, news and events</p>
+		      <p>
+			<small>We wont inundate with you and we defintly wont sell or pass your email to anyone else</small>
+		      </p>
+		    </div>		   
+		    <div class="col-md-5">
+		      <form action="//romrescue.us15.list-manage.com/subscribe/post?u=57b55fb53c7a73840d3472a5c&amp;id=5916757e00" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-inline" target="_blank" novalidate>
+			<div id="mc_embed_signup_scroll">
+			  <div class="mc-field-group form-group">
+			    <label for="mce-EMAIL">Email Address </label>
+			    <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL">
+			  </div>
+			  <div class="form-group">
+			    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-default">
+			  </div>
+			  <div id="mce-responses" class="clear">
+			    <div class="response" id="mce-error-response" style="display:none"></div>
+			    <div class="response" id="mce-success-response" style="display:none"></div>
+			  </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+			  <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_57b55fb53c7a73840d3472a5c_5916757e00" tabindex="-1" value=""></div>
+			</div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
+		<!--End mc_embed_signup-->
+		<hr />
 	      </div>
 	    </div>
-	    <div class="col-md-4">
-	      <div class="inner">
-		Charity Number : 1160999
+	    <div class="row">
+	      <div class="col-md-4">
+		{% include "social-links.html" %}
+	      </div>
+	      <div class="col-md-4">
+		<div class="inner">
+		  SOS Romanian Rescue &copy;{% now "Y" %} | All Rights Reserved
+		</div>
+	      </div>
+	      <div class="col-md-4">
+		<div class="inner">
+		  Charity Number : 1160999
+		</div>
 	      </div>
 	    </div>
 	  </div>
-	</div>
-      </footer>
-    </div>
+	</footer>
+      </div>
     </div>
     {% block js_footer %}{% endblock %}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
