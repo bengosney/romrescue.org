@@ -1,4 +1,11 @@
 .dog-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    margin-bottom: 1em;
+    }
+  
   .link {
     @extend %clearfix;
     display: block;
@@ -8,7 +15,8 @@
 
     background: $rgba-primary-1;
     padding: $padding;
-    margin-bottom: $padding;
+    #margin-bottom: $padding;
+      height: 100%;
 
     .image {
       position: relative;
