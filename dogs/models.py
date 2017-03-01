@@ -85,6 +85,8 @@ class Dog(statusMixin, models.Model):
 
     keypoints = models.ManyToManyField(KeyPoints, blank=True)
 
+    reserved = models.BooleanField(default=False)
+
     slug = fields.AutoSlugField(populate_from='name')
     created = fields.CreationDateTimeField()
     modified = fields.ModificationDateTimeField()
