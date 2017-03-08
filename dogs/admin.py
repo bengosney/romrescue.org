@@ -53,6 +53,7 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.Dog
     inlines = [DogPhotoInline]
     filter_horizontal = ('keypoints',)
+    list_display = ('name', 'reserved', 'location', 'dogStatus')
 
 
 class StatusAdmin(SortableAdminMixin, admin.ModelAdmin):

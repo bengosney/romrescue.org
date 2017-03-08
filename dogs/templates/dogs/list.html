@@ -17,6 +17,9 @@
       </div>
       {% endwith %}
       <h2>{{ dog.name }}</h2>
+      {% if dog.reserved %}
+      <div class="reserved">(Reserved)</div>
+      {% endif %}
     </a>
   </div>
   {% endfor %}

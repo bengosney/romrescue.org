@@ -118,7 +118,7 @@ module.exports = function (grunt) {
       }
     },
     watch: {
-      scss: {
+      scss_compile: {
         files: ['scss/**/*.*'],
         tasks: ['scss'],
         options: {
