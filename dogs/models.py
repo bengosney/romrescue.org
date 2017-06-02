@@ -88,6 +88,10 @@ class Dog(statusMixin, models.Model):
     reserved = models.BooleanField(default=False)
     neutered = models.BooleanField(default=True)
 
+    standard_info = models.BooleanField(default=True)
+
+    leash_of_life = models.BooleanField(default=False)
+
     slug = fields.AutoSlugField(populate_from='name')
     created = fields.CreationDateTimeField()
     modified = fields.ModificationDateTimeField()

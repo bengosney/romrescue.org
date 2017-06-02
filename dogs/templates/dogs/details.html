@@ -3,6 +3,7 @@
 {% load thumbnail %}
 {% load humanize %}
 {% load cropping %}
+{% load staticfiles %}
 
 {% block title %}{{ dog.name }}{% endblock %}
 
@@ -74,12 +75,22 @@
 	  {% endif %}
 	  <h2>{{ dog.name }}'s story</h2>
 	  {{ dog.description|safe }}
+	  {% if dog.standard_info and not dog.leash_of_life %}
 	  <div class="standard-text">
 	    Homecheck and adoption fees apply (minimum donation £240). {{ dog.name }} will be vaccinated{% if dog.neutered %}, spayed{% endif %} and chipped with her own passport. If you would like to adopt {{ dog.name }} please complete our pre adoption form, email <a href="mailto:info@romrescue.org">info@romrescue.org</a> or call 07968 236674.
 	  </div>
+	  {% endif %}
 	</div>	
       </div>
       <div id="info-pane" class="col-md-4 col-sm-5 col-xs-12">
+	{% if dog.leash_of_life %}
+	<div class="dog-details leash_of_life">
+	  <h2>Working With</h2>
+	  <a href="http://leashoflife.co.uk/">
+	    <img src="{% static "pages/leash-of-life-logo.png" %}" alt="Leash of Life" class="img-responsive" />
+	  </a>
+	</div>
+	{% endif %}
 	<div class="dog-details dog-section">
 	  <h2>About {{ dog.name }}</h2>
 	  <div class="detail-table container">
