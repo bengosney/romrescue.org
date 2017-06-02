@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Removing previous dumps"
+rm -f latest.dump*
+
 echo "Creating backup"
 heroku pg:backups:capture
 
