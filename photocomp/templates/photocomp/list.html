@@ -1,0 +1,16 @@
+{% load thumbnail %}
+{% load cropping %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="row dog-list">
+  {% for competition in competition_list %}
+  <div class="col-md-3 col-xs-6">
+    <a href="{{ competition.url }}" class="link">
+      {{ competition.title }}
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^dogs/', include('dogs.urls')),
     url(r'^team/', include('team.urls')),
+    url(r'^comps/', include('photocomp.urls')),
     url(r'^', include('pages.urls')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
 ]

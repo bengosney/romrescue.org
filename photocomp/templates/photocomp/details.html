@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load humanize %}
+{% load cropping %}
+{% load staticfiles %}
+
+{% block title %}{{ competition.title }}{% endblock %}
+
+{% block content %}
+<div>
+  <h1>{{ competition.title }}</h1>
+  <div>{{ competition.description|safe }}</div>
+  {% for cat in competition.category_set.all %}
+  <div>
+    <a href="{{ cat.url }}">{{ cat.title }}</a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

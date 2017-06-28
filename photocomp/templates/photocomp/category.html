@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load humanize %}
+{% load cropping %}
+{% load staticfiles %}
+
+{% block title %}{{ category.full_title }}{% endblock %}
+
+{% block content %}
+<div>
+  <h1>{{ category.full_title }}</h1>
+  <div>{{ category.competition.description|safe }}</div>
+  <div>{{ category.description|safe }}</div>
+</div>
+{% endblock %}

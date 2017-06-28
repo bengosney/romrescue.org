@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     'dogs',
     'faqs',
     'team',
+    'photocomp',
 ]
 
 MIDDLEWARE_CLASSES = [
