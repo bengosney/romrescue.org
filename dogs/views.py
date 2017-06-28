@@ -18,10 +18,17 @@ class DogDetail(DetailView):
     lookup_field = 'slug'
 
 
+    def get_queryset(self):
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING)
+    
+
 class SuccessDogDetail(DetailView):
     model = Dog
     template_name = 'dogs/success_details.html'
     lookup_field = 'slug'
+
+    def get_queryset(self):
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_SUCCESS)
 
 
 @register_list_view
