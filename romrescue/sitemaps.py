@@ -9,11 +9,14 @@ class romSitemap(Sitemap):
     
 
 class AdoptionSitemap(romSitemap):
-    changefreq = "weekly"
+    changefreq = "daily"
     priority = 0.75
 
     def items(self):
         return Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING)
+    
+    def lastmod(self, obj):
+        return obj.modified
 
 
 class SuccessSitemap(romSitemap):
