@@ -18,6 +18,6 @@ engines:
   shellcheck:
     enabled: true
 exclude_paths:
-  - "**/migrations/"
-  - "pages/static/pages/css"
-  - "pages/static/pages/js"
+  - "**/migrations/**/*.py"
+  - "pages/static/pages/css/**/*.css"
+  - "pages/static/pages/js/**/*.js"
