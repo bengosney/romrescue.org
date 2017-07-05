@@ -20,6 +20,10 @@ engines:
     enabled: true
   shellcheck:
     enabled: true
+ratings:
+  paths:
+  - "**.py"
+  - "**.js"
 exclude_paths:
   - "**/migrations/**/*.py"
   - "pages/static/pages/css/**/*.css"
