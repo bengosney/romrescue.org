@@ -147,11 +147,18 @@ NOSE_ARGS = [
 DB_USER = os.environ.get('SNAP_DB_PG_USER') or 'romrescue'
 DB_PASS = os.environ.get('SNAP_DB_PG_PASSWORD') or 'pS1IzChoCoaNg7YW'
 DB_HOST = os.environ.get('SNAP_DB_PG_HOST') or '127.0.0.1'
+DB_NAME = 'romrescue'
+
+if 'TRAVIS' in os.environ:
+    DB_USER = 'postgres'
+    DB_PASS = ''
+    DB_HOST = 'localhost'
+    DB_NAME = 'travisci'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'romrescue',
+        'NAME': DB_NAME,
         'USER': DB_USER,
         'PASSWORD': DB_PASS,
         'HOST': DB_HOST,
