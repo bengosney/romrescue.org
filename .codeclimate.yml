@@ -1,10 +1,4 @@
 engines:
-  checks:
-    enabled: true
-    config:
-      languages:
-      - javascript
-      - python
   csslint:
     enabled: true
   duplication:
