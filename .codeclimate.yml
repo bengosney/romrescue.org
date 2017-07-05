@@ -1,0 +1,4 @@
+exclude_paths:
+- "**/migrations/"
+- "pages/static/pages/css"
+- "pages/static/pages/js"
