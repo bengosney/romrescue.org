@@ -1,3 +1,22 @@
+engines:
+  csslint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+      - python
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  pep8:
+    enabled: true
+  scss-lint:
+    enabled: true
+  shellcheck:
+    enabled: true
 exclude_paths:
   - "**/migrations/"
   - "pages/static/pages/css"
