@@ -4,7 +4,10 @@ from django.http import HttpResponseRedirect
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.core.mail import EmailMessage
 
+from django.template import Context
+from django.template.loader import get_template
 
 from .models import Page, ModuleList, HomePageHeader
 from dogs.models import Dog
@@ -58,6 +61,26 @@ class DetailFormView(GenericModelView):
 
     def form_valid(self, form):
         self.object = form.save()
+
+        template = get_template('pages/email-submission.html')
+        context = Context({
+            'name': self.object.name,
+            'email': self.object.email,
+            'phone': self.object.phone,
+            'enquiry': self.object.enquiry,
+        })
+        content = template.render(context)
+        
+        email = EmailMessage(
+            "New contact form submission",
+            content,
+            'info@romrescue.org',
+            ['info@romrescue.org'],
+            headers = {'Reply-To': self.object.email }
+        )
+        email.send()
+
+        
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form):
@@ -94,7 +117,7 @@ class PageView(DetailFormView):
 class ContactView(CreateView):
     model = Page
     template_name = 'pages/contact.html'
-
+        
 
 class ModuleListView(DetailView):
     model = ModuleList
