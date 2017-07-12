@@ -54,6 +54,12 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     inlines = [DogPhotoInline]
     filter_horizontal = ('keypoints',)
     list_display = ('name', 'reserved', 'location', 'dogStatus')
+    list_per_page = 25
+
+    def __init__(self, model, admin_site):
+        super(DogAdmin, self).__init__(model, admin_site)
+
+        self.list_filter = ['dogStatus', 'reserved', 'location'] + list(self.list_filter)
 
 
 class StatusAdmin(SortableAdminMixin, admin.ModelAdmin):
