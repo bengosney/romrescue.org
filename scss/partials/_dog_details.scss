@@ -19,7 +19,9 @@
 
   .cycle-slideshow { 
     width: 100%;
-    min-height: 400px;
+    @media (min-width: 755px) {
+      min-height: 400px;
+    }
 
     img + img {
       display: none;
