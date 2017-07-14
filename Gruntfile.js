@@ -88,7 +88,7 @@ module.exports = function (grunt) {
     },
     concat: {
       options: {
-        separator: ';'
+        separator: "\n;"
       },
       js: {
         src: ['js/external/**/*.js', 'js/polyfill/**/*.js', 'js/build/**/*.js', 'js/compiled/**/*.js'],
