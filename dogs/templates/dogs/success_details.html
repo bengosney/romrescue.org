@@ -12,18 +12,7 @@
       <h1>{{ dog.name }}</h1>
     </div>
     <div class="col-xs-12">
-      <div class="dog-photos">
-	<div class="cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-center-horz="true" data-cycle-center-vert="true" data-cycle-pager=".cycle-pager">
-	  {% for img in dog.dogphoto_set.all %}
-	  <img 
-	     src="{{ img.main.url }}" 
-	     data-cycle-pager-template='<img src="{% cropped_thumbnail img "thumbnail" scale=.25 %}" />'
-	     class="img-responsive"
-	     />
-	  {% endfor %}
-	</div>
-	<div class="cycle-pager"></div>
-      </div>
+      {% include "dogs/dog_cycle.html" %}
       <p>{{ dog.description|safe }}</p>
     </div>      
   </div>
