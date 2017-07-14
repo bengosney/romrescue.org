@@ -48,6 +48,31 @@ class Status(models.Model):
         verbose_name_plural = _('Status/Locations')
 
 
+
+class Rescue(models.Model):
+    name = models.CharField(max_length=30)
+    logo = models.ImageField(upload_to='uploads/rescue')
+    website = models.URLField()
+
+    logo_big = ImageSpecField(source='logo',
+                              processors=[ResizeToFit(350, 150)],
+                              format='PNG',
+                              options={'quality': 70})
+
+    logo_small = ImageSpecField(source='logo',
+                                processors=[ResizeToFit(100, 75)],
+                                format='PNG',
+                                options={'quality': 70})
+
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta(object):
+        verbose_name = _('Rescue')
+        verbose_name_plural = _('Rescues')
+
+        
 class Dog(statusMixin, models.Model):
     GENDERS = [
         ('male', _('Male')),
@@ -90,7 +115,7 @@ class Dog(statusMixin, models.Model):
 
     standard_info = models.BooleanField(default=True)
 
-    leash_of_life = models.BooleanField(default=False)
+    rescue = models.ForeignKey(Rescue, blank=True, null=True)
 
     slug = fields.AutoSlugField(populate_from='name')
     created = fields.CreationDateTimeField()

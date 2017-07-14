@@ -14,6 +14,9 @@
 	{% else %}
 	<img src="{% static "pages/no-img.png" %}" class="img-responsive" />
 	{% endif %}
+	{% if dog.rescue %}
+	<img src="{{ dog.rescue.logo_small.url }}" alt="{{ dog.rescue.name }}" class="rescue-logo" />
+	{% endif %}
       </div>
       {% endwith %}
       <h2>{{ dog.name }}</h2>

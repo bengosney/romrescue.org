@@ -69,6 +69,14 @@ class StatusAdmin(SortableAdminMixin, admin.ModelAdmin):
 class DogPhoto(ImageCroppingMixin, admin.ModelAdmin):
     model = models.DogPhoto
 
+
+class RescueAdmin(admin.ModelAdmin):
+    model = models.Rescue
+    list_display = ('name', 'logo', 'website')
+    list_per_page = 25
+    
+    
 admin.site.register(models.KeyPoints, KeyPointsAdmin)
 admin.site.register(models.Dog, DogAdmin)
 admin.site.register(models.Status, StatusAdmin)
+admin.site.register(models.Rescue, RescueAdmin)

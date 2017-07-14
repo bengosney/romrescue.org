@@ -72,11 +72,11 @@
 	</div>	
       </div>
       <div id="info-pane" class="col-md-4 col-sm-5 col-xs-12">
-	{% if dog.leash_of_life %}
+	{% if dog.rescue %}
 	<div class="dog-details leash_of_life">
 	  <h2>Working With</h2>
-	  <a href="http://leashoflife.co.uk/">
-	    <img src="{% static "pages/leash-of-life-logo.png" %}" alt="Leash of Life" class="img-responsive" />
+	  <a href="{{ dog.rescue.website }}" class="rescue-logo-link" rel="external">
+	    <img src="{{ dog.rescue.logo_big.url }}" alt="{{ dog.rescue.name }}" class="img-responsive" />
 	  </a>
 	</div>
 	{% endif %}

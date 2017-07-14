@@ -4,7 +4,7 @@
 
   > * {
     margin-bottom: 1em;
-    }
+  }
   
   .link {
     @extend %clearfix;
@@ -49,6 +49,15 @@
       & + h2 {
         margin-top: $padding / 2;
       }
+
+      .rescue-logo {
+        position: absolute;
+        top: .5em;
+        right: .5em;
+        max-width: 33%;
+        height: auto;
+        transition: all .2s ease-in-out;
+      }
     }
 
     h2 {
@@ -60,6 +69,10 @@
       .image {
         &:before {
           opacity: .6;
+        }
+
+        .rescue-logo {
+          opacity: .4;
         }
       }
     }
