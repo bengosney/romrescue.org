@@ -111,9 +111,10 @@ class Dog(statusMixin, models.Model):
     keypoints = models.ManyToManyField(KeyPoints, blank=True)
 
     reserved = models.BooleanField(default=False)
+    
     neutered = models.BooleanField(default=True)
-
     standard_info = models.BooleanField(default=True)
+    cost = models.FloatField(default=240)
 
     rescue = models.ForeignKey(Rescue, blank=True, null=True)
 
