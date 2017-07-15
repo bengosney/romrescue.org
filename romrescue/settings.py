@@ -158,7 +158,7 @@ if 'TRAVIS' in os.environ:
     DB_USER = 'postgres'
     DB_PASS = ''
     DB_HOST = 'localhost'
-    DB_NAME = 'travisci'
+
 
 DATABASES = {
     'default': {
