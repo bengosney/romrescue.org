@@ -109,24 +109,6 @@ class DogTests(TestCase):
         self.assertEqual(dog.age, '2 years')
 
 
-class DogPhotoTests(TestCase):
-
-    def setUp(self):
-        self.dog = DogTests.get_dog('rover')
-        self.dog.save()
-
-    def skip_test_photo_name(self):
-        filename = 'dog-photo'
-        file_mock = mock.MagicMock(spec=File, name=filename)
-        file_mock.name = "%s.jpg" % filename
-
-        dog_photo = DogPhoto(image=file_mock, dog=self.dog)
-
-        print unicode(dog_photo)
-        print file_mock.name
-        self.assertTrue(unicode(dog_photo).startswith(file_mock.name))
-
-
 class KeyPointsTests(TestCase):
 
     @given(models(KeyPoints))
