@@ -22,4 +22,5 @@ before_script:
   - psql -c "CREATE DATABASE romrescue;" -U postgres
 
 script:
-  - python manage.py migrate --noinput
+#  - python manage.py migrate --noinput
+  - python manage.py test
