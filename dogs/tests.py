@@ -23,20 +23,6 @@ add_default_field_mapping(fields.CreationDateTimeField, datetimes())
 add_default_field_mapping(fields.ModificationDateTimeField, datetimes())
 
 
-class AdoptionListTests(TestCase):
-
-    def test_list_view(self):
-        response = self.client.get(reverse('dogs:AdoptionList'))
-        self.assertEqual(response.status_code, 200)
-
-
-class SuccessListTests(TestCase):
-
-    def test_list_view(self):
-        response = self.client.get(reverse('dogs:SuccessList'))
-        self.assertEqual(response.status_code, 200)
-
-
 class DogTests(TestCase):
     STATUS_TITLE = "test status"
 
