@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 from . import ModelStatus
-from .managers import statusManager
+from .managers import statusManager, statusDateManager
 
 
 class statusMixin(models.Model):
@@ -18,6 +18,14 @@ class statusMixin(models.Model):
     class Meta:
         abstract = True
 
+
+class statusDateMixin(statusMixin):
+    published = models.DateField()
+
+    objects = statusDateManager()
+    
+    class Meta:
+        abstract = True
 
 try:
     from polymorphic_tree.models import PolymorphicMPTTModel

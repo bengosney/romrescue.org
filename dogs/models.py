@@ -19,6 +19,7 @@ from icons.icons import ICON_CHOICE
 from modulestatus.models import statusMixin
 
 
+
 class KeyPoints(statusMixin, models.Model):
     title = models.CharField(max_length=150)
     details = models.CharField(max_length=400)
