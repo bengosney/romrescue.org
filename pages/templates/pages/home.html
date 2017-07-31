@@ -25,7 +25,7 @@
   <h3 class="col-xs-12">Looking for a forever home</h3>
   {% endcomment %}
   <div class="col-xs-12">
-    <a class="big-button" href="{% url 'dogs:AdoptionList' %}">View all our dogs <span class="hidden-xs">looking for a forever home</span></a>
+    <a class="big-button" href="{% url 'pages:modulelist' slug="in-need-of-a-home" %}">View all our dogs <span class="hidden-xs">looking for a forever home</span></a>
   </div>
   {% endif %}  
   {% for dog in dog_list %}
