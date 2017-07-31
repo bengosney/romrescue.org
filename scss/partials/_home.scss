@@ -1,3 +1,17 @@
 .home-content {
   padding: 2em 0;
 }
+
+.big-button {
+    background: $color-primary-1;
+    color: $purple;
+    text-align: center;
+    font: $title_font;
+    font-size: 2em;
+    display: block;
+    padding: .5em 1em;
+
+    &:hover {
+	color: #fff;
+    }
+}
