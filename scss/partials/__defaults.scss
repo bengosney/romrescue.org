@@ -22,3 +22,12 @@ a {
     color: $color-primary-1;
   }
 }
+
+p {
+    a {
+	border-bottom: 1px dotted $color-primary-0;
+	&:hover {	    
+	    border-color: $color-primary-1;
+	}
+    }
+}
