@@ -20,10 +20,10 @@ from modulestatus.models import statusMixin
 
 
 class KeyPoints(statusMixin, models.Model):
-    title = models.CharField(max_length=150)
-    details = models.CharField(max_length=400)
+    title = models.CharField(_("Title"), max_length=150)
+    details = models.CharField(_("Details"), max_length=400)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
-    icon = models.CharField(max_length=120, blank=True, choices=ICON_CHOICE)
+    icon = models.CharField(_("Icon"), max_length=120, blank=True, choices=ICON_CHOICE)
 
     def __unicode__(self):
         return self.title
@@ -50,9 +50,9 @@ class Status(models.Model):
 
 
 class Rescue(models.Model):
-    name = models.CharField(max_length=30)
-    logo = models.ImageField(upload_to='uploads/rescue')
-    website = models.URLField()
+    name = models.CharField(_("Name"), max_length=30)
+    logo = models.ImageField(_("Logo"), upload_to='uploads/rescue')
+    website = models.URLField(_("Website"))
 
     logo_big = ImageSpecField(source='logo',
                               processors=[ResizeToFit(350, 150)],
@@ -97,13 +97,13 @@ class Dog(statusMixin, models.Model):
         (STATUS_SUCCESS, _('Success storie')),
     ]
 
-    name = models.CharField(max_length=30)
-    dob = models.DateField(blank=True, null=True)
-    gender = models.CharField(max_length=6, choices=GENDERS)
-    size = models.CharField(max_length=15, choices=SIZES)
+    name = models.CharField(_("Name"), max_length=30)
+    dob = models.DateField(_("DOB"), blank=True, null=True)
+    gender = models.CharField(_("Gender"), max_length=6, choices=GENDERS)
+    size = models.CharField(_("Size"), max_length=15, choices=SIZES)
     location = models.ForeignKey(Status)
     description = RichTextField(_("Body"))
-    dogStatus = models.CharField(
+    dogStatus = models.CharField(_("Status"),
         max_length=8,
         choices=STATUS,
         default=STATUS_LOOKING)
@@ -111,10 +111,11 @@ class Dog(statusMixin, models.Model):
     keypoints = models.ManyToManyField(KeyPoints, blank=True)
 
     reserved = models.BooleanField(default=False)
-    
-    neutered = models.BooleanField(default=True)
-    standard_info = models.BooleanField(default=True)
-    cost = models.FloatField(default=240)
+
+    #oldie = models.BooleanField(_("Oldie"), default=False)
+    neutered = models.BooleanField(_("Neutered"), default=True)
+    standard_info = models.BooleanField(_("Standard Info"), default=True)
+    cost = models.FloatField(_("Cost"), default=240)
 
     rescue = models.ForeignKey(Rescue, blank=True, null=True)
 
