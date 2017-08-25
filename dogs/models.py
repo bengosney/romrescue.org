@@ -112,7 +112,7 @@ class Dog(statusMixin, models.Model):
 
     reserved = models.BooleanField(default=False)
 
-    #oldie = models.BooleanField(_("Oldie"), default=False)
+    oldie = models.BooleanField(_("Oldie"), default=False)
     neutered = models.BooleanField(_("Neutered"), default=True)
     standard_info = models.BooleanField(_("Standard Info"), default=True)
     cost = models.FloatField(_("Cost"), default=240)

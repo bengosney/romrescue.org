@@ -9,7 +9,16 @@ class AdoptionList(ListView):
     template_name = 'dogs/list.html'
 
     def get_queryset(self):
-        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING).order_by('reserved', 'position')
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING, oldie=False).order_by('reserved', 'position')
+
+
+@register_list_view
+class AdoptionOldieList(ListView):
+    model = Dog
+    template_name = 'dogs/list.html'
+
+    def get_queryset(self):
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING, oldie=True).order_by('reserved', 'position')
 
 
 class DogDetail(DetailView):
