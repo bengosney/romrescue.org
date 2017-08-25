@@ -220,6 +220,7 @@ class ModuleList(node):
         super(ModuleList, self).__init__(*args, **kwargs)
         self._meta.get_field_by_name('module')[0].choices = lazy(
             get_registered_list_views, list)()
+    
 
     class Meta:
         verbose_name = _("Module List")

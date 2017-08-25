@@ -1,0 +1,5 @@
+{% extends "dogs/list.html" %}
+
+{% block no_dogs %}
+  We currently have no older dogs looking for adoption. Please have a look at our <a href="{% url 'pages:page' slug='in-need-of-a-home' %}">other dogs</a> who need forever homes
+{% endblock %}

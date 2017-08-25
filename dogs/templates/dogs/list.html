@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="row dog-list">
+  {% if dog_list %}
   {% for dog in dog_list %}
   <div class="col-md-3 col-xs-6">
     <a href="{{ dog.url }}" class="link">
@@ -26,6 +27,15 @@
     </a>
   </div>
   {% endfor %}
+  {% else %}
+  <div class="col-xs-12">
+    <p class="no-dogs">
+      {% block no_dogs %}      
+      We currently have no dogs looking for adoption and thats a good thing!
+      {% endblock %}
+    </p>
+  </div>
+  {% endif %}
 </div>
 
 {% endblock %}
