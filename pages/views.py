@@ -1,4 +1,4 @@
-from vanilla import DetailView, ListView, CreateView, GenericModelView, TemplateView
+from vanilla import DetailView, ListView, CreateView, GenericModelView, TemplateView, FormView
 
 from django.http import HttpResponseRedirect
 
@@ -9,7 +9,8 @@ from django.core.mail import EmailMessage
 from django.template import Context
 from django.template.loader import get_template
 
-from .models import Page, ModuleList, HomePageHeader
+from .models import Page, ModuleList, HomePageHeader, IntrestSubmission
+from .forms import IntrestForm
 from dogs.models import Dog
 
 def error404(request):
@@ -117,7 +118,20 @@ class PageView(DetailFormView):
 class ContactView(CreateView):
     model = Page
     template_name = 'pages/contact.html'
-        
+
+
+class IntrestView(CreateView):
+    model = IntrestSubmission
+    fields = '__all__'
+    #form_class = IntrestForm
+    template_name = 'pages/intrest.html'
+    
+
+class IntrestSuccessView(DetailView):
+    model = IntrestSubmission
+    lookup_field = 'slug'
+    template_name = 'pages/intrest_success.html'
+
 
 class ModuleListView(DetailView):
     model = ModuleList

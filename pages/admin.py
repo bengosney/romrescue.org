@@ -6,7 +6,7 @@ from adminsortable2.admin import SortableAdminMixin
 from image_cropping import ImageCroppingMixin
 
 from .models import ContactSubmission, Page, Empty, ModuleList, \
-    ExternalLink, SocialLink, node, HomePageHeader
+    ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission
 
 
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
@@ -71,6 +71,16 @@ class ContactAdmin(admin.ModelAdmin):
         return False
 
 
+class IntrestAdmin(admin.ModelAdmin):
+    model = IntrestSubmission
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+    
+
 class HomePageHeaderAdmin(
         SortableAdminMixin,
         ImageCroppingMixin,
@@ -81,3 +91,4 @@ class HomePageHeaderAdmin(
 admin.site.register(node, TreeNodeParentAdmin)
 admin.site.register(ContactSubmission, ContactAdmin)
 admin.site.register(HomePageHeader, HomePageHeaderAdmin)
+admin.site.register(IntrestSubmission, IntrestAdmin)

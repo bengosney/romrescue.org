@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.utils.functional import lazy
+from django.contrib.postgres.fields import ArrayField
 
 from django_extensions.db import fields
 
@@ -260,10 +261,34 @@ class HomePageHeader(models.Model):
 
 class FosteringSubmission(models.Model):
     name = models.CharField(_("Full Name"), max_length=150)
-    email = models.EmailField(_("Email"))
-    contact_number = models.CharField(_("Contact Number"), max_length=20)
+    email = models.EmailField(_("Email"), blank=True)
+    contact_number = models.CharField(_("Contact Number"), max_length=20, blank=True)
 
     created = fields.CreationDateTimeField()
 
     def __unicode__(self):
         return self.name
+
+
+class IntrestSubmission(models.Model):
+    name = models.CharField(_("Full Name"), max_length=150)
+    email = models.EmailField(_("Email"), blank=True)
+    contact_number = models.CharField(_("Contact Number"), max_length=20, blank=True)
+
+    adopting = models.BooleanField(_("Adopting"), default=True)
+    fostering = models.BooleanField(_("Fostering"), default=False)
+    other = models.BooleanField(_("Other"), default=False)
+
+    created = fields.CreationDateTimeField()
+    slug = fields.AutoSlugField(populate_from='name')
+
+
+    def __unicode__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('pages:intrest_success', kwargs={'slug': self.slug})
+
+    @property
+    def url(self):
+        return self.get_absolute_url()

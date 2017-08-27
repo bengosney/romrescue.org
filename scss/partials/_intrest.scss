@@ -1,0 +1,13 @@
+
+.intrest-details {
+    font-size: 150%;
+    .row {
+	& > div {
+	    padding-bottom: 1em;
+	}
+    }
+
+    .title {
+	font-weight: bold;
+    }    
+}
