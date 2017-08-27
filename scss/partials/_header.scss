@@ -1,14 +1,21 @@
 header {
-  .header-row {
-    padding: 2em 1em;
-  }
+    .header-row {
+	padding: 2em 1em;
+    }
 
-  .donate {
-    float: right;
-  }
+    .donate {
+	float: right;
+    }
 
-  .header-title {
-    padding-top: 1em;
-    font-size: 1.5em
-  }
+    .header-title {
+	padding-top: 1em;
+	font-size: 1.5em
+    }
+
+    .logo {
+	@include clearfix;
+	a {
+	    float: left;	 
+	}
+    }
 }
