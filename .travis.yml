@@ -19,7 +19,6 @@ install:
   - pip install psycopg2 --quiet
 
 before_script:
-  - psql -U postgres -c "create extension postgis"
   - psql -c "CREATE DATABASE romrescue;" -U postgres
 
 script:
