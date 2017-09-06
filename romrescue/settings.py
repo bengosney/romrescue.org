@@ -220,7 +220,7 @@ STATICFILES_STORAGE = ('whitenoise.storage.'
 
 
 ROLLBAR = {
-    'access_token': 'eb67f32be84f4e93a903a79bde5e8378',
+    'access_token': os.environ.get('ROLLBAR_ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
