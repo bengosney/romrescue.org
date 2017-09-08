@@ -133,6 +133,10 @@ class Dog(statusMixin, models.Model):
         verbose_name_plural = _('Dogs')
 
     @property
+    def is_success(self):
+        return self.dogStatus == self.STATUS_SUCCESS
+
+    @property
     def title(self):
         return self.name
 

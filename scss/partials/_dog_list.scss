@@ -5,13 +5,22 @@
   > * {
     margin-bottom: 1em;
   }
+
+  $padding: 1em;
+
+  &.small {
+      .link {
+	  passing: $padding / .6;
+	  h2 {
+	      font-size: 1.5em;
+	  }
+      }
+  }
   
   .link {
     @extend %clearfix;
     display: block;
     text-decoration: none;
-
-    $padding: 1em;
 
     background: $rgba-primary-1;
     padding: $padding;

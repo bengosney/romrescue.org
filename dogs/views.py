@@ -1,8 +1,8 @@
 from django.core.exceptions import MultipleObjectsReturned
+from django.http import HttpResponseGone
 from vanilla import DetailView, ListView
 from .models import Dog
 from pages.decorators import register_list_view
-
 
 @register_list_view
 class AdoptionList(ListView):
@@ -40,7 +40,26 @@ class DogDetail(DetailView):
 
             return objects[0]
 
-    def get_queryset(self):
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data()
+        if self.object.dogStatus != Dog.STATUS_LOOKING:
+            status_code = 410
+            context['dog_list'] = Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING).order_by('reserved', 'position')[:4]
+            self.template_name = 'dogs/410.html'
+        else:
+            status_code = 200
+
+        response = self.render_to_response(context)
+        
+
+        response.status_code = status_code
+
+        return response
+        
+        
+
+    def get_querysety(self):
         return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING)
     
 
