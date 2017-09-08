@@ -1,6 +1,6 @@
 import datetime
 
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.core.files import File
 from django.core.urlresolvers import reverse
 
@@ -107,3 +107,28 @@ class StatusTests(TestCase):
     @given(models(Status))
     def test_status_title(self, status):
         self.assertEqual(unicode(status), status.title)
+
+
+class DetailViewTests(TestCase):
+    def test_status_looking(self):
+        dog = DogTests.get_dog('rover')
+        dog.dogStatus = Dog.STATUS_LOOKING
+
+        dog.save()
+
+        client = Client()
+        response = client.get(dog.url)
+
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_status_looking(self):
+        dog = DogTests.get_dog('rover')
+        dog.dogStatus = Dog.STATUS_FOUND
+
+        dog.save()
+
+        client = Client()
+        response = client.get(dog.url)
+
+        self.assertEqual(response.status_code, 410)
