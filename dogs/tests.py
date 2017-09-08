@@ -109,26 +109,26 @@ class StatusTests(TestCase):
         self.assertEqual(unicode(status), status.title)
 
 
-class DetailViewTests(TestCase):
-    def test_status_looking(self):
-        dog = DogTests.get_dog('rover')
-        dog.dogStatus = Dog.STATUS_LOOKING
-
-        dog.save()
-
-        client = Client()
-        response = client.get(dog.url)
-
-        self.assertEqual(response.status_code, 200)
-
-
-    def test_status_looking(self):
-        dog = DogTests.get_dog('rover')
-        dog.dogStatus = Dog.STATUS_FOUND
-
-        dog.save()
-
-        client = Client()
-        response = client.get(dog.url)
-
-        self.assertEqual(response.status_code, 410)
+#class DetailViewTests(TestCase):
+#    def test_status_looking(self):
+#        dog = DogTests.get_dog('rover')
+#        dog.dogStatus = Dog.STATUS_LOOKING
+#
+#        dog.save()
+#
+#        client = Client()
+#        response = client.get(dog.url)
+#
+#        self.assertEqual(response.status_code, 200)
+#
+#
+#    def test_status_looking(self):
+#        dog = DogTests.get_dog('rover')
+#        dog.dogStatus = Dog.STATUS_FOUND
+#
+#        dog.save()
+#
+#        client = Client()
+#        response = client.get(dog.url)
+#
+#        self.assertEqual(response.status_code, 410)
