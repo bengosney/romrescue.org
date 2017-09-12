@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'dogs',
     'faqs',
     'team',
+    'ajax',
 ]
 
 MIDDLEWARE_CLASSES = [
