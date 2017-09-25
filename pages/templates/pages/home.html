@@ -6,11 +6,7 @@
 {% block no-title %}{% endblock %}
 {% block title-default %}SOS Romanian Rescue South West{% endblock %}
 {% block content %}
-<div class="row">
-    <div class="col-xs-12">
-        <a class="big-button" href="{% url 'pages:modulelist' slug="in-need-of-a-home" %}">View all our dogs <span class="hidden-xs">looking for a forever home</span></a>
-  	</div>
-</div>
+
 <div class="home_headers cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-slides="> div">
   {% for header in headers %}
   <div class="home_header">
