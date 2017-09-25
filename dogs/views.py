@@ -1,7 +1,7 @@
 from django.core.exceptions import MultipleObjectsReturned
 from django.http import HttpResponseGone
 from vanilla import DetailView, ListView
-from .models import Dog
+from .models import Dog, Filter
 from pages.decorators import register_list_view
 
 @register_list_view
@@ -9,8 +9,15 @@ class AdoptionList(ListView):
     model = Dog
     template_name = 'dogs/list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(self.__class__, self).get_context_data(**kwargs)
+        context['filters'] = Filter.objects.all()
+        
+        return context
+
+    
     def get_queryset(self):
-        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING, oldie=False).order_by('reserved', 'position')
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING).order_by('reserved', 'position')
 
 
 @register_list_view

@@ -3,10 +3,19 @@
 {% load staticfiles %}
 
 {% block content %}
+<div class="filters row">
+  {% for filter in filters %}
+  <div class="col-sm-4">
+    <a class="btn btn-default btn-lg btn-block filter" href="#{{ filter.slug }}" data-filter="{{ filter.slug }}">
+      <span>{{ filter.name }}</span>
+    </a>
+  </div>
+  {% endfor %}
+</div>
 <div class="row dog-list">
   {% if dog_list %}
   {% for dog in dog_list %}
-  <div class="col-md-3 col-xs-6">
+  <div class="col-md-3 col-xs-6 dog-container" data-filter-data='[{% for filter in dog.filters.all %}"{{ filter.slug }}",{% endfor %}"all"]'>
     <a href="{{ dog.url }}" class="link">
       {% with dog.dogphoto_set.all|first as image %}      
       <div class="image">

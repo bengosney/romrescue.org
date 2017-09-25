@@ -19,6 +19,20 @@ from icons.icons import ICON_CHOICE
 from modulestatus.models import statusMixin
 
 
+class Filter(models.Model):    
+    name = models.CharField(_("Name"), max_length=30)
+    position = models.PositiveIntegerField(default=0, blank=False, null=False)
+    slug = fields.AutoSlugField(populate_from='name')
+
+    def __unicode__(self):
+        return self.name
+    
+    class Meta(object):
+        ordering = ('position',)
+        verbose_name = _('Filter')
+        verbose_name_plural = _('Filters')
+
+
 class KeyPoints(statusMixin, models.Model):
     title = models.CharField(_("Title"), max_length=150)
     details = models.CharField(_("Details"), max_length=400)
@@ -119,6 +133,8 @@ class Dog(statusMixin, models.Model):
 
     rescue = models.ForeignKey(Rescue, blank=True, null=True)
 
+    filters = models.ManyToManyField(Filter, blank=True)
+
     slug = fields.AutoSlugField(populate_from='name')
     created = fields.CreationDateTimeField()
     modified = fields.ModificationDateTimeField()
@@ -131,6 +147,7 @@ class Dog(statusMixin, models.Model):
         ordering = ('position',)
         verbose_name = _('Dog')
         verbose_name_plural = _('Dogs')
+
 
     @property
     def is_success(self):

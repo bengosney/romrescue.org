@@ -49,17 +49,41 @@ class KeyPointsAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
             **kwargs)
 
 
+def make_tag_action(tag):
+    def tag_action(modeladmin, request, queryset):
+        for dog in queryset:
+            dog.filters.add(tag)
+
+    tag_action.short_description = "Tag dog with {0}".format(tag.name)
+    tag_action.__name__ = "tag_dog_with_{0}".format(tag.slug)
+
+    return tag_action
+
+
 class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.Dog
     inlines = [DogPhotoInline]
     filter_horizontal = ('keypoints',)
     list_display = ('name', 'reserved', 'location', 'dogStatus')
     list_per_page = 25
+    actions = ['add_tag_dog']
 
+    
     def __init__(self, model, admin_site):
         super(DogAdmin, self).__init__(model, admin_site)
 
-        self.list_filter = ['dogStatus', 'reserved', 'location'] + list(self.list_filter)
+        self.list_filter = ['dogStatus', 'reserved', 'location', 'oldie'] + list(self.list_filter)
+
+    def get_actions(self, request):
+        actions = super(DogAdmin, self).get_actions(request)
+
+        for tag in models.Filter.objects.all():
+            action = make_tag_action(tag)
+            actions[action.__name__] = (action,
+                                        action.__name__,
+                                        action.short_description)
+
+        return actions
 
 
 class StatusAdmin(SortableAdminMixin, admin.ModelAdmin):
@@ -74,9 +98,14 @@ class RescueAdmin(admin.ModelAdmin):
     model = models.Rescue
     list_display = ('name', 'logo', 'website')
     list_per_page = 25
-    
+
+
+class FilterAdmin(admin.ModelAdmin):
+    model = models.Filter
+
     
 admin.site.register(models.KeyPoints, KeyPointsAdmin)
 admin.site.register(models.Dog, DogAdmin)
 admin.site.register(models.Status, StatusAdmin)
 admin.site.register(models.Rescue, RescueAdmin)
+admin.site.register(models.Filter, FilterAdmin)
