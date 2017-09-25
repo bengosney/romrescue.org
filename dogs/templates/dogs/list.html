@@ -33,6 +33,7 @@
       {% if dog.reserved %}
       <div class="reserved">(Reserved)</div>
       {% endif %}
+      <div class="info">{{ dog.gender|capfirst }}{% if dog.age %}, {{ dog.age }} old{% endif %}</div>
     </a>
   </div>
   {% endfor %}
