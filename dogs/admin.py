@@ -64,7 +64,7 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.Dog
     inlines = [DogPhotoInline]
     filter_horizontal = ('keypoints',)
-    list_display = ('name', 'reserved', 'location', 'dogStatus')
+    list_display = ('name', 'reserved', 'location', 'dogStatus', 'all_filters')
     list_per_page = 25
     actions = ['add_tag_dog']
 
@@ -72,7 +72,7 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     def __init__(self, model, admin_site):
         super(DogAdmin, self).__init__(model, admin_site)
 
-        self.list_filter = ['dogStatus', 'reserved', 'location', 'oldie'] + list(self.list_filter)
+        self.list_filter = ['dogStatus', 'reserved', 'location', 'filters'] + list(self.list_filter)
 
     def get_actions(self, request):
         actions = super(DogAdmin, self).get_actions(request)

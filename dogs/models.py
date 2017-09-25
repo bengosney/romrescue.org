@@ -193,6 +193,10 @@ class Dog(statusMixin, models.Model):
 
         return '%d %s%s' % (age, diff, plural)
 
+    @property
+    def all_filters(self):
+        return ", ".join([f.name for f in self.filters.all()])
+
 
 class DogPhoto(models.Model):
     dog = models.ForeignKey(Dog)
