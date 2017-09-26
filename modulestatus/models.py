@@ -18,23 +18,3 @@ class statusMixin(models.Model):
     class Meta:
         abstract = True
 
-
-try:
-    from polymorphic_tree.models import PolymorphicMPTTModel
-    from polymorphic_tree.managers import PolymorphicMPTTModelManager
-    from .managers import PolymorphicMPTTStatusManager
-
-    class PolymorphicMPTTStatusModel(PolymorphicMPTTModel):
-        status = models.IntegerField(
-            choices=ModelStatus.STATUS_CHOICES,
-            default=ModelStatus.LIVE_STATUS
-        )
-
-        _default_manager = PolymorphicMPTTStatusManager()
-        admin_objects = PolymorphicMPTTModelManager()
-
-        class Meta:
-            abstract = True
-
-except ImportError:
-    pass
