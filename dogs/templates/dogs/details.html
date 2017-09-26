@@ -88,7 +88,9 @@
 	<div class="dog-details dog-section">
 	  <h2>About {{ dog.name }}</h2>
 	  <div class="detail-table container">
+	    {% if dog.age %}
 	    <div class="row"><div class="col-xs-6">Age</div><div class="col-xs-6">{{ dog.age|title }}</div></div>
+	    {% endif %}
 	    <div class="row"><div class="col-xs-6">Gender</div><div class="col-xs-6">{{ dog.gender|title }}</div></div>
 	    <div class="row"><div class="col-xs-6">Size</div><div class="col-xs-6">{{ dog.size|title }}</div></div>
 	    <div class="row"><div class="col-xs-6">Location</div><div class="col-xs-6">{{ dog.location|title }}</div></div>
