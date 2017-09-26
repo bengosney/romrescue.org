@@ -94,6 +94,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.gzip.GZipMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

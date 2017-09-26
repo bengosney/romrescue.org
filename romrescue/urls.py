@@ -33,7 +33,7 @@ urlpatterns = [
 handler404 = 'pages.views.error404'
 
 if settings.DEBUG:
-    urlpatterns += url(r'^media/(?P<path>.*)$',
-                       serve,
-                       {'document_root': settings.MEDIA_ROOT,
-                        'show_indexes': True}),
+    import debug_toolbar
+    urlpatterns += url(r'^__debug__/', include(debug_toolbar.urls)),
+    urlpatterns += url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+        
