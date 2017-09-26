@@ -3,6 +3,7 @@ import datetime
 from django.test import TestCase, Client
 from django.core.files import File
 from django.core.urlresolvers import reverse
+from django.db import transaction
 
 from .models import Dog, DogPhoto, KeyPoints, Status
 
@@ -46,6 +47,28 @@ class DogTests(TestCase):
         dog = self.get_dog(name)
 
         self.assertEqual(unicode(dog), name)
+
+    @given(text())
+    def test_title(self, name):
+        dog = self.get_dog(name)
+
+        self.assertEqual(dog.title, name)
+
+    def test_url(self):
+        dog = self.get_dog('rover')
+        with transaction.atomic():
+            dog.save()
+        url = reverse('dogs:DogDetails', kwargs={'slug': dog.slug})
+
+        self.assertEqual(dog.url, url)
+
+    def test_succcess_url(self):
+        dog = self.get_dog('rover')
+        with transaction.atomic():
+            dog.save()
+        url = reverse('dogs:SuccessDetail', kwargs={'slug': dog.slug})
+
+        self.assertEqual(dog.succcess_url, url)
 
     def test_month_negative_age(self):
         first_of_month = datetime.date.today().replace(day=28)
