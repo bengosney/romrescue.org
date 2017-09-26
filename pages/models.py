@@ -219,7 +219,7 @@ class ModuleList(node):
 
     def __init__(self, *args, **kwargs):
         super(ModuleList, self).__init__(*args, **kwargs)
-        self._meta.get_field_by_name('module')[0].choices = lazy(
+        self._meta.get_field('module').choices = lazy(
             get_registered_list_views, list)()
     
 
