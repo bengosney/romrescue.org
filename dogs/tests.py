@@ -97,15 +97,17 @@ class DogTests(TestCase):
 
 class KeyPointsTests(TestCase):
 
-    @given(models(KeyPoints))
-    def test_keypoint_title(self, point):
+    @given(text())
+    def test_keypoint_title(self, title):
+        point = KeyPoints(title=title)
         self.assertEqual(unicode(point), point.title)
 
 
 class StatusTests(TestCase):
 
-    @given(models(Status))
-    def test_status_title(self, status):
+    @given(text())
+    def test_status_title(self, title):
+        status = Status(title=title)
         self.assertEqual(unicode(status), status.title)
 
 
