@@ -39,7 +39,6 @@ SECRET_KEY = '%^lk@u&&mb-89_t6_*&z08dif8m-tf15cphny1gy2&dvnf)#5_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ.get('ENV') == 'production' else True
-
 ALLOWED_HOSTS = ['*']
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -98,7 +97,9 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -182,9 +183,13 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
-        "KEY_PREFIX": "example"
+        "KEY_PREFIX": "romrescue"
     }
 }
+
+CACHE_MIDDLEWARE_ALIAS="default"
+CACHE_MIDDLEWARE_KEY_PREFIX="romrescue"
+CACHE_MIDDLEWARE_SECONDS=30
     
 # Password validation
 
