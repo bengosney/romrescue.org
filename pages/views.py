@@ -2,7 +2,7 @@ from vanilla import DetailView, ListView, CreateView, GenericModelView, Template
 
 from django.http import HttpResponseRedirect
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from django.core.mail import EmailMessage
 
@@ -14,9 +14,9 @@ from .forms import IntrestForm
 from dogs.models import Dog
 
 def error404(request):
-    response = render_to_response('pages/404.html', {},
-                                  context_instance=RequestContext(request))
+    response = render(request, 'pages/404.html')
     response.status_code = 404
+    
     return response
 
     
