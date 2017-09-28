@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load humanize %}
+{% load cropping %}
+{% load staticfiles %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<h1>Search Results</h1>
+<p>{{ term }}</p>
+
+{% for result in results %}
+<div>
+  {{ result.name }}{{ result.title }} : {{ result.rank }}
+</div>
+{% endfor %}
+
+{% endblock %}
