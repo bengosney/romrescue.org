@@ -8,6 +8,7 @@ from image_cropping import ImageCroppingMixin
 from .models import ContactSubmission, Page, Empty, ModuleList, \
     ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission
 
+from romrescue.actions import export_as_csv_action
 
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
     GENERAL_FIELDSET = (None, {
@@ -68,6 +69,8 @@ class ContactAdmin(admin.ModelAdmin):
     list_filter = ('created',)
     list_display = ('name', 'email', 'created', )
     list_per_page = 25
+
+    actions = [export_as_csv_action("CSV Export", fields=['name', 'email', 'created', 'enquiry'])]
 
     def has_add_permission(self, request, obj=None):
         return False
