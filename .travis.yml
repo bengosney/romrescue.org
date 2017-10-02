@@ -20,6 +20,7 @@ install:
 
 before_script:
   - psql -c "CREATE DATABASE romrescue;" -U postgres
+  - python manage.py collectstatic
 
 script:
   - python manage.py test
