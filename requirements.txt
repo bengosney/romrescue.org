@@ -63,6 +63,7 @@ sorl-thumbnail==12.3
 sphinx-me==0.3
 sqlparse==0.2.3
 tkreadonly==0.6.1
+unicodecsv==0.14.1
 Unidecode==0.4.21
 urllib3==1.22
 vishap==0.1.5
