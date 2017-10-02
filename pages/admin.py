@@ -64,6 +64,11 @@ class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
 class ContactAdmin(admin.ModelAdmin):
     model = ContactSubmission
 
+    readonly_fields = ('created',)
+    list_filter = ('created',)
+    list_display = ('name', 'email', 'created', )
+    list_per_page = 25
+
     def has_add_permission(self, request, obj=None):
         return False
 
