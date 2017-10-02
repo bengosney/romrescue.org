@@ -64,12 +64,12 @@ class DetailFormView(GenericModelView):
         self.object = form.save()
 
         template = get_template('pages/email-submission.html')
-        context = Context({
+        context = {
             'name': self.object.name,
             'email': self.object.email,
             'phone': self.object.phone,
             'enquiry': self.object.enquiry,
-        })
+        }
         content = template.render(context)
         
         email = EmailMessage(
