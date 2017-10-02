@@ -4,5 +4,6 @@ from . import views
 
 app_name = 'search'
 urlpatterns = [
-    url(r'^(?P<term>[\w-]+)/$', views.results, name='searchResults'),
+    #url(r'^(?P<term>[\w-]+)/$', views.results, name='searchResults'),
+    url(r'^$', views.results, name='results'),
 ]

@@ -8,12 +8,20 @@
 
 {% block content %}
 <h1>Search Results</h1>
-<p>{{ term }}</p>
 
-{% for result in results %}
-<div>
-  {{ result.name }}{{ result.title }} : {{ result.rank }}
+<div class="search-page-form">
+  {% include "search/form.html" %}
 </div>
-{% endfor %}
+
+<p>Search results for: {{ term }}</p>
+
+<div class="search-results">
+  {% for result in results %}
+  <a class="item" href="{{ result.url }}">
+    <span class="title">{{ result.title }}</span>
+    <span class="body">{{ result.body|striptags|truncatechars:150|safe }}</span>
+  </a>
+  {% endfor %}
+</div>
 
 {% endblock %}

@@ -6,11 +6,20 @@
     {% include "social-links.html" %}
   </div>
   <div class="header-row">
-    <div class="donate hidden-xs">{% include "donate.html" %}</div>
-    <div class="logo">
-      <a href="/" title="SOS Romain Rescue">
-	<img class="img-responsive" src="{% static "pages/logo.png" %}" alt="SOS Romain Rescue" />
-      </a>
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+	<div class="logo">
+	  <a href="/" title="SOS Romain Rescue">
+	    <img class="img-responsive" src="{% static "pages/logo.png" %}" alt="SOS Romain Rescue" />
+	  </a>
+	</div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+	{% include "search/form.html" %}
+      </div>     
+      <div class="col-sm-3 col-xs-6">
+	<div class="donate">{% include "donate.html" %}</div>
+      </div>      
     </div>
   </div>
 </div>

@@ -1,0 +1,26 @@
+.search-results {
+    .item {
+	display: block;
+	margin-bottom: 1em;
+	cursor: pointer;
+
+
+	.title, .body {
+	    transition: .2s all ease;
+	}
+	
+	.title {
+	    display: block;
+	    @extend h2;
+	}
+	.body {
+	    display: block;
+	}
+
+	&:hover {
+	    .title, .body {
+		color: $color-primary-1;
+	    }
+	}
+    }
+}
