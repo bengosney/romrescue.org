@@ -157,12 +157,15 @@ class Dog(statusMixin, models.Model):
         return self.name
 
     @property
-    def url(self):
-        return reverse_lazy('dogs:DogDetails', kwargs={'slug': self.slug})
+    def body(self):
+        return self.description
 
     @property
-    def succcess_url(self):
-        return reverse_lazy('dogs:SuccessDetail', kwargs={'slug': self.slug})
+    def url(self):
+        if self.is_success:
+            return reverse_lazy('dogs:SuccessDetail', kwargs={'slug': self.slug})
+        else:
+            return reverse_lazy('dogs:DogDetails', kwargs={'slug': self.slug})
 
     @property
     def age(self):

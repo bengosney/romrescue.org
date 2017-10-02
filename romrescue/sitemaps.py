@@ -27,7 +27,7 @@ class SuccessSitemap(romSitemap):
         return Dog.objects.filter(dogStatus=Dog.STATUS_SUCCESS)
 
     def location(self, obj):
-        return obj.succcess_url
+        return obj.url
 
 
 class PageSitemap(romSitemap):

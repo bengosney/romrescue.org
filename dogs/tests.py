@@ -64,11 +64,12 @@ class DogTests(TestCase):
 
     def test_succcess_url(self):
         dog = self.get_dog('rover')
+        dog.dogStatus = Dog.STATUS_SUCCESS
         with transaction.atomic():
             dog.save()
         url = reverse('dogs:SuccessDetail', kwargs={'slug': dog.slug})
 
-        self.assertEqual(dog.succcess_url, url)
+        self.assertEqual(dog.url, url)
 
     def test_month_negative_age(self):
         first_of_month = datetime.date.today().replace(day=28)
