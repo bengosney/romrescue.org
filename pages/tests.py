@@ -157,6 +157,18 @@ class ContactSubmissionMethodTest(TestCase):
         self.assertEqual(unicode(name), expected)
 
 
+    def test_form_submisssion(self):
+        form = ContactSubmission(name="Ben Gosney", email="bengosney@googlemail.com", enquiry="Test enquiry")
+
+        try:
+            form.send_email()
+            sent = True
+        except:
+            sent = False
+            
+        self.assertTrue(sent)
+        
+
 class ContactAdmminMethodTest(TestCase):
 
     def setUp(self):
