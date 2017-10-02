@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.utils.functional import lazy
 from django.contrib.postgres.fields import ArrayField
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
 
 from django_extensions.db import fields
 
@@ -238,6 +240,27 @@ class ContactSubmission(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+    def send_email(self):
+        template = get_template('pages/email-submission.html')
+        context = {
+            'name': self.name,
+            'email': self.email,
+            'phone': self.phone,
+            'enquiry': self.enquiry,
+        }
+        content = template.render(context)
+        
+        email = EmailMessage(
+            "New contact form submission",
+            content,
+            'info@romrescue.org',
+            ['info@romrescue.org'],
+            headers = {'Reply-To': self.email }
+        )
+
+        email.send()
 
 
 class HomePageHeader(models.Model):
