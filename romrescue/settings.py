@@ -17,6 +17,10 @@ from easy_thumbnails.conf import Settings as thumbnail_settings
 import dj_database_url
 import rollbar
 
+from oscar.defaults import *
+from oscar import OSCAR_MAIN_TEMPLATE_DIR
+from oscar import get_core_apps
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -61,6 +65,8 @@ else:
 
 # Application definition
 
+core_apps = get_core_apps()
+
 INSTALLED_APPS = [
     'flat_responsive',
     'django.contrib.admin',
@@ -73,6 +79,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.redirects',
     'django.contrib.sitemaps',
+    'django.contrib.flatpages',
+    'widget_tweaks',
     'storages',
     'django_nose',
     'django_extensions',
@@ -87,13 +95,13 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'adminsortable2',
-    'sorl.thumbnail',
+    #'sorl.thumbnail',
     'modulestatus',
     'pages',
     'dogs',
     'faqs',
     'team',
-]
+] + core_apps
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.gzip.GZipMiddleware',
@@ -109,6 +117,8 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
+    'oscar.apps.basket.middleware.BasketMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'romrescue.urls'
@@ -118,6 +128,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR + '/templates',
+            OSCAR_MAIN_TEMPLATE_DIR,
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -128,6 +139,12 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'pages.context_processors.nav_items',
                 'django.template.context_processors.request',
+
+                'oscar.apps.search.context_processors.search_form',
+                'oscar.apps.promotions.context_processors.promotions',
+                'oscar.apps.checkout.context_processors.checkout',
+                'oscar.apps.customer.notifications.context_processors.notifications',
+                'oscar.core.context_processors.metadata',
             ],
         },
     },
@@ -197,6 +214,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+AUTHENTICATION_BACKENDS = (
+    'oscar.apps.customer.auth_backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

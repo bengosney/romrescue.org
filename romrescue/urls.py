@@ -19,15 +19,19 @@ from django.conf import settings
 from django.views.static import serve
 from django.contrib.sitemaps.views import sitemap
 
+from oscar.app import application
+
+
 from .sitemaps import sitemaps
 
 urlpatterns = [
+    url(r'^shop/', include(application.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^dogs/', include('dogs.urls')),
     url(r'^team/', include('team.urls')),
     url(r'^', include('pages.urls')),
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 handler404 = 'pages.views.error404'
