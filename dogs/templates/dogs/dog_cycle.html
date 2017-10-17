@@ -1,15 +1,36 @@
 {% load thumbnail %}
 {% load cropping %}
 
+
 <div class="dog-photos">
-  <div class="cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-center-horz="true" data-cycle-center-vert="true" data-cycle-pager=".cycle-pager">
-    {% for img in dog.dogphoto_set.all %}
-    <img
-       src="{{ img.main.url }}"
-       data-cycle-pager-template='<img src="{% cropped_thumbnail img "thumbnail" scale=.25 %}" />'
-       class="img-responsive"
-       />
-    {% endfor %}
-  </div>
-  <div class="cycle-pager"></div>
+    <div id="player"></div>
+    <div class="cycle-slideshow"
+	 data-cycle-pause-on-hover="true"
+	 data-cycle-center-horz="true"
+	 data-cycle-center-vert="true"
+	 data-cycle-pager=".cycle-pager"
+	 data-cycle-slides=">*"
+	 data-cycle-paused="true"
+    >
+	{% for yt in dog.youtubevideo_set.all %}
+	{% comment %}
+	<div>
+	    <div class='embed-container'>
+		<iframe src='http://www.youtube.com/embed/{{ yt }}' frameborder='0' allowfullscreen></iframe>
+	    </div>
+	</div>
+	{% endcomment %}
+	<div class="youtube-container" data-youtube-id="{{ yt }}" data-cycle-pager-template='<img class="youtube-thumb fa fa-play-circle" src="https://img.youtube.com/vi/{{ yt }}/1.jpg" />''>
+	    <img id="yt-{{ yt }}" src="https://img.youtube.com/vi/{{ yt }}/0.jpg" class="youtube-responsive" />
+	</div>
+	{% endfor %}
+	{% for img in dog.dogphoto_set.all %}
+	<img
+	    src="{{ img.main.url }}"
+	    data-cycle-pager-template='<img src="{% cropped_thumbnail img "thumbnail" scale=.25 %}" />'
+	    class="img-responsive"
+	/>
+	{% endfor %}
+    </div>
+    <div class="cycle-pager"></div>
 </div>

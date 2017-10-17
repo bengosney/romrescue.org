@@ -3,6 +3,10 @@ from __future__ import unicode_literals
 import os
 
 from datetime import date
+try:
+    from urllib.parse import urlparse, parse_qs
+except ImportError:
+    from urlparse import urlparse, parse_qs
 
 from django.db import models
 from django_extensions.db import fields
@@ -218,3 +222,26 @@ class DogPhoto(models.Model):
         ordering = ('position',)
         verbose_name = _('Photo')
         verbose_name_plural = _('Photos')
+
+        
+class YoutubeVideo(models.Model):
+    dog = models.ForeignKey(Dog)
+    url = models.CharField(_("Youtube url"), max_length=150)
+    position = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    def get_id(self):
+        u_pars = urlparse(self.url)
+        quer_v = parse_qs(u_pars.query).get('v')
+        if quer_v:
+            return quer_v[0]
+        pth = u_pars.path.split('/')
+        if pth:
+            return pth[-1]
+
+    def __unicode__(self):
+        return self.get_id()
+
+    class Meta(object):
+        ordering = ('position',)
+        verbose_name = _('Youtube Video')
+        verbose_name_plural = _('Youtube Videos')

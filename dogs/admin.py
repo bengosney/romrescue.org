@@ -17,6 +17,15 @@ class DogPhotoInline(
     model = models.DogPhoto
     extra = 3
 
+    
+class YoutubeInline(
+        SortableInlineAdminMixin,
+        ImageCroppingMixin,
+        admin.TabularInline):
+    model = models.YoutubeVideo
+    extra = 1
+
+
 
 class KeyPointsAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.KeyPoints
@@ -62,7 +71,7 @@ def make_tag_action(tag):
 
 class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.Dog
-    inlines = [DogPhotoInline]
+    inlines = [DogPhotoInline, YoutubeInline]
     filter_horizontal = ('keypoints',)
     list_display = ('name', 'reserved', 'location', 'dogStatus', 'all_filters')
     list_per_page = 25
