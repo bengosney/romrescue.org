@@ -60,7 +60,7 @@
 	    {% include "dogs/dog_cycle.html" %}
 	    <div class="body dog-story">
 		{% if dog.reserved %}
-		<div class="alert alert-warning" role="alert">{{ dog.name }} is currently reserved peding adoption</div>
+		<div class="alert alert-warning" role="alert">{{ dog.name }} is currently reserved pending adoption</div>
 		{% endif %}
 		<h2>{{ dog.name }}'s story</h2>
 		{{ dog.description|safe }}
