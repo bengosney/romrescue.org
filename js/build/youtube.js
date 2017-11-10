@@ -2,7 +2,7 @@ var players = {};
 
 function onYouTubeIframeAPIReady() {
     $('.youtube-container').each(function () {
-	var id = $(this).find('img').attr('id');
+	var id = $(this).data('youtube-container');
 	var player = new YT.Player(id, {
 	    height: '390',
 	    width: '640',

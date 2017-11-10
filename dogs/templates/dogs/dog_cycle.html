@@ -20,8 +20,10 @@
 	    </div>
 	</div>
 	{% endcomment %}
-	<div class="youtube-container" data-youtube-id="{{ yt }}" data-cycle-pager-template='<img class="youtube-thumb fa fa-play-circle" src="https://img.youtube.com/vi/{{ yt }}/1.jpg" />''>
-	    <img id="yt-{{ yt }}" src="https://img.youtube.com/vi/{{ yt }}/0.jpg" class="youtube-responsive" />
+	<div class="youtube-container" data-youtube-container="yt-{{ yt }}" data-youtube-id="{{ yt }}" data-cycle-pager-template='<img class="youtube-thumb fa fa-play-circle" src="https://img.youtube.com/vi/{{ yt }}/1.jpg" />''>
+	  <div id="yt-{{ yt }}" class="youtube-placeholder">
+	    <img src="https://img.youtube.com/vi/{{ yt }}/0.jpg" class="youtube-responsive" />
+	  </div>
 	</div>
 	{% endfor %}
 	{% for img in dog.dogphoto_set.all %}
