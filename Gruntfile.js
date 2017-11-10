@@ -98,7 +98,7 @@ module.exports = function (grunt) {
 	uglify: {
 	    my_target: {
 		files: {
-		    'pages/static/pages/js/script.min.js': ['pages/static/pages/js/script.js']
+		    'pages/static/pages/js/script.min.js': ['js/external/**/*.js', 'js/polyfill/**/*.js', 'js/build/**/*.js', 'js/compiled/**/*.js']
 		}
 	      
 	    }
@@ -155,7 +155,7 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('icons', ['webfont']);
     grunt.registerTask('scss', ['sass_globbing', 'compass:dist', 'postcss:dist']);
-    grunt.registerTask('js', ['jshint', 'concat', 'uglify']);
+    grunt.registerTask('js', ['jshint', /*'concat',*/ 'uglify']);
     grunt.registerTask('css', ['scss']);
     grunt.registerTask('compile', ['icons', 'scss', 'js']);
 };
