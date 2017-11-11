@@ -13,16 +13,11 @@
 	 data-cycle-paused="true"
     >
 	{% for yt in dog.youtubevideo_set.all %}
-	{% comment %}
-	<div>
-	    <div class='embed-container'>
-		<iframe src='http://www.youtube.com/embed/{{ yt }}' frameborder='0' allowfullscreen></iframe>
-	    </div>
-	</div>
-	{% endcomment %}
 	<div class="youtube-container" data-youtube-container="yt-{{ yt }}" data-youtube-id="{{ yt }}" data-cycle-pager-template='<img class="youtube-thumb fa fa-play-circle" src="https://img.youtube.com/vi/{{ yt }}/1.jpg" />''>
-	  <div id="yt-{{ yt }}" class="youtube-placeholder">
-	    <img src="https://img.youtube.com/vi/{{ yt }}/0.jpg" class="youtube-responsive" />
+	  <div class="youtube-inner">
+	    <div id="yt-{{ yt }}" class="youtube-placeholder">
+	      <img src="https://img.youtube.com/vi/{{ yt }}/0.jpg" class="youtube-responsive" />
+	    </div>
 	  </div>
 	</div>
 	{% endfor %}
