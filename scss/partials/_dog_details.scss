@@ -2,7 +2,21 @@
   .rescue-logo-link {
     display: block;
   }
-      
+
+  .mobile-adoption-form-link {
+      background: $color-primary-1;
+      color: $color-primary-0;
+      text-align: center;
+      padding: 1em;
+      display: block;
+      margin-bottom: 1em;
+
+      &:hover {
+	  background: $color-primary-0;
+	  color: #fff;	  
+      }
+  }
+  
   .body {
     padding-top: 1em;
   }

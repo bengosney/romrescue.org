@@ -48,7 +48,7 @@
 {% endwith %}
 <div class="dog-details">
     <div class="row">
-	<div class="col-xs-12">
+	<div class="col-xs-6 col-sm-12">
 	    <h1>
 		{{ dog.name }}
 		{% if dog.reserved %}
@@ -57,8 +57,13 @@
 	    </h1>
 	</div>
 	<div class="col-md-8 col-sm-7 col-xs-12">
-	    {% include "dogs/dog_cycle.html" %}
-	    <div class="body dog-story">
+	  {% include "dogs/dog_cycle.html" %}
+	  <div class="visible-xs">
+	    <a rel="external" href="https://docs.google.com/forms/d/e/1FAIpQLSdBY5WxWv2oeI4I-P3Jc6lrudWp2wsaICSsK77wrGAhdr9HNw/viewform?usp=pp_url&entry.2106662986={{ dog.name }}&entry.2027592142&entry.368986527&entry.978747390&entry.150393077&entry.1310612420&entry.1268779000&entry.843624756&entry.1213147600&entry.1851659383&entry.49882106&entry.1745908997&entry.1612888130&entry.476665236&entry.226164750&entry.1882188950&entry.1570220732&entry.1281323852&entry.762914336&entry.909129394&entry.556395090" title="Pre adoption form" class="mobile-adoption-form-link">
+	      Intrested? Click here to complete the pre&nbsp;adoption&nbsp;form.
+	    </a>
+	  </div>
+	  <div class="body dog-story">
 		{% if dog.reserved %}
 		<div class="alert alert-warning" role="alert">{{ dog.name }} is currently reserved pending adoption</div>
 		{% endif %}
@@ -73,7 +78,7 @@
 		    Homecheck and adoption fees apply (minimum donation £{{ dog.cost|floatformat:"-2" }}). {{ dog.name }} will be vaccinated{% if dog.neutered %}, neutered{% endif %} and chipped with their own passport. If you would like to adopt {{ dog.name }} please complete our pre adoption form, email <a href="mailto:info@romrescue.org">info@romrescue.org</a> or call 07968 236674.
 		    {% endif %}
 		</div>
-		{% endif %}
+		{% endif %}		
 	    </div>	
 	</div>
 	<div id="info-pane" class="col-md-4 col-sm-5 col-xs-12">
@@ -134,13 +139,13 @@
 	    </div>
 	    {% endif %}
 	    {% if not dog.reserved %}
-	    <div class="dog-keypoints dog-section">
+	    <div class="dog-keypoints dog-section" id="intrested">
 		<h2>Interested?</h2>
 		<div class="row">
 		    <div class="col-md-12">
-			<a href="http://romrescue.s3.amazonaws.com/app/media/uploads/2017/01/31/pre-adoption-form-2017.docx" title="Pre adoption form" class="side-link">
+			<a rel="external" href="https://docs.google.com/forms/d/e/1FAIpQLSdBY5WxWv2oeI4I-P3Jc6lrudWp2wsaICSsK77wrGAhdr9HNw/viewform?usp=pp_url&entry.2106662986={{ dog.name }}&entry.2027592142&entry.368986527&entry.978747390&entry.150393077&entry.1310612420&entry.1268779000&entry.843624756&entry.1213147600&entry.1851659383&entry.49882106&entry.1745908997&entry.1612888130&entry.476665236&entry.226164750&entry.1882188950&entry.1570220732&entry.1281323852&entry.762914336&entry.909129394&entry.556395090" title="Pre adoption form" class="side-link">
 			    <span class="subtitle">
-				Download
+				Complete
 			    </span>
 			    <span class="title">
 				Pre adoption form
