@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import sys
 
 from easy_thumbnails.conf import Settings as thumbnail_settings
 
@@ -222,6 +223,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 STATICFILES_STORAGE = ('whitenoise.storage.'
                        'CompressedManifestStaticFilesStorage')
 
+TESTING = sys.argv[1:2] == ['test']
 
 ROLLBAR = {
     'access_token': os.environ.get('ROLLBAR_ACCESS_TOKEN'),
