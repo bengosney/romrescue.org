@@ -1,5 +1,6 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.conf import settings
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -30,6 +31,10 @@ def get_sheet(sheet_name):
 
 @receiver(post_save, sender=Dog)
 def update_google_sheet(sender, instance, **kwargs):
+    if settings.TESTING:
+        print("Testing detected, not updateing google sheet")
+        return
+    
     dog_object = instance
     dog_list = get_sheet("Dog List")
     
