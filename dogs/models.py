@@ -22,7 +22,6 @@ from icons.icons import ICON_CHOICE
 
 from modulestatus.models import statusMixin
 
-
 class Filter(models.Model):    
     name = models.CharField(_("Name"), max_length=30)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
@@ -169,6 +168,13 @@ class Dog(statusMixin, models.Model):
         return reverse_lazy('dogs:SuccessDetail', kwargs={'slug': self.slug})
 
     @property
+    def correct_url(self):
+        if self.is_success:
+            return self.succcess_url
+        else:
+            return self.url
+
+    @property
     def age(self):
         today = date.today()
 
@@ -200,6 +206,10 @@ class Dog(statusMixin, models.Model):
     @property
     def all_filters(self):
         return ", ".join([f.name for f in self.filters.all()])
+
+    @property
+    def sheet_id(self):
+        return "ID~%s" % self.id
 
 
 class DogPhoto(models.Model):
