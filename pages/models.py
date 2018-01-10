@@ -235,7 +235,7 @@ class ContactSubmission(models.Model):
     email = models.EmailField(_("Email"))
     phone = models.CharField(_("Phone"), max_length=100, blank=True, null=True)
     enquiry = models.TextField(_("Enquiry"))
-    consent = models.BooleanField(_("I give consent for data I enter into this form to be stored and processed by SOS Romanian Rescue South West"))
+    consent = models.BooleanField(_("I give consent for data I enter into this form to be stored and processed by SOS Romanian Rescue South West and I am over 18"))
 
     created = fields.CreationDateTimeField()
 
