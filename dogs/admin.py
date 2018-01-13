@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
+
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from image_cropping import ImageCroppingMixin
 
@@ -81,7 +83,7 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     def __init__(self, model, admin_site):
         super(DogAdmin, self).__init__(model, admin_site)
 
-        self.list_filter = ['dogStatus', 'reserved', 'location', 'filters'] + list(self.list_filter)
+        self.list_filter = ['dogStatus', 'reserved', 'location', 'filters', 'rescue'] + list(self.list_filter)
 
     def get_actions(self, request):
         actions = super(DogAdmin, self).get_actions(request)
