@@ -6,6 +6,27 @@
 {% block no-title %}{% endblock %}
 {% block title-default %}SOS Romanian Rescue South West{% endblock %}
 {% block content %}
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "AnimalShelter",
+	"name": "SOS Romanian Rescue South West",
+	"address": {
+		"@type": "PostalAddress",
+		"addressLocality": "Wellington",
+		"addressRegion": "Somerset",
+		"postalCode": "TA21"
+},
+	"image": "https://romrescue.s3.amazonaws.com/images/11924289_1174003869281177_6373312506769185085_n.jpg.1110x624_q85_box-0%2C0%2C480%2C270_crop_detail_upscale.jpg",
+	"logo": "{{ request.build_absolute_uri|slice:":-1" }}{% static "pages/logo-only.png" %}",
+	"email": "info@romrescue.org",
+	"telePhone": "07712 613 763",
+	"url": "{{ request.build_absolute_uri }}",
+	"paymentAccepted": [ "cash" ],
+	"priceRange":"$"
+
+}
+</script>
 
 <div class="home_headers cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-slides="> div">
   {% for header in headers %}
