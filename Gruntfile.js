@@ -158,7 +158,7 @@ module.exports = function (grunt) {
 	watch: {
 	    scss_compile: {
 		files: ['scss/**/*.*'],
-		tasks: ['scss', 'rename'],
+		tasks: ['clean:css', 'scss', 'rename'],
 		options: {
 		    spawn: false
 		}
