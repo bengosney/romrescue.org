@@ -5,19 +5,39 @@ module.exports = function (grunt) {
     require('google-closure-compiler').grunt(grunt);
 
     grunt.initConfig({
-	postcss: {
-	    options: {
-		map: false,
-		processors: [
-		    require('postcss-import')(),
-		    require('pixrem')(),
-		    require('autoprefixer')({browsers: 'last 3 versions'}),
-		    require('postcss-flexibility')(),
-		    require('css-mqpacker')({sort: true}),
-		    require('cssnano')({zindex: false})
-		]
+	clean: {
+	    css: ['pages/static/pages/css/**/*.css'],
+	    js: ['pages/static/pages/js/**/*.js']
+	},
+	purifycss: {
+	    options: {},
+	    target: {
+		src: ['./**/templates/**/*.html', 'pages/static/pages/js/**/*.js'],
+		css: ['pages/static/pages/css/*.css'],
+		dest: 'pages/static/pages/css/styles.min.css'
 	    },
-	    dist: {
+	},
+	postcss: {
+	    stage1: {
+		options: {
+		    map: false,
+		    processors: [
+			require('postcss-import')(),
+			require('pixrem')(),
+			require('autoprefixer')({browsers: 'last 3 versions'}),
+			require('postcss-flexibility')(),
+			require('css-mqpacker')({sort: true}),
+		    ]
+		},
+		src: 'pages/static/pages/css/*.css'
+	    },
+	    stage2: {
+		options: {
+		    map: false,
+		    processors: [
+			require('cssnano')({zindex: false})
+		    ]
+		},
 		src: 'pages/static/pages/css/*.css'
 	    }
 	},
@@ -39,7 +59,7 @@ module.exports = function (grunt) {
 	sass_globbing: {
 	    sass: {
 		files: {
-		    'scss/_imports.scss': 'scss/partials/**/*.scss'
+		    'scss/_imports.scss': ['scss/partials/**/_*.scss']
 		},
 		options: {
 		    useSingleQuotes: false,
@@ -100,7 +120,7 @@ module.exports = function (grunt) {
 		files: {
 		    'pages/static/pages/js/script.min.js': ['js/external/**/*.js', 'js/polyfill/**/*.js', 'js/build/**/*.js', 'js/compiled/**/*.js']
 		}
-	      
+		
 	    }
 	},
 	flake8: {
@@ -154,8 +174,10 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('icons', ['webfont']);
-    grunt.registerTask('scss', ['sass_globbing', 'compass:dist', 'postcss:dist']);
+    grunt.registerTask('scss', ['sass_globbing', 'compass:dist', 'postcss:stage1',]);
     grunt.registerTask('js', ['jshint', /*'concat',*/ 'uglify']);
-    grunt.registerTask('css', ['scss']);
-    grunt.registerTask('compile', ['icons', 'scss', 'js']);
+    grunt.registerTask('css', ['scss', 'purifycss', 'postcss:stage2']);
+    grunt.registerTask('build_css', ['clean:css', 'css']);
+    grunt.registerTask('build_js', ['clean:js', 'js']);
+    grunt.registerTask('compile', ['icons', 'build_css', 'build_js']);
 };
