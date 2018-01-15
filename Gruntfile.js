@@ -145,10 +145,20 @@ module.exports = function (grunt) {
 		}
 	    }
 	},
+	rename: {
+	    css: {
+		files: [
+		    {
+			src: 'pages/static/pages/css/styles.css',
+			dest: 'pages/static/pages/css/styles.min.css'
+		    }
+		]
+	    }
+	},
 	watch: {
 	    scss_compile: {
 		files: ['scss/**/*.*'],
-		tasks: ['scss'],
+		tasks: ['scss', 'rename'],
 		options: {
 		    spawn: false
 		}

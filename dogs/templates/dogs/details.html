@@ -70,14 +70,14 @@
 		<h2>{{ dog.name }}'s story</h2>
 		{{ dog.description|safe }}
 		{% if dog.standard_info %}
-		<div class="standard-text">
+		<p class="standard-text">
 		    {% if dog.rescue %}
 		    {% url 'pages:page' 'contact-us' as contacturl %}
 		    {{ dog.name }} is available for adoption through <a href="{{ dog.rescue.website }}" rel="external">{{ dog.rescue.name }}</a>.{% if contacturl %} If you are interested in meeting {{ dog.name }} please <a href="{{ contacturl }}">contact us</a>.{% endif %}
 		    {% else %}
 		    Homecheck and adoption fees apply (minimum donation £{{ dog.cost|floatformat:"-2" }}). {{ dog.name }} will be vaccinated{% if dog.neutered %}, neutered{% endif %} and chipped with their own passport. If you would like to adopt {{ dog.name }} please complete our pre adoption form, email <a href="mailto:info@romrescue.org">info@romrescue.org</a> or call 07712 613 763.
 		    {% endif %}
-		</div>
+		</p>
 		{% endif %}		
 	    </div>	
 	</div>

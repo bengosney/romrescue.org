@@ -29,6 +29,7 @@
     "purify-css": "^1.2.5"
   },
   "dependencies": {
-    "google-closure-compiler": "^20160315.2.0"
+    "google-closure-compiler": "^20160315.2.0",
+    "grunt-contrib-rename": "^0.2.0"
   }
 }
