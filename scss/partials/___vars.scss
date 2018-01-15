@@ -1,5 +1,12 @@
+@font-face {
+  font-family: system;
+  font-style: normal;
+  font-weight: 300;
+  src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+}
+
 $title_font: 'Bitter', serif;
-$body_font:  'Raleway', sans-serif;
+$body_font:  system;
 
 $purple: rgb(155, 83, 156); //9B539C
 
