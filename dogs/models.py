@@ -91,6 +91,7 @@ class Rescue(models.Model):
 
         
 class Dog(statusMixin, models.Model):
+    DEFAULT_COST = 250
     GENDERS = [
         ('male', _('Male')),
         ('female', _('Female')),
@@ -131,7 +132,7 @@ class Dog(statusMixin, models.Model):
 
     neutered = models.BooleanField(_("Neutered"), default=True)
     standard_info = models.BooleanField(_("Standard Info"), default=True)
-    cost = models.FloatField(_("Cost"), default=250)
+    cost = models.FloatField(_("Cost"), default=DEFAULT_COST)
 
     rescue = models.ForeignKey(Rescue, blank=True, null=True)
 

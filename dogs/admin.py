@@ -70,6 +70,8 @@ def make_tag_action(tag):
 
     return tag_action
 
+def set_price_to_default(modeladmin, request, queryset):
+    queryset.update(cost=models.Dog.DEFAULT_COST)
 
 class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.Dog
@@ -77,7 +79,7 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     filter_horizontal = ('keypoints',)
     list_display = ('name', 'reserved', 'location', 'dogStatus', 'all_filters')
     list_per_page = 25
-    actions = ['add_tag_dog']
+    actions = ['add_tag_dog', set_price_to_default]
 
     
     def __init__(self, model, admin_site):
