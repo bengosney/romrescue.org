@@ -131,7 +131,7 @@ class Dog(statusMixin, models.Model):
 
     neutered = models.BooleanField(_("Neutered"), default=True)
     standard_info = models.BooleanField(_("Standard Info"), default=True)
-    cost = models.FloatField(_("Cost"), default=240)
+    cost = models.FloatField(_("Cost"), default=250)
 
     rescue = models.ForeignKey(Rescue, blank=True, null=True)
 
