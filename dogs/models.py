@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+from bs4 import BeautifulSoup
+
 import os
 
 from datetime import date
@@ -211,6 +213,12 @@ class Dog(statusMixin, models.Model):
     @property
     def sheet_id(self):
         return "ID~%s" % self.id
+
+    @property
+    def raw_description(self):
+        soup = BeautifulSoup(self.description)
+
+        return "".join(soup.find('p').getText())
 
 
 class DogPhoto(models.Model):

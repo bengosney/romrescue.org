@@ -1,6 +1,7 @@
 asn1crypto==0.23.0
 attrs==17.2.0
 Babel==2.5.1
+beautifulsoup4==4.6.0
 boto==2.48.0
 brotlipy==0.7.0
 bugjar==0.1.0
@@ -45,6 +46,7 @@ django-tag-parser==3.1
 django-treebeard==4.1.2
 django-vanilla-views==1.0.4
 django-widget-tweaks==1.4.1
+djangorestframework==3.8.2
 duvet==0.1.2
 easy-thumbnails==2.4.2
 enum34==1.1.6

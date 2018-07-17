@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.redirects',
     'django.contrib.sitemaps',
+    'rest_framework',
     'storages',
     'django_nose',
     'django_extensions',

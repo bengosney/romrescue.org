@@ -4,6 +4,9 @@ from vanilla import DetailView, ListView
 from .models import Dog, Filter
 from pages.decorators import register_list_view
 
+from rest_framework import viewsets
+from .serializers import DogSerializer
+
 @register_list_view
 class AdoptionList(ListView):
     model = Dog
@@ -86,3 +89,11 @@ class SuccessList(ListView):
 
     def get_queryset(self):
         return self.model._default_manager.filter(dogStatus=Dog.STATUS_SUCCESS)
+
+
+class DogViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING,reserved=False).order_by('reserved', 'position')
+    serializer_class = DogSerializer
