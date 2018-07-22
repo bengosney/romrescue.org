@@ -93,7 +93,7 @@ class Rescue(models.Model):
 
         
 class Dog(statusMixin, models.Model):
-    DEFAULT_COST = 250
+    DEFAULT_COST = 265
     GENDERS = [
         ('male', _('Male')),
         ('female', _('Female')),
