@@ -28,3 +28,4 @@ exclude_paths:
   - "**/migrations/**/*.py"
   - "pages/static/pages/css/**/*.css"
   - "pages/static/pages/js/**/*.js"
+  - "Gruntfile.js"
