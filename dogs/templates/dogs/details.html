@@ -65,7 +65,7 @@
 	  </div>
 	  <div class="body dog-story">
 		{% if dog.reserved %}
-		<div class="alert alert-warning" role="alert">{{ dog.name }} is currently reserved pending adoption</div>
+		<div class="alert alert-warning" role="alert">{{ dog.name }} is currently reserved pending home check and adoption</div>
 		{% endif %}
 		<h2>{{ dog.name }}'s story</h2>
 		{{ dog.description|safe }}
