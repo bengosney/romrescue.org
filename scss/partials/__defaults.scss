@@ -51,3 +51,13 @@ p {
     width: 500px;
 }
 
+
+.body-content {    
+    li {
+	@extend p;
+	font-family: $body_font;
+	& + li {
+	    margin-top: .3em;
+	}
+    }
+}
