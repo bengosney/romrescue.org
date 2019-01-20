@@ -70,6 +70,15 @@ def make_tag_action(tag):
 
     return tag_action
 
+def make_status_action(status, name):
+    def status_action(modeladmin, request, queryset):
+        queryset.update(dogStatus=status)
+
+    status_action.short_description = "Change status to {0}".format(name)
+    status_action.__name__ = "change_status_to_{0}".format(status)
+
+    return status_action
+
 def set_price_to_default(modeladmin, request, queryset):
     queryset.update(cost=models.Dog.DEFAULT_COST)
 
@@ -96,6 +105,12 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
                                         action.__name__,
                                         action.short_description)
 
+        for status in models.Dog.STATUS:
+            action = make_status_action(status[0], status[1])
+            actions[action.__name__] = (action,
+                                        action.__name__,
+                                        action.short_description)
+            
         return actions
 
 
