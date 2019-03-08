@@ -19,7 +19,7 @@ module.exports = function (grunt) {
 		src: ['./**/templates/**/*.html', 'pages/static/pages/js/**/*.js'],
 		css: ['pages/static/pages/css/*.css'],
 		dest: 'pages/static/pages/css/styles.min.css'
-	    },
+	    }
 	},
 	postcss: {
 	    stage1: {
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
 		    useSingleQuotes: false,
 		    signature: '// 00Dog'
 		}
-	    },
+	    }
 	},
 	webfont:{
 	    icons: {
@@ -136,7 +136,7 @@ module.exports = function (grunt) {
 		'!**/migrations/*.py',
 		'!node_modules/**/*.py',
 		'!icons/**/*.py'
-	    ],
+	    ]
 	},
 	'closure-compiler': {
 	    jscompile: {
@@ -169,7 +169,7 @@ module.exports = function (grunt) {
 	    },
 	    flake: {
 		files: ['**/*.py'],
-		tasks: ['flake8'],
+		tasks: ['flake8']
 	    },
 	    js: {
 		files: ['js/build/**/*', 'js/external/**/*', 'js/polyfils/**/*', 'js/compiled/**/*'],
@@ -183,7 +183,7 @@ module.exports = function (grunt) {
 		files: ['icons/build/**/*'],
 		tasks: ['webfont']
 	    }
-	},
+	}
     });
 
     grunt.registerTask('default', ['watch']);
