@@ -10,7 +10,11 @@ module.exports = function (grunt) {
 	    js: ['pages/static/pages/js/**/*.js']
 	},
 	purifycss: {
-	    options: {},
+	    options: {
+		minify: true,
+		rejected: true,
+		whitelist: ['*icon*']
+	    },
 	    target: {
 		src: ['./**/templates/**/*.html', 'pages/static/pages/js/**/*.js'],
 		css: ['pages/static/pages/css/*.css'],
