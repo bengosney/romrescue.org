@@ -131,6 +131,7 @@ class Dog(statusMixin, models.Model):
     keypoints = models.ManyToManyField(KeyPoints, blank=True)
 
     reserved = models.BooleanField(default=False)
+    hold = models.BooleanField(_('Medical Hold'), default=False)
 
     neutered = models.BooleanField(_("Neutered"), default=True)
     standard_info = models.BooleanField(_("Standard Info"), default=True)
