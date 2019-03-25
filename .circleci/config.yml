@@ -24,12 +24,10 @@ jobs:
       - run:
           name: install deps
           command: |
-            sudo pip install pipenv
-            pipenv install
+            sudo pip install -r requirements.txt
             
       - save_cache:
           paths:
-            - ".venv"
             - "/usr/local/bin"
             - "/usr/local/lib/python2.7/site-packages"
           key: v1-dependencies-{{ checksum "requirements.txt" }}
@@ -37,7 +35,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            pipenv run python manage.py test
+            python manage.py test
 
       - store_artifacts:
           path: test-reports
