@@ -3,9 +3,12 @@ jobs:
   build:
     docker:
       - image: circleci/python:2.7.15
-        enviroment:
+        environment:
           DATABASE_URL: postgresql://root@localhost/circle_test
       - image: circleci/postgres:9.5.15
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: circle_test
 
     working_directory: ~/repo
 
@@ -19,8 +22,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python -m venv venv
-            . venv/bin/activate
+            sudo pip install pipenv
             pip install -r requirements.txt
 
       - save_cache:
@@ -31,7 +33,6 @@ jobs:
       - run:
           name: run tests
           command: |
-            . venv/bin/activate
             python manage.py test
 
       - store_artifacts:
