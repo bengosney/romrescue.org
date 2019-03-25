@@ -4,8 +4,9 @@ jobs:
     docker:
       - image: circleci/python:2.7.15
         environment:
+          PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: postgresql://root@localhost/circle_test
-      - image: circleci/postgres:9.5.15
+          - image: circleci/postgres:9.5.15
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: circle_test
@@ -14,26 +15,29 @@ jobs:
 
     steps:
       - checkout
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "requirements.txt" }}
-          - v1-dependencies-
 
       - run:
-          name: install dependencies
+          name: install deps
           command: |
             sudo pip install pipenv
-            pip install -r requirements.txt
-
+            pipenv install
+            
       - save_cache:
           paths:
-            - ./venv
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.6/site-packages"
           key: v1-dependencies-{{ checksum "requirements.txt" }}
         
       - run:
           name: run tests
           command: |
-            python manage.py test
+            pipenv run python manage.py test
 
       - store_artifacts:
           path: test-reports
