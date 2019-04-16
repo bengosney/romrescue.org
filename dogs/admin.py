@@ -10,7 +10,6 @@ import json
 import os
 
 from . import models
-from . import signals
 
 class DogPhotoInline(
         SortableInlineAdminMixin,
