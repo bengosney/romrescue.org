@@ -115,6 +115,7 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
 
 class StatusAdmin(SortableAdminMixin, admin.ModelAdmin):
     model = models.Status
+    list_display = ('title', 'show_arrival_date')
 
 
 class DogPhoto(ImageCroppingMixin, admin.ModelAdmin):
