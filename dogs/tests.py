@@ -28,13 +28,14 @@ class DogTests(TestCase):
     STATUS_TITLE = "test status"
 
     @staticmethod
-    def get_dog(name, dob="2015-01-01"):
-        test_status = Status(title="test status", body="test body")
+    def get_dog(name, dob="2015-01-01", arrival="2025-01-01", status_arrival=False):
+        test_status = Status(title="test status", body="test body", show_arrival_date=status_arrival)
         test_status.save()
 
         return Dog(
             name=name,
             dob=dob,
+            arrival=arrival,
             gender=Dog.GENDERS[1][0],
             size=Dog.SIZES[1][0],
             location=test_status,
@@ -116,6 +117,30 @@ class DogTests(TestCase):
         dog = self.get_dog('rover', two_years.year)
 
         self.assertEqual(dog.age, '2 years')
+                
+    def test_arrival_date_future_status_no(self):
+        one_week = datetime.date.today() + datetime.timedelta(days=7)
+        dog = self.get_dog('rover', arrival=one_week)
+        
+        self.assertEqual(dog.show_arrival_date, False)
+        
+    def test_arrival_date_past_status_no(self):
+        one_week = datetime.date.today() - datetime.timedelta(days=7)
+        dog = self.get_dog('rover', arrival=one_week)
+        
+        self.assertEqual(dog.show_arrival_date, False)
+        
+    def test_arrival_date_future_status_yes(self):
+        one_week = datetime.date.today() + datetime.timedelta(days=7)
+        dog = self.get_dog('rover', arrival=one_week, status_arrival=True)
+        
+        self.assertEqual(dog.show_arrival_date, True)
+        
+    def test_arrival_date_past_status_yes(self):
+        one_week = datetime.date.today() - datetime.timedelta(days=7)
+        dog = self.get_dog('rover', arrival=one_week, status_arrival=True)
+        
+        self.assertEqual(dog.show_arrival_date, False)
 
 
 class KeyPointsTests(TestCase):

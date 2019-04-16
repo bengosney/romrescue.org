@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 
 import os
 
@@ -55,6 +55,7 @@ class KeyPoints(statusMixin, models.Model):
 
 class Status(models.Model):
     title = models.CharField(_('Title'), max_length=50)
+    show_arrival_date = models.BooleanField(_("Show arrival date"), default=False)
     body = RichTextField(_("Body"), blank=True, null=True)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
@@ -122,6 +123,7 @@ class Dog(statusMixin, models.Model):
     gender = models.CharField(_("Gender"), max_length=6, choices=GENDERS)
     size = models.CharField(_("Size"), max_length=15, choices=SIZES)
     location = models.ForeignKey(Status)
+    arrival = models.DateField(_("Arrival Date"), blank=True, null=True)
     description = RichTextField(_("Body"))
     dogStatus = models.CharField(_("Status"),
         max_length=8,
@@ -220,7 +222,11 @@ class Dog(statusMixin, models.Model):
         soup = BeautifulSoup(self.description)
 
         return "".join(soup.find('p').getText())
-
+    
+    @property
+    def show_arrival_date(self):
+        return (self.location.show_arrival_date and self.arrival and self.arrival > date.today())
+        
 
 class DogPhoto(models.Model):
     dog = models.ForeignKey(Dog)
