@@ -3,9 +3,9 @@
 {% load staticfiles %}
 
 {% block content %}
-<div class="filters row">
+<div class="filters">
   {% for filter in filters %}
-  <div class="col-sm-4">
+  <div class="filter-wrapper">
     <a class="btn btn-default btn-lg btn-block filter" href="#{{ filter.slug }}" data-filter="{{ filter.slug }}">
       <span>{{ filter.name }}</span>
     </a>

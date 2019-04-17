@@ -1,10 +1,23 @@
 .filters {
-    padding-top: 2em;
-    padding-bottom: 2em;
     margin-top: 2em;
     margin-bottom: 2em;
+    padding: 0 1em 1em;    
     
     background: $color-primary-1;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .filter-wrapper {
+	padding: 1em .5em 0;
+	flex-grow: 1;
+	flex-basis: 0;
+
+	.filter {
+
+	}
+    }
     
     .filtery {
 	color: #fff;
