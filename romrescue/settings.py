@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.redirects',
     'django.contrib.sitemaps',
+    'admin_sso',
     'rest_framework',
     'storages',
     'django_nose',
@@ -179,6 +180,15 @@ DATABASES = {
 if os.environ.get('DATABASE_URL'):
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
+    
+AUTHENTICATION_BACKENDS = (
+    'admin_sso.auth.DjangoSSOAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+DJANGO_ADMIN_SSO_OAUTH_CLIENT_ID = '704392512319-ua0nrept5vbdo75l1r6injc7jviqr8cc.apps.googleusercontent.com'
+DJANGO_ADMIN_SSO_OAUTH_CLIENT_SECRET = 'OCgjraMwQWre0_c1a-wMa3XU'
+    
 # Password validation
 
 AUTH_PASSWORD_VALIDATORS = [
