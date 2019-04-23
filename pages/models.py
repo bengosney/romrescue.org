@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.functional import lazy
 from django.contrib.postgres.fields import ArrayField
 from django.template.loader import get_template
@@ -32,7 +32,9 @@ class node(PolymorphicMPTTModel, statusMixin):
         blank=True,
         null=True,
         related_name='children',
-        verbose_name=_('parent')
+        
+        verbose_name=_('parent'),
+        on_delete=models.PROTECT
     )
 
     title = models.CharField(
@@ -91,7 +93,7 @@ class node(PolymorphicMPTTModel, statusMixin):
         verbose_name = _("Site node")
         verbose_name_plural = _("Site nodes")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @property
@@ -139,7 +141,7 @@ class Empty(node):
         verbose_name = _("Empty Item")
         verbose_name_plural = _("Empty Items")
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s - Empty Node' % self.title
 
     @property
@@ -174,7 +176,7 @@ class SocialLink(node):
         verbose_name = _("Social Link")
         verbose_name_plural = _("Social Links")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.social
 
 
@@ -239,7 +241,7 @@ class ContactSubmission(models.Model):
 
     created = fields.CreationDateTimeField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -269,10 +271,10 @@ class HomePageHeader(models.Model):
     cropped = ImageRatioField('image', '1110x624')
     strapline = models.CharField(_("Strap Line"), max_length=200)
     subline = models.CharField(_("Sub Line"), max_length=400)
-    itemlink = models.ForeignKey(node, null=True, blank=True)
+    itemlink = models.ForeignKey(node, null=True, blank=True, on_delete=models.PROTECT)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.strapline
 
     def admin_image(self):
@@ -290,7 +292,7 @@ class FosteringSubmission(models.Model):
 
     created = fields.CreationDateTimeField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -307,7 +309,7 @@ class IntrestSubmission(models.Model):
     slug = fields.AutoSlugField(populate_from='name')
 
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def get_absolute_url(self):
