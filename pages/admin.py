@@ -47,11 +47,11 @@ class ModuleListAdmin(BaseChildAdmin):
 class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
     base_model = node
     child_models = (
-        (Page, BaseChildAdmin),
-        (Empty, BaseChildNoSEOAdmin),
-        (ModuleList, ModuleListAdmin),
-        (ExternalLink, BaseChildNoSEOAdmin),
-        (SocialLink, BaseChildNoSEOAdmin),
+        Page,
+        Empty,
+        ModuleList,
+        ExternalLink,
+        SocialLink,
     )
 
     list_display = ('title', 'actions_column',)
@@ -100,3 +100,9 @@ admin.site.register(node, TreeNodeParentAdmin)
 admin.site.register(ContactSubmission, ContactAdmin)
 admin.site.register(HomePageHeader, HomePageHeaderAdmin)
 admin.site.register(IntrestSubmission, IntrestAdmin)
+
+admin.site.register(Page, BaseChildAdmin)
+admin.site.register(Empty, BaseChildNoSEOAdmin)
+admin.site.register(ModuleList, ModuleListAdmin)
+admin.site.register(ExternalLink, BaseChildNoSEOAdmin)
+admin.site.register(SocialLink, BaseChildNoSEOAdmin)

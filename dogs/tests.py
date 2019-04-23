@@ -1,16 +1,17 @@
 import datetime
 
-from django.test import TestCase, Client
+from django.test import Client
+from hypothesis.extra.django import TestCase
 from django.core.files import File
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import transaction
 
 from .models import Dog, DogPhoto, KeyPoints, Status
 
-from hypothesis.extra.django.models import models
-from hypothesis.extra.django.models import add_default_field_mapping
+#from hypothesis.extra.django.models import models
+#from hypothesis.extra.django.models import add_default_field_mapping
 from hypothesis.strategies import text
-from hypothesis.extra.datetime import datetimes
+#from hypothesis.extra.datetime import datetimes
 from hypothesis import given
 
 from ckeditor_uploader.fields import RichTextUploadingField as RichTextField
@@ -18,10 +19,10 @@ from django_extensions.db import fields
 
 import mock
 
-add_default_field_mapping(RichTextField, text())
-add_default_field_mapping(fields.AutoSlugField, text())
-add_default_field_mapping(fields.CreationDateTimeField, datetimes())
-add_default_field_mapping(fields.ModificationDateTimeField, datetimes())
+#add_default_field_mapping(RichTextField, text())
+#add_default_field_mapping(fields.AutoSlugField, text())
+#add_default_field_mapping(fields.CreationDateTimeField, datetimes())
+#add_default_field_mapping(fields.ModificationDateTimeField, datetimes())
 
 
 class DogTests(TestCase):
@@ -46,8 +47,8 @@ class DogTests(TestCase):
     @given(text())
     def test_name(self, name):
         dog = self.get_dog(name)
-
-        self.assertEqual(unicode(dog), name)
+        
+        self.assertEqual(str(dog), name)
 
     @given(text())
     def test_title(self, name):
@@ -148,7 +149,7 @@ class KeyPointsTests(TestCase):
     @given(text())
     def test_keypoint_title(self, title):
         point = KeyPoints(title=title)
-        self.assertEqual(unicode(point), point.title)
+        self.assertEqual(str(point), point.title)
 
 
 class StatusTests(TestCase):
@@ -156,7 +157,7 @@ class StatusTests(TestCase):
     @given(text())
     def test_status_title(self, title):
         status = Status(title=title)
-        self.assertEqual(unicode(status), status.title)
+        self.assertEqual(str(status), status.title)
 
 
 class DetailViewTests(TestCase):
