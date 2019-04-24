@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-#from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 
 import os
 
