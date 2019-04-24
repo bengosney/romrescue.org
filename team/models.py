@@ -16,6 +16,9 @@ class TeamMember(models.Model):
 
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
+    def __str__(self):
+        return self.name
+    
     def __unicode__(self):
         return self.name
 

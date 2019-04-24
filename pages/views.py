@@ -12,7 +12,7 @@ from .models import Page, ModuleList, HomePageHeader, IntrestSubmission
 from .forms import IntrestForm
 from dogs.models import Dog
 
-def error404(request):
+def error404(request, exception):
     response = render(request, 'pages/404.html')
     response.status_code = 404
     

@@ -47,11 +47,11 @@ class ModuleListAdmin(BaseChildAdmin):
 class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
     base_model = node
     child_models = (
-        (Page, BaseChildAdmin),
-        (Empty, BaseChildNoSEOAdmin),
-        (ModuleList, ModuleListAdmin),
-        (ExternalLink, BaseChildNoSEOAdmin),
-        (SocialLink, BaseChildNoSEOAdmin),
+        Page,
+        Empty,
+        ModuleList,
+        ExternalLink,
+        SocialLink,
     )
 
     list_display = ('title', 'actions_column',)
@@ -96,7 +96,27 @@ class HomePageHeaderAdmin(
     model = HomePageHeader
     list_display = ('admin_image', 'strapline', 'subline',)
 
+    class Media:
+        js = (
+            'admin/js/vendor/jquery/jquery.js',
+            'admin/js/jquery.init.js',
+            'image_cropping/js/jquery.Jcrop.min.js',
+            'adminsortable2/js/plugins/admincompat.js',
+            'adminsortable2/js/libs/jquery.ui.core-1.11.4.js',
+            'adminsortable2/js/libs/jquery.ui.widget-1.11.4.js',
+            'adminsortable2/js/libs/jquery.ui.mouse-1.11.4.js',
+            'adminsortable2/js/libs/jquery.ui.sortable-1.11.4.js',
+            'adminsortable2/js/list-sortable.js',
+            'adminsortable2/js/inline-sortable.js',
+        )
+
 admin.site.register(node, TreeNodeParentAdmin)
 admin.site.register(ContactSubmission, ContactAdmin)
 admin.site.register(HomePageHeader, HomePageHeaderAdmin)
 admin.site.register(IntrestSubmission, IntrestAdmin)
+
+admin.site.register(Page, BaseChildAdmin)
+admin.site.register(Empty, BaseChildNoSEOAdmin)
+admin.site.register(ModuleList, ModuleListAdmin)
+admin.site.register(ExternalLink, BaseChildNoSEOAdmin)
+admin.site.register(SocialLink, BaseChildNoSEOAdmin)

@@ -13,7 +13,7 @@ except ImportError:
 from django.db import models
 from django_extensions.db import fields
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit
@@ -29,7 +29,7 @@ class Filter(models.Model):
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
     slug = fields.AutoSlugField(populate_from='name')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
     
     class Meta(object):
@@ -44,7 +44,7 @@ class KeyPoints(statusMixin, models.Model):
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
     icon = models.CharField(_("Icon"), max_length=120, blank=True, choices=ICON_CHOICE)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     class Meta(object):
@@ -59,7 +59,7 @@ class Status(models.Model):
     body = RichTextField(_("Body"), blank=True, null=True)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     class Meta(object):
@@ -85,7 +85,7 @@ class Rescue(models.Model):
                                 options={'quality': 70})
 
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta(object):
@@ -122,7 +122,7 @@ class Dog(statusMixin, models.Model):
     dob = models.DateField(_("DOB"), blank=True, null=True)
     gender = models.CharField(_("Gender"), max_length=6, choices=GENDERS)
     size = models.CharField(_("Size"), max_length=15, choices=SIZES)
-    location = models.ForeignKey(Status)
+    location = models.ForeignKey(Status, on_delete=models.PROTECT)
     arrival = models.DateField(_("Arrival Date"), blank=True, null=True)
     description = RichTextField(_("Body"))
     dogStatus = models.CharField(_("Status"),
@@ -139,7 +139,7 @@ class Dog(statusMixin, models.Model):
     standard_info = models.BooleanField(_("Standard Info"), default=True)
     cost = models.FloatField(_("Cost"), default=DEFAULT_COST)
 
-    rescue = models.ForeignKey(Rescue, blank=True, null=True)
+    rescue = models.ForeignKey(Rescue, blank=True, null=True, on_delete=models.PROTECT)
 
     filters = models.ManyToManyField(Filter, blank=True)
 
@@ -148,7 +148,7 @@ class Dog(statusMixin, models.Model):
     modified = fields.ModificationDateTimeField()
     position = models.PositiveIntegerField(default=0)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta(object):
@@ -184,7 +184,7 @@ class Dog(statusMixin, models.Model):
     def age(self):
         today = date.today()
 
-        if isinstance(self.dob, (int, long)):
+        if isinstance(self.dob, (int)):
             self.dob = today.replace(self.dob)
 
         try:
@@ -229,7 +229,7 @@ class Dog(statusMixin, models.Model):
         
 
 class DogPhoto(models.Model):
-    dog = models.ForeignKey(Dog)
+    dog = models.ForeignKey(Dog, on_delete=models.PROTECT)
     image = models.ImageField(upload_to='uploads/dogs')
 
     main = ImageSpecField(source='image',
@@ -241,7 +241,7 @@ class DogPhoto(models.Model):
 
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return os.path.basename(self.image.url)
 
     class Meta(object):
@@ -251,7 +251,7 @@ class DogPhoto(models.Model):
 
         
 class YoutubeVideo(models.Model):
-    dog = models.ForeignKey(Dog)
+    dog = models.ForeignKey(Dog, on_delete=models.PROTECT)
     url = models.CharField(_("Youtube url"), max_length=150)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
@@ -264,7 +264,7 @@ class YoutubeVideo(models.Model):
         if pth:
             return pth[-1]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.get_id()
 
     class Meta(object):

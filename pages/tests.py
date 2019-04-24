@@ -7,7 +7,8 @@ from .models import (ContactSubmission,
 
 import string
 
-from django.test import TestCase
+#from django.test import TestCase
+from hypothesis.extra.django import TestCase
 from django.test import Client
 from django.contrib.admin.sites import AdminSite
 
@@ -21,7 +22,6 @@ def sane_text():
     return text(
         min_size=1,
         max_size=255,
-        average_size=20,
         alphabet="%s%s" % (string.ascii_letters, string.digits)
     )
 
@@ -82,14 +82,14 @@ class PageMethodTests(TestCase):
         self.assertEqual(page.url, '/%s/' % page.slug)
 
     @given(sane_text())
-    def test_unicode(self, expected):
+    def test_str(self, expected):
         """
-        _unicode_
+        _str_
         """
 
         page = Page(title=expected)
 
-        self.assertEqual(unicode(page), expected)
+        self.assertEqual(str(page), expected)
 
 
 class SocialMethodTests(TestCase):
@@ -109,14 +109,14 @@ class SocialMethodTests(TestCase):
 class EmptyNodeMethodTests(TestCase):
 
     @given(sane_text())
-    def test_unicode(self, expected):
+    def test_str(self, expected):
         """
-        _unicode_
+        _str_
         """
 
         empty = Empty(title=expected)
 
-        self.assertEqual(unicode(empty), '%s - Empty Node' % expected)
+        self.assertEqual(str(empty), '%s - Empty Node' % expected)
 
     def test_url(self):
         """
@@ -134,27 +134,27 @@ class EmptyNodeMethodTests(TestCase):
 class SocialNodeMethodTests(TestCase):
 
     @given(sane_text())
-    def test_unicode(self, expected):
+    def test_str(self, expected):
         """
-        _unicode_
+        _str_
         """
 
         empty = SocialLink(social=expected)
 
-        self.assertEqual(unicode(empty), expected)
+        self.assertEqual(str(empty), expected)
 
 
 class ContactSubmissionMethodTest(TestCase):
 
     @given(sane_text())
-    def test_unicode(self, expected):
+    def test_str(self, expected):
         """
-        _unicode_
+        _str_
         """
 
         name = ContactSubmission(name=expected)
 
-        self.assertEqual(unicode(name), expected)
+        self.assertEqual(str(name), expected)
 
 
     def test_form_submisssion(self):
