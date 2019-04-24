@@ -8,7 +8,7 @@ import polymorphic_tree.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pages', '0012_auto_20190421_1620'),
+        ('pages', '0011_auto_20180109_2332'),
     ]
 
     operations = [
