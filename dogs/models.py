@@ -134,6 +134,7 @@ class Dog(statusMixin, models.Model):
 
     reserved = models.BooleanField(default=False)
     hold = models.BooleanField(_('Medical Hold'), default=False)
+    promoted = models.BooleanField(_("Promoted on homepage"), default=False)
 
     neutered = models.BooleanField(_("Neutered"), default=True)
     standard_info = models.BooleanField(_("Standard Info"), default=True)
@@ -208,7 +209,7 @@ class Dog(statusMixin, models.Model):
             plural = ''
 
         return '%d %s%s' % (age, diff, plural)
-
+    
     @property
     def all_filters(self):
         return ", ".join([f.name for f in self.filters.all()])
@@ -226,10 +227,27 @@ class Dog(statusMixin, models.Model):
     @property
     def show_arrival_date(self):
         return (self.location.show_arrival_date and self.arrival and self.arrival > date.today())
-        
+
+    @property
+    def homepageImage(self):
+        return self.dogphoto_set.all().order_by('-promoted', 'position')[0]
+    
+    @property
+    def homepageSubtitle(self):
+        return "{} old {}".format(self.age.replace('s', ''), self.gender)
+    
+    @classmethod
+    def get_homepage_dogs(cls):
+        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).order_by('-position')[:4]
+    
+    @classmethod
+    def get_homepage_header_dogs(cls):
+        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).order_by('-promoted', 'created')[:4]
+    
 
 class DogPhoto(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.PROTECT)
+    promoted = models.BooleanField(_("Promoted on homepage"), default=False)
     image = models.ImageField(upload_to='uploads/dogs')
 
     main = ImageSpecField(source='image',
@@ -238,6 +256,7 @@ class DogPhoto(models.Model):
                           options={'quality': 70})
 
     thumbnail = ImageRatioField('image', '375x300')
+    homepage = ImageRatioField('image', '1110x624')
 
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
