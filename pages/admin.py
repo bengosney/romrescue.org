@@ -112,7 +112,7 @@ class HomePageHeaderAdmin(
 
 admin.site.register(node, TreeNodeParentAdmin)
 admin.site.register(ContactSubmission, ContactAdmin)
-admin.site.register(HomePageHeader, HomePageHeaderAdmin)
+#admin.site.register(HomePageHeader, HomePageHeaderAdmin)
 admin.site.register(IntrestSubmission, IntrestAdmin)
 
 admin.site.register(Page, BaseChildAdmin)
