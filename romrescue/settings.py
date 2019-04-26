@@ -93,7 +93,6 @@ INSTALLED_APPS = [
     'modulestatus',
     'pages',
     'dogs',
-    'faqs',
     'team',
 ]
 
