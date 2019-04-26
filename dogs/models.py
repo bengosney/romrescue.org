@@ -238,11 +238,11 @@ class Dog(statusMixin, models.Model):
     
     @classmethod
     def get_homepage_dogs(cls):
-        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).order_by('-position')[:4]
+        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by('-position')[:4]
     
     @classmethod
     def get_homepage_header_dogs(cls):
-        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).order_by('-promoted', 'created')[:4]
+        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by('-promoted', 'created')[:4]
     
 
 class DogPhoto(models.Model):
