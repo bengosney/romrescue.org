@@ -41,7 +41,7 @@ class DogTests(TestCase):
             size=Dog.SIZES[1][0],
             location=test_status,
             description="body text",
-            #status=Dog.STATUS_LOOKING
+            dogStatus=Dog.STATUS_LOOKING
         )
 
     @given(text())
@@ -142,6 +142,117 @@ class DogTests(TestCase):
         dog = self.get_dog('rover', arrival=one_week, status_arrival=True)
         
         self.assertEqual(dog.show_arrival_date, False)
+        
+    def test_promoted_get_only4(self):
+        for i in range(1,5):
+            dog = self.get_dog('rover{}'.format(i))
+            dog.save()
+            
+        promoted = Dog.get_homepage_header_dogs()
+        
+        self.assertEqual(len(promoted), 4)
+        
+    def test_promoted_get_only_looking(self):
+        for i in range(1,4):
+            dog = self.get_dog('rover{}'.format(i))
+            if i == 1:
+                dog.dogStatus = Dog.STATUS_FOUND
+                
+            if i == 2:
+                dog.dogStatus = Dog.STATUS_SUCCESS
+                
+            dog.save()
+            
+        promoted = Dog.get_homepage_header_dogs()
+        
+        for dog in promoted:
+            self.assertEqual(dog.dogStatus, Dog.STATUS_LOOKING)
+            
+    def test_promoted_get_no_hold(self):
+        for i in range(1,4):
+            dog = self.get_dog('rover{}'.format(i))
+            dog.hold = (i == 2)
+            dog.save()
+            
+        promoted = Dog.get_homepage_header_dogs()
+        
+        for dog in promoted:
+            self.assertEqual(dog.hold, False)        
+    
+    def test_promoted_get_oldest_first(self):
+        for i in range(1,5):
+            dog = self.get_dog('rover{}'.format(i))
+            dog.save()
+            
+        promoted = Dog.get_homepage_header_dogs()
+        
+        i = 0
+        for dog in promoted:
+            i += 1
+            self.assertEqual(str(dog), 'rover{}'.format(i))
+
+            
+    def test_promoted_get_promoted_first(self):
+        for i in range(1,5):
+            dog = self.get_dog('rover{}'.format(i))
+            if i == 4:
+                dog.promoted = True
+            dog.save()
+            
+        promoted = Dog.get_homepage_header_dogs()
+        order = [4,1,2,3]
+        
+        for dog, i in zip(promoted, order):
+            self.assertEqual(str(dog), 'rover{}'.format(i))
+
+            
+    def test_homepage_get_only4(self):
+        for i in range(1,5):
+            dog = self.get_dog('rover{}'.format(i))
+            dog.save()
+            
+        promoted = Dog.get_homepage_dogs()
+        
+        self.assertEqual(len(promoted), 4)
+        
+    def test_homepage_get_only_looking(self):
+        for i in range(1,4):
+            dog = self.get_dog('rover{}'.format(i))
+            if i == 1:
+                dog.dogStatus = Dog.STATUS_FOUND
+                
+            if i == 2:
+                dog.dogStatus = Dog.STATUS_SUCCESS
+                
+            dog.save()
+            
+        promoted = Dog.get_homepage_dogs()
+        
+        for dog in promoted:
+            self.assertEqual(dog.dogStatus, Dog.STATUS_LOOKING)
+            
+    def test_homepage_get_no_hold(self):
+        for i in range(1,4):
+            dog = self.get_dog('rover{}'.format(i))
+            dog.hold = (i == 2)
+            dog.save()
+            
+        promoted = Dog.get_homepage_dogs()
+        
+        for dog in promoted:
+            self.assertEqual(dog.hold, False)        
+    
+    def test_homepage_get_oldest_first(self):
+        for i in range(1,5):
+            dog = self.get_dog('rover{}'.format(i))
+            dog.save()
+            
+        promoted = Dog.get_homepage_dogs()
+        
+        i = 0
+        for dog in promoted:
+            i += 1
+            self.assertEqual(str(dog), 'rover{}'.format(i))
 
 
 class KeyPointsTests(TestCase):
