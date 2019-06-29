@@ -23,29 +23,6 @@
 {% endblock %}
 
 {% block content %}
-{% with dog.dogphoto_set.all|first as image %}
-<script type="application/ld+json">
-    {
-    "@context": "http://schema.org/",
-    "@type": "Product",
-    "name": "Rescue Dog - {{ dog.name }}",
-    "image": "{{ image.main.url }}",
-    "description": "{{ dog.description|striptags|truncatechars:200 }}",
-    "offers": {
-    "@type": "Offer",
-    "priceCurrency": "GDP",
-    "price": "240",
-    "priceValidUntil": "2020-11-05",
-    "itemCondition": "http://schema.org/UsedCondition",
-    "availability": "http://schema.org/InStock",
-    "seller": {
-    "@type": "Organization",
-    "name": "SOS Romanian Rescue South West"
-    }
-    }
-    }
-</script>
-{% endwith %}
 <div class="dog-details">
     <div class="row">
 	<div class="col-xs-6 col-sm-12">
