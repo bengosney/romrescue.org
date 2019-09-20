@@ -85,7 +85,7 @@ python-dateutil==2.8.0
 python-gnupg==0.4.4
 pytz==2019.1
 rcssmin==1.0.6
-redis==3.2.1
+redis==3.3.8
 requests==2.21.0
 rjsmin==1.1.0
 rollbar==0.14.7
