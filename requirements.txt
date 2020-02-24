@@ -2,7 +2,7 @@ asn1crypto==0.24.0
 attrs==19.1.0
 Babel==2.6.0
 beautifulsoup4==4.7.1
-bleach==3.1.0
+bleach==3.1.1
 boto==2.49.0
 brotlipy==0.7.0
 bugjar==0.1.0
