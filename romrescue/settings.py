@@ -158,7 +158,7 @@ NOSE_ARGS = [
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DB_USER = os.environ.get('SNAP_DB_PG_USER') or 'romrescue'
-DB_PASS = os.environ.get('SNAP_DB_PG_PASSWORD') or 'pS1IzChoCoaNg7YW'
+DB_PASS = os.environ.get('SNAP_DB_PG_PASSWORD') or 'romrescue'
 DB_HOST = os.environ.get('SNAP_DB_PG_HOST') or '127.0.0.1'
 DB_NAME = 'romrescue'
 

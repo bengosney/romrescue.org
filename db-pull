@@ -4,10 +4,10 @@ echo "Removing previous dumps"
 rm -f latest.dump*
 
 echo "Creating backup"
-heroku pg:backups:capture
+heroku pg:backups:capture --app agile-dawn-19181
 
 echo "Downloading backup"
-heroku pg:backups:download
+heroku pg:backups:download --app agile-dawn-19181
 
 echo "Importing backup"
-PGPASSWORD="pS1IzChoCoaNg7YW" pg_restore --verbose --clean --no-acl --no-owner -h localhost -U romrescue -d romrescue latest.dump
+PGPASSWORD="romrescue" pg_restore --verbose --clean --no-acl --no-owner -h localhost -U romrescue -d romrescue latest.dump
