@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import os
 
 from datetime import date
+
 try:
     from urllib.parse import urlparse, parse_qs
 except ImportError:
@@ -24,14 +25,15 @@ from icons.icons import ICON_CHOICE
 
 from modulestatus.models import statusMixin
 
-class Filter(models.Model):    
+
+class Filter(models.Model):
     name = models.CharField(_("Name"), max_length=30)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
     slug = fields.AutoSlugField(populate_from='name')
 
     def __str__(self):
         return self.name
-    
+
     class Meta(object):
         ordering = ('position',)
         verbose_name = _('Filter')
@@ -68,7 +70,6 @@ class Status(models.Model):
         verbose_name_plural = _('Status/Locations')
 
 
-
 class Rescue(models.Model):
     name = models.CharField(_("Name"), max_length=30)
     logo = models.ImageField(_("Logo"), upload_to='uploads/rescue')
@@ -84,7 +85,6 @@ class Rescue(models.Model):
                                 format='PNG',
                                 options={'quality': 70})
 
-
     def __str__(self):
         return self.name
 
@@ -92,7 +92,7 @@ class Rescue(models.Model):
         verbose_name = _('Rescue')
         verbose_name_plural = _('Rescues')
 
-        
+
 class Dog(statusMixin, models.Model):
     DEFAULT_COST = 285
     GENDERS = [
@@ -126,9 +126,9 @@ class Dog(statusMixin, models.Model):
     arrival = models.DateField(_("Arrival Date"), blank=True, null=True)
     description = RichTextField(_("Body"))
     dogStatus = models.CharField(_("Status"),
-        max_length=8,
-        choices=STATUS,
-        default=STATUS_LOOKING)
+                                 max_length=8,
+                                 choices=STATUS,
+                                 default=STATUS_LOOKING)
 
     keypoints = models.ManyToManyField(KeyPoints, blank=True)
 
@@ -156,7 +156,6 @@ class Dog(statusMixin, models.Model):
         ordering = ('position',)
         verbose_name = _('Dog')
         verbose_name_plural = _('Dogs')
-
 
     @property
     def is_success(self):
@@ -190,7 +189,7 @@ class Dog(statusMixin, models.Model):
 
         try:
             age = today.year - self.dob.year - \
-                ((today.month, today.day) < (self.dob.month, self.dob.day))
+                  ((today.month, today.day) < (self.dob.month, self.dob.day))
         except:
             return None
 
@@ -202,14 +201,14 @@ class Dog(statusMixin, models.Model):
 
             if age < 0:
                 age += 12
-            
+
             diff = 'month'
 
         if age == 1:
             plural = ''
 
         return '%d %s%s' % (age, diff, plural)
-    
+
     @property
     def all_filters(self):
         return ", ".join([f.name for f in self.filters.all()])
@@ -223,7 +222,7 @@ class Dog(statusMixin, models.Model):
         soup = BeautifulSoup(self.description)
 
         return "".join(soup.find('p').getText())
-    
+
     @property
     def show_arrival_date(self):
         return (self.location.show_arrival_date and self.arrival and self.arrival > date.today())
@@ -231,19 +230,21 @@ class Dog(statusMixin, models.Model):
     @property
     def homepageImage(self):
         return self.dogphoto_set.all().order_by('-promoted', 'position')[0]
-    
+
     @property
     def homepageSubtitle(self):
         return "{} old {}".format(self.age.replace('s', ''), self.gender)
-    
+
     @classmethod
     def get_homepage_dogs(cls):
-        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by('-position')[:4]
-    
+        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by(
+            '-position')[:4]
+
     @classmethod
     def get_homepage_header_dogs(cls):
-        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by('-promoted', 'created')[:4]
-    
+        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by(
+            '-promoted', 'created')[:4]
+
 
 class DogPhoto(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.PROTECT)
@@ -268,7 +269,7 @@ class DogPhoto(models.Model):
         verbose_name = _('Photo')
         verbose_name_plural = _('Photos')
 
-        
+
 class YoutubeVideo(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.PROTECT)
     url = models.CharField(_("Youtube url"), max_length=150)
