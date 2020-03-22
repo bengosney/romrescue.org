@@ -7,6 +7,7 @@ from pages.decorators import register_list_view
 from rest_framework import viewsets
 from .serializers import DogSerializer
 
+
 @register_list_view
 class AdoptionList(ListView):
     model = Dog
@@ -15,10 +16,9 @@ class AdoptionList(ListView):
     def get_context_data(self, **kwargs):
         context = super(self.__class__, self).get_context_data(**kwargs)
         context['filters'] = Filter.objects.all()
-        
+
         return context
 
-    
     def get_queryset(self):
         return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING).order_by('reserved', 'hold', 'position')
 
@@ -29,7 +29,8 @@ class AdoptionOldieList(ListView):
     template_name = 'dogs/list_oldies.html'
 
     def get_queryset(self):
-        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING, oldie=True).order_by('reserved', 'position')
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING, oldie=True).order_by('reserved',
+                                                                                                     'position')
 
 
 class DogDetail(DetailView):
@@ -61,17 +62,14 @@ class DogDetail(DetailView):
             status_code = 200
 
         response = self.render_to_response(context)
-        
 
         response.status_code = status_code
 
         return response
-        
-        
 
     def get_querysety(self):
         return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING)
-    
+
 
 class SuccessDogDetail(DetailView):
     model = Dog
@@ -95,5 +93,5 @@ class DogViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING,reserved=False).order_by('reserved', 'position')
+    queryset = Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING, reserved=False).order_by('reserved', 'position')
     serializer_class = DogSerializer
