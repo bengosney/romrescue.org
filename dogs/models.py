@@ -109,13 +109,15 @@ class Dog(statusMixin, models.Model):
     ]
 
     STATUS_LOOKING = 'looking'
+    STATUS_SPONSOR = 'sponsor'
     STATUS_FOUND = 'found'
     STATUS_SUCCESS = 'success'
 
     STATUS = [
         (STATUS_LOOKING, _('Looking for a home')),
+        (STATUS_SPONSOR, _('Looking for sponsorships')),
         (STATUS_FOUND, _('Found a home')),
-        (STATUS_SUCCESS, _('Success storie')),
+        (STATUS_SUCCESS, _('Success story')),
     ]
 
     name = models.CharField(_("Name"), max_length=30)
@@ -174,11 +176,18 @@ class Dog(statusMixin, models.Model):
         return reverse_lazy('dogs:SuccessDetail', kwargs={'slug': self.slug})
 
     @property
+    def sponsorship_url(self):
+        return reverse_lazy('dogs:SponsorDetail', kwargs={'slug': self.slug})
+
+    @property
     def correct_url(self):
+        if self.dogStatus == self.STATUS_SPONSOR:
+            return self.sponsorship_url
+
         if self.is_success:
             return self.succcess_url
-        else:
-            return self.url
+
+        return self.url
 
     @property
     def age(self):

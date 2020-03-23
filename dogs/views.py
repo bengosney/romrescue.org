@@ -29,8 +29,22 @@ class AdoptionOldieList(ListView):
     template_name = 'dogs/list_oldies.html'
 
     def get_queryset(self):
-        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING, oldie=True).order_by('reserved',
-                                                                                                     'position')
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING, oldie=True).order_by('reserved', 'position')
+
+
+@register_list_view
+class SponsorList(ListView):
+    model = Dog
+    template_name = 'dogs/sponsor_list.html'
+
+    def get_queryset(self):
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_SPONSOR).order_by('reserved', 'position')
+
+
+class SponsorDetail(DetailView):
+    model = Dog
+    template_name = 'dogs/sponsor_details.html'
+    lookup_field = 'slug'
 
 
 class DogDetail(DetailView):
