@@ -1,7 +1,8 @@
 from django.core.exceptions import MultipleObjectsReturned
 from django.http import HttpResponseGone
 from vanilla import DetailView, ListView
-from .models import Dog, Filter
+from .models import Dog, Filter, SponsorshipInfoLink
+from pages.forms import SponsorForm
 from pages.decorators import register_list_view
 
 from rest_framework import viewsets
@@ -45,6 +46,31 @@ class SponsorDetail(DetailView):
     model = Dog
     template_name = 'dogs/sponsor_details.html'
     lookup_field = 'slug'
+
+    def get_context_data(self, form=None, form_success=False, **kwargs):
+        context = super(self.__class__, self).get_context_data(**kwargs)
+        context['sponsor_links'] = SponsorshipInfoLink.objects.all()
+        if form is not None:
+            context['form'] = form
+        else:
+            context['form'] = SponsorForm(initial={'dog': self.object})
+        context['form_success'] = form_success
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = SponsorForm(data=request.POST, files=request.FILES)
+        form_success = False
+
+        dog = Dog.objects.get(slug=kwargs.get('slug'))
+        form.dog = dog
+        if form.is_valid():
+            instance = form.save()
+            instance.send_email()
+            form_success = True
+
+        return self.render_to_response(self.get_context_data(form=form, form_success=form_success, **kwargs))
 
 
 class DogDetail(DetailView):

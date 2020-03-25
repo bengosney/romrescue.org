@@ -11,21 +11,15 @@ import os
 
 from . import models
 
-class DogPhotoInline(
-        SortableInlineAdminMixin,
-        ImageCroppingMixin,
-        admin.TabularInline):
+
+class DogPhotoInline(SortableInlineAdminMixin, ImageCroppingMixin, admin.TabularInline):
     model = models.DogPhoto
     extra = 3
 
-    
-class YoutubeInline(
-        SortableInlineAdminMixin,
-        ImageCroppingMixin,
-        admin.TabularInline):
+
+class YoutubeInline(SortableInlineAdminMixin, ImageCroppingMixin, admin.TabularInline):
     model = models.YoutubeVideo
     extra = 1
-
 
 
 class KeyPointsAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
@@ -57,7 +51,7 @@ class KeyPointsAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
             db_field,
             request,
             **kwargs)
-    
+
     class Media:
         js = (
             'admin/js/vendor/jquery/jquery.js',
@@ -83,6 +77,7 @@ def make_tag_action(tag):
 
     return tag_action
 
+
 def make_status_action(status, name):
     def status_action(modeladmin, request, queryset):
         queryset.update(dogStatus=status)
@@ -92,8 +87,10 @@ def make_status_action(status, name):
 
     return status_action
 
+
 def set_price_to_default(modeladmin, request, queryset):
     queryset.update(cost=models.Dog.DEFAULT_COST)
+
 
 class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.Dog
@@ -103,7 +100,6 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     list_per_page = 25
     actions = ['add_tag_dog', set_price_to_default]
 
-    
     def __init__(self, model, admin_site):
         super(DogAdmin, self).__init__(model, admin_site)
 
@@ -123,9 +119,9 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
             actions[action.__name__] = (action,
                                         action.__name__,
                                         action.short_description)
-            
+
         return actions
-    
+
     class Media:
         js = (
             'admin/js/vendor/jquery/jquery.js',
@@ -141,11 +137,10 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
         )
 
 
-
 class StatusAdmin(SortableAdminMixin, admin.ModelAdmin):
     model = models.Status
     list_display = ('title', 'show_arrival_date')
-    
+
     class Media:
         js = (
             'admin/js/vendor/jquery/jquery.js',
@@ -174,9 +169,15 @@ class RescueAdmin(admin.ModelAdmin):
 class FilterAdmin(admin.ModelAdmin):
     model = models.Filter
 
-    
+
+class SponsorshipInfoLinksAdmin(admin.ModelAdmin):
+    model = models.SponsorshipInfoLink
+    list_display = ('title', 'link', 'file')
+
+
 admin.site.register(models.KeyPoints, KeyPointsAdmin)
 admin.site.register(models.Dog, DogAdmin)
 admin.site.register(models.Status, StatusAdmin)
 admin.site.register(models.Rescue, RescueAdmin)
 admin.site.register(models.Filter, FilterAdmin)
+admin.site.register(models.SponsorshipInfoLink, SponsorshipInfoLinksAdmin)

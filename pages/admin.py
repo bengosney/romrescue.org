@@ -6,9 +6,10 @@ from adminsortable2.admin import SortableAdminMixin
 from image_cropping import ImageCroppingMixin
 
 from .models import ContactSubmission, Page, Empty, ModuleList, \
-    ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission
+    ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission, SponsorSubmission
 
 from romrescue.actions import export_as_csv_action
+
 
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
     GENERAL_FIELDSET = (None, {
@@ -67,7 +68,24 @@ class ContactAdmin(admin.ModelAdmin):
 
     readonly_fields = ('created',)
     list_filter = ('created',)
-    list_display = ('name', 'email', 'created', )
+    list_display = ('name', 'email', 'created',)
+    list_per_page = 25
+
+    actions = [export_as_csv_action("CSV Export", fields=['name', 'email', 'created', 'enquiry'])]
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+class SponsorAdmin(admin.ModelAdmin):
+    model = SponsorSubmission
+
+    readonly_fields = ('created',)
+    list_filter = ('created',)
+    list_display = ('name', 'email', 'dog', 'created',)
     list_per_page = 25
 
     actions = [export_as_csv_action("CSV Export", fields=['name', 'email', 'created', 'enquiry'])]
@@ -87,12 +105,12 @@ class IntrestAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
-    
+
 
 class HomePageHeaderAdmin(
-        SortableAdminMixin,
-        ImageCroppingMixin,
-        admin.ModelAdmin):
+    SortableAdminMixin,
+    ImageCroppingMixin,
+    admin.ModelAdmin):
     model = HomePageHeader
     list_display = ('admin_image', 'strapline', 'subline',)
 
@@ -110,9 +128,10 @@ class HomePageHeaderAdmin(
             'adminsortable2/js/inline-sortable.js',
         )
 
+
 admin.site.register(node, TreeNodeParentAdmin)
 admin.site.register(ContactSubmission, ContactAdmin)
-#admin.site.register(HomePageHeader, HomePageHeaderAdmin)
+# admin.site.register(HomePageHeader, HomePageHeaderAdmin)
 admin.site.register(IntrestSubmission, IntrestAdmin)
 
 admin.site.register(Page, BaseChildAdmin)
@@ -120,3 +139,4 @@ admin.site.register(Empty, BaseChildNoSEOAdmin)
 admin.site.register(ModuleList, ModuleListAdmin)
 admin.site.register(ExternalLink, BaseChildNoSEOAdmin)
 admin.site.register(SocialLink, BaseChildNoSEOAdmin)
+admin.site.register(SponsorSubmission, SponsorAdmin)

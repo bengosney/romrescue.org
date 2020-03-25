@@ -255,6 +255,15 @@ class Dog(statusMixin, models.Model):
             '-promoted', 'created')[:4]
 
 
+class SponsorshipInfoLink(models.Model):
+    title = models.CharField(_("Title"), max_length=30)
+    link = models.CharField(_("Link"), max_length=254, null=True, blank=True)
+    file = models.FileField(_("File"), null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+
 class DogPhoto(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.PROTECT)
     promoted = models.BooleanField(_("Promoted on homepage"), default=False)

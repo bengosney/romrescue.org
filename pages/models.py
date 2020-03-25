@@ -17,6 +17,7 @@ from image_cropping import ImageRatioField
 from .decorators import get_registered_list_views
 
 from modulestatus.models import statusMixin
+from dogs.models import Dog
 
 
 class node(PolymorphicMPTTModel, statusMixin):
@@ -32,7 +33,7 @@ class node(PolymorphicMPTTModel, statusMixin):
         blank=True,
         null=True,
         related_name='children',
-        
+
         verbose_name=_('parent'),
         on_delete=models.PROTECT
     )
@@ -136,7 +137,6 @@ class node(PolymorphicMPTTModel, statusMixin):
 
 
 class Empty(node):
-
     class Meta(PolymorphicMPTTModel.Meta):
         verbose_name = _("Empty Item")
         verbose_name_plural = _("Empty Items")
@@ -225,7 +225,6 @@ class ModuleList(node):
         super(ModuleList, self).__init__(*args, **kwargs)
         self._meta.get_field('module').choices = lazy(
             get_registered_list_views, list)()
-    
 
     class Meta:
         verbose_name = _("Module List")
@@ -244,7 +243,6 @@ class ContactSubmission(models.Model):
     def __str__(self):
         return self.name
 
-
     def send_email(self):
         template = get_template('pages/email-submission.html')
         context = {
@@ -254,13 +252,46 @@ class ContactSubmission(models.Model):
             'enquiry': self.enquiry,
         }
         content = template.render(context)
-        
+
         email = EmailMessage(
             "New contact form submission",
             content,
             'info@romrescue.org',
             ['info@romrescue.org'],
-            headers = {'Reply-To': self.email }
+            headers={'Reply-To': self.email}
+        )
+
+        email.send()
+
+
+class SponsorSubmission(models.Model):
+    name = models.CharField(_("Name"), max_length=200)
+    email = models.EmailField(_("Email"))
+    phone = models.CharField(_("Phone"), max_length=100, blank=True, null=True)
+    dog = models.ForeignKey(Dog, on_delete=models.PROTECT, blank=True, null=True)
+    consent = models.BooleanField(_("I give consent for data I enter into this form to be stored and processed by SOS Romanian Rescue South West and I am over 18"))
+
+    created = fields.CreationDateTimeField()
+
+    def __str__(self):
+        return self.name
+
+    def send_email(self):
+        template = get_template('pages/email-submission.html')
+        context = {
+            'name': self.name,
+            'email': self.email,
+            'phone': self.phone,
+            'dog': self.dog,
+        }
+        content = template.render(context)
+
+        email = EmailMessage(
+            "New sponsorship form submission",
+            content,
+            'sponsorship@romrescue.org',
+            ['sponsorship@romrescue.org'],
+            headers={'Reply-To': self.email}
         )
 
         email.send()
@@ -279,6 +310,7 @@ class HomePageHeader(models.Model):
 
     def admin_image(self):
         return '<img src="%s" height="75"/>' % self.image.url
+
     admin_image.allow_tags = True
 
     class Meta(object):
@@ -307,7 +339,6 @@ class IntrestSubmission(models.Model):
 
     created = fields.CreationDateTimeField()
     slug = fields.AutoSlugField(populate_from='name')
-
 
     def __str__(self):
         return self.name
