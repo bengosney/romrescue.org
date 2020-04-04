@@ -1,23 +1,22 @@
+# Django
+from django.core.mail import EmailMessage
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.template.loader import get_template
 from django.urls import reverse
 from django.utils.functional import lazy
-from django.contrib.postgres.fields import ArrayField
-from django.template.loader import get_template
-from django.core.mail import EmailMessage
+from django.utils.translation import ugettext_lazy as _
 
-from django_extensions.db import fields
-
+# Third Party
 from ckeditor_uploader.fields import RichTextUploadingField as RichTextField
-from polymorphic_tree.models import PolymorphicMPTTModel
-from polymorphic_tree.models import PolymorphicTreeForeignKey
-
+from django_extensions.db import fields
 from image_cropping import ImageRatioField
+from polymorphic_tree.models import PolymorphicMPTTModel, PolymorphicTreeForeignKey
 
-from .decorators import get_registered_list_views
-
+# First Party
 from modulestatus.models import statusMixin
-from dogs.models import Dog
+
+# Locals
+from .decorators import get_registered_list_views
 
 
 class node(PolymorphicMPTTModel, statusMixin):
@@ -28,63 +27,15 @@ class node(PolymorphicMPTTModel, statusMixin):
         ('linkedin', 'LinkedIn'),
     ]
 
-    parent = PolymorphicTreeForeignKey(
-        'self',
-        blank=True,
-        null=True,
-        related_name='children',
-
-        verbose_name=_('parent'),
-        on_delete=models.PROTECT
-    )
-
-    title = models.CharField(
-        _("Title"),
-        max_length=200
-    )
-
-    nav_title = models.CharField(
-        _("Navigation Title"),
-        max_length=200,
-        blank=True,
-        null=True
-    )
-
-    nav_icon = models.CharField(
-        _("Navigation Icon"),
-        choices=ICONS,
-        max_length=200,
-        blank=True,
-        null=True
-    )
-
-    nav_icon_only = models.BooleanField(
-        _("Icon Only"),
-        default=False
-    )
-
-    slug = fields.AutoSlugField(
-        populate_from='title'
-    )
-
-    title_tag = models.CharField(
-        _("Title Tag"),
-        max_length=200,
-        null=True,
-        blank=True
-    )
-
-    meta_description = models.TextField(
-        null=True,
-        blank=True
-    )
-
-    active_url_helper = models.CharField(
-        max_length=255,
-        null=True,
-        blank=True
-    )
-
+    parent = PolymorphicTreeForeignKey('self', blank=True, null=True, related_name='children', verbose_name=_('parent'), on_delete=models.PROTECT)
+    title = models.CharField(_("Title"), max_length=200)
+    nav_title = models.CharField(_("Navigation Title"), max_length=200, blank=True, default="")
+    nav_icon = models.CharField(_("Navigation Icon"), choices=ICONS, max_length=200, blank=True, default="")
+    nav_icon_only = models.BooleanField(_("Icon Only"), default=False)
+    slug = fields.AutoSlugField(populate_from='title')
+    title_tag = models.CharField(_("Title Tag"), max_length=200, blank=True, default="")
+    meta_description = models.TextField(blank=True, default="")
+    active_url_helper = models.CharField(max_length=255, blank=True, default="")
     is_home_page = models.BooleanField(default=False)
 
     created = fields.CreationDateTimeField()
@@ -108,7 +59,7 @@ class node(PolymorphicMPTTModel, statusMixin):
                 self.__class__.__name__.lower(),
                 kwargs={
                     'slug': self.slug})
-        except:
+        except BaseException:
             url = reverse('pages:page', kwargs={'slug': self.slug})
 
         return url
@@ -187,13 +138,8 @@ class Page(node):
     )
 
     body = RichTextField(_("Body"))
-    form = models.CharField(
-        max_length=100,
-        blank=True,
-        null=True,
-        choices=FORM_CHOICES)
-    success_message = RichTextField(
-        _("Success Message"), blank=True, null=True)
+    form = models.CharField(max_length=100, blank=True, default="", choices=FORM_CHOICES)
+    success_message = RichTextField(_("Success Message"), blank=True, null=True)
 
     def getFormClass(self):
         from . import forms
@@ -234,7 +180,7 @@ class ModuleList(node):
 class ContactSubmission(models.Model):
     name = models.CharField(_("Name"), max_length=200)
     email = models.EmailField(_("Email"))
-    phone = models.CharField(_("Phone"), max_length=100, blank=True, null=True)
+    phone = models.CharField(_("Phone"), max_length=100, blank=True, default="")
     enquiry = models.TextField(_("Enquiry"))
     consent = models.BooleanField(_("I give consent for data I enter into this form to be stored and processed by SOS Romanian Rescue South West and I am over 18"))
 

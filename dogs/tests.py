@@ -1,28 +1,18 @@
+# Standard Library
 import datetime
 
-from django.test import Client
-from hypothesis.extra.django import TestCase
-from django.core.files import File
-from django.urls import reverse
+# Django
 from django.db import transaction
+from django.test import Client
+from django.urls import reverse
 
-from .models import Dog, DogPhoto, KeyPoints, Status
-
-#from hypothesis.extra.django.models import models
-#from hypothesis.extra.django.models import add_default_field_mapping
-from hypothesis.strategies import text
-#from hypothesis.extra.datetime import datetimes
+# Third Party
 from hypothesis import given
+from hypothesis.extra.django import TestCase
+from hypothesis.strategies import text
 
-from ckeditor_uploader.fields import RichTextUploadingField as RichTextField
-from django_extensions.db import fields
-
-import mock
-
-#add_default_field_mapping(RichTextField, text())
-#add_default_field_mapping(fields.AutoSlugField, text())
-#add_default_field_mapping(fields.CreationDateTimeField, datetimes())
-#add_default_field_mapping(fields.ModificationDateTimeField, datetimes())
+# Locals
+from .models import Dog, KeyPoints, Status
 
 
 class DogTests(TestCase):
@@ -47,7 +37,7 @@ class DogTests(TestCase):
     @given(text())
     def test_name(self, name):
         dog = self.get_dog(name)
-        
+
         self.assertEqual(str(dog), name)
 
     @given(text())
@@ -79,7 +69,7 @@ class DogTests(TestCase):
 
         dog = self.get_dog('rover', one_month)
         self.assertEqual(dog.age, '11 months')
-        
+
     def test_age_one_month(self):
         first_of_month = datetime.date.today().replace(day=1)
         one_month = first_of_month - datetime.timedelta(days=1)
@@ -118,137 +108,135 @@ class DogTests(TestCase):
         dog = self.get_dog('rover', two_years.year)
 
         self.assertEqual(dog.age, '2 years')
-                
+
     def test_arrival_date_future_status_no(self):
         one_week = datetime.date.today() + datetime.timedelta(days=7)
         dog = self.get_dog('rover', arrival=one_week)
-        
+
         self.assertEqual(dog.show_arrival_date, False)
-        
+
     def test_arrival_date_past_status_no(self):
         one_week = datetime.date.today() - datetime.timedelta(days=7)
         dog = self.get_dog('rover', arrival=one_week)
-        
+
         self.assertEqual(dog.show_arrival_date, False)
-        
+
     def test_arrival_date_future_status_yes(self):
         one_week = datetime.date.today() + datetime.timedelta(days=7)
         dog = self.get_dog('rover', arrival=one_week, status_arrival=True)
-        
+
         self.assertEqual(dog.show_arrival_date, True)
-        
+
     def test_arrival_date_past_status_yes(self):
         one_week = datetime.date.today() - datetime.timedelta(days=7)
         dog = self.get_dog('rover', arrival=one_week, status_arrival=True)
-        
+
         self.assertEqual(dog.show_arrival_date, False)
-        
+
     def test_promoted_get_only4(self):
-        for i in range(1,5):
+        for i in range(1, 5):
             dog = self.get_dog('rover{}'.format(i))
             dog.save()
-            
+
         promoted = Dog.get_homepage_header_dogs()
-        
+
         self.assertEqual(len(promoted), 4)
-        
+
     def test_promoted_get_only_looking(self):
-        for i in range(1,4):
+        for i in range(1, 4):
             dog = self.get_dog('rover{}'.format(i))
             if i == 1:
                 dog.dogStatus = Dog.STATUS_FOUND
-                
+
             if i == 2:
                 dog.dogStatus = Dog.STATUS_SUCCESS
-                
+
             dog.save()
-            
+
         promoted = Dog.get_homepage_header_dogs()
-        
+
         for dog in promoted:
             self.assertEqual(dog.dogStatus, Dog.STATUS_LOOKING)
-            
+
     def test_promoted_get_no_hold(self):
-        for i in range(1,4):
+        for i in range(1, 4):
             dog = self.get_dog('rover{}'.format(i))
             dog.hold = (i == 2)
             dog.save()
-            
+
         promoted = Dog.get_homepage_header_dogs()
-        
+
         for dog in promoted:
-            self.assertEqual(dog.hold, False)        
-    
+            self.assertEqual(dog.hold, False)
+
     def test_promoted_get_oldest_first(self):
-        for i in range(1,5):
+        for i in range(1, 5):
             dog = self.get_dog('rover{}'.format(i))
             dog.save()
-            
+
         promoted = Dog.get_homepage_header_dogs()
-        
+
         i = 0
         for dog in promoted:
             i += 1
             self.assertEqual(str(dog), 'rover{}'.format(i))
 
-            
     def test_promoted_get_promoted_first(self):
-        for i in range(1,5):
+        for i in range(1, 5):
             dog = self.get_dog('rover{}'.format(i))
             if i == 4:
                 dog.promoted = True
             dog.save()
-            
+
         promoted = Dog.get_homepage_header_dogs()
-        order = [4,1,2,3]
-        
+        order = [4, 1, 2, 3]
+
         for dog, i in zip(promoted, order):
             self.assertEqual(str(dog), 'rover{}'.format(i))
 
-            
     def test_homepage_get_only4(self):
-        for i in range(1,5):
+        for i in range(1, 5):
             dog = self.get_dog('rover{}'.format(i))
             dog.save()
-            
+
         promoted = Dog.get_homepage_dogs()
-        
+
         self.assertEqual(len(promoted), 4)
-        
+
     def test_homepage_get_only_looking(self):
-        for i in range(1,4):
+        for i in range(1, 4):
             dog = self.get_dog('rover{}'.format(i))
             if i == 1:
                 dog.dogStatus = Dog.STATUS_FOUND
-                
+
             if i == 2:
                 dog.dogStatus = Dog.STATUS_SUCCESS
-                
+
             dog.save()
-            
+
         promoted = Dog.get_homepage_dogs()
-        
+
         for dog in promoted:
             self.assertEqual(dog.dogStatus, Dog.STATUS_LOOKING)
-            
+
     def test_homepage_get_no_hold(self):
-        for i in range(1,4):
+        for i in range(1, 4):
             dog = self.get_dog('rover{}'.format(i))
             dog.hold = (i == 2)
             dog.save()
-            
+
         promoted = Dog.get_homepage_dogs()
-        
+
         for dog in promoted:
-            self.assertEqual(dog.hold, False)        
-    
+            self.assertEqual(dog.hold, False)
+
     def test_homepage_get_oldest_first(self):
-        for i in range(1,5):
+        for i in range(1, 5):
             dog = self.get_dog('rover{}'.format(i))
             dog.save()
-            
+
         promoted = Dog.get_homepage_dogs()
-        
+
         i = 0
         for dog in promoted:
             i += 1
@@ -283,8 +271,7 @@ class DetailViewTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-
-    def test_status_looking(self):
+    def test_status_found(self):
         dog = DogTests.get_dog('rover')
         dog.dogStatus = Dog.STATUS_FOUND
 

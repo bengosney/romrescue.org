@@ -1,15 +1,16 @@
+# Django
 from django.contrib import admin
 
-from polymorphic_tree.admin import PolymorphicMPTTParentModelAdmin, \
-    PolymorphicMPTTChildModelAdmin
+# Third Party
 from adminsortable2.admin import SortableAdminMixin
 from image_cropping import ImageCroppingMixin
+from polymorphic_tree.admin import PolymorphicMPTTChildModelAdmin, PolymorphicMPTTParentModelAdmin
 
-from .models import ContactSubmission, Page, Empty, ModuleList, \
-    ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission
-from dogs.models import SponsorSubmission
-
+# First Party
 from romrescue.actions import export_as_csv_action
+
+# Locals
+from .models import ContactSubmission, Empty, ExternalLink, HomePageHeader, IntrestSubmission, ModuleList, Page, SocialLink, node
 
 
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
@@ -81,8 +82,6 @@ class ContactAdmin(admin.ModelAdmin):
         return False
 
 
-
-
 class IntrestAdmin(admin.ModelAdmin):
     model = IntrestSubmission
 
@@ -94,9 +93,9 @@ class IntrestAdmin(admin.ModelAdmin):
 
 
 class HomePageHeaderAdmin(
-    SortableAdminMixin,
-    ImageCroppingMixin,
-    admin.ModelAdmin):
+        SortableAdminMixin,
+        ImageCroppingMixin,
+        admin.ModelAdmin):
     model = HomePageHeader
     list_display = ('admin_image', 'strapline', 'subline',)
 
@@ -117,7 +116,6 @@ class HomePageHeaderAdmin(
 
 admin.site.register(node, TreeNodeParentAdmin)
 admin.site.register(ContactSubmission, ContactAdmin)
-# admin.site.register(HomePageHeader, HomePageHeaderAdmin)
 admin.site.register(IntrestSubmission, IntrestAdmin)
 
 admin.site.register(Page, BaseChildAdmin)

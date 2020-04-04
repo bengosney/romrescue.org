@@ -1,6 +1,8 @@
 
+# Django
 from django.conf.urls import url
 
+# Locals
 from . import views
 
 app_name = 'pages'

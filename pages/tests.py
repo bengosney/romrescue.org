@@ -1,19 +1,18 @@
-from .admin import ContactAdmin
-
-from .models import (ContactSubmission,
-                     SocialLink,
-                     Empty,
-                     Page)
-
+# Standard Library
 import string
 
-#from django.test import TestCase
-from hypothesis.extra.django import TestCase
-from django.test import Client
+# Django
 from django.contrib.admin.sites import AdminSite
+from django.test import Client
 
-from hypothesis.strategies import text
+# Third Party
 from hypothesis import given
+from hypothesis.extra.django import TestCase
+from hypothesis.strategies import text
+
+# Locals
+from .admin import ContactAdmin
+from .models import ContactSubmission, Empty, Page, SocialLink
 
 
 def sane_text():
@@ -156,18 +155,17 @@ class ContactSubmissionMethodTest(TestCase):
 
         self.assertEqual(str(name), expected)
 
-
     def test_form_submisssion(self):
         form = ContactSubmission(name="Ben Gosney", email="bengosney@googlemail.com", enquiry="Test enquiry")
 
         try:
             form.send_email()
             sent = True
-        except:
+        except BaseException:
             sent = False
-            
+
         self.assertTrue(sent)
-        
+
 
 class ContactAdmminMethodTest(TestCase):
 

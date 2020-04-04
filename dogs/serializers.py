@@ -1,6 +1,8 @@
-from django.contrib.auth.models import User, Group
-from .models import Dog
+# Third Party
 from rest_framework import serializers
+
+# Locals
+from .models import Dog
 
 
 class DogSerializer(serializers.HyperlinkedModelSerializer):

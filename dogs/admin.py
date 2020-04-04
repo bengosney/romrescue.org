@@ -1,16 +1,19 @@
-from django.contrib import admin
-from django.utils.translation import gettext_lazy as _
-
-from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
-from image_cropping import ImageCroppingMixin
-
-from modulestatus.admin import statusAdmin
-
-from romrescue.actions import export_as_csv_action
-
+# Standard Library
 import json
 import os
 
+# Django
+from django.contrib import admin
+
+# Third Party
+from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
+from image_cropping import ImageCroppingMixin
+
+# First Party
+from modulestatus.admin import statusAdmin
+from romrescue.actions import export_as_csv_action
+
+# Locals
 from . import models
 
 
@@ -203,6 +206,7 @@ class SponsorLevelAdmin(admin.ModelAdmin):
     models = models.SponsorshipLevel
 
     list_display = ('name', 'cost',)
+
 
 admin.site.register(models.KeyPoints, KeyPointsAdmin)
 admin.site.register(models.Dog, DogAdmin)

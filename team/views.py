@@ -1,6 +1,11 @@
+# Third Party
 from vanilla import ListView
-from .models import TeamMember
+
+# First Party
 from pages.decorators import register_list_view
+
+# Locals
+from .models import TeamMember
 
 
 @register_list_view

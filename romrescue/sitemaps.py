@@ -1,12 +1,15 @@
+# Django
 from django.contrib.sitemaps import Sitemap
 
+# First Party
 from dogs.models import Dog
-from pages.models import Page, ModuleList
+from pages.models import ModuleList, Page
+
 
 class romSitemap(Sitemap):
     def location(self, obj):
         return obj.url
-    
+
 
 class AdoptionSitemap(romSitemap):
     changefreq = "daily"
@@ -14,7 +17,7 @@ class AdoptionSitemap(romSitemap):
 
     def items(self):
         return Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING)
-    
+
     def lastmod(self, obj):
         return obj.modified
 
@@ -44,8 +47,8 @@ class ModuleListSitemap(romSitemap):
 
     def items(self):
         return ModuleList.objects.all()
-    
-    
+
+
 sitemaps = {
     'pages': PageSitemap,
     'modulelist': ModuleListSitemap,

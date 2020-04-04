@@ -1,5 +1,7 @@
+# Django
 from django import template
 
+# First Party
 from websettings.models import setting
 
 register = template.Library()

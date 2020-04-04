@@ -1,8 +1,11 @@
+# Django
 from django.contrib import admin
 
+# Third Party
 from adminsortable2.admin import SortableAdminMixin
 from image_cropping import ImageCroppingMixin
 
+# Locals
 from . import models
 
 
@@ -12,7 +15,7 @@ class TeamMemberAdmin(
         admin.ModelAdmin):
     model = models.TeamMember
     list_display = ('admin_image', 'name')
-    
+
     class Media:
         js = (
             'admin/js/vendor/jquery/jquery.js',
@@ -26,5 +29,6 @@ class TeamMemberAdmin(
             'adminsortable2/js/list-sortable.js',
             'adminsortable2/js/inline-sortable.js',
         )
+
 
 admin.site.register(models.TeamMember, TeamMemberAdmin)

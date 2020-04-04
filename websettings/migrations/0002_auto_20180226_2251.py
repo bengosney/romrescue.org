@@ -6,7 +6,7 @@ from django.db import migrations
 
 
 def load_data(apps, schema_editor):
-    setting = apps.get_model("websettings", "setting")
+    apps.get_model("websettings", "setting")
 
 
 class Migration(migrations.Migration):

@@ -1,5 +1,7 @@
+# Django
 from django.contrib import admin
 
+# Locals
 from . import models
 
 

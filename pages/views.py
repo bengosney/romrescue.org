@@ -1,24 +1,24 @@
-from vanilla import DetailView, ListView, CreateView, GenericModelView, TemplateView, FormView
-
+# Django
 from django.http import HttpResponseRedirect
-
 from django.shortcuts import render
-from django.template import RequestContext
 
-from django.template import Context
-from django.template.loader import get_template
+# Third Party
+from vanilla import CreateView, DetailView, GenericModelView, ListView
 
-from .models import Page, ModuleList, HomePageHeader, IntrestSubmission
-from .forms import IntrestForm
+# First Party
 from dogs.models import Dog
+
+# Locals
+from .models import HomePageHeader, IntrestSubmission, ModuleList, Page
+
 
 def error404(request, exception):
     response = render(request, 'pages/404.html')
     response.status_code = 404
-    
+
     return response
 
-    
+
 class HomePage(ListView):
     model = Page
     template_name = 'pages/home.html'
@@ -26,7 +26,6 @@ class HomePage(ListView):
     def get_context_data(self, **kwargs):
         context = super(self.__class__, self).get_context_data(**kwargs)
         context['page'] = Page.objects.get(is_home_page=True)
-        #context['dog_list'] = Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING).order_by('reserved', 'position')[:4]
         context['dog_list'] = Dog.get_homepage_dogs()
         context['dog_headders'] = Dog.get_homepage_header_dogs()
         context['headers'] = HomePageHeader.objects.all()
@@ -65,7 +64,7 @@ class DetailFormView(GenericModelView):
         self.object = form.save()
 
         self.object.send_email()
-        
+
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form):
@@ -83,7 +82,7 @@ class DetailFormView(GenericModelView):
         cls = self.get_form_class()
         try:
             return cls(data=data, files=files, **kwargs)
-        except:
+        except BaseException:
             return None
 
     def get_success_url(self):
@@ -107,9 +106,8 @@ class ContactView(CreateView):
 class IntrestView(CreateView):
     model = IntrestSubmission
     fields = '__all__'
-    #form_class = IntrestForm
     template_name = 'pages/intrest.html'
-    
+
 
 class IntrestSuccessView(DetailView):
     model = IntrestSubmission
