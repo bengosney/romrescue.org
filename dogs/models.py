@@ -6,6 +6,8 @@ import os
 
 from datetime import date
 
+from django.template.loader import get_template
+
 try:
     from urllib.parse import urlparse, parse_qs
 except ImportError:
@@ -15,6 +17,7 @@ from django.db import models
 from django_extensions.db import fields
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
+from django.core.mail import EmailMessage
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit
@@ -74,16 +77,8 @@ class Rescue(models.Model):
     name = models.CharField(_("Name"), max_length=30)
     logo = models.ImageField(_("Logo"), upload_to='uploads/rescue')
     website = models.URLField(_("Website"))
-
-    logo_big = ImageSpecField(source='logo',
-                              processors=[ResizeToFit(350, 150)],
-                              format='PNG',
-                              options={'quality': 70})
-
-    logo_small = ImageSpecField(source='logo',
-                                processors=[ResizeToFit(100, 75)],
-                                format='PNG',
-                                options={'quality': 70})
+    logo_big = ImageSpecField(source='logo', processors=[ResizeToFit(350, 150)], format='PNG', options={'quality': 70})
+    logo_small = ImageSpecField(source='logo', processors=[ResizeToFit(100, 75)], format='PNG', options={'quality': 70})
 
     def __str__(self):
         return self.name
@@ -127,10 +122,8 @@ class Dog(statusMixin, models.Model):
     location = models.ForeignKey(Status, on_delete=models.PROTECT)
     arrival = models.DateField(_("Arrival Date"), blank=True, null=True)
     description = RichTextField(_("Body"))
-    dogStatus = models.CharField(_("Status"),
-                                 max_length=8,
-                                 choices=STATUS,
-                                 default=STATUS_LOOKING)
+    dogStatus = models.CharField(_("Status"), max_length=8, choices=STATUS, default=STATUS_LOOKING)
+    sponsor_status = models.CharField(_("Sponsorship status"), max_length=30, blank=True, default="")
 
     keypoints = models.ManyToManyField(KeyPoints, blank=True)
 
@@ -193,12 +186,11 @@ class Dog(statusMixin, models.Model):
     def age(self):
         today = date.today()
 
-        if isinstance(self.dob, (int)):
+        if isinstance(self.dob, int):
             self.dob = today.replace(self.dob)
 
         try:
-            age = today.year - self.dob.year - \
-                  ((today.month, today.day) < (self.dob.month, self.dob.day))
+            age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
         except:
             return None
 
@@ -234,7 +226,7 @@ class Dog(statusMixin, models.Model):
 
     @property
     def show_arrival_date(self):
-        return (self.location.show_arrival_date and self.arrival and self.arrival > date.today())
+        return self.location.show_arrival_date and self.arrival and self.arrival > date.today()
 
     @property
     def homepageImage(self):
@@ -246,13 +238,11 @@ class Dog(statusMixin, models.Model):
 
     @classmethod
     def get_homepage_dogs(cls):
-        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by(
-            '-position')[:4]
+        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by('-position')[:4]
 
     @classmethod
     def get_homepage_header_dogs(cls):
-        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by(
-            '-promoted', 'created')[:4]
+        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by('-promoted', 'created')[:4]
 
 
 class SponsorshipInfoLink(models.Model):
@@ -262,6 +252,52 @@ class SponsorshipInfoLink(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class SponsorshipLevel(models.Model):
+    name = models.CharField(_("Price"), max_length=30)
+    cost = models.DecimalField(_("Price"), max_digits=5, decimal_places=2, blank=True, default=0)
+
+    created = fields.CreationDateTimeField()
+    modified = fields.ModificationDateTimeField()
+
+    def __str__(self):
+        return f"{self.name} - £{self.cost} per month"
+
+
+class SponsorSubmission(models.Model):
+    name = models.CharField(_("Name"), max_length=200)
+    email = models.EmailField(_("Email"))
+    phone = models.CharField(_("Phone"), max_length=100, blank=True, default="")
+    dog = models.ForeignKey(Dog, on_delete=models.PROTECT, blank=True, null=True)
+    sponsor_level = models.ForeignKey(SponsorshipLevel, on_delete=models.PROTECT, default=-1)
+    comments = models.TextField(_("Comments"), blank=True, default="")
+    consent = models.BooleanField(_("I give consent for data I enter into this form to be stored and processed by SOS Romanian Rescue South West and I am over 18"))
+
+    created = fields.CreationDateTimeField()
+
+    def __str__(self):
+        return self.name
+
+    def send_email(self):
+        template = get_template('pages/email-submission.html')
+        context = {
+            'name': self.name,
+            'email': self.email,
+            'phone': self.phone,
+            'dog': self.dog,
+        }
+        content = template.render(context)
+
+        email = EmailMessage(
+            "New sponsorship form submission",
+            content,
+            'sponsorship@romrescue.org',
+            ['sponsorship@romrescue.org'],
+            headers={'Reply-To': self.email}
+        )
+
+        email.send()
 
 
 class DogPhoto(models.Model):
@@ -309,3 +345,16 @@ class YoutubeVideo(models.Model):
         ordering = ('position',)
         verbose_name = _('Youtube Video')
         verbose_name_plural = _('Youtube Videos')
+
+
+class AboutInfo(models.Model):
+    name = models.CharField(_("Name"), max_length=30)
+    value = models.CharField(_("value"), max_length=30)
+    dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
+    position = models.PositiveIntegerField(default=0)
+
+    class Meta(object):
+        ordering = ('position',)
+
+    def __str__(self):
+        return f"{self.name} - {self.value}"

@@ -6,7 +6,8 @@ from adminsortable2.admin import SortableAdminMixin
 from image_cropping import ImageCroppingMixin
 
 from .models import ContactSubmission, Page, Empty, ModuleList, \
-    ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission, SponsorSubmission
+    ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission
+from dogs.models import SponsorSubmission
 
 from romrescue.actions import export_as_csv_action
 
@@ -80,21 +81,6 @@ class ContactAdmin(admin.ModelAdmin):
         return False
 
 
-class SponsorAdmin(admin.ModelAdmin):
-    model = SponsorSubmission
-
-    readonly_fields = ('created',)
-    list_filter = ('created',)
-    list_display = ('name', 'email', 'dog', 'created',)
-    list_per_page = 25
-
-    actions = [export_as_csv_action("CSV Export", fields=['name', 'email', 'created', 'enquiry'])]
-
-    def has_add_permission(self, request, obj=None):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
 
 
 class IntrestAdmin(admin.ModelAdmin):
@@ -139,4 +125,3 @@ admin.site.register(Empty, BaseChildNoSEOAdmin)
 admin.site.register(ModuleList, ModuleListAdmin)
 admin.site.register(ExternalLink, BaseChildNoSEOAdmin)
 admin.site.register(SocialLink, BaseChildNoSEOAdmin)
-admin.site.register(SponsorSubmission, SponsorAdmin)

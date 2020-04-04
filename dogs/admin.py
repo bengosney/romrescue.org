@@ -6,6 +6,8 @@ from image_cropping import ImageCroppingMixin
 
 from modulestatus.admin import statusAdmin
 
+from romrescue.actions import export_as_csv_action
+
 import json
 import os
 
@@ -20,6 +22,11 @@ class DogPhotoInline(SortableInlineAdminMixin, ImageCroppingMixin, admin.Tabular
 class YoutubeInline(SortableInlineAdminMixin, ImageCroppingMixin, admin.TabularInline):
     model = models.YoutubeVideo
     extra = 1
+
+
+class AboutInline(SortableInlineAdminMixin, admin.TabularInline):
+    model = models.AboutInfo
+    extra = 3
 
 
 class KeyPointsAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
@@ -94,7 +101,7 @@ def set_price_to_default(modeladmin, request, queryset):
 
 class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.Dog
-    inlines = [DogPhotoInline, YoutubeInline]
+    inlines = [AboutInline, DogPhotoInline, YoutubeInline]
     filter_horizontal = ('keypoints',)
     list_display = ('name', 'reserved', 'location', 'dogStatus', 'all_filters')
     list_per_page = 25
@@ -175,9 +182,33 @@ class SponsorshipInfoLinksAdmin(admin.ModelAdmin):
     list_display = ('title', 'link', 'file')
 
 
+class SponsorAdmin(admin.ModelAdmin):
+    model = models.SponsorSubmission
+
+    readonly_fields = ('created',)
+    list_filter = ('created',)
+    list_display = ('name', 'email', 'dog', 'created',)
+    list_per_page = 25
+
+    actions = [export_as_csv_action("CSV Export", fields=['name', 'email', 'created', 'enquiry'])]
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+class SponsorLevelAdmin(admin.ModelAdmin):
+    models = models.SponsorshipLevel
+
+    list_display = ('name', 'cost',)
+
 admin.site.register(models.KeyPoints, KeyPointsAdmin)
 admin.site.register(models.Dog, DogAdmin)
 admin.site.register(models.Status, StatusAdmin)
 admin.site.register(models.Rescue, RescueAdmin)
 admin.site.register(models.Filter, FilterAdmin)
 admin.site.register(models.SponsorshipInfoLink, SponsorshipInfoLinksAdmin)
+admin.site.register(models.SponsorSubmission, SponsorAdmin)
+admin.site.register(models.SponsorshipLevel, SponsorLevelAdmin)

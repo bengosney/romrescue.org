@@ -83,6 +83,12 @@
 		    {% if dog.show_arrival_date %}
 		    <div class="row"><div class="col-xs-5">Arrival Date</div><div class="col-xs-7">{{ dog.arrival|date:"d/m/Y" }}</div></div>
 		    {% endif %}
+            {% for row in dog.aboutinfo_set.all %}
+                <div class="row">
+                    <div class="col-xs-5">{{ row.name }}</div>
+                    <div class="col-xs-7">{{ row.value }}</div>
+                </div>
+            {% endfor %}
 		</div>
 	    </div>
 	    <div class="dog-share dog-section">

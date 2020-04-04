@@ -264,39 +264,6 @@ class ContactSubmission(models.Model):
         email.send()
 
 
-class SponsorSubmission(models.Model):
-    name = models.CharField(_("Name"), max_length=200)
-    email = models.EmailField(_("Email"))
-    phone = models.CharField(_("Phone"), max_length=100, blank=True, null=True)
-    dog = models.ForeignKey(Dog, on_delete=models.PROTECT, blank=True, null=True)
-    consent = models.BooleanField(_("I give consent for data I enter into this form to be stored and processed by SOS Romanian Rescue South West and I am over 18"))
-
-    created = fields.CreationDateTimeField()
-
-    def __str__(self):
-        return self.name
-
-    def send_email(self):
-        template = get_template('pages/email-submission.html')
-        context = {
-            'name': self.name,
-            'email': self.email,
-            'phone': self.phone,
-            'dog': self.dog,
-        }
-        content = template.render(context)
-
-        email = EmailMessage(
-            "New sponsorship form submission",
-            content,
-            'sponsorship@romrescue.org',
-            ['sponsorship@romrescue.org'],
-            headers={'Reply-To': self.email}
-        )
-
-        email.send()
-
-
 class HomePageHeader(models.Model):
     image = models.ImageField(upload_to='images')
     cropped = ImageRatioField('image', '1110x624')
