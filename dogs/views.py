@@ -1,11 +1,16 @@
+# Django
 from django.core.exceptions import MultipleObjectsReturned
-from django.http import HttpResponseGone
-from vanilla import DetailView, ListView
-from .models import Dog, Filter, SponsorshipInfoLink
-from pages.forms import SponsorForm
-from pages.decorators import register_list_view
 
+# Third Party
 from rest_framework import viewsets
+from vanilla import DetailView, ListView
+
+# First Party
+from pages.decorators import register_list_view
+from pages.forms import SponsorForm
+
+# Locals
+from .models import Dog, Filter, SponsorshipInfoLink
 from .serializers import DogSerializer
 
 

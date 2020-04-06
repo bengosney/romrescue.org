@@ -1,8 +1,12 @@
-import unicodecsv as csv
+# Django
 from django.http import HttpResponse
 
-def export_as_csv_action(description="Export selected objects as CSV file",
-                         fields=None, exclude=None, header=True):
+# Third Party
+import unicodecsv as csv
+from future.types.newstr import unicode
+
+
+def export_as_csv_action(description="Export selected objects as CSV file", fields=None, exclude=None, header=True):
     """
     This function returns an export csv action
     'fields' and 'exclude' work like in django ModelForm
@@ -10,7 +14,7 @@ def export_as_csv_action(description="Export selected objects as CSV file",
     """
     def export_as_csv(modeladmin, request, queryset):
         opts = modeladmin.model._meta
-        
+
         if not fields:
             field_names = [field.name for field in opts.fields]
         else:
@@ -26,9 +30,9 @@ def export_as_csv_action(description="Export selected objects as CSV file",
         for obj in queryset:
             row = [getattr(obj, field)() if callable(getattr(obj, field)) else getattr(obj, field) for field in field_names]
             writer.writerow(row)
-            
+
         return response
 
     export_as_csv.short_description = description
-    
+
     return export_as_csv

@@ -1,9 +1,12 @@
-from django.forms import ModelForm
+# Django
 from django import forms
+from django.forms import ModelForm
 
-from .models import ContactSubmission, FosteringSubmission, IntrestSubmission
-
+# First Party
 from dogs.models import SponsorSubmission
+
+# Locals
+from .models import ContactSubmission, FosteringSubmission
 
 
 class ContactForm(ModelForm):
@@ -15,7 +18,7 @@ class ContactForm(ModelForm):
 
     class Meta:
         model = ContactSubmission
-        fields = '__all__'
+        fields = ['name', 'email', 'phone', 'enquiry', 'consent', ]
 
 
 class SponsorForm(ModelForm):
@@ -27,17 +30,11 @@ class SponsorForm(ModelForm):
 
     class Meta:
         model = SponsorSubmission
-        fields = '__all__'
+        fields = ['name', 'email', 'phone', 'dog', 'sponsor_level', 'comments', 'consent', ]
         widgets = {'dog': forms.HiddenInput(), 'sponsor_level': forms.RadioSelect()}
 
 
 class FosteringForm(ModelForm):
     class Meta:
         model = FosteringSubmission
-        fields = '__all__'
-
-
-class IntrestForm(ModelForm):
-    class Meta:
-        model = IntrestSubmission
-        fields = '__all__'
+        fields = ['name', 'email', 'contact_number', ]

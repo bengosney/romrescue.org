@@ -1,5 +1,7 @@
+# Future
 from __future__ import unicode_literals
 
+# Django
 from django.db import models
 
 
@@ -8,7 +10,7 @@ class BaseFAQ(models.Model):
     answer = models.CharField(max_length=500)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.strapline
 
     class Meta(object):

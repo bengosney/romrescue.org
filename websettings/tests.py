@@ -1,9 +1,12 @@
+# Standard Library
 import string
 
+# Third Party
 from hypothesis import given
 from hypothesis.extra.django import TestCase
 from hypothesis.strategies import text
 
+# Locals
 from .models import setting
 
 

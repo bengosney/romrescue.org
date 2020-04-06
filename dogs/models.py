@@ -1,32 +1,33 @@
+# Future
 from __future__ import unicode_literals
 
-from bs4 import BeautifulSoup
-
+# Standard Library
 import os
-
 from datetime import date
 
+# Django
+from django.core.mail import EmailMessage
+from django.db import models
 from django.template.loader import get_template
+from django.urls import reverse_lazy
+from django.utils.translation import ugettext_lazy as _
+
+# Third Party
+from bs4 import BeautifulSoup
+from ckeditor_uploader.fields import RichTextUploadingField as RichTextField
+from django_extensions.db import fields
+from image_cropping import ImageRatioField
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFit
+
+# First Party
+from icons.icons import ICON_CHOICE
+from modulestatus.models import statusMixin
 
 try:
     from urllib.parse import urlparse, parse_qs
 except ImportError:
     from urlparse import urlparse, parse_qs
-
-from django.db import models
-from django_extensions.db import fields
-from django.utils.translation import ugettext_lazy as _
-from django.urls import reverse_lazy
-from django.core.mail import EmailMessage
-
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFit
-from image_cropping import ImageRatioField
-from ckeditor_uploader.fields import RichTextUploadingField as RichTextField
-
-from icons.icons import ICON_CHOICE
-
-from modulestatus.models import statusMixin
 
 
 class Filter(models.Model):
@@ -191,7 +192,7 @@ class Dog(statusMixin, models.Model):
 
         try:
             age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
-        except:
+        except BaseException:
             return None
 
         diff = 'year'
@@ -247,8 +248,8 @@ class Dog(statusMixin, models.Model):
 
 class SponsorshipInfoLink(models.Model):
     title = models.CharField(_("Title"), max_length=30)
-    link = models.CharField(_("Link"), max_length=254, null=True, blank=True)
-    file = models.FileField(_("File"), null=True, blank=True)
+    link = models.CharField(_("Link"), max_length=254, blank=True, default="")
+    file = models.FileField(_("File"), blank=True, default="")
 
     def __str__(self):
         return self.title

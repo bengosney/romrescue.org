@@ -1,12 +1,16 @@
+# Django
 from django.contrib import admin
+
+# Third Party
 from adminsortable2.admin import SortableAdminMixin
 
+# Locals
 from . import models
 
 
 class AdoptionFAQAdmin(SortableAdminMixin, admin.ModelAdmin):
     model = models.AdoptionFAQ
-    
+
     class Media:
         js = (
             'admin/js/vendor/jquery/jquery.js',
@@ -20,13 +24,14 @@ class AdoptionFAQAdmin(SortableAdminMixin, admin.ModelAdmin):
             'adminsortable2/js/list-sortable.js',
             'adminsortable2/js/inline-sortable.js',
         )
+
 
 admin.site.register(models.AdoptionFAQ, AdoptionFAQAdmin)
 
 
 class FosteringFAQAdmin(SortableAdminMixin, admin.ModelAdmin):
     model = models.FosteringFAQ
-    
+
     class Media:
         js = (
             'admin/js/vendor/jquery/jquery.js',
@@ -40,5 +45,6 @@ class FosteringFAQAdmin(SortableAdminMixin, admin.ModelAdmin):
             'adminsortable2/js/list-sortable.js',
             'adminsortable2/js/inline-sortable.js',
         )
+
 
 admin.site.register(models.FosteringFAQ, FosteringFAQAdmin)

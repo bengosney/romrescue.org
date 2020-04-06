@@ -1,12 +1,14 @@
+# Django
 from django.db import models
 
+# Locals
 from . import ModelStatus
 
 
 class statusManager(models.Manager):
     def get_queryset(self):
         return super(statusManager, self).get_queryset()\
-                            .filter(status=ModelStatus.LIVE_STATUS)
+            .filter(status=ModelStatus.LIVE_STATUS)
 
 
 try:

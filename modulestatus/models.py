@@ -1,7 +1,10 @@
+# Future
 from __future__ import unicode_literals
 
+# Django
 from django.db import models
 
+# Locals
 from . import ModelStatus
 from .managers import statusManager
 
@@ -18,3 +21,5 @@ class statusMixin(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return self.status

@@ -10,13 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
+# Standard Library
 import os
 import sys
 
-from easy_thumbnails.conf import Settings as thumbnail_settings
-
+# Third Party
 import dj_database_url
 import rollbar
+from easy_thumbnails.conf import Settings as thumbnail_settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -215,8 +216,8 @@ USE_L10N = True
 USE_TZ = True
 
 THUMBNAIL_PROCESSORS = (
-                           'image_cropping.thumbnail_processors.crop_corners',
-                       ) + thumbnail_settings.THUMBNAIL_PROCESSORS
+    'image_cropping.thumbnail_processors.crop_corners',
+) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
 SITE_ID = 2
 

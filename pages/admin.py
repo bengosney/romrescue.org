@@ -1,19 +1,15 @@
 from datetime import datetime, timedelta
 
-from django.contrib import admin
-
-from polymorphic_tree.admin import PolymorphicMPTTParentModelAdmin, PolymorphicMPTTChildModelAdmin
 from adminsortable2.admin import SortableAdminMixin
-from image_cropping import ImageCroppingMixin
-
-from .models import ContactSubmission, Page, Empty, ModuleList, ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission
-from dogs.models import SponsorSubmission
-
-from romrescue.actions import export_as_csv_action
-
+from django.contrib import admin
+from django.contrib.admin.models import LogEntry
 from django.contrib.auth.signals import user_logged_in
 from django.dispatch import receiver
-from django.contrib.admin.models import LogEntry
+from image_cropping import ImageCroppingMixin
+from polymorphic_tree.admin import PolymorphicMPTTChildModelAdmin, PolymorphicMPTTParentModelAdmin
+from romrescue.actions import export_as_csv_action
+
+from .models import ContactSubmission, Page, Empty, ModuleList, ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission
 
 
 @receiver(user_logged_in)
@@ -124,7 +120,6 @@ class HomePageHeaderAdmin(
 
 admin.site.register(node, TreeNodeParentAdmin)
 admin.site.register(ContactSubmission, ContactAdmin)
-# admin.site.register(HomePageHeader, HomePageHeaderAdmin)
 admin.site.register(IntrestSubmission, IntrestAdmin)
 
 admin.site.register(Page, BaseChildAdmin)

@@ -1,6 +1,4 @@
-# from django.contrib import admin
 
-# from . import ModelStatus
 
 
 class statusAdmin(object):
