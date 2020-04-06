@@ -1,15 +1,24 @@
+from datetime import datetime, timedelta
+
 from django.contrib import admin
 
-from polymorphic_tree.admin import PolymorphicMPTTParentModelAdmin, \
-    PolymorphicMPTTChildModelAdmin
+from polymorphic_tree.admin import PolymorphicMPTTParentModelAdmin, PolymorphicMPTTChildModelAdmin
 from adminsortable2.admin import SortableAdminMixin
 from image_cropping import ImageCroppingMixin
 
-from .models import ContactSubmission, Page, Empty, ModuleList, \
-    ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission
+from .models import ContactSubmission, Page, Empty, ModuleList, ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission
 from dogs.models import SponsorSubmission
 
 from romrescue.actions import export_as_csv_action
+
+from django.contrib.auth.signals import user_logged_in
+from django.dispatch import receiver
+from django.contrib.admin.models import LogEntry
+
+
+@receiver(user_logged_in)
+def post_login(sender, user, request, **kwargs):
+    LogEntry.objects.filter(action_time__lt=(datetime.now() - timedelta(days=30))).delete()
 
 
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
@@ -79,8 +88,6 @@ class ContactAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
-
-
 
 
 class IntrestAdmin(admin.ModelAdmin):
