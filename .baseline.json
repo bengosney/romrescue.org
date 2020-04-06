@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2020-04-04T15:53:12Z",
+  "generated_at": "2020-04-06T20:14:08Z",
   "metrics": {
     "./dogs/__init__.py": {
       "CONFIDENCE.HIGH": 0.0,
@@ -527,7 +527,7 @@
       "SEVERITY.LOW": 0.0,
       "SEVERITY.MEDIUM": 0.0,
       "SEVERITY.UNDEFINED": 0.0,
-      "loc": 265,
+      "loc": 268,
       "nosec": 0
     },
     "./dogs/serializers.py": {
@@ -839,7 +839,7 @@
       "SEVERITY.LOW": 0.0,
       "SEVERITY.MEDIUM": 0.0,
       "SEVERITY.UNDEFINED": 0.0,
-      "loc": 89,
+      "loc": 96,
       "nosec": 0
     },
     "./pages/context_processors.py": {
@@ -1523,7 +1523,7 @@
       "SEVERITY.LOW": 2.0,
       "SEVERITY.MEDIUM": 0.0,
       "SEVERITY.UNDEFINED": 0.0,
-      "loc": 3400,
+      "loc": 3410,
       "nosec": 0
     }
   },
