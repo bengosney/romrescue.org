@@ -286,6 +286,9 @@ class SponsorSubmission(models.Model):
             'email': self.email,
             'phone': self.phone,
             'dog': self.dog,
+            'sponsor_level': self.sponsor_level,
+            'form_name': 'Sponsor Submission',
+            'enquiry': self.comments,
         }
         content = template.render(context)
 

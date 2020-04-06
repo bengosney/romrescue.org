@@ -1,4 +1,4 @@
-Form Submission:
+{{ form_name|default:'Form' }} Submission:
 
 Name : {{ name }}
 
@@ -7,7 +7,9 @@ Email: {{ email }}
 Phone: {{ phone }}
 
 Dog: {{ dog.name }}
-
+{% if sponsor_level %}
+Sponsor level: {{ sponsor_level }}
+{% endif %}
 ======================
 
 
