@@ -1,15 +1,22 @@
+# Standard Library
 from datetime import datetime, timedelta
 
-from adminsortable2.admin import SortableAdminMixin
+# Django
 from django.contrib import admin
 from django.contrib.admin.models import LogEntry
 from django.contrib.auth.signals import user_logged_in
 from django.dispatch import receiver
+
+# Third Party
+from adminsortable2.admin import SortableAdminMixin
 from image_cropping import ImageCroppingMixin
 from polymorphic_tree.admin import PolymorphicMPTTChildModelAdmin, PolymorphicMPTTParentModelAdmin
+
+# First Party
 from romrescue.actions import export_as_csv_action
 
-from .models import ContactSubmission, Page, Empty, ModuleList, ExternalLink, SocialLink, node, HomePageHeader, IntrestSubmission
+# Locals
+from .models import ContactSubmission, Empty, ExternalLink, HomePageHeader, IntrestSubmission, ModuleList, Page, SocialLink, node
 
 
 @receiver(user_logged_in)
@@ -97,9 +104,9 @@ class IntrestAdmin(admin.ModelAdmin):
 
 
 class HomePageHeaderAdmin(
-    SortableAdminMixin,
-    ImageCroppingMixin,
-    admin.ModelAdmin):
+        SortableAdminMixin,
+        ImageCroppingMixin,
+        admin.ModelAdmin):
     model = HomePageHeader
     list_display = ('admin_image', 'strapline', 'subline',)
 

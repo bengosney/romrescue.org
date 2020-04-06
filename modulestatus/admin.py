@@ -1,6 +1,5 @@
 
 
-
 class statusAdmin(object):
     def __init__(self, model, admin_site):
         super(statusAdmin, self).__init__(model, admin_site)
