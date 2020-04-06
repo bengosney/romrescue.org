@@ -25,7 +25,7 @@ from .sitemaps import sitemaps
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^ckeditor/', include(('ckeditor_uploader.urls', 'ckeditor'), namespace='ckeditor')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^dogs/', include('dogs.urls', namespace='dogs')),
     url(r'^team/', include('team.urls', namespace='team')),
     url(r'^', include('pages.urls', namespace='pages')),
