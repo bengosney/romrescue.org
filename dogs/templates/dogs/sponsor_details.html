@@ -107,7 +107,7 @@
                         <ul>
                             {% for sponsor_link in sponsor_links %}
                                 <li>
-                                    <a href="{{ sponsor_link.file }}">{{ sponsor_link.title }}</a>
+                                    <a href="{{ sponsor_link.file.url }}">{{ sponsor_link.title }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
