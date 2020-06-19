@@ -23,6 +23,7 @@ from imagekit.processors import ResizeToFit
 # First Party
 from icons.icons import ICON_CHOICE
 from modulestatus.models import statusMixin
+from websettings.models import setting
 
 try:
     from urllib.parse import urlparse, parse_qs
@@ -90,7 +91,7 @@ class Rescue(models.Model):
 
 
 class Dog(statusMixin, models.Model):
-    DEFAULT_COST = 285
+    DEFAULT_COST = setting.getValue('default-dog-cost', 290)
     GENDERS = [
         ('male', _('Male')),
         ('female', _('Female')),
