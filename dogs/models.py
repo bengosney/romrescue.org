@@ -255,6 +255,16 @@ class SponsorshipInfoLink(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def url(self):
+        if self.link != "":
+            return self.link
+
+        if self.file != "":
+            return self.file.url
+
+        return "#"
+
 
 class SponsorshipLevel(models.Model):
     name = models.CharField(_("Price"), max_length=30)
