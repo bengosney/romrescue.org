@@ -98,7 +98,7 @@ INSTALLED_APPS = [
     'team',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -113,8 +113,6 @@ MIDDLEWARE_CLASSES = [
     'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
-
-MIDDLEWARE = MIDDLEWARE_CLASSES
 
 ROOT_URLCONF = 'romrescue.urls'
 
@@ -140,17 +138,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'romrescue.wsgi.application'
 
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'romrescue'
 AWS_QUERYSTRING_AUTH = False
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
     '--with-coverage',
