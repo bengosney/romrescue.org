@@ -1,9 +1,9 @@
 
 {% extends "base.html" %}
-{% load thumbnail %}
 {% load humanize %}
 {% load cropping %}
 {% load static %}
+{% load easy_thumbnails_tags %}
 
 {% block title %}{{ dog.name }}{% endblock %}
 
@@ -67,7 +67,7 @@
 	    <div class="dog-details leash_of_life">
 		<h2>Working With</h2>
 		<a href="{{ dog.rescue.website }}" class="rescue-logo-link" rel="external">
-		    <img src="{{ dog.rescue.logo_big.url }}" alt="{{ dog.rescue.name }}" class="img-responsive" />
+		    <img src="{% thumbnail dog.rescue.logo 350x150 %}" alt="{{ dog.rescue.name }}" class="img-responsive" />
 		</a>
 	    </div>
 	    {% endif %}

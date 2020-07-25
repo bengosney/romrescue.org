@@ -17,8 +17,6 @@ from bs4 import BeautifulSoup
 from ckeditor_uploader.fields import RichTextUploadingField as RichTextField
 from django_extensions.db import fields
 from image_cropping import ImageRatioField
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFit
 
 # First Party
 from icons.icons import ICON_CHOICE
@@ -79,8 +77,6 @@ class Rescue(models.Model):
     name = models.CharField(_("Name"), max_length=30)
     logo = models.ImageField(_("Logo"), upload_to='uploads/rescue')
     website = models.URLField(_("Website"))
-    logo_big = ImageSpecField(source='logo', processors=[ResizeToFit(350, 150)], format='PNG', options={'quality': 70})
-    logo_small = ImageSpecField(source='logo', processors=[ResizeToFit(100, 75)], format='PNG', options={'quality': 70})
 
     def __str__(self):
         return self.name
@@ -319,12 +315,6 @@ class DogPhoto(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
     promoted = models.BooleanField(_("Promoted on homepage"), default=False)
     image = models.ImageField(upload_to='uploads/dogs')
-
-    main = ImageSpecField(source='image',
-                          processors=[ResizeToFit(600, 400)],
-                          format='JPEG',
-                          options={'quality': 70})
-
     thumbnail = ImageRatioField('image', '375x300')
     homepage = ImageRatioField('image', '1110x624')
 
