@@ -1,42 +1,21 @@
-version: 2
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
 jobs:
-  build:
-    docker:
-      - image: circleci/python:2.7.15
-        environment:
-          PIPENV_VENV_IN_PROJECT: true
-          DATABASE_URL: postgresql://root@localhost/circle_test
-      - image: circleci/postgres:9.5.15
-        environment:
-          POSTGRES_USER: root
-          POSTGRES_DB: circle_test
-
-    working_directory: ~/repo
-
+  build-and-test:
+    executor: python/default
     steps:
       - checkout
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python2.7/site-packages
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
-
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
       - run:
-          name: install deps
-          command: |
-            sudo pip install -r requirements.txt
-            
-      - save_cache:
-          paths:
-            - "/usr/local/bin"
-            - "/usr/local/lib/python2.7/site-packages"
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
-        
-      - run:
-          name: run tests
-          command: |
-            python manage.py test
+          command: ./manage.py test
+          name: Test
 
-      - store_artifacts:
-          path: test-reports
-          destination: test-reports
+workflows:
+  main:
+    jobs:
+      - build-and-test
