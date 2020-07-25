@@ -181,6 +181,12 @@ DATABASES = {
 if os.environ.get('DATABASE_URL'):
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
+if 'CIRCLECI' in os.environ:
+    DB_NAME = 'circle_test'
+    DB_USER = 'circleci'
+    DB_PASS = ''
+    DB_HOST = '127.0.0.1'
+
 # Password validation
 
 AUTH_PASSWORD_VALIDATORS = [

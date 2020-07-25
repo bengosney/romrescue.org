@@ -1,21 +1,40 @@
-version: 2.1
-
-orbs:
-  python: circleci/python@0.2.1
-
+version: 2
 jobs:
-  build-and-test:
-    executor: python/default
+  build:
+    docker:
+      - image: circleci/python:3.8.0
+      - image: circleci/postgres:10.6-postgis-ram
+        environment:
+          POSTGRES_USER: circleci
+          POSTGRES_DB: circle_test
+
+    working_directory: ~/repo
+
     steps:
       - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
-      - run:
-          command: ./manage.py test
-          name: Test
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          - v1-dependencies-
 
-workflows:
-  main:
-    jobs:
-      - build-and-test
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+        
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            python manage.py test
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
