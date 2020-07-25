@@ -77,7 +77,7 @@
 	{% if image.main.url %}
 	<img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
 	{% else %}
-	<img alt="Photo of {{ dog.name }}" src="{% static "pages/no-img.png" %}" class="img-responsive" />
+	<img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
 	{% endif %}
       </div>
       {% endwith %}
