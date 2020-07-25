@@ -164,10 +164,11 @@ DB_PASS = os.environ.get('SNAP_DB_PG_PASSWORD') or 'romrescue'
 DB_HOST = os.environ.get('SNAP_DB_PG_HOST') or '127.0.0.1'
 DB_NAME = 'romrescue'
 
-if 'TRAVIS' in os.environ:
-    DB_USER = 'postgres'
+if 'CIRCLECI' in os.environ:
+    DB_NAME = 'circle_test'
+    DB_USER = 'circleci'
     DB_PASS = ''
-    DB_HOST = 'localhost'
+    DB_HOST = '127.0.0.1'
 
 DATABASES = {
     'default': {
@@ -180,12 +181,6 @@ DATABASES = {
 
 if os.environ.get('DATABASE_URL'):
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-
-if 'CIRCLECI' in os.environ:
-    DB_NAME = 'circle_test'
-    DB_USER = 'circleci'
-    DB_PASS = ''
-    DB_HOST = '127.0.0.1'
 
 # Password validation
 
