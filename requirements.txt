@@ -58,7 +58,7 @@ funcsigs==1.0.2
 future==0.17.1
 gspread==3.1.0
 gunicorn==19.9.0
-httplib2==0.12.1
+httplib2==0.18.0
 hypothesis==5.22.0
 idna==2.8
 ipaddress==1.0.22
