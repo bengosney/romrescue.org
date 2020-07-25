@@ -1,0 +1,3 @@
+#!/bin/bash
+
+heroku run python manage.py thumbnail_cleanup --app agile-dawn-19181
