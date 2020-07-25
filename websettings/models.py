@@ -2,6 +2,8 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
+from psycopg2.errors import UndefinedTable
+
 
 class setting(models.Model):
     title = models.CharField(max_length=150)
@@ -17,5 +19,7 @@ class setting(models.Model):
         except ObjectDoesNotExist:
             obj = setting(title=title, value=default)
             obj.save()
+        except UndefinedTable:
+            return default
 
         return obj.value
