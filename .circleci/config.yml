@@ -28,7 +28,7 @@ jobs:
           name: collectstatic
           command: |
             . venv/bin/activate
-            python manage.py collectstatic
+            python manage.py collectstatic --noinput
 
       - save_cache:
           paths:
