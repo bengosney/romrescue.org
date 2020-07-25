@@ -40,12 +40,13 @@
   {% for dog in dog_headders %}
   <a href="{{ dog.url }}" class="home_header">
     <div class="title">{{ dog.name }}</div> 
-    <img src="{% cropped_thumbnail dog.homepageImage "homepage" upscale=True %}" class="img-responsive" />
+    <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail dog.homepageImage "homepage" upscale=True %}" class="img-responsive" />
     <div class="sub-title">{{ dog.homepageSubtitle }}</div>
   </a>
   {% endfor %}  
 </div>
 <div class="home-content">
+  <h1>SOS Romanian Rescue</h1>
   {{ page.body|safe }}
 </div>
 
@@ -74,9 +75,9 @@
       {% with dog.dogphoto_set.all|first as image %}      
       <div class="image">
 	{% if image.main.url %}
-	<img src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
+	<img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
 	{% else %}
-	<img src="{% static "pages/no-img.png" %}" class="img-responsive" />
+	<img alt="Photo of {{ dog.name }}" src="{% static "pages/no-img.png" %}" class="img-responsive" />
 	{% endif %}
       </div>
       {% endwith %}

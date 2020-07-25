@@ -13,10 +13,10 @@
 	 data-cycle-paused="true"
     >
 	{% for yt in dog.youtubevideo_set.all %}
-	<div class="youtube-container" data-youtube-container="yt-{{ yt }}" data-youtube-id="{{ yt }}" data-cycle-pager-template='<img class="youtube-thumb fa fa-play-circle" src="https://img.youtube.com/vi/{{ yt }}/1.jpg" />''>
+	<div class="youtube-container" data-youtube-container="yt-{{ yt }}" data-youtube-id="{{ yt }}" data-cycle-pager-template='<img class="youtube-thumb fa fa-play-circle" src="https://img.youtube.com/vi/{{ yt }}/1.jpg" alt="Video thumbnail" />''>
 	  <div class="youtube-inner">
 	    <div id="yt-{{ yt }}" class="youtube-placeholder">
-	      <img src="https://img.youtube.com/vi/{{ yt }}/0.jpg" class="youtube-responsive" />
+	      <img alt="Video" src="https://img.youtube.com/vi/{{ yt }}/0.jpg" class="youtube-responsive" />
 	    </div>
 	  </div>
 	</div>
@@ -24,8 +24,9 @@
 	{% for img in dog.dogphoto_set.all %}
 	<img
 	    src="{{ img.main.url }}"
-	    data-cycle-pager-template='<img src="{% cropped_thumbnail img "thumbnail" scale=.25 %}" />'
+	    data-cycle-pager-template='<img alt="Dog photo thumbnail" src="{% cropped_thumbnail img "thumbnail" scale=.25 %}" />'
 	    class="img-responsive"
+		alt="Dog Photo"
 	/>
 	{% endfor %}
     </div>
