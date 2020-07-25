@@ -1,5 +1,5 @@
 asn1crypto==0.24.0
-attrs==19.1.0
+attrs==19.3.0
 Babel==2.6.0
 beautifulsoup4==4.7.1
 bleach==3.1.0
@@ -59,7 +59,7 @@ future==0.17.1
 gspread==3.1.0
 gunicorn==19.9.0
 httplib2==0.12.1
-hypothesis==4.17.2
+hypothesis==5.22.0
 idna==2.8
 ipaddress==1.0.22
 mock==2.0.0
@@ -72,6 +72,7 @@ phonenumbers==8.10.10
 phonenumberslite==8.10.10
 pilkit==2.0
 Pillow==6.0.0
+pkg-resources==0.0.0
 psycopg2==2.8.2
 purl==1.5
 pyasn1==0.4.5
@@ -93,6 +94,7 @@ selenium==3.141.0
 simplejson==3.16.0
 six==1.12.0
 sorl-thumbnail==12.5.0
+sortedcontainers==2.2.2
 soupsieve==1.9.1
 sphinx-me==0.3
 sqlparse==0.3.0
