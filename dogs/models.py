@@ -281,7 +281,7 @@ class SponsorSubmission(models.Model):
     name = models.CharField(_("Name"), max_length=200)
     email = models.EmailField(_("Email"))
     phone = models.CharField(_("Phone"), max_length=100, blank=True, default="")
-    dog = models.ForeignKey(Dog, on_delete=models.PROTECT, blank=True, null=True)
+    dog = models.ForeignKey(Dog, on_delete=models.SET_NULL, blank=True, null=True)
     sponsor_level = models.ForeignKey(SponsorshipLevel, on_delete=models.PROTECT, default=-1)
     comments = models.TextField(_("Comments"), blank=True, default="")
     consent = models.BooleanField(_("I give consent for data I enter into this form to be stored and processed by SOS Romanian Rescue South West and I am over 18"))
@@ -316,7 +316,7 @@ class SponsorSubmission(models.Model):
 
 
 class DogPhoto(models.Model):
-    dog = models.ForeignKey(Dog, on_delete=models.PROTECT)
+    dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
     promoted = models.BooleanField(_("Promoted on homepage"), default=False)
     image = models.ImageField(upload_to='uploads/dogs')
 
@@ -340,7 +340,7 @@ class DogPhoto(models.Model):
 
 
 class YoutubeVideo(models.Model):
-    dog = models.ForeignKey(Dog, on_delete=models.PROTECT)
+    dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
     url = models.CharField(_("Youtube url"), max_length=150)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
