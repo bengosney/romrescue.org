@@ -24,6 +24,12 @@ jobs:
             . venv/bin/activate
             pip install -r requirements.txt
 
+      - run:
+          name: collectstatic
+          command: |
+            . venv/bin/activate
+            python manage.py collectstatic
+
       - save_cache:
           paths:
             - ./venv
