@@ -91,7 +91,7 @@ class Rescue(models.Model):
 
 
 class Dog(statusMixin, models.Model):
-    DEFAULT_COST = setting.getValue('default-dog-cost', 290)
+    DEFAULT_COST = 0
     GENDERS = [
         ('male', _('Male')),
         ('female', _('Female')),
@@ -153,6 +153,12 @@ class Dog(statusMixin, models.Model):
         ordering = ('position',)
         verbose_name = _('Dog')
         verbose_name_plural = _('Dogs')
+
+    def save(self, *args, **kwargs):
+        if self.cost == self.DEFAULT_COST:
+            self.cost = setting.getValue('default-dog-cost', 290)
+            
+        return super.save(*args, **kwargs) 
 
     @property
     def is_success(self):
