@@ -1,6 +1,6 @@
-{% load thumbnail %}
+{% load easy_thumbnails_tags %}
 {% load cropping %}
-{% load staticfiles %}
+{% load static %}
 
 {% block content %}
     {% if filters %}
@@ -23,15 +23,13 @@
                     <a href="{{ dog.correct_url }}" class="link">
                         {% with dog.dogphoto_set.all|first as image %}
                             <div class="image">
-                                {% if image.main.url %}
-                                    <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}"
-                                         class="img-responsive"/>
+                                {% if image.image %}
+                                    <img src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive"/>
                                 {% else %}
-                                    <img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive"/>
+                                    <img src="{% static "pages/no-img.png" %}" class="img-responsive"/>
                                 {% endif %}
                                 {% if dog.rescue %}
-                                    <img src="{{ dog.rescue.logo_small.url }}" alt="{{ dog.rescue.name }}"
-                                         class="rescue-logo"/>
+                                    <img src="{% thumbnail dog.rescue.logo 100x75 %}" alt="{{ dog.rescue.name }}" class="rescue-logo"/>
                                 {% endif %}
                             </div>
                         {% endwith %}

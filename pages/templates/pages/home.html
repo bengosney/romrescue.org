@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 {% load cropping %}
-{% load staticfiles %}
+{% load static %}
 
 {% block no-title %}{% endblock %}
 {% block title-default %}SOS Romanian Rescue South West{% endblock %}
@@ -74,7 +74,7 @@
     <a href="{{ dog.url }}" class="link">
       {% with dog.dogphoto_set.all|first as image %}      
       <div class="image">
-	{% if image.main.url %}
+	{% if image.image %}
 	<img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
 	{% else %}
 	<img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
