@@ -16,6 +16,7 @@ from .models import ContactSubmission, Empty, Page, SocialLink
 
 
 def sane_text():
+    # Third Party
     from hypothesis.strategies import text
 
     return text(

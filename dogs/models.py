@@ -21,12 +21,13 @@ from image_cropping import ImageRatioField
 # First Party
 from icons.icons import ICON_CHOICE
 from modulestatus.models import statusMixin
-from websettings.models import setting
 
 try:
-    from urllib.parse import urlparse, parse_qs
+    # Standard Library
+    from urllib.parse import parse_qs, urlparse
 except ImportError:
-    from urlparse import urlparse, parse_qs
+    # Third Party
+    from urlparse import parse_qs, urlparse
 
 
 class Filter(models.Model):

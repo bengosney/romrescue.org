@@ -12,6 +12,7 @@ class statusManager(models.Manager):
 
 
 try:
+    # Third Party
     from polymorphic_tree.managers import PolymorphicMPTTModelManager
 
     class PolymorphicMPTTStatusManager(PolymorphicMPTTModelManager):

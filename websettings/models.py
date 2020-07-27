@@ -2,6 +2,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
+# Third Party
 from psycopg2.errors import UndefinedTable
 
 
