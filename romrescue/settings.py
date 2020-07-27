@@ -94,6 +94,7 @@ INSTALLED_APPS = [
     'pages',
     'dogs',
     'team',
+    'testimonials',
 ]
 
 MIDDLEWARE = [
@@ -146,7 +147,6 @@ AWS_QUERYSTRING_AUTH = False
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
     '--with-coverage',

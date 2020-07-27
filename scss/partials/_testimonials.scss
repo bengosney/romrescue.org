@@ -1,0 +1,36 @@
+.testimonial {
+  $margin: 0.1em;
+  margin-bottom: 3em;
+
+  blockquote {
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D";
+
+    &:before,
+    &:after {
+      font-size: 3.5em;
+      line-height: 0.1em;
+      vertical-align: -0.4em;
+      color: $primary;
+    }
+
+    &:before {
+      content: open-quote;
+      margin-right: $margin;
+    }
+
+    &:after {
+      content: close-quote;
+      margin-left: $margin;
+    }
+  }
+
+  .name {
+    font-style: italic  ;
+    &:before {
+      content: "\2013";
+      margin-right: $margin * 3.5;
+    }
+  }
+}

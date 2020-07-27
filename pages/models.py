@@ -142,6 +142,7 @@ class Page(node):
     success_message = RichTextField(_("Success Message"), blank=True, null=True)
 
     def getFormClass(self):
+        # Locals
         from . import forms
 
         return getattr(forms, self.form)
