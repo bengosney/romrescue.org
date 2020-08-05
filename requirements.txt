@@ -30,7 +30,7 @@ django-crispy-forms==1.9.2
 django-debug-toolbar==2.2
 django-dynamic-forms==0.5.3
 django-email-extras==0.3.4
-django-extensions==3.0.3
+django-extensions==3.0.4
 django-extra-views==0.13.0
 django-flat-responsive==2.0
 django-fobi==0.16.4
