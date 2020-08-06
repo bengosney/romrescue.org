@@ -7,14 +7,17 @@
   {% for dog in dog_list %}
   <div class="col-md-3 col-sm-6 col-xs-12">
     <a href="{{ dog.succcess_url }}" class="link">
-      {% with dog.dogphoto_set.all|first as image %}      
-      <div class="image">
-	{% if image.main.url %}
-	<img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
-	{% else %}
-	<img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
-	{% endif %}
-      </div>
+      {% with dog.dogphoto_set.all|first as image %}
+          <div class="image">
+              {% if image.image %}
+                  <img src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive"/>
+              {% else %}
+                  <img src="{% static "pages/no-img.png" %}" class="img-responsive"/>
+              {% endif %}
+              {% if dog.rescue %}
+                  <img src="{% thumbnail dog.rescue.logo 100x75 %}" alt="{{ dog.rescue.name }}" class="rescue-logo"/>
+              {% endif %}
+          </div>
       {% endwith %}
       <h2>{{ dog.name }}</h2>
     </a>
