@@ -19,6 +19,12 @@ import dj_database_url
 import rollbar
 from easy_thumbnails.conf import Settings as thumbnail_settings
 
+##### START: botch for django-polymorphic
+from django.core.exceptions import FieldDoesNotExist  # noqa: E402
+from django.db import models  # noqa: E402
+models.FieldDoesNotExist = FieldDoesNotExist
+##### END: botch for django-polymorphic
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
