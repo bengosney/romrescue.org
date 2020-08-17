@@ -44,7 +44,7 @@ django-mptt==0.11.0
 django-nine==0.2.3
 django-nonefield==0.4
 django-nose==1.4.6
-django-phonenumber-field==4.0.0
+django-phonenumber-field==5.0.0
 django-polymorphic==2.1.2
 django-polymorphic-tree==1.5.1
 django-redis==4.12.1
