@@ -65,16 +65,13 @@ class DogTests(TestCase):
     def test_month_negative_age(self):
         first_of_month = datetime.date.today().replace(day=28)
         one_month = first_of_month + datetime.timedelta(days=5)
-        one_month = one_month - datetime.timedelta(days=366)
+        one_month = one_month - datetime.timedelta(days=356)
 
         dog = self.get_dog('rover', one_month)
         self.assertEqual(dog.age, '11 months')
 
     def test_age_one_month(self):
-        first_of_month = datetime.date.today().replace(day=1)
-        one_month = first_of_month - datetime.timedelta(days=1)
-
-        dog = self.get_dog('rover', one_month)
+        dog = self.get_dog('rover', datetime.date.today() - datetime.timedelta(weeks=4))
         self.assertEqual(dog.age, '1 month')
 
     def test_age_two_months(self):
@@ -113,7 +110,7 @@ class DogTests(TestCase):
         dob = datetime.date.today() - datetime.timedelta(days=364)
         dog = self.get_dog('rover', dob)
 
-        self.assertEqual(dog.age, '12 months')
+        self.assertEqual(dog.age, '1 year')
 
     def test_arrival_date_future_status_no(self):
         one_week = datetime.date.today() + datetime.timedelta(days=7)

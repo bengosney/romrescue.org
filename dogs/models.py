@@ -11,6 +11,7 @@ from django.db import models
 from django.template.loader import get_template
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
+from django.template.defaultfilters import pluralize
 
 # Third Party
 from bs4 import BeautifulSoup
@@ -186,28 +187,23 @@ class Dog(statusMixin, models.Model):
         today = date.today()
 
         if isinstance(self.dob, int):
-            self.dob = today.replace(self.dob)
+            self.dob = today.replace(year=self.dob)
 
         try:
-            age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
-        except BaseException:
+            delta = today - self.dob
+        except TypeError:
             return None
 
-        diff = 'year'
-        plural = 's'
+        diff = round(delta.days / 30)
+        if diff < 12:
+            unit = 'month'
+        else:
+            unit = 'year'
+            diff = round(delta.days / 365)
 
-        if age == 0:
-            age = today.month - self.dob.month
+        diff = max([diff, 1])
 
-            if age <= 0:
-                age += 12
-
-            diff = 'month'
-
-        if age == 1:
-            plural = ''
-
-        return '%d %s%s' % (age, diff, plural)
+        return f'{diff} {unit}{pluralize(diff)}'
 
     @property
     def all_filters(self):
