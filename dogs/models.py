@@ -8,10 +8,10 @@ from datetime import date
 # Django
 from django.core.mail import EmailMessage
 from django.db import models
+from django.template.defaultfilters import pluralize
 from django.template.loader import get_template
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
-from django.template.defaultfilters import pluralize
 
 # Third Party
 from bs4 import BeautifulSoup

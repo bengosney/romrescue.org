@@ -21,7 +21,7 @@ installLint: ## Install the linting deps
 lint: .baseline.json ## Format, sort imports and lint
 	autoflake --expand-star-imports --exclude "migrations" --exclude "node_modules" -i -r --remove-unused-variables --remove-all-unused-imports .
 	autopep8 -a -a -a --exclude "migrations,node_modules" --in-place --recursive .
-	isort --recursive "." --skip "stef/wsgi.py" --skip-glob "**/migrations/*" --skip-glob "*/node_modules/*"
+	isort "." --skip "stef/wsgi.py" --skip-glob "**/migrations/*" --skip-glob "*/node_modules/*"
 	flake8 --exclude migrations,node_modules .
 	bandit -x "./node_modules" -b $(baselinefile) -r .
 	eradicate -r --in-place .
