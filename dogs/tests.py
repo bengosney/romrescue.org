@@ -109,6 +109,12 @@ class DogTests(TestCase):
 
         self.assertEqual(dog.age, '2 years')
 
+    def test_age_364_days(self):
+        dob = datetime.date.today() - datetime.timedelta(days=364)
+        dog = self.get_dog('rover', dob)
+
+        self.assertEqual(dog.age, '12 months')
+
     def test_arrival_date_future_status_no(self):
         one_week = datetime.date.today() + datetime.timedelta(days=7)
         dog = self.get_dog('rover', arrival=one_week)

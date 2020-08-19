@@ -199,7 +199,7 @@ class Dog(statusMixin, models.Model):
         if age == 0:
             age = today.month - self.dob.month
 
-            if age < 0:
+            if age <= 0:
                 age += 12
 
             diff = 'month'
