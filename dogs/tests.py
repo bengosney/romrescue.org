@@ -68,7 +68,7 @@ class DogTests(TestCase):
         one_month = one_month - datetime.timedelta(days=356)
 
         dog = self.get_dog('rover', one_month)
-        self.assertEqual(dog.age, '11 months')
+        self.assertIn(dog.age, ['1 year', '11 months'])
 
     def test_age_one_month(self):
         dog = self.get_dog('rover', datetime.date.today() - datetime.timedelta(weeks=4))
