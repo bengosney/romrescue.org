@@ -21,7 +21,7 @@
     "grunt-purifycss": "^0.1.2",
     "grunt-sass-globbing": "^1.4.0",
     "grunt-webfont": "^1.4.0",
-    "handlebars": "^4.0.5",
+    "handlebars": "^4.5.3",
     "load-grunt-tasks": "~3.3.0",
     "pixrem": "~3.0.0",
     "postcss-flexibility": "^1.0.1",
