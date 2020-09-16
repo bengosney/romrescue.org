@@ -92,7 +92,7 @@ phonenumbers==8.12.8
 phonenumberslite==8.12.8
 pilkit==2.0
 Pillow==7.2.0
-psycopg2==2.8.5
+psycopg2==2.8.6
 purl==1.5
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
