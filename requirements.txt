@@ -27,7 +27,7 @@ django-autoslug-iplweb==1.9.5
 django-ckeditor==6.0.0
 django-compressor==2.4
 django-crispy-forms==1.9.2
-django-debug-toolbar==2.2
+django-debug-toolbar==3.1
 django-dynamic-forms==0.5.3
 django-email-extras==0.3.4
 django-extensions==3.0.9
