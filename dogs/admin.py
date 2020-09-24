@@ -133,6 +133,9 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
         return actions
 
     class Media:
+        css = {
+                "screen": ("/static/pages/css/admin.css",)
+            }
         js = (
             'admin/js/vendor/jquery/jquery.js',
             'admin/js/jquery.init.js',
