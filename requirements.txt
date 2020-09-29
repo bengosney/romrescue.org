@@ -88,7 +88,7 @@ olefile==0.46
 ordereddict==1.1
 packaging==20.4
 pbr==5.5.0
-phonenumbers==8.12.9
+phonenumbers==8.12.10
 phonenumberslite==8.12.9
 pilkit==2.0
 Pillow==7.2.0
