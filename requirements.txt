@@ -9,7 +9,7 @@ beautifulsoup4==4.9.2
 bleach==3.2.1
 boto==2.49.0
 boto3==1.15.9
-botocore==1.18.9
+botocore==1.18.15
 brotlipy==0.7.0
 bugjar==0.1.0
 cachetools==4.1.1
