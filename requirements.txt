@@ -58,7 +58,7 @@ djangorestframework==3.11.1
 easy-thumbnails==2.7
 entrypoints==0.3
 enum34==1.1.10
-eradicate==1.0
+eradicate==2.0.0
 factory-boy==3.1.0
 fake-factory==9999.9.9
 Faker==4.1.3
