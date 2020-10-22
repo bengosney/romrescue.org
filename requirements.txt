@@ -91,7 +91,7 @@ pbr==5.5.0
 phonenumbers==8.12.10
 phonenumberslite==8.12.10
 pilkit==2.0
-Pillow==7.2.0
+Pillow==8.0.0
 psycopg2==2.8.6
 purl==1.5
 pyasn1==0.4.8
