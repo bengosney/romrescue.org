@@ -8,7 +8,7 @@ bandit==1.6.2
 beautifulsoup4==4.9.3
 bleach==3.2.1
 boto==2.49.0
-boto3==1.16.9
+boto3==1.16.15
 botocore==1.19.9
 brotlipy==0.7.0
 bugjar==0.1.0
