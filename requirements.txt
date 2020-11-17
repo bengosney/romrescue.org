@@ -105,7 +105,7 @@ pyOpenSSL==19.1.0
 pyparsing==2.4.7
 python-dateutil==2.8.1
 python-gnupg==0.4.6
-pytz==2020.1
+pytz==2020.4
 PyYAML==5.3.1
 rcssmin==1.0.6
 redis==3.5.3
