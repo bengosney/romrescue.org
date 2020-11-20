@@ -1,6 +1,6 @@
 asgiref==3.2.10
 asn1crypto==1.4.0
-attrs==20.2.0
+attrs==20.3.0
 autoflake==1.4
 autopep8==1.5.4
 Babel==2.9.0
