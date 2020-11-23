@@ -54,7 +54,7 @@ django-tag-parser==3.2
 django-treebeard==4.3.1
 django-vanilla-views==2.0.0
 django-widget-tweaks==1.4.8
-djangorestframework==3.12.1
+djangorestframework==3.12.2
 easy-thumbnails==2.7.1
 entrypoints==0.3
 enum34==1.1.10
