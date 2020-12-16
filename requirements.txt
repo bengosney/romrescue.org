@@ -4,7 +4,7 @@ attrs==20.3.0
 autoflake==1.4
 autopep8==1.5.4
 Babel==2.9.0
-bandit==1.6.2
+bandit==1.7.0
 beautifulsoup4==4.9.3
 bleach==3.2.1
 boto==2.49.0
