@@ -41,7 +41,7 @@ django-haystack==3.0
 git+https://github.com/bengosney/django-image-cropping.git
 django-js-asset==1.2.2
 django-mptt==0.11.0
-django-nine==0.2.3
+django-nine==0.2.4
 django-nonefield==0.4
 django-nose==1.4.7
 django-phonenumber-field==5.0.0
