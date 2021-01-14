@@ -74,7 +74,7 @@ gspread==3.6.0
 gunicorn==20.0.4
 httplib2==0.18.1
 hypothesis==6.0.1
-idna==2.10
+idna==3.1
 importlib-metadata==3.4.0
 ipaddress==1.0.23
 isort==5.7.0
