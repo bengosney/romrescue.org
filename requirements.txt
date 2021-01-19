@@ -61,7 +61,7 @@ enum34==1.1.10
 eradicate==2.0.0
 factory-boy==3.2.0
 fake-factory==9999.9.9
-Faker==5.6.1
+Faker==5.6.2
 flake8==3.8.4
 flake8-django==1.1.1
 funcsigs==1.0.2
