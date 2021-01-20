@@ -106,7 +106,7 @@ pyparsing==2.4.7
 python-dateutil==2.8.1
 python-gnupg==0.4.6
 pytz==2020.5
-PyYAML==5.3.1
+PyYAML==5.4
 rcssmin==1.0.6
 redis==3.5.3
 requests==2.25.1
