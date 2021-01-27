@@ -89,7 +89,7 @@ ordereddict==1.1
 packaging==20.8
 pbr==5.5.1
 phonenumbers==8.12.16
-phonenumberslite==8.12.16
+phonenumberslite==8.12.17
 pilkit==2.0
 Pillow==8.1.0
 psycopg2==2.8.6
