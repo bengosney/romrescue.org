@@ -13,7 +13,4 @@ class TeamMemberTests(TestCase):
     def test_name(self, name):
         team = TeamMember(name=name)
 
-        print("name: {}".format(name))
-        print(team)
-
         self.assertEqual(str(team), name)
