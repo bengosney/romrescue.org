@@ -181,10 +181,6 @@ hypothesis==6.0.4
     # via -r requirements.in
 idna==2.10
     # via requests
-importlib-metadata==3.4.0
-    # via
-    #   flake8
-    #   stevedore
 ipaddress==1.0.23
     # via -r requirements.in
 isort==5.7.0
@@ -280,7 +276,7 @@ requests==2.25.1
     #   rollbar
 rjsmin==1.1.0
     # via django-compressor
-rollbar==0.15.1
+rollbar==0.15.2
     # via -r requirements.in
 rsa==4.7
     # via
@@ -328,8 +324,6 @@ tkreadonly==0.6.1
     # via bugjar
 toml==0.10.2
     # via autopep8
-typing-extensions==3.7.4.3
-    # via importlib-metadata
 unicodecsv==0.14.1
     # via -r requirements.in
 unidecode==1.1.2
@@ -349,8 +343,6 @@ werkzeug==1.0.1
     # via -r requirements.in
 whitenoise==5.2.0
     # via -r requirements.in
-zipp==3.4.0
-    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
