@@ -163,7 +163,7 @@ future==0.18.2
     # via django-polymorphic-tree
 gitdb==4.0.5
     # via gitpython
-gitpython==3.1.11
+gitpython==3.1.12
     # via bandit
 google-auth-oauthlib==0.4.2
     # via gspread
@@ -181,10 +181,6 @@ hypothesis==6.0.4
     # via -r requirements.in
 idna==2.10
     # via requests
-importlib-metadata==3.4.0
-    # via
-    #   flake8
-    #   stevedore
 ipaddress==1.0.23
     # via -r requirements.in
 isort==5.7.0
@@ -328,8 +324,6 @@ tkreadonly==0.6.1
     # via bugjar
 toml==0.10.2
     # via autopep8
-typing-extensions==3.7.4.3
-    # via importlib-metadata
 unicodecsv==0.14.1
     # via -r requirements.in
 unidecode==1.1.2
@@ -349,8 +343,6 @@ werkzeug==1.0.1
     # via -r requirements.in
 whitenoise==5.2.0
     # via -r requirements.in
-zipp==3.4.0
-    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
