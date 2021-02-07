@@ -262,7 +262,7 @@ pytz==2020.5
     # via
     #   babel
     #   django
-pyyaml==5.4
+pyyaml==5.4.1
     # via bandit
 rcssmin==1.0.6
     # via django-compressor
