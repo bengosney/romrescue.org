@@ -78,7 +78,7 @@ class DogTests(TestCase):
         first_of_month = datetime.date.today().replace(day=1)
         one_month = first_of_month - datetime.timedelta(days=1)
 
-        two_months = one_month.replace(day=1) - datetime.timedelta(days=1)
+        two_months = one_month.replace(day=1) - datetime.timedelta(days=10)
 
         dog = self.get_dog('rover', two_months)
         self.assertEqual(dog.age, '2 months')
