@@ -62,21 +62,6 @@ class KeyPointsAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
             request,
             **kwargs)
 
-    class Media:
-        js = (
-            'admin/js/vendor/jquery/jquery.js',
-            'admin/js/jquery.init.js',
-            'image_cropping/js/jquery.Jcrop.min.js',
-            'adminsortable2/js/plugins/admincompat.js',
-            'adminsortable2/js/libs/jquery.ui.core-1.11.4.js',
-            'adminsortable2/js/libs/jquery.ui.widget-1.11.4.js',
-            'adminsortable2/js/libs/jquery.ui.mouse-1.11.4.js',
-            'adminsortable2/js/libs/jquery.ui.sortable-1.11.4.js',
-            'adminsortable2/js/list-sortable.js',
-            'adminsortable2/js/inline-sortable.js',
-        )
-
-
 def make_tag_action(tag):
     def tag_action(modeladmin, request, queryset):
         for dog in queryset:
@@ -136,37 +121,11 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
         css = {
                 "screen": ("/static/pages/css/admin.css",)
             }
-        js = (
-            'admin/js/vendor/jquery/jquery.js',
-            'admin/js/jquery.init.js',
-            'image_cropping/js/jquery.Jcrop.min.js',
-            'adminsortable2/js/plugins/admincompat.js',
-            'adminsortable2/js/libs/jquery.ui.core-1.11.4.js',
-            'adminsortable2/js/libs/jquery.ui.widget-1.11.4.js',
-            'adminsortable2/js/libs/jquery.ui.mouse-1.11.4.js',
-            'adminsortable2/js/libs/jquery.ui.sortable-1.11.4.js',
-            'adminsortable2/js/list-sortable.js',
-            'adminsortable2/js/inline-sortable.js',
-        )
 
 
 class StatusAdmin(SortableAdminMixin, admin.ModelAdmin):
     model = models.Status
     list_display = ('title', 'show_arrival_date')
-
-    class Media:
-        js = (
-            'admin/js/vendor/jquery/jquery.js',
-            'admin/js/jquery.init.js',
-            'image_cropping/js/jquery.Jcrop.min.js',
-            'adminsortable2/js/plugins/admincompat.js',
-            'adminsortable2/js/libs/jquery.ui.core-1.11.4.js',
-            'adminsortable2/js/libs/jquery.ui.widget-1.11.4.js',
-            'adminsortable2/js/libs/jquery.ui.mouse-1.11.4.js',
-            'adminsortable2/js/libs/jquery.ui.sortable-1.11.4.js',
-            'adminsortable2/js/list-sortable.js',
-            'adminsortable2/js/inline-sortable.js',
-        )
 
 
 class DogPhoto(ImageCroppingMixin, admin.ModelAdmin):
