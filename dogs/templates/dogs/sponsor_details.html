@@ -1,138 +1,139 @@
-{% extends "base.html" %} {% load thumbnail %} {% load humanize %} {% load
-cropping %} {% load static %} {% load i18n %} {% load crispy_forms_tags %} {%
-load websettings_tags %} {% block title %}{{ dog.name }}{% endblock %} {% block
-headextra %} {% with dog.dogphoto_set.all|first as image %}
-<meta name="twitter:card" content="summary_large_image" />
-<meta
-  name="twitter:title"
-  content="{{ dog.name }} is looking for sponsorship"
-/>
-<meta
-  name="twitter:description"
-  content="{{ dog.description|striptags|truncatechars:200 }}"
-/>
-<meta name="twitter:image" content="{{ image.main.url }}" />
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load humanize %}
+{% load cropping %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
 
-<meta property="og:url" content="{{ request.build_absolute_uri }}" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="{{ dog.name }} is looking for sponsorship" />
-<meta
-  property="og:description"
-  content="{{ dog.description|striptags|truncatechars:200 }}"
-/>
-<meta property="og:image" content="{{ image.main.url }}" />
-{% endwith %} {% endblock %} {% block content %}
-<div class="dog-details">
-  <div class="row">
-    <div class="col-xs-6 col-sm-12">
-      <h1>{{ dog.name }}</h1>
-      <h2>{% websetting "sponsor-sub-title" %}</h2>
-    </div>
-    <div class="col-md-8 col-sm-7 col-xs-12">
-      {% include "dogs/dog_cycle.html" %}
-    </div>
-    <div id="info-pane" class="col-md-4 col-sm-5 col-xs-12">
-      {% if dog.rescue %}
-      <div class="dog-details leash_of_life">
-        <h2>Working With</h2>
-        <a
-          href="{{ dog.rescue.website }}"
-          class="rescue-logo-link"
-          rel="external"
-        >
-          <img
-            src="{{ dog.rescue.logo_big.url }}"
-            alt="{{ dog.rescue.name }}"
-            class="img-responsive"
-          />
-        </a>
-      </div>
-      {% endif %}
-      <div class="dog-details dog-section">
-        <h2>About {{ dog.name }}</h2>
-        <div class="detail-table container">
-          {% if dog.age %}
-          <div class="row">
-            <div class="col-xs-5">Age</div>
-            <div class="col-xs-7">{{ dog.age|title }}</div>
-          </div>
-          {% endif %}
-          <div class="row">
-            <div class="col-xs-5">Gender</div>
-            <div class="col-xs-7">{{ dog.gender|title }}</div>
-          </div>
-          {% if dog.show_arrival_date %}
-          <div class="row">
-            <div class="col-xs-5">Arrival Date</div>
-            <div class="col-xs-7">{{ dog.arrival|date:"d/m/Y" }}</div>
-          </div>
-          {% endif %} {% for row in dog.aboutinfo_set.all %}
-          <div class="row">
-            <div class="col-xs-5">{{ row.name }}</div>
-            <div class="col-xs-7">{{ row.value }}</div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      <div class="dog-share dog-section">
-        <h2>Share {{ dog.name }}'s story</h2>
+
+{% load websettings_tags %}
+
+{% block title %}{{ dog.name }}{% endblock %}
+
+{% block headextra %}
+    {% with dog.dogphoto_set.all|first as image %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ dog.name }} is looking for sponsorship">
+        <meta name="twitter:description" content="{{ dog.description|striptags|truncatechars:200 }}">
+        <meta name="twitter:image" content="{{ image.main.url }}">
+
+        <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="{{ dog.name }} is looking for sponsorship"/>
+        <meta property="og:description" content="{{ dog.description|striptags|truncatechars:200 }}"/>
+        <meta property="og:image" content="{{ image.main.url }}"/>
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+    <div class="dog-details">
         <div class="row">
-          <div class="col-xs-12">
-            <a
-              href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
-              title="Share {{ dog.name }} on Facebook"
-              class="icon-facebook-square"
-              rel="external"
-              target="_blank"
-            >
-              <span>Facebook</span>
-            </a>
-            <a
-              href="https://twitter.com/home?status={{ request.build_absolute_uri|urlencode }}"
-              title="Share {{ dog.name }} on Twitter"
-              class="icon-twitter-square"
-              rel="external"
-              target="_blank"
-            >
-              <span>Twitter</span>
-            </a>
-          </div>
+            <div class="col-xs-6 col-sm-12">
+                <h1>
+                    {{ dog.name }}
+                </h1>
+                <h2>{% websetting "sponsor-sub-title" %}</h2>
+            </div>
+            <div class="col-md-8 col-sm-7 col-xs-12">
+                {% include "dogs/dog_cycle.html" %}
+            </div>
+            <div id="info-pane" class="col-md-4 col-sm-5 col-xs-12">
+                {% if dog.rescue %}
+                    <div class="dog-details leash_of_life">
+                        <h2>Working With</h2>
+                        <a href="{{ dog.rescue.website }}" class="rescue-logo-link" rel="external">
+                            <img src="{{ dog.rescue.logo_big.url }}" alt="{{ dog.rescue.name }}"
+                                 class="img-responsive"/>
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="dog-details dog-section">
+                    <h2>About {{ dog.name }}</h2>
+                    <div class="detail-table container">
+                        {% if dog.age %}
+                            <div class="row">
+                                <div class="col-xs-5">Age</div>
+                                <div class="col-xs-7">{{ dog.age|title }}</div>
+                            </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-xs-5">Gender</div>
+                            <div class="col-xs-7">{{ dog.gender|title }}</div>
+                        </div>
+                        {% if dog.show_arrival_date %}
+                            <div class="row">
+                                <div class="col-xs-5">Arrival Date</div>
+                                <div class="col-xs-7">{{ dog.arrival|date:"d/m/Y" }}</div>
+                            </div>
+                        {% endif %}
+                        {% for row in dog.aboutinfo_set.all %}
+                            <div class="row">
+                                <div class="col-xs-5">{{ row.name }}</div>
+                                <div class="col-xs-7">{{ row.value }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="dog-share dog-section">
+                    <h2>Share {{ dog.name }}'s story</h2>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a
+                                    href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
+                                    title="Share {{ dog.name }} on Facebook"
+                                    class="icon-facebook-square"
+                                    rel="external"
+                                    target="_blank"
+                            >
+                                <span>Facebook</span>
+                            </a>
+                            <a
+                                    href="https://twitter.com/home?status={{ request.build_absolute_uri|urlencode }}"
+                                    title="Share {{ dog.name }} on Twitter"
+                                    class="icon-twitter-square"
+                                    rel="external"
+                                    target="_blank"
+                            >
+                                <span>Twitter</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="dog-section">
+                    <h2>About Sponsorship</h2>
+                    {% websetting "sponsor-info" %}
+                    {% if sponsor_links %}
+                        <ul>
+                            {% for sponsor_link in sponsor_links %}
+                                <li>
+                                    <a href="{{ sponsor_link.url }}">{{ sponsor_link.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="dog-section">
-        <h2>About Sponsorship</h2>
-        {% websetting "sponsor-info" %} {% if sponsor_links %}
-        <ul>
-          {% for sponsor_link in sponsor_links %}
-          <li>
-            <a href="{{ sponsor_link.url }}">{{ sponsor_link.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="body dog-story">
+                    <h2>{{ dog.name }}'s story</h2>
+                    {{ dog.description|safe }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>Enquire about sponsoring {{ dog.name }}</h3>
+                {% if form_success %}
+                    <p>Thank you for your interest, someone will be in touch soon</p>
+                {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-default">{% trans "Submit" %}</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="body dog-story">
-        <h2>{{ dog.name }}'s story</h2>
-        {{ dog.description|safe }}
-      </div>
-    </div>
-    <div class="col-md-4">
-      <h3>Enquire about sponsoring {{ dog.name }}</h3>
-      {% if form_success %}
-      <p>Thank you for your interest, someone will be in touch soon</p>
-      {% else %}
-      <form method="post">
-        {% csrf_token %} {{ form|crispy }}
-        <button type="submit" class="btn btn-default">
-          {% trans "Submit" %}
-        </button>
-      </form>
-      {% endif %}
-    </div>
-  </div>
-</div>
 {% endblock %}
