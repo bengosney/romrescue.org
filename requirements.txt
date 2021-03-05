@@ -207,7 +207,7 @@ packaging==20.8
     # via bleach
 pbr==5.5.1
     # via stevedore
-phonenumbers==8.12.18
+phonenumbers==8.12.19
     # via -r requirements.in
 phonenumberslite==8.12.18
     # via -r requirements.in
