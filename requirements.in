@@ -58,6 +58,8 @@ psycopg2
 purl
 pycountry
 pyopenssl
+pytest
+pytest-django
 rollbar
 selenium
 simplejson
