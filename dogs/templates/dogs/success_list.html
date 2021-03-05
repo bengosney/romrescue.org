@@ -10,9 +10,9 @@
       {% with dog.dogphoto_set.all|first as image %}
           <div class="image">
               {% if image.image %}
-                  <img src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive"/>
+                  <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive"/>
               {% else %}
-                  <img src="{% static "pages/no-img.png" %}" class="img-responsive"/>
+                  <img alt="Photo of {{ dog.name }}" src="{% static "pages/no-img.png" %}" class="img-responsive"/>
               {% endif %}
               {% if dog.rescue %}
                   <img src="{% thumbnail dog.rescue.logo 100x75 %}" alt="{{ dog.rescue.name }}" class="rescue-logo"/>
