@@ -1,0 +1,21 @@
+[project]
+name = "SOS Romrescue"
+version = "1.6.0"
+description = "Website for SOS Romainan Rescue"
+authors = [
+    "Ben Gosney <bengosney@googlemail.com>"
+]
+python = "^3.8"
+homepage = "https://www.romrescue.org/"
+repository = "https://github.com/bengosney/romrescue.org.git"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 128
+target-version = ['py38']
+
+[tool.pycln]
+all = true
