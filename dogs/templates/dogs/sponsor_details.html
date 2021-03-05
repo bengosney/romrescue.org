@@ -9,7 +9,7 @@
 
 {% load websettings_tags %}
 
-{% block title %}{{ dog.name }}{% endblock %}
+{% block title %}Sponsor {{ dog.name }}{% endblock %}
 
 {% block headextra %}
     {% with dog.dogphoto_set.all|first as image %}
