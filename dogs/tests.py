@@ -3,7 +3,8 @@ import datetime
 
 # Django
 from django.db import transaction
-from django.test import Client
+from django.template import Context, Template
+from django.test import Client, SimpleTestCase
 from django.urls import reverse
 
 # Third Party
@@ -13,6 +14,20 @@ from hypothesis.strategies import text
 
 # Locals
 from .models import Dog, KeyPoints, Status
+
+
+class PossessTemplateTagTest(SimpleTestCase):
+    def test_normal(self):
+        context = Context({"name": "Molly"})
+        template_to_render = Template("{% load possess %}" "{{ name|possess }}")
+        rendered_template = template_to_render.render(context)
+        self.assertInHTML("Molly's", rendered_template)
+
+    def test_ends_in_s(self):
+        context = Context({"name": "Waffles"})
+        template_to_render = Template("{% load possess %}" "{{ name|possess }}")
+        rendered_template = template_to_render.render(context)
+        self.assertInHTML("Waffles'", rendered_template)
 
 
 class DogTests(TestCase):
