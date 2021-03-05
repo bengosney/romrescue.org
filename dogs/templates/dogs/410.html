@@ -31,8 +31,12 @@
       </h1>
     </div>
     <div class="col-md-4">
-      {% with dog.dogphoto_set.all|first as image %}
-      <img src="{{ image.main.url }}" alt="{{ dog.name }}" class="img-responsive success-image" />
+    {% with dog.dogphoto_set.all|first as image %}
+      {% if image.image %}
+      <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive success-image" />
+      {% else %}
+      <img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
+      {% endif %}
       {% endwith %}
       {% if dog.is_success %}
       <p>Read about <a href="{{ dog.succcess_url }}">{{ dog.name }}'s success</a>.</p>
@@ -44,10 +48,10 @@
 	{% for dog in dog_list %}
 	<div class="col-md-3 col-xs-6">
 	  <a href="{{ dog.url }}" class="link">
-	    {% with dog.dogphoto_set.all|first as image %}      
+	    {% with dog.dogphoto_set.all|first as image %}
 	    <div class="image">
-	      {% if image.main.url %}
-	      <img alt="Photo of {{ dog.name }} "src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
+	      {% if image.image %}
+	      <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
 	      {% else %}
 	      <img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
 	      {% endif %}
@@ -61,9 +65,9 @@
 	</div>
 	{% endfor %}
       </div>
-      
+
       <a class="big-button" href="{% url 'pages:modulelist' slug="in-need-of-a-home" %}">View all our dogs <span class="hidden-xs">looking for a forever home</span></a>
     </div>
-  </div>      
+  </div>
 </div>
 {% endblock %}
