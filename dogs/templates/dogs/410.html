@@ -31,8 +31,12 @@
       </h1>
     </div>
     <div class="col-md-4">
-      {% with dog.dogphoto_set.all|first as image %}
-      <img src="{% cropped_thumbnail image "thumbnail" upscale=True %}" alt="{{ dog.name }}" class="img-responsive success-image" />
+    {% with dog.dogphoto_set.all|first as image %}
+      {% if image.image %}
+      <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive success-image" />
+      {% else %}
+      <img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
+      {% endif %}
       {% endwith %}
       {% if dog.is_success %}
       <p>Read about <a href="{{ dog.succcess_url }}">{{ dog.name }}'s success</a>.</p>
