@@ -48,7 +48,7 @@ chardet==4.0.0
     # via requests
 click==7.1.2
     # via pip-tools
-coverage==5.4
+coverage==5.5
     # via -r requirements.in
 cryptography==3.3.2
     # via pyopenssl
