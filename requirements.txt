@@ -213,6 +213,8 @@ packaging==20.8
     #   pytest
 pbr==5.5.1
     # via stevedore
+pep517==0.10.0
+    # via pip-tools
 phonenumbers==8.12.19
     # via -r requirements.in
 phonenumberslite==8.12.19
@@ -225,7 +227,7 @@ pillow==8.1.0
     #   easy-thumbnails
 pip-chill==1.0.1
     # via -r requirements.in
-pip-tools==6.0.0
+pip-tools==6.0.1
     # via -r requirements.in
 pluggy==0.13.1
     # via pytest
@@ -342,6 +344,7 @@ tkreadonly==0.6.1
 toml==0.10.2
     # via
     #   autopep8
+    #   pep517
     #   pytest
 unicodecsv==0.14.1
     # via -r requirements.in
