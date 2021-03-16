@@ -9,6 +9,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
+
 # Standard Library
 import os
 import sys
@@ -43,7 +44,7 @@ STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, "static"),)
 SECRET_KEY = "%^lk@u&&mb-89_t6_*&z08dif8m-tf15cphny1gy2&dvnf)#5_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.environ.get("ENV") == "production" else True
+DEBUG = os.environ.get("ENV") != "production"
 
 ALLOWED_HOSTS = ["*"]
 

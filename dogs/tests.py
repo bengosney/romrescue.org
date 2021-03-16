@@ -194,9 +194,7 @@ class DogTests(TestCase):
 
         promoted = Dog.get_homepage_header_dogs()
 
-        i = 0
-        for dog in promoted:
-            i += 1
+        for i, dog in enumerate(promoted, start=1):
             self.assertEqual(str(dog), f"rover{i}")
 
     def test_promoted_get_promoted_first(self):
@@ -255,9 +253,7 @@ class DogTests(TestCase):
 
         promoted = Dog.get_homepage_dogs()
 
-        i = 0
-        for dog in promoted:
-            i += 1
+        for i, dog in enumerate(promoted, start=1):
             self.assertEqual(str(dog), f"rover{i}")
 
 
