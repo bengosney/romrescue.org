@@ -15,11 +15,7 @@ def export_as_csv_action(description="Export selected objects as CSV file", fiel
     def export_as_csv(modeladmin, request, queryset):
         opts = modeladmin.model._meta
 
-        if not fields:
-            field_names = [field.name for field in opts.fields]
-        else:
-            field_names = fields
-
+        field_names = [field.name for field in opts.fields] if not fields else fields
         response = HttpResponse()
         response['content_type'] = 'text/csv'
         response['Content-Disposition'] = 'attachment; filename=%s.csv' % unicode(opts).replace('.', '_')

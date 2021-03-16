@@ -11,5 +11,5 @@ class ModelStatus():
 
     @staticmethod
     def getName(status):
-        return " ".join([s[1] for s in
-                         ModelStatus.STATUS_CHOICES if s[0] == status])
+        return " ".join(s[1] for s in
+                             ModelStatus.STATUS_CHOICES if s[0] == status)

@@ -207,7 +207,7 @@ class Dog(statusMixin, models.Model):
 
     @property
     def all_filters(self):
-        return ", ".join([f.name for f in self.filters.all()])
+        return ", ".join(f.name for f in self.filters.all())
 
     @property
     def sheet_id(self):
