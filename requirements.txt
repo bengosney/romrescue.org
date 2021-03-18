@@ -217,7 +217,7 @@ pep517==0.10.0
     # via pip-tools
 phonenumbers==8.12.19
     # via -r requirements.in
-phonenumberslite==8.12.19
+phonenumberslite==8.12.20
     # via -r requirements.in
 pilkit==2.0
     # via -r requirements.in
