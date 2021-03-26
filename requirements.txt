@@ -139,7 +139,7 @@ django==3.1.7
     #   django-treebeard
     #   djangorestframework
     #   easy-thumbnails
-djangorestframework==3.12.3
+djangorestframework==3.12.4
     # via -r requirements.in
 easy-thumbnails==2.7.1
     # via django-fobi
