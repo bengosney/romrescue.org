@@ -104,7 +104,7 @@ django-nose==1.4.7
     # via -r requirements.in
 django-phonenumber-field==5.0.0
     # via -r requirements.in
-django-polymorphic-tree==1.5.1
+django-polymorphic-tree==2.0
     # via -r requirements.in
 django-polymorphic==3.0.0
     # via django-polymorphic-tree
@@ -161,8 +161,6 @@ flake8==3.8.4
     # via flake8-django
 funcsigs==1.0.2
     # via -r requirements.in
-future==0.18.2
-    # via django-polymorphic-tree
 gitdb==4.0.5
     # via gitpython
 gitpython==3.1.12
