@@ -74,7 +74,7 @@ django-debug-toolbar==3.2
     # via -r requirements.in
 django-dynamic-forms==0.5.3
     # via -r requirements.in
-django-extensions==3.1.1
+django-extensions==3.1.2
     # via -r requirements.in
 django-extra-views==0.13.0
     # via -r requirements.in
@@ -127,6 +127,7 @@ django==3.1.7
     #   django-appconf
     #   django-debug-toolbar
     #   django-dynamic-forms
+    #   django-extensions
     #   django-extra-views
     #   django-formtools
     #   django-haystack
