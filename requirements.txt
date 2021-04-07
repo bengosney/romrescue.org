@@ -214,7 +214,7 @@ pbr==5.5.1
     # via stevedore
 pep517==0.10.0
     # via pip-tools
-phonenumbers==8.12.20
+phonenumbers==8.12.21
     # via -r requirements.in
 phonenumberslite==8.12.21
     # via -r requirements.in
