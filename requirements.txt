@@ -226,7 +226,7 @@ pillow==8.1.1
     #   easy-thumbnails
 pip-chill==1.0.1
     # via -r requirements.in
-pip-tools==6.0.1
+pip-tools==6.1.0
     # via -r requirements.in
 pluggy==0.13.1
     # via pytest
