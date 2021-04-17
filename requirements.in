@@ -68,3 +68,4 @@ unicodecsv
 uritemplate
 werkzeug
 whitenoise
+future
