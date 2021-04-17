@@ -1,14 +1,13 @@
 # Django
 from django.db import models
 
-# Locals
-from . import ModelStatus
+# First Party
+from modulestatus import ModelStatus
 
 
 class statusManager(models.Manager):
     def get_queryset(self):
-        return super(statusManager, self).get_queryset()\
-            .filter(status=ModelStatus.LIVE_STATUS)
+        return super().get_queryset().filter(status=ModelStatus.LIVE_STATUS)
 
 
 try:
@@ -17,7 +16,8 @@ try:
 
     class PolymorphicMPTTStatusManager(PolymorphicMPTTModelManager):
         def get_queryset(self):
-            return super(PolymorphicMPTTStatusManager, self)\
-                .get_queryset().filter(status=ModelStatus.LIVE_STATUS)
+            return super().get_queryset().filter(status=ModelStatus.LIVE_STATUS)
+
+
 except ImportError:
     pass

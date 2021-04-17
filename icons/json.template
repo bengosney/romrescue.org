@@ -1,5 +1,5 @@
 {
-  "icons": [	
+  "icons": [
 <% for (var glyphIdx = 0; glyphIdx < glyphs.length; glyphIdx++) { %>
 "<%= glyphs[glyphIdx] %>"<% if (glyphIdx !== (glyphs.length - 1)) { %>,<% } %>
 <% } %>

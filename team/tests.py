@@ -1,11 +1,10 @@
-
 # Third Party
 from hypothesis import given
 from hypothesis.extra.django import TestCase
 from hypothesis.strategies import text
 
-# Locals
-from .models import TeamMember
+# First Party
+from team.models import TeamMember
 
 
 class TeamMemberTests(TestCase):

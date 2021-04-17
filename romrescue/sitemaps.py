@@ -24,7 +24,7 @@ class AdoptionSitemap(romSitemap):
 
 class SuccessSitemap(romSitemap):
     changefreq = "weekly"
-    priority = .5
+    priority = 0.5
 
     def items(self):
         return Dog.objects.filter(dogStatus=Dog.STATUS_SUCCESS)
@@ -35,7 +35,7 @@ class SuccessSitemap(romSitemap):
 
 class PageSitemap(romSitemap):
     changefreq = "monthly"
-    priority = .5
+    priority = 0.5
 
     def items(self):
         return Page.objects.all()
@@ -43,15 +43,15 @@ class PageSitemap(romSitemap):
 
 class ModuleListSitemap(romSitemap):
     changefreq = "weekly"
-    priority = .5
+    priority = 0.5
 
     def items(self):
         return ModuleList.objects.all()
 
 
 sitemaps = {
-    'pages': PageSitemap,
-    'modulelist': ModuleListSitemap,
-    'adoption': AdoptionSitemap,
-    'success': SuccessSitemap
+    "pages": PageSitemap,
+    "modulelist": ModuleListSitemap,
+    "adoption": AdoptionSitemap,
+    "success": SuccessSitemap,
 }

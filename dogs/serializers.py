@@ -1,11 +1,11 @@
 # Third Party
 from rest_framework import serializers
 
-# Locals
-from .models import Dog
+# First Party
+from dogs.models import Dog
 
 
 class DogSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Dog
-        fields = ('name', 'age', 'gender', 'raw_description')
+        fields = ("name", "age", "gender", "raw_description")

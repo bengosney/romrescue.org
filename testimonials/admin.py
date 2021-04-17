@@ -6,9 +6,7 @@ from adminsortable2.admin import SortableAdminMixin
 
 # First Party
 from modulestatus.admin import statusAdmin
-
-# Locals
-from . import models
+from testimonials import models
 
 
 class TestimonialAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):

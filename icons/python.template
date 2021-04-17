@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 
-ICON_CHOICE = [	
+ICON_CHOICE = [
 ("", _("Select an icon")),
 <% for (var glyphIdx = 0; glyphIdx < glyphs.length; glyphIdx++) { %>
 ("<%= glyphs[glyphIdx] %>", _("<%= glyphs[glyphIdx] %>")),

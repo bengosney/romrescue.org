@@ -39,11 +39,11 @@
 <div class="home_headers cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-slides="> a">
   {% for dog in dog_headders %}
   <a href="{{ dog.url }}" class="home_header">
-    <div class="title">{{ dog.name }}</div> 
+    <div class="title">{{ dog.name }}</div>
     <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail dog.homepageImage "homepage" upscale=True %}" class="img-responsive" />
     <div class="sub-title">{{ dog.homepageSubtitle }}</div>
   </a>
-  {% endfor %}  
+  {% endfor %}
 </div>
 <div class="home-content">
   <h1>SOS Romanian Rescue</h1>
@@ -68,11 +68,11 @@
 }
 </script>
 <div class="row dog-list">
-  <h3 class="col-xs-12">Looking for a forever home</h3>  
+  <h3 class="col-xs-12">Looking for a forever home</h3>
   {% for dog in dog_list %}
   <div class="col-md-3 col-xs-6">
     <a href="{{ dog.url }}" class="link">
-      {% with dog.dogphoto_set.all|first as image %}      
+      {% with dog.dogphoto_set.all|first as image %}
       <div class="image">
 	{% if image.image %}
 	<img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
@@ -92,5 +92,5 @@
         <a class="big-button" href="{% url 'pages:modulelist' slug="in-need-of-a-home" %}">View all our dogs <span class="hidden-xs">looking for a forever home</span></a>
   	</div>
 </div>
-{% endif %}  
+{% endif %}
 {% endblock %}

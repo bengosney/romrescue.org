@@ -10,11 +10,9 @@ from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from image_cropping import ImageCroppingMixin
 
 # First Party
+from dogs import models
 from modulestatus.admin import statusAdmin
 from romrescue.actions import export_as_csv_action
-
-# Locals
-from . import models
 
 
 class DogPhotoInline(SortableInlineAdminMixin, ImageCroppingMixin, admin.TabularInline):
@@ -46,29 +44,22 @@ class KeyPointsAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
 
     def formfield_for_choice_field(self, db_field, request, **kwargs):
         if db_field.name == "icon":
-            data_path = os.path.join(
-                os.path.dirname(
-                    os.path.realpath(__file__)),
-                '../icons/icons.json')
+            data_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../icons/icons.json")
             with open(data_path) as data_file:
                 data = json.load(data_file)
 
-            kwargs['choices'] = [(icon, icon) for icon in data['icons']]
+            kwargs["choices"] = [(icon, icon) for icon in data["icons"]]
 
-        return super(
-            KeyPointsAdmin,
-            self).formfield_for_choice_field(
-            db_field,
-            request,
-            **kwargs)
+        return super().formfield_for_choice_field(db_field, request, **kwargs)
+
 
 def make_tag_action(tag):
     def tag_action(modeladmin, request, queryset):
         for dog in queryset:
             dog.filters.add(tag)
 
-    tag_action.short_description = "Tag dog with {0}".format(tag.name)
-    tag_action.__name__ = "tag_dog_with_{0}".format(tag.slug)
+    tag_action.short_description = f"Tag dog with {tag.name}"
+    tag_action.__name__ = f"tag_dog_with_{tag.slug}"
 
     return tag_action
 
@@ -77,8 +68,8 @@ def make_status_action(status, name):
     def status_action(modeladmin, request, queryset):
         queryset.update(dogStatus=status)
 
-    status_action.short_description = "Change status to {0}".format(name)
-    status_action.__name__ = "change_status_to_{0}".format(status)
+    status_action.short_description = f"Change status to {name}"
+    status_action.__name__ = f"change_status_to_{status}"
 
     return status_action
 
@@ -90,42 +81,38 @@ def set_price_to_default(modeladmin, request, queryset):
 class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     model = models.Dog
     inlines = [AboutInline, DogPhotoInline, YoutubeInline]
-    filter_horizontal = ('keypoints',)
-    list_display = ('name', 'reserved', 'location', 'dogStatus', 'all_filters')
+    filter_horizontal = ("keypoints",)
+    list_display = ("name", "reserved", "location", "dogStatus", "all_filters")
     list_per_page = 25
-    actions = ['add_tag_dog', set_price_to_default]
+    actions = ["add_tag_dog", set_price_to_default]
 
     def __init__(self, model, admin_site):
-        super(DogAdmin, self).__init__(model, admin_site)
+        super().__init__(model, admin_site)
 
-        self.list_filter = ['dogStatus', 'reserved', 'location', 'promoted', 'filters', 'rescue'] + list(self.list_filter)
+        self.list_filter = ["dogStatus", "reserved", "location", "promoted", "filters", "rescue"] + list(
+            self.list_filter
+        )
 
     def get_actions(self, request):
-        actions = super(DogAdmin, self).get_actions(request)
+        actions = super().get_actions(request)
 
         for tag in models.Filter.objects.all():
             action = make_tag_action(tag)
-            actions[action.__name__] = (action,
-                                        action.__name__,
-                                        action.short_description)
+            actions[action.__name__] = (action, action.__name__, action.short_description)
 
         for status in models.Dog.STATUS:
             action = make_status_action(status[0], status[1])
-            actions[action.__name__] = (action,
-                                        action.__name__,
-                                        action.short_description)
+            actions[action.__name__] = (action, action.__name__, action.short_description)
 
         return actions
 
     class Media:
-        css = {
-                "screen": ("/static/pages/css/admin.css",)
-            }
+        css = {"screen": ("/static/pages/css/admin.css",)}
 
 
 class StatusAdmin(SortableAdminMixin, admin.ModelAdmin):
     model = models.Status
-    list_display = ('title', 'show_arrival_date')
+    list_display = ("title", "show_arrival_date")
 
 
 class DogPhoto(ImageCroppingMixin, admin.ModelAdmin):
@@ -134,7 +121,7 @@ class DogPhoto(ImageCroppingMixin, admin.ModelAdmin):
 
 class RescueAdmin(admin.ModelAdmin):
     model = models.Rescue
-    list_display = ('name', 'logo', 'website')
+    list_display = ("name", "logo", "website")
     list_per_page = 25
 
 
@@ -144,18 +131,23 @@ class FilterAdmin(admin.ModelAdmin):
 
 class SponsorshipInfoLinksAdmin(admin.ModelAdmin):
     model = models.SponsorshipInfoLink
-    list_display = ('title', 'link', 'file')
+    list_display = ("title", "link", "file")
 
 
 class SponsorAdmin(admin.ModelAdmin):
     model = models.SponsorSubmission
 
-    readonly_fields = ('created',)
-    list_filter = ('created',)
-    list_display = ('name', 'email', 'dog', 'created',)
+    readonly_fields = ("created",)
+    list_filter = ("created",)
+    list_display = (
+        "name",
+        "email",
+        "dog",
+        "created",
+    )
     list_per_page = 25
 
-    actions = [export_as_csv_action("CSV Export", fields=['name', 'email', 'created', 'enquiry'])]
+    actions = [export_as_csv_action("CSV Export", fields=["name", "email", "created", "enquiry"])]
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -167,7 +159,10 @@ class SponsorAdmin(admin.ModelAdmin):
 class SponsorLevelAdmin(admin.ModelAdmin):
     models = models.SponsorshipLevel
 
-    list_display = ('name', 'cost',)
+    list_display = (
+        "name",
+        "cost",
+    )
 
 
 admin.site.register(models.KeyPoints, KeyPointsAdmin)
