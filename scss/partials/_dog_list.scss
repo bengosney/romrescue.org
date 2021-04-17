@@ -16,7 +16,7 @@
 	  }
       }
   }
-  
+
   .link {
     @extend %clearfix;
     display: block;
@@ -32,7 +32,7 @@
     }
 
     &:hover {
-      &, h2 {      
+      &, h2 {
         color: #fff;
       }
     }
@@ -40,7 +40,7 @@
     .reserved {
       font-size: 1.5em;
     }
-    
+
     .image {
       position: relative;
       &:before {

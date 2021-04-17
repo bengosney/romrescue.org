@@ -14,25 +14,25 @@ from polymorphic_tree.models import PolymorphicMPTTModel, PolymorphicTreeForeign
 
 # First Party
 from modulestatus.models import statusMixin
-
-# Locals
-from .decorators import get_registered_list_views
+from pages.decorators import get_registered_list_views
 
 
 class node(PolymorphicMPTTModel, statusMixin):
     ICONS = [
-        ('twitter', 'Twitter'),
-        ('facebook', 'Facebook'),
-        ('instagram', 'Instagram'),
-        ('linkedin', 'LinkedIn'),
+        ("twitter", "Twitter"),
+        ("facebook", "Facebook"),
+        ("instagram", "Instagram"),
+        ("linkedin", "LinkedIn"),
     ]
 
-    parent = PolymorphicTreeForeignKey('self', blank=True, null=True, related_name='children', verbose_name=_('parent'), on_delete=models.PROTECT)
+    parent = PolymorphicTreeForeignKey(
+        "self", blank=True, null=True, related_name="children", verbose_name=_("parent"), on_delete=models.PROTECT
+    )
     title = models.CharField(_("Title"), max_length=200)
     nav_title = models.CharField(_("Navigation Title"), max_length=200, blank=True, default="")
     nav_icon = models.CharField(_("Navigation Icon"), choices=ICONS, max_length=200, blank=True, default="")
     nav_icon_only = models.BooleanField(_("Icon Only"), default=False)
-    slug = fields.AutoSlugField(populate_from='title')
+    slug = fields.AutoSlugField(populate_from="title")
     title_tag = models.CharField(_("Title Tag"), max_length=200, blank=True, default="")
     meta_description = models.TextField(blank=True, default="")
     active_url_helper = models.CharField(max_length=255, blank=True, default="")
@@ -51,16 +51,12 @@ class node(PolymorphicMPTTModel, statusMixin):
     @property
     def url(self):
         if self.is_home_page:
-            return '/'
+            return "/"
 
         try:
-            url = reverse(
-                'pages:%s' %
-                self.__class__.__name__.lower(),
-                kwargs={
-                    'slug': self.slug})
+            url = reverse("pages:%s" % self.__class__.__name__.lower(), kwargs={"slug": self.slug})
         except BaseException:
-            url = reverse('pages:page', kwargs={'slug': self.slug})
+            url = reverse("pages:page", kwargs={"slug": self.slug})
 
         return url
 
@@ -80,7 +76,7 @@ class node(PolymorphicMPTTModel, statusMixin):
                     temp.save()
             except node.DoesNotExist:
                 pass
-        super(node, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     @staticmethod
     def get_nav_tree():
@@ -93,11 +89,11 @@ class Empty(node):
         verbose_name_plural = _("Empty Items")
 
     def __str__(self):
-        return '%s - Empty Node' % self.title
+        return "%s - Empty Node" % self.title
 
     @property
     def url(self):
-        return '#%s' % self.slug
+        return "#%s" % self.slug
 
 
 class ExternalLink(node):
@@ -114,11 +110,10 @@ class ExternalLink(node):
 
 class SocialLink(node):
     TYPES = [
-
-        ('twitter', 'Twitter'),
-        ('facebook', 'Facebook'),
-        ('instagram', 'Instagram'),
-        ('linkedin', 'LinkedIn'),
+        ("twitter", "Twitter"),
+        ("facebook", "Facebook"),
+        ("instagram", "Instagram"),
+        ("linkedin", "LinkedIn"),
     ]
 
     social = models.CharField(_("Social Type"), choices=TYPES, max_length=200)
@@ -133,8 +128,8 @@ class SocialLink(node):
 
 class Page(node):
     FORM_CHOICES = (
-        ('ContactForm', 'Contact Form'),
-        ('FosteringForm', 'Fostering Form'),
+        ("ContactForm", "Contact Form"),
+        ("FosteringForm", "Fostering Form"),
     )
 
     body = RichTextField(_("Body"))
@@ -142,14 +137,14 @@ class Page(node):
     success_message = RichTextField(_("Success Message"), blank=True, null=True)
 
     def getFormClass(self):
-        # Locals
-        from . import forms
+        # First Party
+        from pages import forms
 
         return getattr(forms, self.form)
 
     @property
     def success_url(self):
-        return reverse('pages:page_success', kwargs={'slug': self.slug})
+        return reverse("pages:page_success", kwargs={"slug": self.slug})
 
     class Meta:
         verbose_name = _("Page")
@@ -162,16 +157,11 @@ class ModuleList(node):
         max_length=200,
     )
 
-    body = RichTextField(
-        _("Body"),
-        null=True,
-        blank=True
-    )
+    body = RichTextField(_("Body"), null=True, blank=True)
 
     def __init__(self, *args, **kwargs):
-        super(ModuleList, self).__init__(*args, **kwargs)
-        self._meta.get_field('module').choices = lazy(
-            get_registered_list_views, list)()
+        super().__init__(*args, **kwargs)
+        self._meta.get_field("module").choices = lazy(get_registered_list_views, list)()
 
     class Meta:
         verbose_name = _("Module List")
@@ -183,7 +173,12 @@ class ContactSubmission(models.Model):
     email = models.EmailField(_("Email"))
     phone = models.CharField(_("Phone"), max_length=100, blank=True, default="")
     enquiry = models.TextField(_("Enquiry"))
-    consent = models.BooleanField(_("I give consent for data I enter into this form to be stored and processed by SOS Romanian Rescue South West and I am over 18"))
+    consent = models.BooleanField(
+        _(
+            "I give consent for data I enter into this form to be stored and "
+            "processed by SOS Romanian Rescue South West and I am over 18"
+        )
+    )
 
     created = fields.CreationDateTimeField()
 
@@ -191,29 +186,29 @@ class ContactSubmission(models.Model):
         return self.name
 
     def send_email(self):
-        template = get_template('pages/email-submission.html')
+        template = get_template("pages/email-submission.html")
         context = {
-            'name': self.name,
-            'email': self.email,
-            'phone': self.phone,
-            'enquiry': self.enquiry,
+            "name": self.name,
+            "email": self.email,
+            "phone": self.phone,
+            "enquiry": self.enquiry,
         }
         content = template.render(context)
 
         email = EmailMessage(
             "New contact form submission",
             content,
-            'info@romrescue.org',
-            ['info@romrescue.org'],
-            headers={'Reply-To': self.email}
+            "info@romrescue.org",
+            ["info@romrescue.org"],
+            headers={"Reply-To": self.email},
         )
 
         email.send()
 
 
 class HomePageHeader(models.Model):
-    image = models.ImageField(upload_to='images')
-    cropped = ImageRatioField('image', '1110x624')
+    image = models.ImageField(upload_to="images")
+    cropped = ImageRatioField("image", "1110x624")
     strapline = models.CharField(_("Strap Line"), max_length=200)
     subline = models.CharField(_("Sub Line"), max_length=400)
     itemlink = models.ForeignKey(node, null=True, blank=True, on_delete=models.PROTECT)
@@ -227,8 +222,8 @@ class HomePageHeader(models.Model):
 
     admin_image.allow_tags = True
 
-    class Meta(object):
-        ordering = ('position',)
+    class Meta:
+        ordering = ("position",)
 
 
 class FosteringSubmission(models.Model):
@@ -252,13 +247,13 @@ class IntrestSubmission(models.Model):
     other = models.BooleanField(_("Other"), default=False)
 
     created = fields.CreationDateTimeField()
-    slug = fields.AutoSlugField(populate_from='name')
+    slug = fields.AutoSlugField(populate_from="name")
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('pages:intrest_success', kwargs={'slug': self.slug})
+        return reverse("pages:intrest_success", kwargs={"slug": self.slug})
 
     @property
     def url(self):

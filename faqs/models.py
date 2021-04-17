@@ -1,5 +1,4 @@
 # Future
-from __future__ import unicode_literals
 
 # Django
 from django.db import models
@@ -13,8 +12,8 @@ class BaseFAQ(models.Model):
     def __str__(self):
         return self.strapline
 
-    class Meta(object):
-        ordering = ('position',)
+    class Meta:
+        ordering = ("position",)
 
 
 class AdoptionFAQ(BaseFAQ):

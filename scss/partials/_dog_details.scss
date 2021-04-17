@@ -13,10 +13,10 @@
 
       &:hover {
 	  background: $color-primary-0;
-	  color: #fff;	  
+	  color: #fff;
       }
   }
-  
+
   .body {
     padding-top: 1em;
   }
@@ -34,7 +34,7 @@
     padding-top: 0;
   }
 
-  .cycle-slideshow { 
+  .cycle-slideshow {
     width: 100%;
     @media (min-width: 755px) {
       min-height: 400px;
@@ -44,7 +44,7 @@
       display: none;
     }
   }
-  
+
   .dog-photos {
     padding-bottom: 1em;
 
@@ -59,7 +59,7 @@
       padding-top: .5em;
       text-align: center;
       img {
-        border: .5em solid #fff;    
+        border: .5em solid #fff;
         transition: border .2s ease-in-out;
         cursor: pointer;
         &.cycle-pager-active{
@@ -73,7 +73,7 @@
     .point {
       .point-inner {
         padding: 1em;
-        background: $color-primary-1;       
+        background: $color-primary-1;
       }
 
       & + .point {
@@ -89,7 +89,7 @@
         }
       }
     }
-    
+
     p {
       padding: 0;
       margin: 0;
@@ -101,7 +101,7 @@
   a {
     $colour: $primary;
     $padding: .5em;
-    
+
     color: $colour;
     border: 1px solid $colour;
     padding: $padding / 2 $padding;
@@ -118,7 +118,7 @@
 
     span {
       padding-left: $padding;
-      display: inline-block;      
+      display: inline-block;
       padding-top: .25em;
     }
 
@@ -156,7 +156,7 @@
     }
   }
 }
-  
+
 
 .dog-section {
   padding-top: 2em;
@@ -175,7 +175,7 @@
     &:nth-child(even) {
       background: lighten($color-primary-1, 10%);
     }
-      
+
     &:nth-child(odd) {
       background: $color-primary-1;
     }

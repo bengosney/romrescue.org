@@ -13,10 +13,18 @@ from image_cropping import ImageCroppingMixin
 from polymorphic_tree.admin import PolymorphicMPTTChildModelAdmin, PolymorphicMPTTParentModelAdmin
 
 # First Party
+from pages.models import (
+    ContactSubmission,
+    Empty,
+    ExternalLink,
+    HomePageHeader,
+    IntrestSubmission,
+    ModuleList,
+    Page,
+    SocialLink,
+    node,
+)
 from romrescue.actions import export_as_csv_action
-
-# Locals
-from .models import ContactSubmission, Empty, ExternalLink, HomePageHeader, IntrestSubmission, ModuleList, Page, SocialLink, node
 
 
 @receiver(user_logged_in)
@@ -25,22 +33,28 @@ def post_login(sender, user, request, **kwargs):
 
 
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
-    GENERAL_FIELDSET = (None, {
-        'fields': ('parent', 'status', 'title'),
-    })
+    GENERAL_FIELDSET = (
+        None,
+        {
+            "fields": ("parent", "status", "title"),
+        },
+    )
 
-    SEO_FIELDSET = ('SEO', {
-        'classes': ('grp-collapse grp-closed',),
-        'fields': ('title_tag', 'meta_description'),
-    })
+    SEO_FIELDSET = (
+        "SEO",
+        {
+            "classes": ("grp-collapse grp-closed",),
+            "fields": ("title_tag", "meta_description"),
+        },
+    )
 
-    NAV_FIELDSET = ('Navigation', {
-        'classes': ('grp-collapse grp-closed',),
-        'fields': ('nav_title',
-                   'nav_icon',
-                   'nav_icon_only',
-                   'active_url_helper'),
-    })
+    NAV_FIELDSET = (
+        "Navigation",
+        {
+            "classes": ("grp-collapse grp-closed",),
+            "fields": ("nav_title", "nav_icon", "nav_icon_only", "active_url_helper"),
+        },
+    )
 
     base_model = node
     base_fieldsets = (
@@ -68,23 +82,28 @@ class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
         SocialLink,
     )
 
-    list_display = ('title', 'actions_column',)
+    list_display = (
+        "title",
+        "actions_column",
+    )
 
     class Media:
-        css = {
-            'all': ('admin/treenode/admin.css',)
-        }
+        css = {"all": ("admin/treenode/admin.css",)}
 
 
 class ContactAdmin(admin.ModelAdmin):
     model = ContactSubmission
 
-    readonly_fields = ('created',)
-    list_filter = ('created',)
-    list_display = ('name', 'email', 'created',)
+    readonly_fields = ("created",)
+    list_filter = ("created",)
+    list_display = (
+        "name",
+        "email",
+        "created",
+    )
     list_per_page = 25
 
-    actions = [export_as_csv_action("CSV Export", fields=['name', 'email', 'created', 'enquiry'])]
+    actions = [export_as_csv_action("CSV Export", fields=["name", "email", "created", "enquiry"])]
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -103,12 +122,13 @@ class IntrestAdmin(admin.ModelAdmin):
         return False
 
 
-class HomePageHeaderAdmin(
-        SortableAdminMixin,
-        ImageCroppingMixin,
-        admin.ModelAdmin):
+class HomePageHeaderAdmin(SortableAdminMixin, ImageCroppingMixin, admin.ModelAdmin):
     model = HomePageHeader
-    list_display = ('admin_image', 'strapline', 'subline',)
+    list_display = (
+        "admin_image",
+        "strapline",
+        "subline",
+    )
 
 
 admin.site.register(node, TreeNodeParentAdmin)

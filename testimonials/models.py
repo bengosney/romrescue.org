@@ -18,8 +18,8 @@ class Testimonial(statusMixin, models.Model):
     position = models.PositiveIntegerField(default=0)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
-    class Meta(object):
-        ordering = ('position',)
+    class Meta:
+        ordering = ("position",)
         verbose_name = _("Testimonial")
         verbose_name_plural = _("Testimonials")
 

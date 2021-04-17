@@ -16,7 +16,7 @@
           <ul class="nav navbar-nav navbar-right">
 	    {% recursetree nav_items %}
 	    <li class="dropdown {{ node.nav_class }}">
-	      {% if not node.is_leaf_node %}	
+	      {% if not node.is_leaf_node %}
 		<a href="{{ node.url }}" data-toggle="dropdown" role="button" aria-expanded="false" >
 		  {{ node.nav_title_actual }}
 		  <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -35,4 +35,3 @@
   </nav>
 </div>
 {% endblock %}
-

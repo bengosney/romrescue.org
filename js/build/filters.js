@@ -1,9 +1,9 @@
 $(function(){
     var filters = [];
-    
+
     $('.filters .filter').click(function(e) {
 	e.preventDefault();
-	
+
 	var filterVal = $(this).data('filter');
 	var pos = filters.indexOf(filterVal);
 	filters = [];
@@ -14,7 +14,7 @@ $(function(){
 	}
 
 	console.log(filters);
-	
+
 	$('.dog-container').each(function() {
 	    var item = $(this);
 	    var show = false;
@@ -28,7 +28,7 @@ $(function(){
 	    } else {
 		show = true;
 	    }
-	    
+
 	    if (show) {
 		item.show();
 	    } else {

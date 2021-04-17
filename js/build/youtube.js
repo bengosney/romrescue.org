@@ -49,7 +49,7 @@ $(document).ready(function() {
 	$('.youtube-container').each(function () {
 	    if (players.hasOwnProperty(id)) {
 		console.log(players[id]);
-		players[id].stopVideo();	
+		players[id].stopVideo();
 	    }
 	});
 	//players[$(this).attr('id')].playVideo();

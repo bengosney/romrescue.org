@@ -12,8 +12,8 @@ from hypothesis import given
 from hypothesis.extra.django import TestCase
 from hypothesis.strategies import text
 
-# Locals
-from .models import Dog, KeyPoints, Status
+# First Party
+from dogs.models import Dog, KeyPoints, Status
 
 
 class PossessTemplateTagTest(SimpleTestCase):

@@ -1,10 +1,10 @@
 # Django
 from django.conf.urls import url
 
-# Locals
-from . import views
+# First Party
+from testimonials import views
 
-app_name = 'testimonials'
+app_name = "testimonials"
 urlpatterns = [
-    url(r'^$', views.TestimonialList.as_view(), name='TestimonialList'),
+    url(r"^$", views.TestimonialList.as_view(), name="TestimonialList"),
 ]

@@ -1,14 +1,14 @@
     html {
         font: 100%/1.5 $body_font;
     }
-    
+
     div,
     span,
     body,
     p {
         font-family: $body_font;
     }
-    
+
     h1,
     h2,
     h3,
@@ -20,7 +20,7 @@
         line-height: 1.5em;
         color: $primary;
     }
-    
+
     a {
         transition: all .2s;
         &,
@@ -36,7 +36,7 @@
             color: $color-primary-2;
         }
     }
-    
+
     p {
         line-height: 1.5em;
         font-size: 1.25em;
@@ -51,11 +51,11 @@
             }
         }
     }
-    
+
     .main-logo {
         width: 500px;
     }
-    
+
     .body-content {
         li {
             @extend p;

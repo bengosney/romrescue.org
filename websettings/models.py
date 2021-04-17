@@ -11,7 +11,7 @@ class setting(models.Model):
     value = models.CharField(max_length=150)
 
     def __str__(self):
-        return "{}: {}".format(self.title, self.value)
+        return f"{self.title}: {self.value}"
 
     @staticmethod
     def getValue(title, default=""):

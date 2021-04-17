@@ -1,5 +1,4 @@
 # Future
-from __future__ import unicode_literals
 
 # Standard Library
 import os
@@ -34,15 +33,15 @@ except ImportError:
 class Filter(models.Model):
     name = models.CharField(_("Name"), max_length=30)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
-    slug = fields.AutoSlugField(populate_from='name')
+    slug = fields.AutoSlugField(populate_from="name")
 
     def __str__(self):
         return self.name
 
-    class Meta(object):
-        ordering = ('position',)
-        verbose_name = _('Filter')
-        verbose_name_plural = _('Filters')
+    class Meta:
+        ordering = ("position",)
+        verbose_name = _("Filter")
+        verbose_name_plural = _("Filters")
 
 
 class KeyPoints(statusMixin, models.Model):
@@ -54,14 +53,14 @@ class KeyPoints(statusMixin, models.Model):
     def __str__(self):
         return self.title
 
-    class Meta(object):
-        ordering = ('position',)
-        verbose_name = _('Key Point')
-        verbose_name_plural = _('Key Points')
+    class Meta:
+        ordering = ("position",)
+        verbose_name = _("Key Point")
+        verbose_name_plural = _("Key Points")
 
 
 class Status(models.Model):
-    title = models.CharField(_('Title'), max_length=50)
+    title = models.CharField(_("Title"), max_length=50)
     show_arrival_date = models.BooleanField(_("Show arrival date"), default=False)
     body = RichTextField(_("Body"), blank=True, null=True)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
@@ -69,50 +68,50 @@ class Status(models.Model):
     def __str__(self):
         return self.title
 
-    class Meta(object):
-        ordering = ('position',)
-        verbose_name = _('Status/Location')
-        verbose_name_plural = _('Status/Locations')
+    class Meta:
+        ordering = ("position",)
+        verbose_name = _("Status/Location")
+        verbose_name_plural = _("Status/Locations")
 
 
 class Rescue(models.Model):
     name = models.CharField(_("Name"), max_length=30)
-    logo = models.ImageField(_("Logo"), upload_to='uploads/rescue')
+    logo = models.ImageField(_("Logo"), upload_to="uploads/rescue")
     website = models.URLField(_("Website"))
 
     def __str__(self):
         return self.name
 
-    class Meta(object):
-        verbose_name = _('Rescue')
-        verbose_name_plural = _('Rescues')
+    class Meta:
+        verbose_name = _("Rescue")
+        verbose_name_plural = _("Rescues")
 
 
 class Dog(statusMixin, models.Model):
     DEFAULT_COST = 300
     GENDERS = [
-        ('male', _('Male')),
-        ('female', _('Female')),
+        ("male", _("Male")),
+        ("female", _("Female")),
     ]
 
     SIZES = [
-        ('extra small', _('Extra Small')),
-        ('small', _('Small')),
-        ('medium', _('Medium')),
-        ('large', _('Large')),
-        ('extra large', _('Extra Large')),
+        ("extra small", _("Extra Small")),
+        ("small", _("Small")),
+        ("medium", _("Medium")),
+        ("large", _("Large")),
+        ("extra large", _("Extra Large")),
     ]
 
-    STATUS_LOOKING = 'looking'
-    STATUS_SPONSOR = 'sponsor'
-    STATUS_FOUND = 'found'
-    STATUS_SUCCESS = 'success'
+    STATUS_LOOKING = "looking"
+    STATUS_SPONSOR = "sponsor"
+    STATUS_FOUND = "found"
+    STATUS_SUCCESS = "success"
 
     STATUS = [
-        (STATUS_LOOKING, _('Looking for a home')),
-        (STATUS_SPONSOR, _('Looking for sponsorships')),
-        (STATUS_FOUND, _('Found a home')),
-        (STATUS_SUCCESS, _('Success story')),
+        (STATUS_LOOKING, _("Looking for a home")),
+        (STATUS_SPONSOR, _("Looking for sponsorships")),
+        (STATUS_FOUND, _("Found a home")),
+        (STATUS_SUCCESS, _("Success story")),
     ]
 
     name = models.CharField(_("Name"), max_length=30)
@@ -128,7 +127,7 @@ class Dog(statusMixin, models.Model):
     keypoints = models.ManyToManyField(KeyPoints, blank=True)
 
     reserved = models.BooleanField(default=False)
-    hold = models.BooleanField(_('Medical Hold'), default=False)
+    hold = models.BooleanField(_("Medical Hold"), default=False)
     promoted = models.BooleanField(_("Promoted on homepage"), default=False)
 
     neutered = models.BooleanField(_("Neutered"), default=True)
@@ -139,7 +138,7 @@ class Dog(statusMixin, models.Model):
 
     filters = models.ManyToManyField(Filter, blank=True)
 
-    slug = fields.AutoSlugField(populate_from='name')
+    slug = fields.AutoSlugField(populate_from="name")
     created = fields.CreationDateTimeField()
     modified = fields.ModificationDateTimeField()
     position = models.PositiveIntegerField(default=0)
@@ -147,10 +146,10 @@ class Dog(statusMixin, models.Model):
     def __str__(self):
         return self.name
 
-    class Meta(object):
-        ordering = ('position',)
-        verbose_name = _('Dog')
-        verbose_name_plural = _('Dogs')
+    class Meta:
+        ordering = ("position",)
+        verbose_name = _("Dog")
+        verbose_name_plural = _("Dogs")
 
     @property
     def is_success(self):
@@ -162,15 +161,15 @@ class Dog(statusMixin, models.Model):
 
     @property
     def url(self):
-        return reverse_lazy('dogs:DogDetails', kwargs={'slug': self.slug})
+        return reverse_lazy("dogs:DogDetails", kwargs={"slug": self.slug})
 
     @property
     def succcess_url(self):
-        return reverse_lazy('dogs:SuccessDetail', kwargs={'slug': self.slug})
+        return reverse_lazy("dogs:SuccessDetail", kwargs={"slug": self.slug})
 
     @property
     def sponsorship_url(self):
-        return reverse_lazy('dogs:SponsorDetail', kwargs={'slug': self.slug})
+        return reverse_lazy("dogs:SponsorDetail", kwargs={"slug": self.slug})
 
     @property
     def correct_url(self):
@@ -196,14 +195,14 @@ class Dog(statusMixin, models.Model):
 
         diff = round(delta.days / 30)
         if diff < 12:
-            unit = 'month'
+            unit = "month"
         else:
-            unit = 'year'
+            unit = "year"
             diff = round(delta.days / 365)
 
         diff = max([diff, 1])
 
-        return f'{diff} {unit}{pluralize(diff)}'
+        return f"{diff} {unit}{pluralize(diff)}"
 
     @property
     def all_filters(self):
@@ -217,7 +216,7 @@ class Dog(statusMixin, models.Model):
     def raw_description(self):
         soup = BeautifulSoup(self.description)
 
-        return "".join(soup.find('p').getText())
+        return "".join(soup.find("p").getText())
 
     @property
     def show_arrival_date(self):
@@ -225,19 +224,29 @@ class Dog(statusMixin, models.Model):
 
     @property
     def homepageImage(self):
-        return self.dogphoto_set.all().order_by('-promoted', 'position')[0]
+        return self.dogphoto_set.all().order_by("-promoted", "position")[0]
 
     @property
     def homepageSubtitle(self):
-        return "{} old {}".format(self.age.replace('s', ''), self.gender)
+        return "{} old {}".format(self.age.replace("s", ""), self.gender)
 
     @classmethod
     def get_homepage_dogs(cls):
-        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by('-position')[:4]
+        return (
+            cls.objects.filter(dogStatus=Dog.STATUS_LOOKING)
+            .exclude(reserved=True)
+            .exclude(hold=True)
+            .order_by("-position")[:4]
+        )
 
     @classmethod
     def get_homepage_header_dogs(cls):
-        return cls.objects.filter(dogStatus=Dog.STATUS_LOOKING).exclude(reserved=True).exclude(hold=True).order_by('-promoted', 'created')[:4]
+        return (
+            cls.objects.filter(dogStatus=Dog.STATUS_LOOKING)
+            .exclude(reserved=True)
+            .exclude(hold=True)
+            .order_by("-promoted", "created")[:4]
+        )
 
 
 class SponsorshipInfoLink(models.Model):
@@ -277,7 +286,12 @@ class SponsorSubmission(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.SET_NULL, blank=True, null=True)
     sponsor_level = models.ForeignKey(SponsorshipLevel, on_delete=models.PROTECT, default=-1)
     comments = models.TextField(_("Comments"), blank=True, default="")
-    consent = models.BooleanField(_("I give consent for data I enter into this form to be stored and processed by SOS Romanian Rescue South West and I am over 18"))
+    consent = models.BooleanField(
+        _(
+            "I give consent for data I enter into this form to be stored and "
+            "processed by SOS Romanian Rescue South West and I am over 18"
+        )
+    )
 
     created = fields.CreationDateTimeField()
 
@@ -285,24 +299,24 @@ class SponsorSubmission(models.Model):
         return self.name
 
     def send_email(self):
-        template = get_template('pages/email-submission.html')
+        template = get_template("pages/email-submission.html")
         context = {
-            'name': self.name,
-            'email': self.email,
-            'phone': self.phone,
-            'dog': self.dog,
-            'sponsor_level': self.sponsor_level,
-            'form_name': 'Sponsor Submission',
-            'enquiry': self.comments,
+            "name": self.name,
+            "email": self.email,
+            "phone": self.phone,
+            "dog": self.dog,
+            "sponsor_level": self.sponsor_level,
+            "form_name": "Sponsor Submission",
+            "enquiry": self.comments,
         }
         content = template.render(context)
 
         email = EmailMessage(
             "New sponsorship form submission",
             content,
-            'sponsorship@romrescue.org',
-            ['sponsorship@romrescue.org'],
-            headers={'Reply-To': self.email}
+            "sponsorship@romrescue.org",
+            ["sponsorship@romrescue.org"],
+            headers={"Reply-To": self.email},
         )
 
         email.send()
@@ -311,19 +325,19 @@ class SponsorSubmission(models.Model):
 class DogPhoto(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
     promoted = models.BooleanField(_("Promoted on homepage"), default=False)
-    image = models.ImageField(upload_to='uploads/dogs')
-    thumbnail = ImageRatioField('image', '375x300')
-    homepage = ImageRatioField('image', '1110x624')
+    image = models.ImageField(upload_to="uploads/dogs")
+    thumbnail = ImageRatioField("image", "375x300")
+    homepage = ImageRatioField("image", "1110x624")
 
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
 
     def __str__(self):
         return os.path.basename(self.image.url)
 
-    class Meta(object):
-        ordering = ('position',)
-        verbose_name = _('Photo')
-        verbose_name_plural = _('Photos')
+    class Meta:
+        ordering = ("position",)
+        verbose_name = _("Photo")
+        verbose_name_plural = _("Photos")
 
 
 class YoutubeVideo(models.Model):
@@ -333,20 +347,20 @@ class YoutubeVideo(models.Model):
 
     def get_id(self):
         u_pars = urlparse(self.url)
-        quer_v = parse_qs(u_pars.query).get('v')
+        quer_v = parse_qs(u_pars.query).get("v")
         if quer_v:
             return quer_v[0]
-        pth = u_pars.path.split('/')
+        pth = u_pars.path.split("/")
         if pth:
             return pth[-1]
 
     def __str__(self):
         return self.get_id()
 
-    class Meta(object):
-        ordering = ('position',)
-        verbose_name = _('Youtube Video')
-        verbose_name_plural = _('Youtube Videos')
+    class Meta:
+        ordering = ("position",)
+        verbose_name = _("Youtube Video")
+        verbose_name_plural = _("Youtube Videos")
 
 
 class AboutInfo(models.Model):
@@ -355,8 +369,8 @@ class AboutInfo(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
     position = models.PositiveIntegerField(default=0)
 
-    class Meta(object):
-        ordering = ('position',)
+    class Meta:
+        ordering = ("position",)
 
     def __str__(self):
         return f"{self.name} - {self.value}"
