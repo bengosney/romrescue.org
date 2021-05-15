@@ -1,0 +1,15 @@
+mock
+hypothesis
+coverage
+django-nose
+fake-factory
+flake8-django
+eradicate
+pip-chill
+pip-tools
+pytest
+pytest-django
+bandit
+autoflake
+autopep8
+icecream

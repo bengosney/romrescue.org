@@ -7,11 +7,11 @@
   </div>
   <div class="header-row">
     <div class="logo">
-      <a href="/" title="SOS Romain Rescue">
-	<img class="img-responsive main-logo" src="{% static "pages/logo.svg" %}" alt="SOS Romain Rescue" />
+      <a href="{% url 'pages:home' %}" title="SOS Romain Rescue">
+	      <img class="img-responsive main-logo" src="{% static "pages/logo.svg" %}" alt="SOS Romain Rescue" />
       </a>
     </div>
-    <div class="donate">{% include "donate.html" %}</div>
+    {% include "donate.html" %}
   </div>
 </div>
 {% endblock %}

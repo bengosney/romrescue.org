@@ -1,4 +1,4 @@
-.PHONY := install, install-dev, help
+.PHONY := install, install-dev, help, update
 .DEFAULT_GOAL := install-dev
 
 INS=$(wildcard requirements.*.in)
@@ -14,6 +14,10 @@ requirements.%.txt: requirements.%.in
 requirements.txt: requirements.in
 	@echo "Builing $@"
 	@pip-compile -q $^
+
+update:
+	@echo "Upgrading"
+	pip-compile --upgrade requirements.in $(REQS)
 
 install: requirements.txt ## Install production requirements
 	@echo "Installing $^"
