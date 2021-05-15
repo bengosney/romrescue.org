@@ -67,7 +67,6 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
-    "flat_responsive",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -148,7 +147,9 @@ AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = "romrescue"
 AWS_QUERYSTRING_AUTH = False
 
-DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage" if DEBUG else "storages.backends.s3boto3.S3Boto3Storage"
+DEFAULT_FILE_STORAGE = (
+    "django.core.files.storage.FileSystemStorage" if DEBUG else "storages.backends.s3boto3.S3Boto3Storage"
+)
 
 NOSE_ARGS = [
     "--with-coverage",
@@ -228,3 +229,6 @@ ROLLBAR = {
 }
 if not DEBUG:
     rollbar.init(**ROLLBAR)
+
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
