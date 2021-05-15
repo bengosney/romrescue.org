@@ -6,6 +6,8 @@
 #
 --extra-index-url http://localhost:8182/simple/
 
+asttokens==2.0.5
+    # via icecream
 attrs==21.2.0
     # via
     #   hypothesis
@@ -18,12 +20,16 @@ bandit==1.7.0
     # via -r requirements.dev.in
 click==8.0.0
     # via pip-tools
+colorama==0.4.4
+    # via icecream
 coverage==5.5
     # via -r requirements.dev.in
 django-nose==1.4.7
     # via -r requirements.dev.in
 eradicate==2.0.0
     # via -r requirements.dev.in
+executing==0.6.0
+    # via icecream
 fake-factory==9999.9.9
     # via -r requirements.dev.in
 flake8-django==1.1.2
@@ -35,6 +41,8 @@ gitdb==4.0.7
 gitpython==3.1.17
     # via bandit
 hypothesis==6.12.0
+    # via -r requirements.dev.in
+icecream==2.1.0
     # via -r requirements.dev.in
 importlib-metadata==4.0.1
     # via
@@ -73,6 +81,8 @@ pyflakes==2.3.1
     # via
     #   autoflake
     #   flake8
+pygments==2.9.0
+    # via icecream
 pyparsing==2.4.7
     # via packaging
 pytest-django==4.2.0
@@ -84,7 +94,9 @@ pytest==6.2.4
 pyyaml==5.4.1
     # via bandit
 six==1.16.0
-    # via bandit
+    # via
+    #   asttokens
+    #   bandit
 smmap==4.0.0
     # via gitdb
 sortedcontainers==2.3.0

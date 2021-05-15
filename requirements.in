@@ -20,6 +20,7 @@ django-haystack
 django-image-cropping
 django-phonenumber-field
 django-polymorphic-tree
+django-solo
 django-storages
 django-tables2
 django-treebeard

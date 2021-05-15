@@ -1,0 +1,12 @@
+.donate {
+  .btn-donate {
+    color: #fff;
+    background-color: $color-primary-0;
+    border-color: $color-primary-0;
+    &:active {
+        color: $color-primary-0;
+        background-color: $color-primary-1;
+        border-color: $color-primary-1;
+    }
+  }
+}

@@ -12,3 +12,4 @@ pytest-django
 bandit
 autoflake
 autopep8
+icecream

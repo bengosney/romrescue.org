@@ -88,6 +88,8 @@ django-polymorphic-tree==2.0
     # via -r requirements.in
 django-polymorphic==3.0.0
     # via django-polymorphic-tree
+django-solo==1.1.5
+    # via -r requirements.in
 django-storages==1.11.1
     # via -r requirements.in
 django-tables2==2.4.0

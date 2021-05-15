@@ -91,12 +91,14 @@ INSTALLED_APPS = [
     "ckeditor_uploader",
     "adminsortable2",
     "sorl.thumbnail",
+    "solo",
     "websettings",
     "modulestatus",
     "pages",
     "dogs",
     "team",
     "testimonials",
+    "donate",
 ]
 
 MIDDLEWARE = [

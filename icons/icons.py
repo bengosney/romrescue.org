@@ -12,7 +12,10 @@ ICON_CHOICE = [
     ("dog-learning-man-instructions", _("dog-learning-man-instructions")),
     ("dog-playing-with-a-man", _("dog-playing-with-a-man")),
     ("dog-pooping", _("dog-pooping")),
-    ("dog-puppy-and-his-owner-looking-to-opposite-directions", _("dog-puppy-and-his-owner-looking-to-opposite-directions")),
+    (
+        "dog-puppy-and-his-owner-looking-to-opposite-directions",
+        _("dog-puppy-and-his-owner-looking-to-opposite-directions"),
+    ),
     ("dog-puppy-sitting-in-front-of-his-man", _("dog-puppy-sitting-in-front-of-his-man")),
     ("dog-smelling-a-bone", _("dog-smelling-a-bone")),
     ("dog-with-belt-walking-with-a-man", _("dog-with-belt-walking-with-a-man")),
