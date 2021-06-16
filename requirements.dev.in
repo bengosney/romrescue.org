@@ -1,5 +1,4 @@
 mock
-hypothesis
 coverage
 django-nose
 fake-factory

@@ -54,3 +54,4 @@ uritemplate
 werkzeug
 whitenoise
 future
+hypothesis

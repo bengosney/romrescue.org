@@ -7,9 +7,7 @@
 asttokens==2.0.5
     # via icecream
 attrs==21.2.0
-    # via
-    #   hypothesis
-    #   pytest
+    # via pytest
 autoflake==1.4
     # via -r requirements.dev.in
 autopep8==1.5.7
@@ -38,8 +36,6 @@ gitdb==4.0.7
     # via gitpython
 gitpython==3.1.17
     # via bandit
-hypothesis==6.12.0
-    # via -r requirements.dev.in
 icecream==2.1.0
     # via -r requirements.dev.in
 iniconfig==1.1.1
@@ -90,8 +86,6 @@ six==1.16.0
     #   bandit
 smmap==4.0.0
     # via gitdb
-sortedcontainers==2.3.0
-    # via hypothesis
 stevedore==3.3.0
     # via bandit
 toml==0.10.2
