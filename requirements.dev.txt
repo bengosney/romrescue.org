@@ -4,7 +4,6 @@
 #
 #    pip-compile --output-file=requirements.dev.txt requirements.dev.in
 #
---extra-index-url http://localhost:8182/simple/
 
 asttokens==2.0.5
     # via icecream
