@@ -278,7 +278,7 @@ vishap==0.1.5
     # via django-fobi
 webencodings==0.5.1
     # via bleach
-werkzeug==2.0.0
+werkzeug==2.0.1
     # via -r requirements.in
 whitenoise==5.2.0
     # via -r requirements.in
