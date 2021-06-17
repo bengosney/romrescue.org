@@ -50,7 +50,7 @@ django-autoslug-iplweb==1.9.5
     # via -r requirements.in
 django-autoslug==1.9.8
     # via django-fobi
-django-ckeditor==6.0.0
+django-ckeditor==6.1.0
     # via -r requirements.in
 django-compressor==2.4.1
     # via -r requirements.in
