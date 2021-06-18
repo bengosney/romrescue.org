@@ -226,7 +226,7 @@ requests==2.25.1
     #   rollbar
 rjsmin==1.1.0
     # via django-compressor
-rollbar==0.15.2
+rollbar==0.16.1
     # via -r requirements.in
 rsa==4.7.2
     # via
