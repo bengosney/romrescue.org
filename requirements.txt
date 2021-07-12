@@ -236,7 +236,7 @@ s3transfer==0.4.2
     # via boto3
 selenium==3.141.0
     # via -r requirements.in
-simplejson==3.17.2
+simplejson==3.17.3
     # via -r requirements.in
 six==1.16.0
     # via
