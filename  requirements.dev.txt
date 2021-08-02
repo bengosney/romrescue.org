@@ -24,7 +24,7 @@ django-nose==1.4.7
     # via -r requirements.dev.in
 eradicate==2.0.0
     # via -r requirements.dev.in
-executing==0.7.0
+executing==0.8.0
     # via icecream
 fake-factory==9999.9.9
     # via -r requirements.dev.in
