@@ -174,7 +174,7 @@ ordereddict==1.1
     # via -r requirements.in
 packaging==20.9
     # via bleach
-phonenumbers==8.12.28
+phonenumbers==8.12.29
     # via -r requirements.in
 phonenumberslite==8.12.29
     # via -r requirements.in
