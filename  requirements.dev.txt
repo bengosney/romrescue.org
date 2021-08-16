@@ -68,7 +68,7 @@ pyflakes==2.3.1
     # via
     #   autoflake
     #   flake8
-pygments==2.9.0
+pygments==2.10.0
     # via icecream
 pyparsing==2.4.7
     # via packaging
