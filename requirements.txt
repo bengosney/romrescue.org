@@ -176,7 +176,7 @@ packaging==20.9
     # via bleach
 phonenumbers==8.12.29
     # via -r requirements.in
-phonenumberslite==8.12.29
+phonenumberslite==8.12.30
     # via -r requirements.in
 pilkit==2.0
     # via -r requirements.in
