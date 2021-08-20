@@ -90,7 +90,7 @@ django-formtools==2.3
     # via django-fobi
 django-haystack==3.0
     # via -r requirements.in
-django-image-cropping==1.5.0
+django-image-cropping==1.6.1
     # via -r requirements.in
 django-js-asset==1.2.2
     # via
