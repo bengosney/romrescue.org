@@ -180,7 +180,7 @@ phonenumberslite==8.12.31
     # via -r requirements.in
 pilkit==2.0
     # via -r requirements.in
-pillow==8.2.0
+pillow==8.3.2
     # via
     #   django-fobi
     #   easy-thumbnails
