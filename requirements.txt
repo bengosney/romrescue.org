@@ -201,7 +201,7 @@ pycountry==20.7.3
     # via -r requirements.in
 pycparser==2.20
     # via cffi
-pyopenssl==20.0.1
+pyopenssl==21.0.0
     # via -r requirements.in
 pyparsing==2.4.7
     # via
