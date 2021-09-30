@@ -24,7 +24,9 @@ class AdoptionList(ListView):
         return context
 
     def get_queryset(self):
-        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING).order_by("reserved", "hold", "position")
+        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING).order_by(
+            "reserved", "-hold_type_id", "position"
+        )
 
 
 @register_list_view
