@@ -22,8 +22,4 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunPython(swap_hold),
-        migrations.RemoveField(
-            model_name='dog',
-            name='hold',
-        ),
     ]

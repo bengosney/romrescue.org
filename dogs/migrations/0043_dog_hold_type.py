@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='dog',
             name='hold_type',
-            field=models.ForeignKey(blank=True, default=None, on_delete=django.db.models.deletion.PROTECT, to='dogs.hold'),
+            field=models.ForeignKey(blank=True, null=True, default=None, on_delete=django.db.models.deletion.PROTECT, to='dogs.hold'),
         ),
     ]
