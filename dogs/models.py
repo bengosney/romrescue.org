@@ -255,7 +255,7 @@ class Dog(statusMixin, models.Model):
         return (
             cls.objects.filter(dogStatus=Dog.STATUS_LOOKING, hold_type__isnull=True)
             .exclude(reserved=True)
-            .order_by("-position")[:4]
+            .order_by("-position", "created")[:4]
         )
 
     @classmethod
