@@ -395,3 +395,7 @@ node_modules
 /latest.dump
 
 /.vscode
+
+.direnv
+.envrc
+*.sqlite3

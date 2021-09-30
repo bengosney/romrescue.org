@@ -165,6 +165,15 @@ class SponsorLevelAdmin(admin.ModelAdmin):
     )
 
 
+class HoldAdmin(admin.ModelAdmin):
+    models = models.Hold
+
+    list_display = (
+        "name",
+        "description",
+    )
+
+
 admin.site.register(models.KeyPoints, KeyPointsAdmin)
 admin.site.register(models.Dog, DogAdmin)
 admin.site.register(models.Status, StatusAdmin)
@@ -173,3 +182,4 @@ admin.site.register(models.Filter, FilterAdmin)
 admin.site.register(models.SponsorshipInfoLink, SponsorshipInfoLinksAdmin)
 admin.site.register(models.SponsorSubmission, SponsorAdmin)
 admin.site.register(models.SponsorshipLevel, SponsorLevelAdmin)
+admin.site.register(models.Hold, HoldAdmin)
