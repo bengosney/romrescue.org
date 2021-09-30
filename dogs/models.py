@@ -87,6 +87,18 @@ class Rescue(models.Model):
         verbose_name_plural = _("Rescues")
 
 
+class Hold(models.Model):
+    name = models.CharField(_("Type"), max_length=50)
+    description = models.CharField(_("Description"), max_length=255)
+
+    slug = fields.AutoSlugField(populate_from="name")
+    created = fields.CreationDateTimeField()
+    modified = fields.ModificationDateTimeField()
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class Dog(statusMixin, models.Model):
     DEFAULT_COST = 300
     GENDERS = [
@@ -127,7 +139,7 @@ class Dog(statusMixin, models.Model):
     keypoints = models.ManyToManyField(KeyPoints, blank=True)
 
     reserved = models.BooleanField(default=False)
-    hold = models.BooleanField(_("Medical Hold"), default=False)
+    hold_type = models.ForeignKey(Hold, on_delete=models.PROTECT, blank=True, null=True)
     promoted = models.BooleanField(_("Promoted on homepage"), default=False)
 
     neutered = models.BooleanField(_("Neutered"), default=True)
@@ -230,21 +242,30 @@ class Dog(statusMixin, models.Model):
     def homepageSubtitle(self):
         return "{} old {}".format(self.age.replace("s", ""), self.gender)
 
+    @property
+    def hold(self):
+        return self.hold_type is not None
+
+    @hold.setter
+    def hold(self, hold):
+        if hold:
+            self.hold_type = Hold.objects.all()[0]
+        else:
+            self.hold_type = None
+
     @classmethod
     def get_homepage_dogs(cls):
         return (
-            cls.objects.filter(dogStatus=Dog.STATUS_LOOKING)
+            cls.objects.filter(dogStatus=Dog.STATUS_LOOKING, hold_type__isnull=True)
             .exclude(reserved=True)
-            .exclude(hold=True)
             .order_by("-position")[:4]
         )
 
     @classmethod
     def get_homepage_header_dogs(cls):
         return (
-            cls.objects.filter(dogStatus=Dog.STATUS_LOOKING)
+            cls.objects.filter(dogStatus=Dog.STATUS_LOOKING, hold_type__isnull=True)
             .exclude(reserved=True)
-            .exclude(hold=True)
             .order_by("-promoted", "created")[:4]
         )
 

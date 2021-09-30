@@ -13,7 +13,7 @@ from hypothesis.extra.django import TestCase
 from hypothesis.strategies import text
 
 # First Party
-from dogs.models import Dog, KeyPoints, Status
+from dogs.models import Dog, Hold, KeyPoints, Status
 
 
 class PossessTemplateTagTest(SimpleTestCase):
@@ -255,6 +255,41 @@ class DogTests(TestCase):
 
         for i, dog in enumerate(promoted, start=1):
             self.assertEqual(str(dog), f"rover{i}")
+
+    def test_hold_field_no_hold(self):
+        dog = self.get_dog("rover")
+
+        self.assertFalse(dog.hold)
+
+    def test_hold_field_on_hold(self):
+        hold = Hold(name="test", description="test")
+        hold.save()
+
+        dog = self.get_dog("rover")
+        dog.hold_type = hold
+        dog.save()
+
+        self.assertTrue(dog.hold)
+
+    def test_set_hold_field(self):
+        hold = Hold.objects.all()[0]
+
+        dog = self.get_dog("rover")
+        dog.hold = True
+
+        self.assertEqual(dog.hold_type, hold)
+
+    def test_set_hold_field_remove(self):
+        hold = Hold.objects.all()[0]
+
+        dog = self.get_dog("rover")
+        dog.hold = True
+
+        self.assertEqual(dog.hold_type, hold)
+
+        dog.hold = False
+
+        self.assertEqual(dog.hold_type, None)
 
 
 class KeyPointsTests(TestCase):
