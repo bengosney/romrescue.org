@@ -148,7 +148,7 @@ gunicorn==20.1.0
     # via -r requirements.in
 httplib2==0.19.1
     # via oauth2client
-hypothesis==6.14.0
+hypothesis==6.23.1
     # via -r requirements.in
 idna==2.10
     # via requests
