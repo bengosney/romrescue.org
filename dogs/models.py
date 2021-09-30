@@ -248,10 +248,7 @@ class Dog(statusMixin, models.Model):
 
     @hold.setter
     def hold(self, hold):
-        if hold:
-            self.hold_type = Hold.objects.all()[0]
-        else:
-            self.hold_type = None
+        self.hold_type = Hold.objects.all()[0] if hold else None
 
     @classmethod
     def get_homepage_dogs(cls):
