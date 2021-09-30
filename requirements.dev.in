@@ -12,4 +12,4 @@ bandit
 autoflake
 autopep8
 icecream
-python-dateutil==2.8.1
+python-dateutil==2.8.2
