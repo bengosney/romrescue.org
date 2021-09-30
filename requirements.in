@@ -29,7 +29,6 @@ django-widget-tweaks
 djangorestframework
 entrypoints
 enum34
-factory-boy
 funcsigs
 gspread
 gunicorn

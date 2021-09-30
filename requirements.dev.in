@@ -1,7 +1,7 @@
 mock
 coverage
 django-nose
-fake-factory
+Faker
 flake8-django
 eradicate
 pip-chill
@@ -12,3 +12,4 @@ bandit
 autoflake
 autopep8
 icecream
+python-dateutil==2.8.1
