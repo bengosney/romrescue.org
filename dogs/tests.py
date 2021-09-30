@@ -18,16 +18,16 @@ from dogs.models import Dog, Hold, KeyPoints, Status
 
 class PossessTemplateTagTest(SimpleTestCase):
     def test_normal(self):
-        context = Context({"name": "Molly"})
-        template_to_render = Template("{% load possess %}" "{{ name|possess }}")
-        rendered_template = template_to_render.render(context)
-        self.assertInHTML("Molly's", rendered_template)
+        self._pluraliser_test("Molly", "Molly's")
 
     def test_ends_in_s(self):
-        context = Context({"name": "Waffles"})
-        template_to_render = Template("{% load possess %}" "{{ name|possess }}")
+        self._pluraliser_test("Waffles", "Waffles'")
+
+    def _pluraliser_test(self, singular, plural):
+        context = Context({"name": singular})
+        template_to_render = Template("{% load possess %}{{ name|possess }}")
         rendered_template = template_to_render.render(context)
-        self.assertInHTML("Waffles'", rendered_template)
+        self.assertInHTML(plural, rendered_template)
 
 
 class DogTests(TestCase):
