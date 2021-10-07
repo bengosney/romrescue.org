@@ -112,7 +112,7 @@ django-polymorphic-tree==2.0
     # via -r requirements.in
 django-solo==1.2.0
     # via -r requirements.in
-django-storages==1.11.1
+django-storages==1.12
     # via -r requirements.in
 django-tables2==2.4.1
     # via -r requirements.in
