@@ -258,7 +258,7 @@ unicodecsv==0.14.1
     # via -r requirements.in
 unidecode==1.2.0
     # via django-fobi
-uritemplate==3.0.1
+uritemplate==4.0.0
     # via -r requirements.in
 urllib3==1.26.5
     # via
