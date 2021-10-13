@@ -8,8 +8,15 @@ asgiref==3.3.4
     # via django
 asn1crypto==1.4.0
     # via -r requirements.in
+async-generator==1.10
+    # via
+    #   trio
+    #   trio-websocket
 attrs==21.2.0
-    # via hypothesis
+    # via
+    #   hypothesis
+    #   outcome
+    #   trio
 babel==2.9.1
     # via -r requirements.in
 beautifulsoup4==4.10.0
@@ -29,7 +36,9 @@ brotlipy==0.7.0
 cachetools==4.2.2
     # via google-auth
 certifi==2020.12.5
-    # via requests
+    # via
+    #   requests
+    #   urllib3
 cffi==1.14.5
     # via
     #   brotlipy
@@ -37,7 +46,9 @@ cffi==1.14.5
 chardet==4.0.0
     # via requests
 cryptography==3.4.7
-    # via pyopenssl
+    # via
+    #   pyopenssl
+    #   urllib3
 dj-database-url==0.5.0
     # via -r requirements.in
 django==3.2.8
@@ -146,12 +157,17 @@ gspread==4.0.1
     # via -r requirements.in
 gunicorn==20.1.0
     # via -r requirements.in
+h11==0.12.0
+    # via wsproto
 httplib2==0.19.1
     # via oauth2client
 hypothesis==6.23.2
     # via -r requirements.in
 idna==2.10
-    # via requests
+    # via
+    #   requests
+    #   trio
+    #   urllib3
 ipaddress==1.0.23
     # via -r requirements.in
 isort==5.9.3
@@ -168,6 +184,8 @@ olefile==0.46
     # via -r requirements.in
 ordereddict==1.1
     # via -r requirements.in
+outcome==1.1.0
+    # via trio
 packaging==20.9
     # via bleach
 phonenumbers==8.12.34
@@ -198,7 +216,9 @@ pycountry==20.7.3
 pycparser==2.20
     # via cffi
 pyopenssl==21.0.0
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   urllib3
 pyparsing==2.4.7
     # via
     #   httplib2
@@ -228,7 +248,7 @@ rsa==4.7.2
     #   oauth2client
 s3transfer==0.5.0
     # via boto3
-selenium==3.141.0
+selenium==4.0.0
     # via -r requirements.in
 simplejson==3.17.5
     # via -r requirements.in
@@ -244,23 +264,33 @@ six==1.16.0
     #   python-dateutil
     #   rollbar
     #   vishap
+sniffio==1.2.0
+    # via trio
 sorl-thumbnail==12.7.0
     # via -r requirements.in
 sortedcontainers==2.4.0
-    # via hypothesis
+    # via
+    #   hypothesis
+    #   trio
 soupsieve==2.2.1
     # via beautifulsoup4
 sqlparse==0.4.2
     # via
     #   django
     #   django-debug-toolbar
+trio==0.19.0
+    # via
+    #   selenium
+    #   trio-websocket
+trio-websocket==0.9.2
+    # via selenium
 unicodecsv==0.14.1
     # via -r requirements.in
 unidecode==1.2.0
     # via django-fobi
 uritemplate==4.0.0
     # via -r requirements.in
-urllib3==1.26.5
+urllib3[secure]==1.26.5
     # via
     #   botocore
     #   requests
@@ -273,6 +303,8 @@ werkzeug==2.0.2
     # via -r requirements.in
 whitenoise==5.3.0
     # via -r requirements.in
+wsproto==1.0.0
+    # via trio-websocket
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
