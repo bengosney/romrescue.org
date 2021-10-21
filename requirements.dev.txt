@@ -26,7 +26,7 @@ eradicate==2.0.0
     # via -r requirements.dev.in
 executing==0.6.0
     # via icecream
-faker==9.5.1
+faker==9.5.2
     # via -r requirements.dev.in
 flake8==3.9.2
     # via flake8-django
@@ -100,8 +100,6 @@ toml==0.10.2
     #   autopep8
     #   pep517
     #   pytest
-typing-extensions==3.10.0.2
-    # via faker
 wheel==0.37.0
     # via pip-tools
 
