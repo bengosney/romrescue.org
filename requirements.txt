@@ -190,7 +190,7 @@ packaging==20.9
     # via bleach
 phonenumbers==8.12.36
     # via -r requirements.in
-phonenumberslite==8.12.35
+phonenumberslite==8.12.36
     # via -r requirements.in
 pilkit==2.0
     # via -r requirements.in
