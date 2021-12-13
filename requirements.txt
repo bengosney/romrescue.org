@@ -136,7 +136,7 @@ django-vanilla-views==3.0.0
     # via -r requirements.in
 django-widget-tweaks==1.4.9
     # via -r requirements.in
-djangorestframework==3.12.4
+djangorestframework==3.13.0
     # via -r requirements.in
 easy-thumbnails==2.7.1
     # via django-fobi
@@ -230,6 +230,7 @@ pytz==2021.1
     # via
     #   babel
     #   django
+    #   djangorestframework
 rcssmin==1.1.0
     # via django-compressor
 requests==2.25.1
