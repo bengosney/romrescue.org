@@ -88,7 +88,7 @@ django-compressor==3.0
     # via -r requirements.in
 django-crispy-forms==1.13.0
     # via -r requirements.in
-django-debug-toolbar==3.2.3
+django-debug-toolbar==3.2.4
     # via -r requirements.in
 django-dynamic-forms==0.5.3
     # via -r requirements.in
