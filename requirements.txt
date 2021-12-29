@@ -199,7 +199,7 @@ pillow==8.3.2
     # via
     #   django-fobi
     #   easy-thumbnails
-psycopg2==2.9.2
+psycopg2==2.9.3
     # via -r requirements.in
 purl==1.6
     # via -r requirements.in
