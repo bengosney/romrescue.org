@@ -134,7 +134,7 @@ django-treebeard==4.5.1
     # via -r requirements.in
 django-vanilla-views==3.0.0
     # via -r requirements.in
-django-widget-tweaks==1.4.9
+django-widget-tweaks==1.4.11
     # via -r requirements.in
 djangorestframework==3.13.1
     # via -r requirements.in
