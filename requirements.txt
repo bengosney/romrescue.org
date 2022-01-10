@@ -25,7 +25,7 @@ bleach==3.3.0
     # via django-fobi
 boto==2.49.0
     # via -r requirements.in
-boto3==1.20.30
+boto3==1.20.31
     # via -r requirements.in
 botocore==1.23.31
     # via
