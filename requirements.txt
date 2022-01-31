@@ -45,7 +45,7 @@ cffi==1.14.5
     #   cryptography
 chardet==4.0.0
     # via requests
-cryptography==3.4.7
+cryptography==36.0.1
     # via
     #   pyopenssl
     #   urllib3
@@ -216,7 +216,7 @@ pycountry==22.1.10
     # via -r requirements.in
 pycparser==2.20
     # via cffi
-pyopenssl==21.0.0
+pyopenssl==22.0.0
     # via
     #   -r requirements.in
     #   urllib3
@@ -261,7 +261,6 @@ six==1.16.0
     #   google-auth
     #   oauth2client
     #   purl
-    #   pyopenssl
     #   python-dateutil
     #   rollbar
     #   vishap
