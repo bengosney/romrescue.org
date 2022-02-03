@@ -140,7 +140,7 @@ djangorestframework==3.13.1
     # via -r requirements.in
 easy-thumbnails==2.7.1
     # via django-fobi
-entrypoints==0.3
+entrypoints==0.4
     # via -r requirements.in
 enum34==1.1.10
     # via -r requirements.in
