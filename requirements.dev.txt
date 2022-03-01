@@ -26,7 +26,7 @@ eradicate==2.0.0
     # via -r requirements.dev.in
 executing==0.6.0
     # via icecream
-faker==13.2.0
+faker==13.3.0
     # via -r requirements.dev.in
 flake8==3.9.2
     # via flake8-django
