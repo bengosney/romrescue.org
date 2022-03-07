@@ -162,7 +162,7 @@ h11==0.12.0
     # via wsproto
 httplib2==0.19.1
     # via oauth2client
-hypothesis==6.39.1
+hypothesis==6.39.3
     # via -r requirements.in
 idna==2.10
     # via
