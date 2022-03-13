@@ -222,7 +222,7 @@ SITE_ID = 2
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 
-STATICFILES_STORAGE = "whitenoise.storage." "CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 ROLLBAR = {
@@ -235,7 +235,5 @@ if not DEBUG:
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
-
-WHITENOISE_MANIFEST_STRICT = not DEBUG
 
 CSRF_TRUSTED_ORIGINS = ["https://www.romrescue.org/"]

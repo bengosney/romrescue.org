@@ -24,6 +24,9 @@ jobs:
       - run:
           name: install dependencies
           command: pipenv install --dev -r requirements.dev.txt
+      - run:
+          name: collect statics
+          command: pipenv run ./manage collectstatic
       - save_cache:
           key: v3-deps-{{ checksum "requirements.dev.txt" }}-{{ checksum "requirements.txt" }}
           paths:
@@ -32,6 +35,7 @@ jobs:
             - /home/circleci/.cache/pipenv
             - ./Pipfile.lock
             - ./Pipfile
+            - ./romrescue/staticfiles
       - run:
           name: Run tests
           command: |
