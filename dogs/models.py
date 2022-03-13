@@ -365,11 +365,9 @@ class YoutubeVideo(models.Model):
 
     def get_id(self):
         u_pars = urlparse(self.url)
-        quer_v = parse_qs(u_pars.query).get("v")
-        if quer_v:
+        if quer_v := parse_qs(u_pars.query).get("v"):
             return quer_v[0]
-        pth = u_pars.path.split("/")
-        if pth:
+        if pth := u_pars.path.split("/"):
             return pth[-1]
 
     def __str__(self):

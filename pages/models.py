@@ -62,10 +62,7 @@ class node(PolymorphicMPTTModel, statusMixin):
 
     @property
     def nav_title_actual(self):
-        if self.nav_title:
-            return self.nav_title
-        else:
-            return self.title
+        return self.nav_title or self.title
 
     def save(self, *args, **kwargs):
         if self.is_home_page:
