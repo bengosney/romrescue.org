@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 
+
 # Standard Library
 import os
 
@@ -124,9 +125,7 @@ ROOT_URLCONF = "romrescue.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            BASE_DIR + "/templates",
-        ],
+        "DIRS": [f'{BASE_DIR}/templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -138,8 +137,9 @@ TEMPLATES = [
                 "django.template.context_processors.request",
             ],
         },
-    },
+    }
 ]
+
 
 WSGI_APPLICATION = "romrescue.wsgi.application"
 

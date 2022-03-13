@@ -25,7 +25,7 @@ class TeamMember(models.Model):
         return self.name
 
     def admin_image(self):
-        img = "http://placehold.it/75x75" if not self.image else self.image.url
+        img = self.image.url if self.image else "http://placehold.it/75x75"
         return f'<img src="{img}" height="75"/>'
 
     admin_image.allow_tags = True
