@@ -43,7 +43,9 @@ STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, "static"),)
 SECRET_KEY = "%^lk@u&&mb-89_t6_*&z08dif8m-tf15cphny1gy2&dvnf)#5_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("ENV") != "production"
+
+TESTING = os.environ.get("CI") == "true"
+DEBUG = os.environ.get("ENV") != "production" or TESTING
 
 ALLOWED_HOSTS = ["*"]
 
@@ -222,7 +224,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 STATICFILES_STORAGE = "whitenoise.storage." "CompressedManifestStaticFilesStorage"
 
-TESTING = os.environ.get("CI") == "true"
 
 ROLLBAR = {
     "access_token": os.environ.get("ROLLBAR_ACCESS_TOKEN"),
@@ -235,5 +236,6 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
+WHITENOISE_MANIFEST_STRICT = not DEBUG
 
 CSRF_TRUSTED_ORIGINS = ["https://www.romrescue.org/"]
