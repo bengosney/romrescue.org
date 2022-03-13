@@ -10,9 +10,9 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 
+
 # Standard Library
 import os
-import sys
 
 # Django
 from django.core.exceptions import FieldDoesNotExist
@@ -26,9 +26,9 @@ from easy_thumbnails.conf import Settings as thumbnail_settings
 models.FieldDoesNotExist = FieldDoesNotExist
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(__file__)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
@@ -44,11 +44,13 @@ STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, "static"),)
 SECRET_KEY = "%^lk@u&&mb-89_t6_*&z08dif8m-tf15cphny1gy2&dvnf)#5_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("ENV") != "production"
+
+TESTING = os.environ.get("CI") == "true"
+DEBUG = os.environ.get("ENV") != "production" or TESTING
 
 ALLOWED_HOSTS = ["*"]
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
@@ -79,7 +81,6 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.redirects",
     "django.contrib.sitemaps",
-    "rest_framework",
     "storages",
     "django_extensions",
     "debug_toolbar",
@@ -124,9 +125,7 @@ ROOT_URLCONF = "romrescue.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            BASE_DIR + "/templates",
-        ],
+        "DIRS": [f'{BASE_DIR}/templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -138,8 +137,9 @@ TEMPLATES = [
                 "django.template.context_processors.request",
             ],
         },
-    },
+    }
 ]
+
 
 WSGI_APPLICATION = "romrescue.wsgi.application"
 
@@ -222,9 +222,8 @@ SITE_ID = 2
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 
-STATICFILES_STORAGE = "whitenoise.storage." "CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-TESTING = sys.argv[1:2] == ["test"]
 
 ROLLBAR = {
     "access_token": os.environ.get("ROLLBAR_ACCESS_TOKEN"),
@@ -236,3 +235,5 @@ if not DEBUG:
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+CSRF_TRUSTED_ORIGINS = ["https://www.romrescue.org/"]

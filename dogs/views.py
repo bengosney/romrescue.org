@@ -2,12 +2,10 @@
 from django.core.exceptions import MultipleObjectsReturned
 
 # Third Party
-from rest_framework import viewsets
 from vanilla import DetailView, ListView
 
 # First Party
 from dogs.models import Dog, Filter, SponsorshipInfoLink
-from dogs.serializers import DogSerializer
 from pages.decorators import register_list_view
 from pages.forms import SponsorForm
 
@@ -101,21 +99,16 @@ class DogDetail(DetailView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         context = self.get_context_data()
-        if self.object.dogStatus != Dog.STATUS_LOOKING:
-            status_code = 410
-            context["dog_list"] = Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING).order_by("reserved", "position")[:4]
-            self.template_name = "dogs/410.html"
-        else:
-            status_code = 200
+        if self.object.dogStatus == Dog.STATUS_LOOKING:
+            return self.render_to_response(context)
+
+        context["dog_list"] = Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING).order_by("reserved", "position")[:4]
+        self.template_name = "dogs/410.html"
 
         response = self.render_to_response(context)
-
-        response.status_code = status_code
+        response.status_code = 410
 
         return response
-
-    def get_querysety(self):
-        return self.model._default_manager.filter(dogStatus=Dog.STATUS_LOOKING)
 
 
 class SuccessDogDetail(DetailView):
@@ -134,10 +127,3 @@ class SuccessList(ListView):
 
     def get_queryset(self):
         return self.model._default_manager.filter(dogStatus=Dog.STATUS_SUCCESS)
-
-
-class DogViewSet(viewsets.ModelViewSet):
-    """API endpoint that allows users to be viewed or edited."""
-
-    queryset = Dog.objects.filter(dogStatus=Dog.STATUS_LOOKING, reserved=False).order_by("reserved", "position")
-    serializer_class = DogSerializer

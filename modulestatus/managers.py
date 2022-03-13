@@ -18,6 +18,5 @@ try:
         def get_queryset(self):
             return super().get_queryset().filter(status=ModelStatus.LIVE_STATUS)
 
-
 except ImportError:
     pass

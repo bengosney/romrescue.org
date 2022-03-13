@@ -1,10 +1,10 @@
 # Django
-from django.conf.urls import url
+from django.urls import path
 
 # First Party
 from donate import views
 
 app_name = "donate"
 urlpatterns = [
-    url("", views.donate, name="donateform"),
+    path("", views.donate, name="donateform"),
 ]
