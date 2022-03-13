@@ -32,9 +32,16 @@ jobs:
             - /home/circleci/.cache/pipenv
             - ./Pipfile.lock
             - ./Pipfile
+      - restore_cache:
+          key: v1-staticfiles
       - run:
           name: Collect Statics
-          command: pipenv run python manage.py collectstatic --noinput
+          command: |
+            [ ! -e romrescue/staticfiles/staticfiles.json ] && pipenv run python manage.py collectstatic --noinput
+      - save_cache:
+          key: v1-staticfiles
+          paths:
+            - ./romrescue/staticfiles
       - run:
           name: Run tests
           command: |
