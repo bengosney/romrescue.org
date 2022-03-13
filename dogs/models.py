@@ -10,7 +10,7 @@ from django.db import models
 from django.template.defaultfilters import pluralize
 from django.template.loader import get_template
 from django.urls import reverse_lazy
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # Third Party
 from bs4 import BeautifulSoup
@@ -222,7 +222,7 @@ class Dog(statusMixin, models.Model):
 
     @property
     def sheet_id(self):
-        return "ID~%s" % self.id
+        return f"ID~{self.id}"
 
     @property
     def raw_description(self):
@@ -240,7 +240,7 @@ class Dog(statusMixin, models.Model):
 
     @property
     def homepageSubtitle(self):
-        return "{} old {}".format(self.age.replace("s", ""), self.gender)
+        return f"{self.age.replace('s', '')} old {self.gender}"
 
     @property
     def hold(self):

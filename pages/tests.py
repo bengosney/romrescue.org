@@ -67,7 +67,7 @@ class PageMethodTests(TestCase):
         page = Page(title=expected)
         page.save()
 
-        self.assertEqual(page.url, "/%s/" % page.slug)
+        self.assertEqual(page.url, f"/{page.slug}/")
 
     @given(sane_text())
     def test_str(self, expected):
@@ -86,7 +86,7 @@ class SocialMethodTests(TestCase):
         social = SocialLink(title=expected)
         social.save()
 
-        self.assertEqual(social.url, "/%s/" % social.slug)
+        self.assertEqual(social.url, f"/{social.slug}/")
 
 
 class EmptyNodeMethodTests(TestCase):
@@ -96,7 +96,7 @@ class EmptyNodeMethodTests(TestCase):
 
         empty = Empty(title=expected)
 
-        self.assertEqual(str(empty), "%s - Empty Node" % expected)
+        self.assertEqual(str(empty), f"{expected} - Empty Node")
 
     def test_url(self):
         """Test the #URL."""
@@ -106,7 +106,7 @@ class EmptyNodeMethodTests(TestCase):
         empty = Empty(title=expected)
         empty.save()
 
-        self.assertEqual(empty.url, "#%s" % empty.slug)
+        self.assertEqual(empty.url, f"#{empty.slug}")
 
 
 class SocialNodeMethodTests(TestCase):

@@ -1,10 +1,10 @@
 # Django
-from django.conf.urls import url
+from django.urls import path
 
 # First Party
 from testimonials import views
 
 app_name = "testimonials"
 urlpatterns = [
-    url(r"^$", views.TestimonialList.as_view(), name="TestimonialList"),
+    path("", views.TestimonialList.as_view(), name="TestimonialList"),
 ]

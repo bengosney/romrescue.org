@@ -1,5 +1,5 @@
-.PHONY := install, install-dev, help, update, postgres-docker
-.DEFAULT_GOAL := install-dev
+.PHONY := install, help, update, postgres-docker
+.DEFAULT_GOAL := install
 
 INS=$(wildcard requirements.*.in)
 REQS=$(subst in,txt,$(INS))
@@ -12,32 +12,36 @@ DB_NAME=romdb
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-requirements.%.txt: requirements.%.in
+requirements.%.txt: requirements.%.in requirements.txt
 	@echo "Builing $@"
-	@pip-compile -q -o $@ $^
+	@pip-compile -q -o $@ $<
+	@touch $@
 
 requirements.txt: requirements.in
 	@echo "Builing $@"
 	@pip-compile -q $^
 
+install: requirements.txt $(REQS) ## Install development requirements
+	@echo "Installing $^"
+	@pip-sync $^
+
+$(HOOKS):
+	pre-commit install
+
+pre-init:
+	pip install wheel pip-tools
+
+init: .envrc pre-init install $(HOOKS) ## Initalise a dev enviroment
+	@echo "Read to dev"
+	@which direnv > /dev/null || echo "direnv not found but recommended"
+
 update:
 	@echo "Upgrading"
 	pip-compile --upgrade requirements.in $(REQS)
 
-install: requirements.txt ## Install production requirements
-	@echo "Installing $^"
-	@pip-sync $^
-
-install-dev: requirements.txt $(REQS) ## Install development requirements (default)
-	@echo "Installing $^"
-	@pip-sync $^
-
-runtime.txt:
-	@echo "python-3.8.6" > $@
-
 .envrc: runtime.txt Makefile
 	@echo > $@
-	@echo layout python $(shell cat $^ | tr -d "-" | egrep -o "python[0-9]\.[0-9]") >> $@
+	@echo layout python $(shell cat $^ | tr -d "-" | egrep -o "python[0-9]\.[0-9]+") >> $@
 	@echo export DATABASE_URL="postgres://$(DB_USER):$(DB_PASS)@localhost:5432/$(DB_NAME)" >> $@
 	@cat $@
 	@echo

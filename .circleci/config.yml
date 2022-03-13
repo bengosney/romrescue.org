@@ -1,46 +1,44 @@
-version: 2
+version: 2.1
+orbs:
+  python: circleci/python@1.5.0
+  heroku: circleci/heroku@1.2.6
 jobs:
   build:
     docker:
-      - image: circleci/python:3.8.0
-      - image: circleci/postgres:10.6-postgis-ram
+      - image: cimg/python:3.10.2
         environment:
-          POSTGRES_USER: circleci
+          DATABASE_URL: postgresql://postgres:password@localhost:5432/circle_test?sslmode=disable
+          ENV: testing
+      - image: cimg/postgres:12.9
+        environment:
+          POSTGRES_USER: postgres
           POSTGRES_DB: circle_test
-
-    working_directory: ~/repo
+          POSTGRES_PASSWORD: password
 
     steps:
       - checkout
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
-          - v1-dependencies-
-
+          key: v3-deps-{{ checksum "requirements.dev.txt" }}-{{ checksum "requirements.txt" }}
+      - python/install-packages:
+          pkg-manager: pipenv
       - run:
           name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-
-      - run:
-          name: collectstatic
-          command: |
-            . venv/bin/activate
-            python manage.py collectstatic --noinput
-
+          command: pipenv install --dev -r requirements.dev.txt
       - save_cache:
+          key: v3-deps-{{ checksum "requirements.dev.txt" }}-{{ checksum "requirements.txt" }}
           paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
-
+            - /home/circleci/.local/share/virtualenvs
+            - /home/circleci/.cache/pip
+            - /home/circleci/.cache/pipenv
+            - ./Pipfile.lock
+            - ./Pipfile
       - run:
-          name: run tests
+          name: Run tests
           command: |
-            . venv/bin/activate
-            python manage.py test
-
+            mkdir test-results
+            pipenv run pytest --junitxml=test-results/junit.xml
+      - store_test_results:
+          path: test-results
       - store_artifacts:
-          path: test-reports
-          destination: test-reports
+          path: test-results
+          destination: tr1

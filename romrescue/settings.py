@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 # Standard Library
 import os
-import sys
 
 # Django
 from django.core.exceptions import FieldDoesNotExist
@@ -26,9 +25,9 @@ from easy_thumbnails.conf import Settings as thumbnail_settings
 models.FieldDoesNotExist = FieldDoesNotExist
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(__file__)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
@@ -48,7 +47,7 @@ DEBUG = os.environ.get("ENV") != "production"
 
 ALLOWED_HOSTS = ["*"]
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
@@ -79,7 +78,6 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.redirects",
     "django.contrib.sitemaps",
-    "rest_framework",
     "storages",
     "django_extensions",
     "debug_toolbar",
@@ -224,7 +222,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 STATICFILES_STORAGE = "whitenoise.storage." "CompressedManifestStaticFilesStorage"
 
-TESTING = sys.argv[1:2] == ["test"]
+TESTING = os.environ.get("CI") == "true"
 
 ROLLBAR = {
     "access_token": os.environ.get("ROLLBAR_ACCESS_TOKEN"),
@@ -236,3 +234,6 @@ if not DEBUG:
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+
+CSRF_TRUSTED_ORIGINS = ["https://www.romrescue.org/"]

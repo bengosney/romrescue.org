@@ -2,7 +2,7 @@
 
 # Django
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # Third Party
 from image_cropping import ImageRatioField
@@ -26,7 +26,7 @@ class TeamMember(models.Model):
 
     def admin_image(self):
         img = "http://placehold.it/75x75" if not self.image else self.image.url
-        return '<img src="%s" height="75"/>' % img
+        return f'<img src="{img}" height="75"/>'
 
     admin_image.allow_tags = True
 
