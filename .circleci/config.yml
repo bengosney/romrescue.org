@@ -37,7 +37,7 @@ jobs:
       - run:
           name: Collect Statics
           command: |
-            [ ! -e romrescue/staticfiles/staticfiles.json ] && pipenv run python manage.py collectstatic --noinput
+            [ ! -e romrescue/staticfiles/staticfiles.json ] && pipenv run python manage.py collectstatic --noinput || true
       - save_cache:
           key: v1-staticfiles
           paths:
