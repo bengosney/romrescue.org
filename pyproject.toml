@@ -5,7 +5,7 @@ description = "Website for SOS Romainan Rescue"
 authors = [
     "Ben Gosney <bengosney@googlemail.com>"
 ]
-python = "^3.8"
+python = "^3.10.2"
 homepage = "https://www.romrescue.org/"
 repository = "https://github.com/bengosney/romrescue.org.git"
 
@@ -15,7 +15,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 120
-target-version = ['py38']
+target-version = ['py310']
 
 [tool.pycln]
 all = true
