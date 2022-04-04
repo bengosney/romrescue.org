@@ -100,7 +100,7 @@ platformdirs==2.5.1
     #   virtualenv
 pluggy==0.13.1
     # via pytest
-pre-commit==2.17.0
+pre-commit==2.18.1
     # via -r requirements.dev.in
 prompt-toolkit==3.0.28
     # via questionary
