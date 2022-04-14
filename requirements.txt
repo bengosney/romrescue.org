@@ -57,6 +57,7 @@ django==4.0.4
     #   -r requirements.in
     #   django-admin-sortable2
     #   django-appconf
+    #   django-ckeditor
     #   django-debug-toolbar
     #   django-extensions
     #   django-extra-views
@@ -81,7 +82,7 @@ django-autoslug==1.9.8
     # via django-fobi
 django-autoslug-iplweb==1.9.5
     # via -r requirements.in
-django-ckeditor==6.3.2
+django-ckeditor==6.4.0
     # via -r requirements.in
 django-compressor==3.1
     # via -r requirements.in
