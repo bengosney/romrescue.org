@@ -84,7 +84,7 @@ django-autoslug-iplweb==1.9.5
     # via -r requirements.in
 django-ckeditor==6.4.0
     # via -r requirements.in
-django-compressor==3.1
+django-compressor==4.0
     # via -r requirements.in
 django-crispy-forms==1.14.0
     # via -r requirements.in
