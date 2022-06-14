@@ -16,7 +16,7 @@ attrs==21.4.0
     # via
     #   outcome
     #   trio
-babel==2.10.1
+babel==2.10.2
     # via -r requirements.in
 beautifulsoup4==4.11.1
     # via -r requirements.in
