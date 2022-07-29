@@ -50,11 +50,12 @@ cryptography==36.0.1
     #   urllib3
 cssselect2==0.5.0
     # via svglib
-dj-database-url==0.5.0
+dj-database-url==1.0.0
     # via -r requirements.in
 django==4.0.6
     # via
     #   -r requirements.in
+    #   dj-database-url
     #   django-admin-sortable2
     #   django-appconf
     #   django-ckeditor
