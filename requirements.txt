@@ -194,7 +194,7 @@ pillow==9.0.1
     #   django-fobi
     #   easy-thumbnails
     #   reportlab
-psycopg2==2.9.3
+psycopg2==2.9.4
     # via -r requirements.in
 purl==1.6
     # via -r requirements.in
