@@ -10,7 +10,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 
-
 # Standard Library
 import os
 
@@ -125,7 +124,7 @@ ROOT_URLCONF = "romrescue.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [f'{BASE_DIR}/templates'],
+        "DIRS": [f"{BASE_DIR}/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -212,7 +211,6 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_L10N = True
 
 USE_TZ = True
 
@@ -236,4 +234,9 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
-CSRF_TRUSTED_ORIGINS = ["https://www.romrescue.org/", "http://www.romrescue.org/"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://www.romrescue.org/",
+    "http://www.romrescue.org/",
+    "http://*.romrescue.org",
+    "https://*.romrescue.org",
+]
