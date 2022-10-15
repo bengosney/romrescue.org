@@ -236,4 +236,4 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
-CSRF_TRUSTED_ORIGINS = ["https://www.romrescue.org/"]
+CSRF_TRUSTED_ORIGINS = ["https://www.romrescue.org/", "http://www.romrescue.org/"]
