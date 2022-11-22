@@ -189,7 +189,7 @@ phonenumberslite==8.13.0
     # via -r requirements.in
 pilkit==2.0
     # via -r requirements.in
-pillow==9.0.1
+pillow==9.3.0
     # via
     #   django-fobi
     #   easy-thumbnails
