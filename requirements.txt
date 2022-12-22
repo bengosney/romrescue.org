@@ -161,7 +161,7 @@ idna==3.3
     #   trio
 ipaddress==1.0.23
     # via -r requirements.in
-isort==5.11.3
+isort==5.11.4
     # via -r requirements.in
 jmespath==0.10.0
     # via
