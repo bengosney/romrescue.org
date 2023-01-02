@@ -127,7 +127,7 @@ django-tables2==2.5.0
     # via -r requirements.in
 django-tag-parser==3.2
     # via django-polymorphic-tree
-django-treebeard==4.5.1
+django-treebeard==4.6.0
     # via -r requirements.in
 django-vanilla-views==3.0.0
     # via -r requirements.in
