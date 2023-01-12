@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=150, verbose_name='Full Name')),
                 ('email', models.EmailField(max_length=254, verbose_name='Email')),
                 ('contact_number', models.CharField(max_length=20, verbose_name='Contact Number')),
-                ('intrested_in', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(choices=[('Adopting', 'Adopting'), ('Fostering', 'Fostering'), ('Other', 'Other')], default='Adopting', max_length=100, verbose_name='Intrested In'), size=None)),
+                ('intrested_in', models.CharField(max_length=20, verbose_name='Intrested In')),
                 ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True)),
             ],
         ),

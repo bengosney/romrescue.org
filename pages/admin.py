@@ -32,6 +32,7 @@ def post_login(sender, user, request, **kwargs):
     LogEntry.objects.filter(action_time__lt=(datetime.now() - timedelta(days=30))).delete()
 
 
+@admin.register(Page)
 class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
     GENERAL_FIELDSET = (
         None,
@@ -64,14 +65,17 @@ class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
     )
 
 
+@admin.register(Empty, ExternalLink, SocialLink)
 class BaseChildNoSEOAdmin(BaseChildAdmin):
     pass
 
 
+@admin.register(ModuleList)
 class ModuleListAdmin(BaseChildAdmin):
     pass
 
 
+@admin.register(node)
 class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
     base_model = node
     child_models = (
@@ -91,6 +95,7 @@ class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
         css = {"all": ("admin/treenode/admin.css",)}
 
 
+@admin.register(ContactSubmission)
 class ContactAdmin(admin.ModelAdmin):
     model = ContactSubmission
 
@@ -112,6 +117,7 @@ class ContactAdmin(admin.ModelAdmin):
         return False
 
 
+@admin.register(IntrestSubmission)
 class IntrestAdmin(admin.ModelAdmin):
     model = IntrestSubmission
 
@@ -131,12 +137,4 @@ class HomePageHeaderAdmin(SortableAdminMixin, ImageCroppingMixin, admin.ModelAdm
     )
 
 
-admin.site.register(node, TreeNodeParentAdmin)
-admin.site.register(ContactSubmission, ContactAdmin)
-admin.site.register(IntrestSubmission, IntrestAdmin)
 
-admin.site.register(Page, BaseChildAdmin)
-admin.site.register(Empty, BaseChildNoSEOAdmin)
-admin.site.register(ModuleList, ModuleListAdmin)
-admin.site.register(ExternalLink, BaseChildNoSEOAdmin)
-admin.site.register(SocialLink, BaseChildNoSEOAdmin)

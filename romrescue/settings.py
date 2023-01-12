@@ -161,9 +161,17 @@ NOSE_ARGS = [
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-DB_USER = os.environ.get("SNAP_DB_PG_USER") or "romrescue"
-DB_PASS = os.environ.get("SNAP_DB_PG_PASSWORD") or "romrescue"
-DB_HOST = os.environ.get("SNAP_DB_PG_HOST") or "127.0.0.1"
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    }
+}
+
+DB_USER = os.environ.get("SNAP_DB_PG_USER") or False
+DB_PASS = os.environ.get("SNAP_DB_PG_PASSWORD") or False
+DB_HOST = os.environ.get("SNAP_DB_PG_HOST") or False
 DB_NAME = "romrescue"
 
 if "CIRCLECI" in os.environ:
@@ -172,7 +180,9 @@ if "CIRCLECI" in os.environ:
     DB_PASS = ""
     DB_HOST = "127.0.0.1"
 
-DATABASES = {
+
+if all([DB_USER, DB_PASS, DB_HOST]):
+    DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": DB_NAME,
@@ -184,6 +194,7 @@ DATABASES = {
 
 if os.environ.get("DATABASE_URL"):
     DATABASES["default"] = dj_database_url.config(conn_max_age=600)
+
 
 # Password validation
 

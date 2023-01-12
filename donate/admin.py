@@ -13,9 +13,9 @@ class ValuesAdmin(SortableInlineAdminMixin, admin.TabularInline):
     model = Values
 
 
+@admin.register(DontateSettings)
 class DontateSettingsAdmin(SortableAdminBase, SingletonModelAdmin):
     model = DontateSettings
     inlines = [ValuesAdmin]
 
 
-admin.site.register(DontateSettings, DontateSettingsAdmin)
