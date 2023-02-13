@@ -57,6 +57,7 @@ django==4.1.6
     #   django-admin-sortable2
     #   django-appconf
     #   django-ckeditor
+    #   django-crispy-forms
     #   django-debug-toolbar
     #   django-extensions
     #   django-extra-views
@@ -85,7 +86,7 @@ django-ckeditor==6.5.1
     # via -r requirements.in
 django-compressor==4.3.1
     # via -r requirements.in
-django-crispy-forms==1.14.0
+django-crispy-forms==2.0
     # via -r requirements.in
 django-debug-toolbar==3.7.0
     # via -r requirements.in
