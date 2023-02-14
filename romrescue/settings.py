@@ -219,7 +219,7 @@ THUMBNAIL_PROCESSORS = ("image_cropping.thumbnail_processors.crop_corners",) + t
 
 SITE_ID = 2
 
-CRISPY_TEMPLATE_PACK = "bootstrap3"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
