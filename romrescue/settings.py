@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     "easy_thumbnails",
     "image_cropping",
     "crispy_forms",
+    "crispy_bootstrap5",
     "polymorphic_tree",
     "polymorphic",
     "mptt",

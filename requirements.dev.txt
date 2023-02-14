@@ -71,8 +71,10 @@ iniconfig==1.1.1
     # via pytest
 jinja2==3.0.3
     # via commitizen
-markupsafe==2.1.0
-    # via jinja2
+markupsafe==2.1.1
+    # via
+    #   -c requirements.txt
+    #   jinja2
 mccabe==0.6.1
     # via flake8
 mock==4.0.3

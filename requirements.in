@@ -5,6 +5,7 @@ beautifulsoup4
 boto
 boto3
 brotlipy
+crispy-bootstrap5
 dj-database-url
 django
 django-admin-sortable2
