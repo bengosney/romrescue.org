@@ -18,7 +18,7 @@ attrs==21.4.0
     #   trio
 babel==2.11.0
     # via -r requirements.in
-beautifulsoup4==4.11.1
+beautifulsoup4==4.11.2
     # via -r requirements.in
 bleach==4.1.0
     # via django-fobi
