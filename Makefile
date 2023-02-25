@@ -51,3 +51,18 @@ update:
 postgres-docker: .envrc
 	@docker stop $(DB_DOCKER) || true
 	docker run --rm --name $(DB_DOCKER) -p 5432:5432 -e POSTGRES_PASSWORD=$(DB_PASS) -e POSTGRES_USER=$(DB_USER) -e POSTGRES_DB=$(DB_NAME) -d postgres
+
+latest.dump:
+	heroku pg:backups:capture
+	heroku pg:backups:download
+
+import-db: latest.dump
+	export "PGPASSWORD=$(DB_PASS)" && pg_restore --verbose --clean --no-acl --no-owner -h localhost -U $(DB_USER) -d $(DB_NAME) $^
+
+clean:
+	rm -f latest.dump
+
+shrink:
+	heroku run 'python manage.py thumbnail_cleanup'
+	heroku run 'python manage.py clean_dogs'
+	heroku run 'python manage.py clearsessions'
