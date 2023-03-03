@@ -13,7 +13,7 @@ attrs==21.4.0
     #   -c requirements.txt
     #   hypothesis
     #   pytest
-autoflake==1.4
+autoflake==1.5.3
     # via -r requirements.dev.in
 autopep8==1.5.7
     # via -r requirements.dev.in
@@ -163,6 +163,7 @@ termcolor==1.1.0
     # via commitizen
 toml==0.10.2
     # via
+    #   autoflake
     #   autopep8
     #   pep517
     #   pre-commit
