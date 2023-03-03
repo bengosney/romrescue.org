@@ -37,7 +37,7 @@ colorama==0.4.4
     #   icecream
 commitizen==2.29.3
     # via -r requirements.dev.in
-coverage==6.4.2
+coverage==7.2.1
     # via -r requirements.dev.in
 decli==0.5.2
     # via commitizen
