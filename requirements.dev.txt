@@ -103,7 +103,7 @@ pep517==0.10.0
     # via build
 pip-chill==1.0.1
     # via -r requirements.dev.in
-pip-tools==6.8.0
+pip-tools==6.12.3
     # via -r requirements.dev.in
 platformdirs==2.5.1
     # via
