@@ -47,7 +47,7 @@ django-nose==1.4.7
     # via -r requirements.dev.in
 eradicate==2.2.0
     # via -r requirements.dev.in
-exceptiongroup==1.0.0rc8
+exceptiongroup==1.1.0
     # via
     #   hypothesis
     #   pytest
@@ -65,7 +65,7 @@ gitdb==4.0.7
     # via gitpython
 gitpython==3.1.17
     # via bandit
-hypothesis==6.50.1
+hypothesis==6.68.2
     # via -r requirements.dev.in
 icecream==2.1.2
     # via -r requirements.dev.in
