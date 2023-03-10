@@ -17,7 +17,7 @@ autoflake==1.5.3
     # via -r requirements.dev.in
 autopep8==1.5.7
     # via -r requirements.dev.in
-bandit==1.7.4
+bandit==1.7.5
     # via -r requirements.dev.in
 black==22.12.0
     # via -r requirements.dev.in
@@ -75,12 +75,16 @@ iniconfig==1.1.1
     # via pytest
 jinja2==3.0.3
     # via commitizen
+markdown-it-py==2.2.0
+    # via rich
 markupsafe==2.1.1
     # via
     #   -c requirements.txt
     #   jinja2
 mccabe==0.6.1
     # via flake8
+mdurl==0.1.2
+    # via markdown-it-py
 mock==4.0.3
     # via -r requirements.dev.in
 mypy-extensions==0.4.3
@@ -123,8 +127,10 @@ pyflakes==2.3.1
     # via
     #   autoflake
     #   flake8
-pygments==2.9.0
-    # via icecream
+pygments==2.14.0
+    # via
+    #   icecream
+    #   rich
 pyparsing==3.0.7
     # via
     #   -c requirements.txt
@@ -147,6 +153,8 @@ pyyaml==5.4.1
     #   pre-commit
 questionary==1.10.0
     # via commitizen
+rich==13.3.2
+    # via bandit
 six==1.16.0
     # via
     #   -c requirements.txt
