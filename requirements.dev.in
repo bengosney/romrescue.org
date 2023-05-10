@@ -4,7 +4,6 @@ autoflake
 autopep8
 bandit
 black
-commitizen
 coverage
 django-nose
 eradicate
@@ -12,9 +11,7 @@ flake8-django
 hypothesis
 icecream
 mock
-pip-chill
 pip-tools
 pre-commit
 pytest
 pytest-django
-python-dateutil==2.8.2
