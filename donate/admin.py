@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # Third Party
-from adminsortable2.admin import SortableInlineAdminMixin, SortableAdminBase
+from adminsortable2.admin import SortableAdminBase, SortableInlineAdminMixin
 from solo.admin import SingletonModelAdmin
 
 # First Party
@@ -13,9 +13,7 @@ class ValuesAdmin(SortableInlineAdminMixin, admin.TabularInline):
     model = Values
 
 
+@admin.register(DontateSettings)
 class DontateSettingsAdmin(SortableAdminBase, SingletonModelAdmin):
     model = DontateSettings
     inlines = [ValuesAdmin]
-
-
-admin.site.register(DontateSettings, DontateSettingsAdmin)

@@ -31,5 +31,4 @@ def get_breadcrumbs(request):
 
 
 def nav_items(request):
-
     return {"nav_items": get_nav_items(request), "breadcrumbs": get_breadcrumbs(request)}
