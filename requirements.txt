@@ -233,7 +233,7 @@ reportlab==3.6.8
     # via
     #   easy-thumbnails
     #   svglib
-requests==2.27.1
+requests==2.31.0
     # via
     #   django-fobi
     #   requests-oauthlib
