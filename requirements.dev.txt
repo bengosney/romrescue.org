@@ -6,6 +6,8 @@
 #
 argcomplete==1.12.3
     # via commitizen
+astroid==2.15.5
+    # via flake8-django
 asttokens==2.0.5
     # via icecream
 attrs==21.4.0
@@ -58,7 +60,7 @@ filelock==3.6.0
     # via virtualenv
 flake8==3.9.2
     # via flake8-django
-flake8-django==1.2
+flake8-django==1.3
     # via -r requirements.dev.in
 gitdb==4.0.7
     # via gitpython
@@ -74,6 +76,8 @@ iniconfig==1.1.1
     # via pytest
 jinja2==3.0.3
     # via commitizen
+lazy-object-proxy==1.9.0
+    # via astroid
 markdown-it-py==2.2.0
     # via rich
 markupsafe==2.1.1
@@ -185,6 +189,7 @@ tomlkit==0.10.0
 typing-extensions==4.5.0
     # via
     #   -c requirements.txt
+    #   astroid
     #   commitizen
 virtualenv==20.13.3
     # via pre-commit
@@ -192,6 +197,8 @@ wcwidth==0.2.5
     # via prompt-toolkit
 wheel==0.38.1
     # via pip-tools
+wrapt==1.15.0
+    # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
