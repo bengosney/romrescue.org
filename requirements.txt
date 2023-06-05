@@ -95,7 +95,7 @@ django-crispy-forms==2.0
     #   crispy-bootstrap5
 django-debug-toolbar==4.1.0
     # via -r requirements.in
-django-extensions==3.2.1
+django-extensions==3.2.3
     # via -r requirements.in
 django-extra-views==0.14.0
     # via -r requirements.in
