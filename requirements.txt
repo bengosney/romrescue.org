@@ -310,7 +310,7 @@ webencodings==0.5.1
     #   tinycss2
 werkzeug==2.3.6
     # via -r requirements.in
-whitenoise==6.4.0
+whitenoise==6.5.0
     # via -r requirements.in
 wsproto==1.1.0
     # via trio-websocket
