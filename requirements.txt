@@ -189,7 +189,7 @@ outcome==1.1.0
     # via trio
 packaging==21.3
     # via bleach
-phonenumbers==8.13.14
+phonenumbers==8.13.15
     # via -r requirements.in
 phonenumberslite==8.13.15
     # via -r requirements.in
