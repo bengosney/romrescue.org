@@ -138,7 +138,7 @@ pyparsing==3.0.7
     # via
     #   -c requirements.txt
     #   packaging
-pytest==7.3.2
+pytest==7.4.0
     # via
     #   -r requirements.dev.in
     #   pytest-django
