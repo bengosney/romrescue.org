@@ -54,7 +54,7 @@ exceptiongroup==1.1.0
     #   pytest
 executing==0.6.0
     # via icecream
-faker==18.11.1
+faker==18.11.2
     # via -r requirements.dev.in
 filelock==3.6.0
     # via virtualenv
