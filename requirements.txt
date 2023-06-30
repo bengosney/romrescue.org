@@ -24,9 +24,9 @@ bleach==4.1.0
     # via django-fobi
 boto==2.49.0
     # via -r requirements.in
-boto3==1.26.164
+boto3==1.26.165
     # via -r requirements.in
-botocore==1.29.164
+botocore==1.29.165
     # via
     #   boto3
     #   s3transfer
