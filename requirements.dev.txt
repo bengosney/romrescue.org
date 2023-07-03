@@ -110,7 +110,7 @@ pep517==0.10.0
     # via build
 pip-chill==1.0.3
     # via -r requirements.dev.in
-pip-tools==6.13.0
+pip-tools==6.14.0
     # via -r requirements.dev.in
 platformdirs==2.5.1
     # via
@@ -183,6 +183,7 @@ tomli==2.0.0
     # via
     #   black
     #   build
+    #   pip-tools
     #   pytest
 tomlkit==0.10.0
     # via commitizen
