@@ -88,7 +88,7 @@ mccabe==0.6.1
     # via flake8
 mdurl==0.1.2
     # via markdown-it-py
-mock==5.0.2
+mock==5.1.0
     # via -r requirements.dev.in
 mypy-extensions==0.4.3
     # via black
