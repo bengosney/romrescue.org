@@ -99,7 +99,7 @@ django-extensions==3.2.3
     # via -r requirements.in
 django-extra-views==0.14.0
     # via -r requirements.in
-django-fobi==0.19.8
+django-fobi==0.19.9
     # via -r requirements.in
 django-formtools==2.3
     # via django-fobi
