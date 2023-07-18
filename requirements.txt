@@ -155,7 +155,7 @@ google-auth-oauthlib==0.5.0
     # via gspread
 gspread==5.10.0
     # via -r requirements.in
-gunicorn==20.1.0
+gunicorn==21.1.0
     # via -r requirements.in
 h11==0.13.0
     # via wsproto
@@ -188,7 +188,9 @@ ordereddict==1.1
 outcome==1.1.0
     # via trio
 packaging==21.3
-    # via bleach
+    # via
+    #   bleach
+    #   gunicorn
 phonenumbers==8.13.16
     # via -r requirements.in
 phonenumberslite==8.13.16
