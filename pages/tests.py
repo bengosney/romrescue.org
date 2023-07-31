@@ -145,7 +145,7 @@ class ContactAdmminMethodTest(TestCase):
         self.site = AdminSite
 
     def test_permissions(self):
-        """make sure permissions are correct."""
+        """Make sure permissions are correct."""
 
         admin = ContactAdmin(ContactSubmission, self.site)
 
