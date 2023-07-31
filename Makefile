@@ -37,7 +37,8 @@ init: .envrc pre-init install $(HOOKS) ## Initalise a dev enviroment
 
 update:
 	@echo "Upgrading"
-	pip-compile --upgrade requirements.in $(REQS)
+	pip-compile --upgrade requirements.in > requirements.txt
+	pip-compile --upgrade requirements.dev.in > requirements.dev.txt
 
 .envrc: runtime.txt Makefile
 	@echo > $@
