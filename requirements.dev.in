@@ -17,4 +17,4 @@ pip-tools
 pre-commit
 pytest
 pytest-django
-python-dateutil==2.8.2
+python-dateutil
