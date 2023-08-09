@@ -109,7 +109,7 @@ pbr==5.11.1
     # via stevedore
 pip-chill==1.0.3
     # via -r requirements.dev.in
-pip-tools==7.2.0
+pip-tools==7.3.0
     # via -r requirements.dev.in
 platformdirs==3.10.0
     # via
