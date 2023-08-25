@@ -131,7 +131,7 @@ django-treebeard==4.7
     # via -r requirements.in
 django-vanilla-views==3.0.0
     # via -r requirements.in
-django-widget-tweaks==1.4.12
+django-widget-tweaks==1.5.0
     # via -r requirements.in
 easy-thumbnails==2.8.5
     # via django-fobi
