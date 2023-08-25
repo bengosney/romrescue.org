@@ -16,7 +16,7 @@ attrs==23.1.0
     #   hypothesis
 autoflake==2.2.0
     # via -r requirements.dev.in
-autopep8==2.0.2
+autopep8==2.0.3
     # via -r requirements.dev.in
 bandit==1.7.5
     # via -r requirements.dev.in
