@@ -196,7 +196,7 @@ pillow==10.0.0
     #   django-fobi
     #   easy-thumbnails
     #   pilkit
-psycopg2==2.9.8
+psycopg2==2.9.9
     # via -r requirements.in
 purl==1.6
     # via -r requirements.in
