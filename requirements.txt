@@ -83,7 +83,7 @@ django-ckeditor==6.7.0
     # via -r requirements.in
 django-compressor==4.4
     # via -r requirements.in
-django-crispy-forms==2.0
+django-crispy-forms==2.1
     # via
     #   -r requirements.in
     #   crispy-bootstrap5
