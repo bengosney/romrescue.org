@@ -42,7 +42,7 @@ charset-normalizer==3.2.0
     # via requests
 crispy-bootstrap5==0.7
     # via -r requirements.in
-cryptography==41.0.4
+cryptography==41.0.5
     # via pyopenssl
 dj-database-url==2.1.0
     # via -r requirements.in
@@ -213,7 +213,7 @@ pycountry==22.3.5
     # via -r requirements.in
 pycparser==2.21
     # via cffi
-pyopenssl==23.2.0
+pyopenssl==23.3.0
     # via -r requirements.in
 pyparsing==3.1.1
     # via httplib2
