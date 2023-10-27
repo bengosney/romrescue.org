@@ -20,9 +20,9 @@ bleach==6.0.0
     # via django-fobi
 boto==2.49.0
     # via -r requirements.in
-boto3==1.28.72
+boto3==1.28.73
     # via -r requirements.in
-botocore==1.31.72
+botocore==1.31.73
     # via
     #   boto3
     #   s3transfer
@@ -140,7 +140,9 @@ entrypoints==0.4
 enum34==1.1.10
     # via -r requirements.in
 exceptiongroup==1.1.2
-    # via trio-websocket
+    # via
+    #   trio
+    #   trio-websocket
 funcsigs==1.0.2
     # via -r requirements.in
 google-auth==2.22.0
@@ -273,7 +275,9 @@ trio==0.22.2
 trio-websocket==0.10.3
     # via selenium
 typing-extensions==4.7.1
-    # via dj-database-url
+    # via
+    #   asgiref
+    #   dj-database-url
 unicodecsv==0.14.1
     # via -r requirements.in
 unidecode==1.3.6
