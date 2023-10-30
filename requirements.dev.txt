@@ -50,6 +50,11 @@ django-nose==1.4.7
     # via -r requirements.dev.in
 eradicate==2.3.0
     # via -r requirements.dev.in
+exceptiongroup==1.1.2
+    # via
+    #   -c requirements.txt
+    #   hypothesis
+    #   pytest
 executing==1.2.0
     # via icecream
 faker==19.12.0
@@ -139,7 +144,7 @@ pytest==7.4.3
     # via
     #   -r requirements.dev.in
     #   pytest-django
-pytest-django==4.5.2
+pytest-django==4.6.0
     # via -r requirements.dev.in
 python-dateutil==2.8.2
     # via
@@ -170,8 +175,22 @@ stevedore==5.1.0
     # via bandit
 termcolor==2.3.0
     # via commitizen
+tomli==2.0.1
+    # via
+    #   autoflake
+    #   autopep8
+    #   black
+    #   build
+    #   pip-tools
+    #   pyproject-hooks
+    #   pytest
 tomlkit==0.12.1
     # via commitizen
+typing-extensions==4.7.1
+    # via
+    #   -c requirements.txt
+    #   astroid
+    #   black
 virtualenv==20.24.2
     # via pre-commit
 wcwidth==0.2.6
