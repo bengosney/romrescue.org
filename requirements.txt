@@ -187,7 +187,7 @@ packaging==23.1
     # via
     #   django-nine
     #   gunicorn
-phonenumbers==8.13.22
+phonenumbers==8.13.24
     # via -r requirements.in
 phonenumberslite==8.13.23
     # via -r requirements.in
@@ -290,6 +290,7 @@ urllib3[socks]==1.26.16
     #   google-auth
     #   requests
     #   selenium
+    #   urllib3
 vishap==0.1.5
     # via django-fobi
 webencodings==0.5.1
