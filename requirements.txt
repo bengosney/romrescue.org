@@ -40,7 +40,7 @@ cffi==1.15.1
     #   cryptography
 charset-normalizer==3.2.0
     # via requests
-crispy-bootstrap5==0.7
+crispy-bootstrap5==2023.10
     # via -r requirements.in
 cryptography==41.0.5
     # via pyopenssl
@@ -290,6 +290,7 @@ urllib3[socks]==1.26.16
     #   google-auth
     #   requests
     #   selenium
+    #   urllib3
 vishap==0.1.5
     # via django-fobi
 webencodings==0.5.1
