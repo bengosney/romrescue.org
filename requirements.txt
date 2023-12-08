@@ -211,7 +211,7 @@ pyasn1-modules==0.3.0
     # via
     #   google-auth
     #   oauth2client
-pycountry==22.3.5
+pycountry==23.12.7
     # via -r requirements.in
 pycparser==2.21
     # via cffi
@@ -300,6 +300,3 @@ whitenoise==6.6.0
     # via -r requirements.in
 wsproto==1.2.0
     # via trio-websocket
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools
