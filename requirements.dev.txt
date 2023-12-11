@@ -18,7 +18,7 @@ autoflake==2.2.1
     # via -r requirements.dev.in
 autopep8==2.0.4
     # via -r requirements.dev.in
-bandit==1.7.5
+bandit==1.7.6
     # via -r requirements.dev.in
 black==23.11.0
     # via -r requirements.dev.in
