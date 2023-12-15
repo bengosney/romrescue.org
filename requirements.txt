@@ -151,7 +151,7 @@ google-auth==2.22.0
     #   gspread
 google-auth-oauthlib==1.0.0
     # via gspread
-gspread==5.12.2
+gspread==5.12.3
     # via -r requirements.in
 gunicorn==21.2.0
     # via -r requirements.in
