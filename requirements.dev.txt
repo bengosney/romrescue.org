@@ -57,7 +57,7 @@ exceptiongroup==1.1.2
     #   pytest
 executing==1.2.0
     # via icecream
-faker==22.5.0
+faker==22.5.1
     # via -r requirements.dev.in
 filelock==3.12.2
     # via virtualenv
@@ -186,7 +186,7 @@ tomli==2.0.1
     #   pytest
 tomlkit==0.12.1
     # via commitizen
-typing-extensions==4.7.1
+typing-extensions==4.9.0
     # via
     #   -c requirements.txt
     #   astroid
