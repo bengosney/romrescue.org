@@ -116,7 +116,7 @@ platformdirs==3.10.0
     # via
     #   black
     #   virtualenv
-pluggy==1.2.0
+pluggy==1.4.0
     # via pytest
 pre-commit==3.6.0
     # via -r requirements.dev.in
@@ -136,7 +136,7 @@ pygments==2.15.1
     #   rich
 pyproject-hooks==1.0.0
     # via build
-pytest==7.4.4
+pytest==8.0.0
     # via
     #   -r requirements.dev.in
     #   pytest-django
