@@ -22,7 +22,7 @@ bandit==1.7.7
     # via -r requirements.dev.in
 black==24.2.0
     # via -r requirements.dev.in
-build==0.10.0
+build==1.0.3
     # via pip-tools
 cfgv==3.3.1
     # via pre-commit
@@ -110,7 +110,7 @@ pbr==5.11.1
     # via stevedore
 pip-chill==1.0.3
     # via -r requirements.dev.in
-pip-tools==7.3.0
+pip-tools==7.4.0
     # via -r requirements.dev.in
 platformdirs==3.10.0
     # via
@@ -135,7 +135,9 @@ pygments==2.15.1
     #   icecream
     #   rich
 pyproject-hooks==1.0.0
-    # via build
+    # via
+    #   build
+    #   pip-tools
 pytest==8.0.0
     # via
     #   -r requirements.dev.in
