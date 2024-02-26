@@ -40,7 +40,7 @@ cffi==1.15.1
     #   cryptography
 charset-normalizer==3.2.0
     # via requests
-crispy-bootstrap5==2023.10
+crispy-bootstrap5==2024.2
     # via -r requirements.in
 cryptography==42.0.4
     # via pyopenssl
