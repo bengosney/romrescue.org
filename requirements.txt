@@ -20,9 +20,9 @@ bleach==6.0.0
     # via django-fobi
 boto==2.49.0
     # via -r requirements.in
-boto3==1.34.60
+boto3==1.34.61
     # via -r requirements.in
-botocore==1.34.60
+botocore==1.34.61
     # via
     #   boto3
     #   s3transfer
@@ -292,7 +292,6 @@ urllib3[socks]==1.26.16
     #   google-auth
     #   requests
     #   selenium
-    #   urllib3
 vishap==0.1.5
     # via django-fobi
 webencodings==0.5.1
