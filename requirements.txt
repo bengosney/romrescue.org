@@ -193,7 +193,7 @@ phonenumberslite==8.13.33
     # via -r requirements.in
 pilkit==3.0
     # via -r requirements.in
-pillow==10.2.0
+pillow==10.3.0
     # via
     #   django-fobi
     #   easy-thumbnails
