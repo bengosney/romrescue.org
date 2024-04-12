@@ -159,7 +159,7 @@ h11==0.14.0
     # via wsproto
 httplib2==0.22.0
     # via oauth2client
-idna==3.4
+idna==3.7
     # via
     #   requests
     #   trio
