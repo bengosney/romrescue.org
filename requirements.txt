@@ -153,7 +153,7 @@ google-auth-oauthlib==1.0.0
     # via gspread
 gspread==6.1.0
     # via -r requirements.in
-gunicorn==21.2.0
+gunicorn==22.0.0
     # via -r requirements.in
 h11==0.14.0
     # via wsproto
