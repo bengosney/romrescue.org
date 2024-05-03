@@ -189,7 +189,7 @@ packaging==23.1
     #   gunicorn
 phonenumbers==8.13.35
     # via -r requirements.in
-phonenumberslite==8.13.35
+phonenumberslite==8.13.36
     # via -r requirements.in
 pilkit==3.0
     # via -r requirements.in
