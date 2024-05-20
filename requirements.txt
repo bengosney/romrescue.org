@@ -225,7 +225,7 @@ python-dateutil==2.8.2
     # via botocore
 rcssmin==1.1.1
     # via django-compressor
-requests==2.31.0
+requests==2.32.0
     # via
     #   django-fobi
     #   requests-oauthlib
