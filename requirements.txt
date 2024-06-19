@@ -298,7 +298,7 @@ webencodings==0.5.1
     # via bleach
 werkzeug==3.0.3
     # via -r requirements.in
-whitenoise==6.6.0
+whitenoise==6.7.0
     # via -r requirements.in
 wsproto==1.2.0
     # via trio-websocket
