@@ -114,7 +114,7 @@ django-nine==0.2.7
     #   django-nonefield
 django-nonefield==0.4
     # via django-fobi
-django-phonenumber-field==7.3.0
+django-phonenumber-field==8.0.0
     # via -r requirements.in
 django-polymorphic==3.1.0
     # via django-polymorphic-tree
