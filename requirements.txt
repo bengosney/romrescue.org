@@ -189,7 +189,7 @@ packaging==23.1
     #   django-haystack
     #   django-nine
     #   gunicorn
-phonenumbers==8.13.39
+phonenumbers==8.13.40
     # via -r requirements.in
 phonenumberslite==8.13.39
     # via -r requirements.in
