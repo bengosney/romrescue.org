@@ -88,7 +88,7 @@ django-crispy-forms==2.2
     # via
     #   -r requirements.in
     #   crispy-bootstrap5
-django-debug-toolbar==4.4.5
+django-debug-toolbar==4.4.6
     # via -r requirements.in
 django-extensions==3.2.3
     # via -r requirements.in
