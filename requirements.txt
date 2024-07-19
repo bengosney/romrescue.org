@@ -244,7 +244,7 @@ rsa==4.9
     #   oauth2client
 s3transfer==0.10.0
     # via boto3
-selenium==4.22.0
+selenium==4.23.0
     # via -r requirements.in
 simplejson==3.19.2
     # via -r requirements.in
