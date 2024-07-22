@@ -217,7 +217,7 @@ pycountry==24.6.1
     # via -r requirements.in
 pycparser==2.21
     # via cffi
-pyopenssl==24.1.0
+pyopenssl==24.2.1
     # via -r requirements.in
 pyparsing==3.1.1
     # via httplib2
