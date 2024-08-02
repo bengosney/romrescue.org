@@ -20,7 +20,7 @@ autopep8==2.2.0
     # via -r requirements.dev.in
 bandit==1.7.9
     # via -r requirements.dev.in
-black==24.4.2
+black==24.8.0
     # via -r requirements.dev.in
 build==1.0.3
     # via pip-tools
