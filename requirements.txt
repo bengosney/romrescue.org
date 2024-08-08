@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.in
 #
-asgiref==3.7.2
+asgiref==3.8.1
     # via django
 asn1crypto==1.5.1
     # via -r requirements.in
@@ -46,7 +46,7 @@ cryptography==42.0.4
     # via pyopenssl
 dj-database-url==2.2.0
     # via -r requirements.in
-django==5.0.8
+django==5.1
     # via
     #   -r requirements.in
     #   crispy-bootstrap5
