@@ -70,7 +70,7 @@ django==5.0.8
     #   django-tables2
     #   django-treebeard
     #   easy-thumbnails
-django-admin-sortable2==2.2.1
+django-admin-sortable2==2.2.2
     # via -r requirements.in
 django-appconf==1.0.5
     # via
