@@ -299,7 +299,7 @@ webencodings==0.5.1
     # via bleach
 websocket-client==1.8.0
     # via selenium
-werkzeug==3.0.3
+werkzeug==3.0.4
     # via -r requirements.in
 whitenoise==6.7.0
     # via -r requirements.in
