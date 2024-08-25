@@ -5,38 +5,38 @@
 {% block title %}{{ donate.title }}{% endblock %}
 
 {% block content %}
-<h1>{{ donate.title }}</h1>
-{{ donate.body|safe }}
-<form class="dontate-form" method="post" action="https://www.paypal.com/donate" target="_blank">
-    <p>Donate securely via PayPal</p>
-    <input type="hidden" name="business" value="sosromrescue@gmail.com">
-    <input type="hidden" name="currency_code" value="GBP">
-    <div class="form-group">
-        {% for value in donate.values_set.all %}
-        <div class="form-check">
-            <input
-                type="radio"
-                class="form-check-input"
-                id="value{{ value.amount }}"
-                value="{{ value.amount }}"
-                name="amount"
-            />
-            <label for="value{{ value.amount }}">{{ value }}</label>
+    <h1>{{ donate.title }}</h1>
+    {{ donate.body|safe }}
+    <form class="dontate-form" method="post" action="https://www.paypal.com/donate" target="_blank">
+        <p>Donate securely via PayPal</p>
+        <input type="hidden" name="business" value="sosromrescue@gmail.com">
+        <input type="hidden" name="currency_code" value="GBP">
+        <div class="form-group">
+            {% for value in donate.values_set.all %}
+                <div class="form-check">
+                    <input
+                        type="radio"
+                        class="form-check-input"
+                        id="value{{ value.amount }}"
+                        value="{{ value.amount }}"
+                        name="amount"
+                    />
+                    <label for="value{{ value.amount }}">{{ value }}</label>
+                </div>
+            {% endfor %}
+            <div class="form-check">
+                <input
+                    type="radio"
+                    class="form-check-input"
+                    id="value-other"
+                    value=""
+                    name="amount"
+                />
+                <label for="value-other">Other amount</label>
+            </div>
         </div>
-        {% endfor %}
-        <div class="form-check">
-            <input
-                type="radio"
-                class="form-check-input"
-                id="value-other"
-                value=""
-                name="amount"
-            />
-            <label for="value-other">Other amount</label>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">Donate via PayPal</button>
         </div>
-    </div>
-    <div class="form-group">
-        <button class="btn btn-primary btn-block" type="submit">Donate via PayPal</button>
-    </div>
-</form>
+    </form>
 {% endblock %}

@@ -13,7 +13,12 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--days-to-keep", action="store", dest="last_n_days", default=365, type=int, help="Days to keep dogs"
+            "--days-to-keep",
+            action="store",
+            dest="last_n_days",
+            default=365,
+            type=int,
+            help="Days to keep dogs",
         )
 
     def handle(self, *args, **options):

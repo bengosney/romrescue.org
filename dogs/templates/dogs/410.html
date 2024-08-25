@@ -8,66 +8,66 @@
 {% block title %}{{ dog.name }}{% endblock %}
 
 {% block headextra %}
-{% with dog.dogphoto_set.all|first as image %}
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ dog.name }} has found their forever home">
-<meta name="twitter:description" content="{{ dog.name }} has found their forever home">
-<meta name="twitter:image" content="{{ image.main.url }}">
+  {% with dog.dogphoto_set.all|first as image %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ dog.name }} has found their forever home">
+    <meta name="twitter:description" content="{{ dog.name }} has found their forever home">
+    <meta name="twitter:image" content="{{ image.main.url }}">
 
-<meta property="og:url" content="{{ request.build_absolute_uri }}" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="{{ dog.name }} has found their forever home" />
-<meta property="og:description" content="{{ dog.name }} has found their forever home" />
-<meta property="og:image" content="{{ image.main.url }}" />
-{% endwith %}
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ dog.name }} has found their forever home" />
+    <meta property="og:description" content="{{ dog.name }} has found their forever home" />
+    <meta property="og:image" content="{{ image.main.url }}" />
+  {% endwith %}
 {% endblock %}
 
 {% block content %}
-<div class="dog-details">
-  <div class="row">
-    <div class="col-xs-12">
-      <h1>
-	{{ dog.name }} has found their forever home.
-      </h1>
-    </div>
-    <div class="col-md-4">
-    {% with dog.dogphoto_set.all|first as image %}
-      {% if image.image %}
-      <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive success-image" />
-      {% else %}
-      <img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
-      {% endif %}
-      {% endwith %}
-      {% if dog.is_success %}
-      <p>Read about <a href="{{ dog.succcess_url }}">{{ dog.name }}'s success</a>.</p>
-      {% endif %}
-    </div>
-    <div class="col-md-8">
-      <p>But we still have lots of other dogs looking for their forever home</p>
-      <div class="row dog-list small">
-	{% for dog in dog_list %}
-	<div class="col-md-3 col-xs-6">
-	  <a href="{{ dog.url }}" class="link">
-	    {% with dog.dogphoto_set.all|first as image %}
-	    <div class="image">
-	      {% if image.image %}
-	      <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
-	      {% else %}
-	      <img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
-	      {% endif %}
-	    </div>
-	    {% endwith %}
-	    <h2>{{ dog.name }}</h2>
-	    {% if dog.reserved %}
-	    <div class="reserved">(Reserved)</div>
-	    {% endif %}
-	  </a>
-	</div>
-	{% endfor %}
+  <div class="dog-details">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>
+          {{ dog.name }} has found their forever home.
+        </h1>
       </div>
+      <div class="col-md-4">
+        {% with dog.dogphoto_set.all|first as image %}
+          {% if image.image %}
+            <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive success-image" />
+          {% else %}
+            <img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
+          {% endif %}
+        {% endwith %}
+        {% if dog.is_success %}
+          <p>Read about <a href="{{ dog.succcess_url }}">{{ dog.name }}'s success</a>.</p>
+        {% endif %}
+      </div>
+      <div class="col-md-8">
+        <p>But we still have lots of other dogs looking for their forever home</p>
+        <div class="row dog-list small">
+          {% for dog in dog_list %}
+            <div class="col-md-3 col-xs-6">
+              <a href="{{ dog.url }}" class="link">
+                {% with dog.dogphoto_set.all|first as image %}
+                  <div class="image">
+                    {% if image.image %}
+                      <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
+                    {% else %}
+                      <img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
+                    {% endif %}
+                  </div>
+                {% endwith %}
+                <h2>{{ dog.name }}</h2>
+                {% if dog.reserved %}
+                  <div class="reserved">(Reserved)</div>
+                {% endif %}
+              </a>
+            </div>
+          {% endfor %}
+        </div>
 
-      <a class="big-button" href="{% url 'pages:modulelist' slug="in-need-of-a-home" %}">View all our dogs <span class="hidden-xs">looking for a forever home</span></a>
+        <a class="big-button" href="{% url 'pages:modulelist' slug="in-need-of-a-home" %}">View all our dogs <span class="hidden-xs">looking for a forever home</span></a>
+      </div>
     </div>
   </div>
-</div>
 {% endblock %}
