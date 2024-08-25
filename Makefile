@@ -20,11 +20,11 @@ help:
 
 requirements.%.txt: $(UV_PATH) pyproject.toml
 	@echo "Builing $@"
-	python -m uv pip compile --generate-hashes --extra $* $(filter-out $<,$^) > $@
+	python -m uv pip compile --extra $* $(filter-out $<,$^) > $@
 
 requirements.txt: $(UV_PATH) pyproject.toml
 	@echo "Builing $@"
-	python -m uv pip compile --generate-hashes $(filter-out $<,$^) > $@
+	python -m uv pip compile $(filter-out $<,$^) > $@
 
 $(PIP_PATH):
 	@python -m ensurepip
