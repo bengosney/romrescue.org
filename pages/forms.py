@@ -13,8 +13,7 @@ class ContactForm(ModelForm):
 
         if not cleaned_data["consent"]:
             self.add_error(
-                "consent",
-                "You need to agree to us collecting your details if you want us to answer your enquiry",
+                "consent", "You need to agree to us collecting your details if you want us to answer your enquiry"
             )
 
     class Meta:
@@ -34,8 +33,7 @@ class SponsorForm(ModelForm):
 
         if not cleaned_data["consent"]:
             self.add_error(
-                "consent",
-                "You need to agree to us collecting your details if you want us to answer your enquiry",
+                "consent", "You need to agree to us collecting your details if you want us to answer your enquiry"
             )
 
     class Meta:

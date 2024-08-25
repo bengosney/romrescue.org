@@ -1,9 +1,9 @@
 # First Party
-from pages.models import Node
+from pages.models import node
 
 
 def get_nav_items(request):
-    nodes = Node.objects.all()
+    nodes = node.objects.all()
 
     id = 0
     for nav_node in nodes:
@@ -25,13 +25,10 @@ def get_breadcrumbs(request):
     if full_path == "/":
         return None
 
-    for nav_node in Node.objects.all():
+    for nav_node in node.objects.all():
         if nav_node.url == full_path:
             return nav_node.get_ancestors(include_self=True)
 
 
 def nav_items(request):
-    return {
-        "nav_items": get_nav_items(request),
-        "breadcrumbs": get_breadcrumbs(request),
-    }
+    return {"nav_items": get_nav_items(request), "breadcrumbs": get_breadcrumbs(request)}

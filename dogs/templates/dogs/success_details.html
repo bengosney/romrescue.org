@@ -7,15 +7,15 @@
 {% block title %}{{ dog.name|possess }} success story{% endblock %}
 
 {% block content %}
-  <div class="dog-details success">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>{{ dog.name }}</h1>
-      </div>
-      <div class="col-xs-12">
-        {% include "dogs/dog_cycle.html" %}
-        <p>{{ dog.description|safe }}</p>
-      </div>
+<div class="dog-details success">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>{{ dog.name }}</h1>
+    </div>
+    <div class="col-xs-12">
+      {% include "dogs/dog_cycle.html" %}
+      <p>{{ dog.description|safe }}</p>
     </div>
   </div>
+</div>
 {% endblock %}

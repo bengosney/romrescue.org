@@ -71,7 +71,7 @@ class DetailFormView(GenericModelView):
     def get_form_class(self):
         object = self.get_object()
         if object.form:
-            self.form_class = object.get_form_class()
+            self.form_class = object.getFormClass()
 
         return self.form_class
 

@@ -5,26 +5,26 @@
 {% block title %}Intrest Form{% endblock %}
 
 {% block content %}
-  <div class="intrest-details container-fluid">
-    <div class="row">
-      <p class="col-xs-12 title">Details Saved</p>
-    </div>
-    <div class="row">
-      <div class="intrest-label col-xs-12 col-md-3">Name:</div>
-      <div class="intrest-value col-xs-12 col-md-9">{{ object.name }}</div>
-    </div>
-    <div class="row">
-      <div class="intrest-label col-xs-12 col-md-3">Email:</div>
-      <div class="intrest-value col-xs-12 col-md-9">{{ object.email|default:"N/A" }}</div>
-    </div>
-    <div class="row">
-      <div class="intrest-label col-xs-12 col-md-3">Number:</div>
-      <div class="intrest-value col-xs-12 col-md-9">{{ object.contact_number|default:"N/A" }}</div>
-    </div>
-    <div class="row">
-      <div class="back">
-        <a class="button" href="{% url 'pages:intrest' %}">Add another</a>
-      </div>
+<div class="intrest-details container-fluid">
+  <div class="row">
+    <p class="col-xs-12 title">Details Saved</p>
+  </div>
+  <div class="row">
+    <div class="intrest-label col-xs-12 col-md-3">Name:</div>
+    <div class="intrest-value col-xs-12 col-md-9">{{ object.name }}</div>
+  </div>
+  <div class="row">
+    <div class="intrest-label col-xs-12 col-md-3">Email:</div>
+    <div class="intrest-value col-xs-12 col-md-9">{{ object.email|default:"N/A" }}</div>
+  </div>
+  <div class="row">
+    <div class="intrest-label col-xs-12 col-md-3">Number:</div>
+    <div class="intrest-value col-xs-12 col-md-9">{{ object.contact_number|default:"N/A" }}</div>
+  </div>
+  <div class="row">
+    <div class="back">
+      <a class="button" href="{% url 'pages:intrest' %}">Add another</a>
     </div>
   </div>
+</div>
 {% endblock %}

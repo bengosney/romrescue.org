@@ -17,7 +17,7 @@ from modulestatus.models import statusMixin
 from pages.decorators import get_registered_list_views
 
 
-class Node(PolymorphicMPTTModel, statusMixin):
+class node(PolymorphicMPTTModel, statusMixin):
     ICONS = [
         ("twitter", "Twitter"),
         ("facebook", "Facebook"),
@@ -26,12 +26,7 @@ class Node(PolymorphicMPTTModel, statusMixin):
     ]
 
     parent = PolymorphicTreeForeignKey(
-        "self",
-        blank=True,
-        null=True,
-        related_name="children",
-        verbose_name=_("parent"),
-        on_delete=models.PROTECT,
+        "self", blank=True, null=True, related_name="children", verbose_name=_("parent"), on_delete=models.PROTECT
     )
     title = models.CharField(_("Title"), max_length=200)
     nav_title = models.CharField(_("Navigation Title"), max_length=200, blank=True, default="")
@@ -72,11 +67,11 @@ class Node(PolymorphicMPTTModel, statusMixin):
     def save(self, *args, **kwargs):
         if self.is_home_page:
             try:
-                temp = Node.objects.get(is_home_page=True)
+                temp = node.objects.get(is_home_page=True)
                 if self != temp:
                     temp.is_home_page = False
                     temp.save()
-            except Node.DoesNotExist:
+            except node.DoesNotExist:
                 pass
         super().save(*args, **kwargs)
 
@@ -85,7 +80,7 @@ class Node(PolymorphicMPTTModel, statusMixin):
         pass
 
 
-class Empty(Node):
+class Empty(node):
     class Meta(PolymorphicMPTTModel.Meta):
         verbose_name = _("Empty Item")
         verbose_name_plural = _("Empty Items")
@@ -98,7 +93,7 @@ class Empty(Node):
         return f"#{self.slug}"
 
 
-class ExternalLink(Node):
+class ExternalLink(node):
     URL = models.URLField(_("URL"))
 
     class Meta(PolymorphicMPTTModel.Meta):
@@ -110,7 +105,7 @@ class ExternalLink(Node):
         return self.URL
 
 
-class SocialLink(Node):
+class SocialLink(node):
     TYPES = [
         ("twitter", "Twitter"),
         ("facebook", "Facebook"),
@@ -128,7 +123,7 @@ class SocialLink(Node):
         return self.social
 
 
-class Page(Node):
+class Page(node):
     FORM_CHOICES = (
         ("ContactForm", "Contact Form"),
         ("FosteringForm", "Fostering Form"),
@@ -138,7 +133,7 @@ class Page(Node):
     form = models.CharField(max_length=100, blank=True, default="", choices=FORM_CHOICES)
     success_message = RichTextField(_("Success Message"), blank=True, null=True)
 
-    def get_form_class(self):
+    def getFormClass(self):
         # First Party
         from pages import forms
 
@@ -153,7 +148,7 @@ class Page(Node):
         verbose_name_plural = _("Pages")
 
 
-class ModuleList(Node):
+class ModuleList(node):
     module = models.CharField(
         _("Module"),
         max_length=200,
@@ -213,11 +208,8 @@ class HomePageHeader(models.Model):
     cropped = ImageRatioField("image", "1110x624")
     strapline = models.CharField(_("Strap Line"), max_length=200)
     subline = models.CharField(_("Sub Line"), max_length=400)
-    itemlink = models.ForeignKey(Node, null=True, blank=True, on_delete=models.PROTECT)
+    itemlink = models.ForeignKey(node, null=True, blank=True, on_delete=models.PROTECT)
     position = models.PositiveIntegerField(default=0, blank=False, null=False)
-
-    class Meta:
-        ordering = ("position",)
 
     def __str__(self):
         return self.strapline
@@ -226,6 +218,9 @@ class HomePageHeader(models.Model):
         return f'<img src="{self.image.url}" height="75"/>'
 
     admin_image.allow_tags = True
+
+    class Meta:
+        ordering = ("position",)
 
 
 class FosteringSubmission(models.Model):

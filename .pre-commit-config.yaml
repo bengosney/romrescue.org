@@ -1,83 +1,68 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
-exclude: migrations/.*\.py|Procfile|[aw]sgi\.py|node_modules|.git|\.polar
+exclude: 'migrations/.*\.py|Procfile|[aw]sgi\.py|node_modules|.git|\.polar'
 repos:
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.6.0
-  hooks:
-  - id: trailing-whitespace
-  - id: end-of-file-fixer
-  - id: check-yaml
-  - id: check-json
-  - id: check-toml
-  - id: check-added-large-files
-  - id: check-merge-conflict
-  - id: detect-aws-credentials
-  - id: detect-private-key
-  - id: file-contents-sorter
-    files: requirements.*\.in
-  - id: no-commit-to-branch
-    args: [--branch, master]
-- repo: https://github.com/adamchainz/django-upgrade
-  rev: 1.20.0
-  hooks:
-  - id: django-upgrade
-    args: [--target-version, '5.1']
-- repo: https://github.com/MarcoGorelli/absolufy-imports
-  rev: v0.3.1
-  hooks:
-  - id: absolufy-imports
-#- repo: https://github.com/asottile/pyupgrade
-#  rev: v3.17.0
-#  hooks:
-#  - id: pyupgrade
-#    args: [--py311-plus]
-- repo: https://github.com/asottile/yesqa
-  rev: v1.5.0
-  hooks:
-  - id: yesqa
-- repo: https://github.com/myint/docformatter
-  rev: v1.7.5
-  hooks:
-  - id: docformatter
-    args: [--in-place]
-- repo: https://github.com/hadialqattan/pycln
-  rev: v2.4.0
-  hooks:
-  - id: pycln
-    args: [--config=pyproject.toml]
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.6.2
-  hooks:
-  - id: ruff
-    args: [--fix]
-  - id: ruff-format
-- repo: https://github.com/pycqa/isort
-  rev: 5.13.2
-  hooks:
-  - id: isort
-- repo: https://github.com/myint/autoflake
-  rev: v2.3.1
-  hooks:
-  - id: autoflake
-- repo: https://github.com/PyCQA/flake8
-  rev: 7.1.1
-  hooks:
-  - id: flake8
-- repo: https://github.com/ikamensh/flynt/
-  rev: 1.0.1
-  hooks:
-  - id: flynt
-- repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 2.2.1
-  hooks:
-  - id: pyproject-fmt
-- repo: https://github.com/rtts/djhtml
-  rev: 3.0.6
-  hooks:
-  - id: djhtml
-- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: v2.14.0
-  hooks:
-  - id: pretty-format-yaml
-    args: [--autofix]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: detect-aws-credentials
+      - id: detect-private-key
+      - id: file-contents-sorter
+        files: requirements.*\.in
+      - id: no-commit-to-branch
+        args: [--branch, master]
+  - repo: https://github.com/adamchainz/django-upgrade
+    rev: 1.14.0
+    hooks:
+    - id: django-upgrade
+      args: [--target-version, "4.1"]
+  - repo: https://github.com/MarcoGorelli/absolufy-imports
+    rev: v0.3.1
+    hooks:
+    - id: absolufy-imports
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.10.1
+    hooks:
+      - id: pyupgrade
+        args: [--py311-plus]
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.5.0
+    hooks:
+      - id: yesqa
+  - repo: https://github.com/myint/docformatter
+    rev: v1.7.5
+    hooks:
+      - id: docformatter
+        args: [--in-place]
+  - repo: https://github.com/hadialqattan/pycln
+    rev: v2.1.7
+    hooks:
+      - id: pycln
+        args: [--config=pyproject.toml]
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+  - repo: https://github.com/myint/autoflake
+    rev: v2.2.0
+    hooks:
+      - id: autoflake
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+  - repo: https://github.com/ikamensh/flynt/
+    rev: '1.0.1'
+    hooks:
+    -   id: flynt

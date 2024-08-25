@@ -16,12 +16,7 @@ urlpatterns = [
     path("testimonial/", include("testimonials.urls", namespace="testimonial")),
     path("donate/", include("donate.urls", namespace="donate")),
     path("", include("pages.urls", namespace="pages")),
-    re_path(
-        r"^sitemap\.xml$",
-        sitemap,
-        {"sitemaps": sitemaps},
-        name="django.contrib.sitemaps.views.sitemap",
-    ),
+    re_path(r"^sitemap\.xml$", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
 ]
 
 handler404 = "pages.views.error404"
@@ -32,9 +27,5 @@ if settings.DEBUG:
 
     urlpatterns += (path("__debug__/", include(debug_toolbar.urls, namespace="debugtoolbar")),)
     urlpatterns += (
-        re_path(
-            r"^media/(?P<path>.*)$",
-            serve,
-            {"document_root": settings.MEDIA_ROOT, "show_indexes": True},
-        ),
+        re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT, "show_indexes": True}),
     )

@@ -4,16 +4,16 @@
 
 {% block content %}
     {% if filters %}
-        <div class="filters">
-            {% for filter in filters %}
-                <div class="filter-wrapper">
-                    <a class="btn btn-default btn-lg btn-block filter" href="#{{ filter.slug }}"
-                       data-filter="{{ filter.slug }}">
-                        <span>{{ filter.name }}</span>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+    <div class="filters">
+        {% for filter in filters %}
+            <div class="filter-wrapper">
+                <a class="btn btn-default btn-lg btn-block filter" href="#{{ filter.slug }}"
+                   data-filter="{{ filter.slug }}">
+                    <span>{{ filter.name }}</span>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
     {% endif %}
     <div class="row dog-list">
         {% if dog_list %}
