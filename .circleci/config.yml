@@ -9,7 +9,7 @@ jobs:
       environment:
         DATABASE_URL: postgresql://postgres:password@localhost:5432/circle_test?sslmode=disable
         ENV: testing
-    - image: cimg/postgres:12.9
+    - image: cimg/postgres:14.12
       environment:
         POSTGRES_USER: postgres
         POSTGRES_DB: circle_test
