@@ -1,70 +1,55 @@
 .PHONY := install, help, update, postgres-docker
 .DEFAULT_GOAL := install
 
-REQS=$(shell python -c 'import tomllib;[print(f"requirements.{k}.txt") for k in tomllib.load(open("pyproject.toml", "rb"))["project"]["optional-dependencies"].keys()]')
+INS=$(wildcard requirements.*.in)
+REQS=$(subst in,txt,$(INS))
 
 DB_DOCKER=rom-postgres
 DB_USER=romuser
 DB_PASS=rompass
 DB_NAME=romdb
 
-BINPATH=$(shell which python | xargs dirname | xargs realpath --relative-to=".")
-PYTHON_VERSION:=$(shell python --version | cut -d " " -f 2)
-PIP_PATH:=$(BINPATH)/pip
-WHEEL_PATH:=$(BINPATH)/wheel
-PRE_COMMIT_PATH:=$(BINPATH)/pre-commit
-UV_PATH:=$(BINPATH)/uv
-
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-requirements.%.txt: $(UV_PATH) pyproject.toml
+requirements.%.txt: requirements.%.in requirements.txt
 	@echo "Builing $@"
-	python -m uv pip compile --extra $* $(filter-out $<,$^) > $@
+	@pip-compile -q -o $@ $<
+	@touch $@
 
-requirements.txt: $(UV_PATH) pyproject.toml
+requirements.txt: requirements.in
 	@echo "Builing $@"
-	python -m uv pip compile $(filter-out $<,$^) > $@
+	@pip-compile -q $^
 
-$(PIP_PATH):
-	@python -m ensurepip
-	@python -m pip install --upgrade pip
-	@touch $@
-
-$(WHEEL_PATH): $(PIP_PATH)
-	python -m pip install wheel
-	@touch $@
-
-$(UV_PATH): $(PIP_PATH) $(WHEEL_PATH)
-	python -m pip install uv
-	@touch $@
+install: requirements.txt $(REQS) ## Install development requirements
+	@echo "Installing $^"
+	@pip-sync $^
 
 $(HOOKS):
 	pre-commit install
 
-install: python
+pre-init:
+	pip install wheel pip-tools
 
-python: $(UV_PATH) requirements.txt $(REQS)
-	@echo "Installing $(filter-out $<,$^)"
-	@python -m uv pip sync $(filter-out $<,$^)
-
-init: .direnv requirements.txt requirements.dev.txt $(HOOKS) ## Initalise a dev enviroment
+init: .envrc pre-init install $(HOOKS) ## Initalise a dev enviroment
 	@echo "Read to dev"
 	@which direnv > /dev/null || echo "direnv not found but recommended"
 
-.direnv: .envrc
-	python -m pip install --upgrade pip
-	python -m pip install wheel pip-tools
-	@touch $@ $^
+update:
+	@echo "Upgrading"
+	pip-compile --upgrade requirements.in > requirements.txt
+	pip-compile --upgrade requirements.dev.in > requirements.dev.txt
 
-.envrc:
-	@echo "Setting up .envrc then stopping"
-	@echo "layout python python3.10" > $@
+.envrc: runtime.txt Makefile
+	@echo > $@
+	@echo layout python $(shell cat $^ | tr -d "-" | egrep -o "python[0-9]\.[0-9]+") >> $@
 	@echo export DATABASE_URL="postgres://$(DB_USER):$(DB_PASS)@localhost:5432/$(DB_NAME)" >> $@
-	@touch -d '+1 minute' $@
-	@false
+	@cat $@
+	@echo
+	@direnv allow
+	@touch $@
 
-postgres-docker: .direnv
+postgres-docker: .envrc
 	@docker stop $(DB_DOCKER) || true
 	docker run --rm --name $(DB_DOCKER) -p 5432:5432 -e POSTGRES_PASSWORD=$(DB_PASS) -e POSTGRES_USER=$(DB_USER) -e POSTGRES_DB=$(DB_NAME) -d postgres
 

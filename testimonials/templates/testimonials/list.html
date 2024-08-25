@@ -3,15 +3,15 @@
 {% load static %}
 {% block content %}
 
-    <div class="container-fluid">
-        {% for testimonial in object_list %}
-            <div class="row">
-                <div class="testimonial">
-                    <blockquote class="body">{{ testimonial.body }}</blockquote>
-                    <div class="name">{{ testimonial.name }}</div>
-                </div>
-            </div>
-        {% endfor %}
+<div class="container-fluid">
+    {% for testimonial in object_list %}
+    <div class="row">
+        <div class="testimonial">
+            <blockquote class="body">{{ testimonial.body }}</blockquote>
+            <div class="name">{{ testimonial.name }}</div>
+        </div>
     </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

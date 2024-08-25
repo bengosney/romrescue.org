@@ -20,9 +20,9 @@ from pages.models import (
     HomePageHeader,
     IntrestSubmission,
     ModuleList,
-    Node,
     Page,
     SocialLink,
+    node,
 )
 from romrescue.actions import export_as_csv_action
 
@@ -57,7 +57,7 @@ class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
         },
     )
 
-    base_model = Node
+    base_model = node
     base_fieldsets = (
         GENERAL_FIELDSET,
         NAV_FIELDSET,
@@ -75,9 +75,9 @@ class ModuleListAdmin(BaseChildAdmin):
     pass
 
 
-@admin.register(Node)
+@admin.register(node)
 class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
-    base_model = Node
+    base_model = node
     child_models = (
         Page,
         Empty,

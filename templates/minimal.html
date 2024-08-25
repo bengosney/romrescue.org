@@ -20,38 +20,38 @@
   <body>
     <div class="outter-most container">
       <div class="main-container">
-        <header>
-          {% include "header.html" %}
-        </header>
-        {% block page_header %}{% endblock %}
-        <div class="container main-content">
-          {% block content %}
-          {% endblock %}
-        </div>
-        <footer>
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12">
-                <hr />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                {% include "social-links.html" %}
-              </div>
-              <div class="col-md-4">
-                <div class="inner">
-                  SOS Romanian Rescue &copy;{% now "Y" %} | All Rights Reserved
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="inner">
-                  Charity Number : 1160999
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
+	<header>
+	  {% include "header.html" %}
+	</header>
+	{% block page_header %}{% endblock %}
+	<div class="container main-content">
+	  {% block content %}
+	  {% endblock %}
+	</div>
+	<footer>
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-sm-12">
+		<hr />
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-md-4">
+		{% include "social-links.html" %}
+	      </div>
+	      <div class="col-md-4">
+		<div class="inner">
+		  SOS Romanian Rescue &copy;{% now "Y" %} | All Rights Reserved
+		</div>
+	      </div>
+	      <div class="col-md-4">
+		<div class="inner">
+		  Charity Number : 1160999
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</footer>
       </div>
     </div>
     {% block js_footer %}{% endblock %}
