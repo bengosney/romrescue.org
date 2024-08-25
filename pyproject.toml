@@ -5,7 +5,7 @@ description = "Website for SOS Romainan Rescue"
 authors = [
     {name = "Ben Gosney", email = "bengosney@googlemail.com"},
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 
 [build-system]
 requires = ["setuptools", "wheel"]
@@ -13,7 +13,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 120
-target-version = ['py311']
+target-version = ['py312']
 
 [tool.pycln]
 all = true
