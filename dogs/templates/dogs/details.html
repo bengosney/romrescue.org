@@ -8,155 +8,155 @@
 {% block title %}{{ dog.name }}{% endblock %}
 
 {% block headextra %}
-{% with dog.dogphoto_set.all|first as image %}
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ dog.name }} is looking for a home">
-<meta name="twitter:description" content="{{ dog.description|striptags|truncatechars:200 }}">
-<meta name="twitter:image" content="{{ image.main.url }}">
+    {% with dog.dogphoto_set.all|first as image %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ dog.name }} is looking for a home">
+        <meta name="twitter:description" content="{{ dog.description|striptags|truncatechars:200 }}">
+        <meta name="twitter:image" content="{{ image.main.url }}">
 
-<meta property="og:url" content="{{ request.build_absolute_uri }}" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="{{ dog.name }} is looking for a home" />
-<meta property="og:description" content="{{ dog.description|striptags|truncatechars:200 }}" />
-<meta property="og:image" content="{{ image.main.url }}" />
-{% endwith %}
+        <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="{{ dog.name }} is looking for a home" />
+        <meta property="og:description" content="{{ dog.description|striptags|truncatechars:200 }}" />
+        <meta property="og:image" content="{{ image.main.url }}" />
+    {% endwith %}
 {% endblock %}
 
 {% block content %}
-<div class="dog-details">
-    <div class="row">
-	<div class="col-xs-6 col-sm-12">
-	    <h1>
-		{{ dog.name }}
-		{% if dog.reserved %}
-		<span class="reserved"> (Reserved)</span>
-		{% endif %}
-	    </h1>
-	</div>
-	<div class="col-md-8 col-sm-7 col-xs-12">
-	  {% include "dogs/dog_cycle.html" %}
-	  <div class="visible-xs">
-	    <a rel="external" href="https://docs.google.com/forms/d/e/1FAIpQLSdBY5WxWv2oeI4I-P3Jc6lrudWp2wsaICSsK77wrGAhdr9HNw/viewform?usp=pp_url&entry.2106662986={{ dog.name }}&entry.2027592142&entry.368986527&entry.978747390&entry.150393077&entry.1310612420&entry.1268779000&entry.843624756&entry.1213147600&entry.1851659383&entry.49882106&entry.1745908997&entry.1612888130&entry.476665236&entry.226164750&entry.1882188950&entry.1570220732&entry.1281323852&entry.762914336&entry.909129394&entry.556395090" title="Pre adoption form" class="mobile-adoption-form-link">
-	      Interested? Click here to complete the pre&nbsp;adoption&nbsp;form.
-	    </a>
-	  </div>
-	  <div class="body dog-story">
-		{% if dog.reserved %}
-		<div class="alert alert-warning" role="alert">{{ dog.name }} is currently reserved pending home check and adoption</div>
-		{% else %}
-		{% if dog.hold %}
-		<div class="alert alert-warning" role="alert">{{ dog.name }} is currently on hold due to {{ dog.hold_type.description }}</div>
-		{% endif %}
-		{% endif %}
-		<h2>{{ dog.name }}'s story</h2>
-		{{ dog.description|safe }}
-		{% if dog.standard_info %}
-		<p class="standard-text">
-		    {% if dog.rescue %}
-		    {% url 'pages:page' 'contact-us' as contacturl %}
-		    {{ dog.name }} is available for adoption through <a href="{{ dog.rescue.website }}" rel="external">{{ dog.rescue.name }}</a>.{% if contacturl %} If you are interested in meeting {{ dog.name }} please <a href="{{ contacturl }}">contact us</a>.{% endif %}
-		    {% else %}
-		    Homecheck and adoption fees apply (minimum donation £{{ dog.cost|floatformat:"-2" }}). {{ dog.name }} will be vaccinated{% if dog.neutered %}, neutered{% endif %}, chipped with their own passport and 4 weeks free insurance. If you would like to adopt {{ dog.name }} please complete our pre adoption form.
-		    {% endif %}
-		</p>
-		{% endif %}
-	    </div>
-	</div>
-	<div id="info-pane" class="col-md-4 col-sm-5 col-xs-12">
-	    {% if dog.rescue %}
-	    <div class="dog-details leash_of_life">
-		<h2>Working With</h2>
-		<a href="{{ dog.rescue.website }}" class="rescue-logo-link" rel="external">
-		    <img src="{% thumbnail dog.rescue.logo 350x150 %}" alt="{{ dog.rescue.name }}" class="img-responsive" />
-		</a>
-	    </div>
-	    {% endif %}
-	    <div class="dog-details dog-section">
-		<h2>About {{ dog.name }}</h2>
-		<div class="detail-table container">
-		    {% if dog.age %}
-		    <div class="row"><div class="col-xs-5">Age</div><div class="col-xs-7">{{ dog.age|title }}</div></div>
-		    {% endif %}
-		    <div class="row"><div class="col-xs-5">Gender</div><div class="col-xs-7">{{ dog.gender|title }}</div></div>
-		    <div class="row"><div class="col-xs-5">Size</div><div class="col-xs-7">{{ dog.size|title }}</div></div>
-		    <div class="row"><div class="col-xs-5">Location</div><div class="col-xs-7">{{ dog.location|title }}</div></div>
-		    {% if dog.show_arrival_date %}
-		    <div class="row"><div class="col-xs-5">Arrival Date</div><div class="col-xs-7">{{ dog.arrival|date:"d/m/Y" }}</div></div>
-		    {% endif %}
-            {% for row in dog.aboutinfo_set.all %}
-                <div class="row">
-                    <div class="col-xs-5">{{ row.name }}</div>
-                    <div class="col-xs-7">{{ row.value }}</div>
+    <div class="dog-details">
+        <div class="row">
+            <div class="col-xs-6 col-sm-12">
+                <h1>
+                    {{ dog.name }}
+                    {% if dog.reserved %}
+                        <span class="reserved"> (Reserved)</span>
+                    {% endif %}
+                </h1>
+            </div>
+            <div class="col-md-8 col-sm-7 col-xs-12">
+                {% include "dogs/dog_cycle.html" %}
+                <div class="visible-xs">
+                    <a rel="external" href="https://docs.google.com/forms/d/e/1FAIpQLSdBY5WxWv2oeI4I-P3Jc6lrudWp2wsaICSsK77wrGAhdr9HNw/viewform?usp=pp_url&entry.2106662986={{ dog.name }}&entry.2027592142&entry.368986527&entry.978747390&entry.150393077&entry.1310612420&entry.1268779000&entry.843624756&entry.1213147600&entry.1851659383&entry.49882106&entry.1745908997&entry.1612888130&entry.476665236&entry.226164750&entry.1882188950&entry.1570220732&entry.1281323852&entry.762914336&entry.909129394&entry.556395090" title="Pre adoption form" class="mobile-adoption-form-link">
+                        Interested? Click here to complete the pre&nbsp;adoption&nbsp;form.
+                    </a>
                 </div>
-            {% endfor %}
-		</div>
-	    </div>
-	    <div class="dog-share dog-section">
-		<h2>Share {{ dog.name }}'s story</h2>
+                <div class="body dog-story">
+                    {% if dog.reserved %}
+                        <div class="alert alert-warning" role="alert">{{ dog.name }} is currently reserved pending home check and adoption</div>
+                    {% else %}
+                        {% if dog.hold %}
+                            <div class="alert alert-warning" role="alert">{{ dog.name }} is currently on hold due to {{ dog.hold_type.description }}</div>
+                        {% endif %}
+                    {% endif %}
+                    <h2>{{ dog.name }}'s story</h2>
+                    {{ dog.description|safe }}
+                    {% if dog.standard_info %}
+                        <p class="standard-text">
+                            {% if dog.rescue %}
+                                {% url 'pages:page' 'contact-us' as contacturl %}
+                                {{ dog.name }} is available for adoption through <a href="{{ dog.rescue.website }}" rel="external">{{ dog.rescue.name }}</a>.{% if contacturl %} If you are interested in meeting {{ dog.name }} please <a href="{{ contacturl }}">contact us</a>.{% endif %}
+                            {% else %}
+                                Homecheck and adoption fees apply (minimum donation £{{ dog.cost|floatformat:"-2" }}). {{ dog.name }} will be vaccinated{% if dog.neutered %}, neutered{% endif %}, chipped with their own passport and 4 weeks free insurance. If you would like to adopt {{ dog.name }} please complete our pre adoption form.
+                            {% endif %}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="info-pane" class="col-md-4 col-sm-5 col-xs-12">
+                {% if dog.rescue %}
+                    <div class="dog-details leash_of_life">
+                        <h2>Working With</h2>
+                        <a href="{{ dog.rescue.website }}" class="rescue-logo-link" rel="external">
+                            <img src="{% thumbnail dog.rescue.logo 350x150 %}" alt="{{ dog.rescue.name }}" class="img-responsive" />
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="dog-details dog-section">
+                    <h2>About {{ dog.name }}</h2>
+                    <div class="detail-table container">
+                        {% if dog.age %}
+                            <div class="row"><div class="col-xs-5">Age</div><div class="col-xs-7">{{ dog.age|title }}</div></div>
+                        {% endif %}
+                        <div class="row"><div class="col-xs-5">Gender</div><div class="col-xs-7">{{ dog.gender|title }}</div></div>
+                        <div class="row"><div class="col-xs-5">Size</div><div class="col-xs-7">{{ dog.size|title }}</div></div>
+                        <div class="row"><div class="col-xs-5">Location</div><div class="col-xs-7">{{ dog.location|title }}</div></div>
+                        {% if dog.show_arrival_date %}
+                            <div class="row"><div class="col-xs-5">Arrival Date</div><div class="col-xs-7">{{ dog.arrival|date:"d/m/Y" }}</div></div>
+                        {% endif %}
+                        {% for row in dog.aboutinfo_set.all %}
+                            <div class="row">
+                                <div class="col-xs-5">{{ row.name }}</div>
+                                <div class="col-xs-7">{{ row.value }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="dog-share dog-section">
+                    <h2>Share {{ dog.name }}'s story</h2>
 
-		<div class="row">
-		    <div class="col-xs-12">
-			<a
-			    href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
-			    title="Share {{ dog.name }} on Facebook"
-			    class="icon-facebook-square"
-			    rel="external"
-			    target="_blank"
-			><span>Facebook</span></a>
-			<a
-			    href="https://twitter.com/home?status={{ request.build_absolute_uri|urlencode }}"
-			    title="Share {{ dog.name }} on Twitter"
-			    class="icon-twitter-square"
-			    rel="external"
-			    target="_blank"
-			><span>Twitter</span></a>
-		    </div>
-		</div>
-	    </div>
-	    {% if dog.keypoints.count %}
-	    <div class="dog-keypoints dog-section">
-		<h2>Things to know</h2>
-		<div class="row">
-		    {% for point in dog.keypoints.all %}
-		    <div class="col-md-12 point">
-			<div class="point-inner">
-			    <h4 class="{% if point.icon %}icon-{{ point.icon }} {% endif  %}title">{{ point.title }}</h4>
-			    <p>{{ point.details }}</p>
-			</div>
-		    </div>
-		    {% endfor %}
-		</div>
-	    </div>
-	    {% endif %}
-	    {% if not dog.reserved and not dog.hold %}
-	    <div class="dog-keypoints dog-section" id="intrested">
-		<h2>Interested?</h2>
-		<div class="row">
-		    <div class="col-md-12">
-			<a rel="external" href="https://docs.google.com/forms/d/e/1FAIpQLSdBY5WxWv2oeI4I-P3Jc6lrudWp2wsaICSsK77wrGAhdr9HNw/viewform?usp=pp_url&entry.2106662986={{ dog.name }}&entry.2027592142&entry.368986527&entry.978747390&entry.150393077&entry.1310612420&entry.1268779000&entry.843624756&entry.1213147600&entry.1851659383&entry.49882106&entry.1745908997&entry.1612888130&entry.476665236&entry.226164750&entry.1882188950&entry.1570220732&entry.1281323852&entry.762914336&entry.909129394&entry.556395090" title="Pre adoption form" class="side-link">
-			    <span class="subtitle">
-				Complete
-			    </span>
-			    <span class="title">
-				Pre adoption form
-			    </span>
-			</a>
-		    </div>
-		    <div class="col-md-12">
-			<a href="{% url 'pages:page' 'contact-us' %}" title="Contact Us" class="side-link">
-			    <span class="subtitle">
-				Question?
-			    </span>
-			    <span class="title">
-				Contact Us
-			    </span>
-			</a>
-		    </div>
-		</div>
-	    </div>
-	    {% endif %}
-	</div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a
+                                href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
+                                title="Share {{ dog.name }} on Facebook"
+                                class="icon-facebook-square"
+                                rel="external"
+                                target="_blank"
+                            ><span>Facebook</span></a>
+                            <a
+                                href="https://twitter.com/home?status={{ request.build_absolute_uri|urlencode }}"
+                                title="Share {{ dog.name }} on Twitter"
+                                class="icon-twitter-square"
+                                rel="external"
+                                target="_blank"
+                            ><span>Twitter</span></a>
+                        </div>
+                    </div>
+                </div>
+                {% if dog.keypoints.count %}
+                    <div class="dog-keypoints dog-section">
+                        <h2>Things to know</h2>
+                        <div class="row">
+                            {% for point in dog.keypoints.all %}
+                                <div class="col-md-12 point">
+                                    <div class="point-inner">
+                                        <h4 class="{% if point.icon %}icon-{{ point.icon }} {% endif  %}title">{{ point.title }}</h4>
+                                        <p>{{ point.details }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if not dog.reserved and not dog.hold %}
+                    <div class="dog-keypoints dog-section" id="intrested">
+                        <h2>Interested?</h2>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a rel="external" href="https://docs.google.com/forms/d/e/1FAIpQLSdBY5WxWv2oeI4I-P3Jc6lrudWp2wsaICSsK77wrGAhdr9HNw/viewform?usp=pp_url&entry.2106662986={{ dog.name }}&entry.2027592142&entry.368986527&entry.978747390&entry.150393077&entry.1310612420&entry.1268779000&entry.843624756&entry.1213147600&entry.1851659383&entry.49882106&entry.1745908997&entry.1612888130&entry.476665236&entry.226164750&entry.1882188950&entry.1570220732&entry.1281323852&entry.762914336&entry.909129394&entry.556395090" title="Pre adoption form" class="side-link">
+                                    <span class="subtitle">
+                                        Complete
+                                    </span>
+                                    <span class="title">
+                                        Pre adoption form
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="col-md-12">
+                                <a href="{% url 'pages:page' 'contact-us' %}" title="Contact Us" class="side-link">
+                                    <span class="subtitle">
+                                        Question?
+                                    </span>
+                                    <span class="title">
+                                        Contact Us
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
 
+        </div>
     </div>
-</div>
 {% endblock %}

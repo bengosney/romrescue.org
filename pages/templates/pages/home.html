@@ -6,91 +6,91 @@
 {% block no-title %}{% endblock %}
 {% block title-default %}SOS Romanian Rescue South West{% endblock %}
 {% block content %}
-<script type="application/ld+json">
+  <script type="application/ld+json">
     {
-	"@context": "http://schema.org",
-	"@type": "AnimalShelter",
-	"name": "SOS Romanian Rescue South West",
-	"address": {
-	    "@type": "PostalAddress",
-	    "addressLocality": "Wellington",
-	    "addressRegion": "Somerset",
-	    "postalCode": "TA21"
-	},
-	"image": "https://romrescue.s3.amazonaws.com/images/11924289_1174003869281177_6373312506769185085_n.jpg.1110x624_q85_box-0%2C0%2C480%2C270_crop_detail_upscale.jpg",
-	"logo": "{{ request.build_absolute_uri|slice:":-1" }}{% static "pages/logo-only.png" %}",
-	"email": "info@romrescue.org",
-	"telePhone": "07712 613 763",
-	"url": "{{ request.build_absolute_uri }}",
-	"paymentAccepted": [ "cash" ],
-	"priceRange":"$",
-        "contactPoint": [
-	    {
-		"@type": "ContactPoint",
-		"telephone": "+447712613763",
-		"contactType": "customer service",
-		"areaServed": "GB",
-		"availableLanguage": "English"
-	    }
-	]
-    }
-</script>
-
-<div class="home_headers cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-slides="> a">
-  {% for dog in dog_headders %}
-  <a href="{{ dog.url }}" class="home_header">
-    <div class="title">{{ dog.name }}</div>
-    <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail dog.homepageImage "homepage" upscale=True %}" class="img-responsive" />
-    <div class="sub-title">{{ dog.homepageSubtitle }}</div>
-  </a>
-  {% endfor %}
-</div>
-<div class="home-content">
-  <h1>SOS Romanian Rescue</h1>
-  {{ page.body|safe }}
-</div>
-
-{% if dog_list %}
-<script type="application/ld+json">
-{
-    "@context":"http://schema.org",
-    "@type":"ItemList",
-    "itemListElement":[
-        {% for dog in dog_list %}
+      "@context": "http://schema.org",
+      "@type": "AnimalShelter",
+      "name": "SOS Romanian Rescue South West",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Wellington",
+        "addressRegion": "Somerset",
+        "postalCode": "TA21"
+      },
+      "image": "https://romrescue.s3.amazonaws.com/images/11924289_1174003869281177_6373312506769185085_n.jpg.1110x624_q85_box-0%2C0%2C480%2C270_crop_detail_upscale.jpg",
+      "logo": "{{ request.build_absolute_uri|slice:":-1" }}{% static "pages/logo-only.png" %}",
+      "email": "info@romrescue.org",
+      "telePhone": "07712 613 763",
+      "url": "{{ request.build_absolute_uri }}",
+      "paymentAccepted": [ "cash" ],
+      "priceRange":"$",
+      "contactPoint": [
         {
-            "@type":"ListItem",
-            "position":{{ forloop.counter }},
-            "url": "{{ request.build_absolute_uri|slice:":-1" }}{{ dog.url }}"
+          "@type": "ContactPoint",
+          "telephone": "+447712613763",
+          "contactType": "customer service",
+          "areaServed": "GB",
+          "availableLanguage": "English"
         }
-        {% if not forloop.last %},{% endif %}
-        {% endfor %}
-    ]
-}
-</script>
-<div class="row dog-list">
-  <h3 class="col-xs-12">Looking for a forever home</h3>
-  {% for dog in dog_list %}
-  <div class="col-md-3 col-xs-6">
-    <a href="{{ dog.url }}" class="link">
-      {% with dog.dogphoto_set.all|first as image %}
-      <div class="image">
-	{% if image.image %}
-	<img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
-	{% else %}
-	<img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
-	{% endif %}
-      </div>
-      {% endwith %}
-      <h2>{{ dog.name }}</h2>
-      {% if dog.reserved %}
-      <div class="reserved">(Reserved)</div>
-      {% endif %}
-    </a>
+      ]
+    }
+  </script>
+
+  <div class="home_headers cycle-slideshow" data-cycle-pause-on-hover="true" data-cycle-slides="> a">
+    {% for dog in dog_headders %}
+      <a href="{{ dog.url }}" class="home_header">
+        <div class="title">{{ dog.name }}</div>
+        <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail dog.homepageImage "homepage" upscale=True %}" class="img-responsive" />
+        <div class="sub-title">{{ dog.homepageSubtitle }}</div>
+      </a>
+    {% endfor %}
   </div>
-  {% endfor %}
-    <div class="col-xs-12">
+  <div class="home-content">
+    <h1>SOS Romanian Rescue</h1>
+    {{ page.body|safe }}
+  </div>
+
+  {% if dog_list %}
+    <script type="application/ld+json">
+      {
+        "@context":"http://schema.org",
+        "@type":"ItemList",
+        "itemListElement":[
+          {% for dog in dog_list %}
+            {
+              "@type":"ListItem",
+              "position":{{ forloop.counter }},
+              "url": "{{ request.build_absolute_uri|slice:":-1" }}{{ dog.url }}"
+            }
+            {% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+    <div class="row dog-list">
+      <h3 class="col-xs-12">Looking for a forever home</h3>
+      {% for dog in dog_list %}
+        <div class="col-md-3 col-xs-6">
+          <a href="{{ dog.url }}" class="link">
+            {% with dog.dogphoto_set.all|first as image %}
+              <div class="image">
+                {% if image.image %}
+                  <img alt="Photo of {{ dog.name }}" src="{% cropped_thumbnail image "thumbnail" upscale=True %}" class="img-responsive" />
+                {% else %}
+                  <img alt="No photo" src="{% static "pages/no-img.png" %}" class="img-responsive" />
+                {% endif %}
+              </div>
+            {% endwith %}
+            <h2>{{ dog.name }}</h2>
+            {% if dog.reserved %}
+              <div class="reserved">(Reserved)</div>
+            {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+      <div class="col-xs-12">
         <a class="big-button" href="{% url 'pages:modulelist' slug="in-need-of-a-home" %}">View all our dogs <span class="hidden-xs">looking for a forever home</span></a>
-  	</div>
-</div>
-{% endif %}
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}
