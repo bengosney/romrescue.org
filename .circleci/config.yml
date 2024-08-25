@@ -5,50 +5,50 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/python:3.12.5
-        environment:
-          DATABASE_URL: postgresql://postgres:password@localhost:5432/circle_test?sslmode=disable
-          ENV: testing
-      - image: cimg/postgres:12.9
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: circle_test
-          POSTGRES_PASSWORD: password
+    - image: cimg/python:3.12.5
+      environment:
+        DATABASE_URL: postgresql://postgres:password@localhost:5432/circle_test?sslmode=disable
+        ENV: testing
+    - image: cimg/postgres:12.9
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_DB: circle_test
+        POSTGRES_PASSWORD: password
 
     steps:
-      - checkout
-      - restore_cache:
-          key: v3-deps-{{ checksum "requirements.dev.txt" }}-{{ checksum "requirements.txt" }}
-      - python/install-packages:
-          pkg-manager: pipenv
-      - run:
-          name: install dependencies
-          command: pipenv install --dev -r requirements.dev.txt
-      - save_cache:
-          key: v3-deps-{{ checksum "requirements.dev.txt" }}-{{ checksum "requirements.txt" }}
-          paths:
-            - /home/circleci/.local/share/virtualenvs
-            - /home/circleci/.cache/pip
-            - /home/circleci/.cache/pipenv
-            - ./Pipfile.lock
-            - ./Pipfile
-      - restore_cache:
-          key: v1-staticfiles
-      - run:
-          name: Collect Statics
-          command: |
-            [ ! -e romrescue/staticfiles/staticfiles.json ] && pipenv run python manage.py collectstatic --noinput || true
-      - save_cache:
-          key: v1-staticfiles
-          paths:
-            - ./romrescue/staticfiles
-      - run:
-          name: Run tests
-          command: |
-            mkdir test-results
-            pipenv run pytest --junitxml=test-results/junit.xml
-      - store_test_results:
-          path: test-results
-      - store_artifacts:
-          path: test-results
-          destination: tr1
+    - checkout
+    - restore_cache:
+        key: v3-deps-{{ checksum "requirements.dev.txt" }}-{{ checksum "requirements.txt" }}
+    - python/install-packages:
+        pkg-manager: pipenv
+    - run:
+        name: install dependencies
+        command: pipenv install --dev -r requirements.dev.txt
+    - save_cache:
+        key: v3-deps-{{ checksum "requirements.dev.txt" }}-{{ checksum "requirements.txt" }}
+        paths:
+        - /home/circleci/.local/share/virtualenvs
+        - /home/circleci/.cache/pip
+        - /home/circleci/.cache/pipenv
+        - ./Pipfile.lock
+        - ./Pipfile
+    - restore_cache:
+        key: v1-staticfiles
+    - run:
+        name: Collect Statics
+        command: |
+          [ ! -e romrescue/staticfiles/staticfiles.json ] && pipenv run python manage.py collectstatic --noinput || true
+    - save_cache:
+        key: v1-staticfiles
+        paths:
+        - ./romrescue/staticfiles
+    - run:
+        name: Run tests
+        command: |
+          mkdir test-results
+          pipenv run pytest --junitxml=test-results/junit.xml
+    - store_test_results:
+        path: test-results
+    - store_artifacts:
+        path: test-results
+        destination: tr1
