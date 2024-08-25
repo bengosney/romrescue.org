@@ -9,7 +9,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
-
 # Standard Library
 import os
 
@@ -20,7 +19,7 @@ from django.db import models
 # Third Party
 import dj_database_url
 import rollbar
-from easy_thumbnails.conf import Settings as thumbnail_settings
+from easy_thumbnails.conf import Settings as ThumbnailSettings
 
 models.FieldDoesNotExist = FieldDoesNotExist
 
@@ -216,7 +215,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-THUMBNAIL_PROCESSORS = ("image_cropping.thumbnail_processors.crop_corners",) + thumbnail_settings.THUMBNAIL_PROCESSORS
+THUMBNAIL_PROCESSORS = ("image_cropping.thumbnail_processors.crop_corners",) + ThumbnailSettings.THUMBNAIL_PROCESSORS
 
 SITE_ID = 2
 

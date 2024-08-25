@@ -89,20 +89,33 @@ class DogAdmin(SortableAdminMixin, statusAdmin, admin.ModelAdmin):
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
 
-        self.list_filter = ["dogStatus", "reserved", "location", "promoted", "filters", "rescue"] + list(
-            self.list_filter
-        )
+        self.list_filter = [
+            "dogStatus",
+            "reserved",
+            "location",
+            "promoted",
+            "filters",
+            "rescue",
+        ] + list(self.list_filter)
 
     def get_actions(self, request):
         actions = super().get_actions(request)
 
         for tag in models.Filter.objects.all():
             action = make_tag_action(tag)
-            actions[action.__name__] = (action, action.__name__, action.short_description)
+            actions[action.__name__] = (
+                action,
+                action.__name__,
+                action.short_description,
+            )
 
         for status in models.Dog.STATUS:
             action = make_status_action(status[0], status[1])
-            actions[action.__name__] = (action, action.__name__, action.short_description)
+            actions[action.__name__] = (
+                action,
+                action.__name__,
+                action.short_description,
+            )
 
         return actions
 

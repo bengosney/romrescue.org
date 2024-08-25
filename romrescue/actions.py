@@ -5,7 +5,12 @@ from django.http import HttpResponse
 import unicodecsv as csv
 
 
-def export_as_csv_action(description="Export selected objects as CSV file", fields=None, exclude=None, header=True):
+def export_as_csv_action(
+    description="Export selected objects as CSV file",
+    fields=None,
+    exclude=None,
+    header=True,
+):
     """This function returns an export csv action 'fields' and 'exclude' work
     like in django ModelForm 'header' is whether or not to output the column
     names as the first row."""

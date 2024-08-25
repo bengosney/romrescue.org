@@ -17,6 +17,8 @@ class PagesConfig(AppConfig):
 
     def ready(self) -> None:
         wrapt.patch_function_wrapper(
-            "polymorphic.query", "PolymorphicQuerySet._process_aggregate_args.test___lookup", test___lookup_wrapper
+            "polymorphic.query",
+            "PolymorphicQuerySet._process_aggregate_args.test___lookup",
+            test___lookup_wrapper,
         )
         return super().ready()

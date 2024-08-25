@@ -1,97 +1,117 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+
+requires = [ "setuptools", "wheel" ]
+
 [project]
-name = "SOS-Romrescue"
+name = "sos-romrescue"
 version = "1.6.1"
 description = "Website for SOS Romainan Rescue"
 authors = [
-    {name = "Ben Gosney", email = "bengosney@googlemail.com"},
+  { name = "Ben Gosney", email = "bengosney@googlemail.com" },
 ]
 requires-python = ">=3.12"
+classifiers = [ "Programming Language :: Python :: 3 :: Only", "Programming Language :: Python :: 3.12" ]
 dependencies = [
-"asn1crypto",
-"babel",
-"beautifulsoup4",
-"boto",
-"boto3",
-"brotlipy",
-"crispy-bootstrap5",
-"dj-database-url",
-"django",
-"django-admin-sortable2",
-"django-autoslug-iplweb",
-"django-ckeditor",
-"django-compressor",
-"django-crispy-forms",
-"django-debug-toolbar",
-"django-extensions",
-"django-extra-views",
-"django-fobi",
-"django-haystack",
-"django-image-cropping",
-"django-phonenumber-field",
-"django-polymorphic @ git+https://github.com/jazzband/django-polymorphic.git@v4.0.0a#egg=django-polymorphic",
-"django-polymorphic-tree",
-"django-solo",
-"django-storages",
-"django-tables2",
-"django-treebeard",
-"django-vanilla-views",
-"django-widget-tweaks",
-"entrypoints",
-"enum34",
-"funcsigs",
-"gspread",
-"gunicorn",
-"ipaddress",
-"isort",
-"oauth2client",
-"olefile",
-"ordereddict",
-"phonenumbers",
-"phonenumberslite",
-"pilkit",
-"psycopg2",
-"purl",
-"pycountry",
-"pyopenssl",
-"rollbar",
-"selenium",
-"simplejson",
-"sorl-thumbnail",
-"unicodecsv",
-"uritemplate",
-"werkzeug",
-"whitenoise",
-"wrapt",
+  "asn1crypto",
+  "babel",
+  "beautifulsoup4",
+  "boto",
+  "boto3",
+  "brotlipy",
+  "crispy-bootstrap5",
+  "dj-database-url",
+  "django",
+  "django-admin-sortable2",
+  "django-autoslug-iplweb",
+  "django-ckeditor",
+  "django-compressor",
+  "django-crispy-forms",
+  "django-debug-toolbar",
+  "django-extensions",
+  "django-extra-views",
+  "django-fobi",
+  "django-haystack",
+  "django-image-cropping",
+  "django-phonenumber-field",
+  "django-polymorphic @ git+https://github.com/jazzband/django-polymorphic.git@v4.0.0a#egg=django-polymorphic",
+  "django-polymorphic-tree",
+  "django-solo",
+  "django-storages",
+  "django-tables2",
+  "django-treebeard",
+  "django-vanilla-views",
+  "django-widget-tweaks",
+  "entrypoints",
+  "enum34",
+  "funcsigs",
+  "gspread",
+  "gunicorn",
+  "ipaddress",
+  "isort",
+  "oauth2client",
+  "olefile",
+  "ordereddict",
+  "phonenumbers",
+  "phonenumberslite",
+  "pilkit",
+  "psycopg2",
+  "purl",
+  "pycountry",
+  "pyopenssl",
+  "rollbar",
+  "selenium",
+  "simplejson",
+  "sorl-thumbnail",
+  "unicodecsv",
+  "uritemplate",
+  "werkzeug",
+  "whitenoise",
+  "wrapt",
 ]
 optional-dependencies.dev = [
-"Faker",
-"autoflake",
-"autopep8",
-"bandit",
-"black",
-"commitizen",
-"coverage",
-"django-nose",
-"eradicate",
-"flake8-django",
-"hypothesis",
-"icecream",
-"mock",
-"pip-chill",
-"pip-tools",
-"pre-commit",
-"pytest",
-"pytest-django",
-"python-dateutil",
+  "autoflake",
+  "autopep8",
+  "bandit",
+  "black",
+  "commitizen",
+  "coverage",
+  "django-nose",
+  "eradicate",
+  "faker",
+  "flake8-django",
+  "hypothesis",
+  "icecream",
+  "mock",
+  "pip-chill",
+  "pip-tools",
+  "pre-commit",
+  "pytest",
+  "pytest-django",
+  "python-dateutil",
 ]
-
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 120
-target-version = ['py312']
+target-version = [ 'py312' ]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+exclude = [
+  "migrations",
+]
+
+lint.select = [
+  "C90",
+  "DJ",
+  "E4",
+  "E7",
+  "E9",
+  "F",
+  "N",
+  "UP",
+]
 
 [tool.pycln]
 all = true
