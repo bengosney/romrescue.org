@@ -42,7 +42,7 @@ charset-normalizer==3.2.0
     # via requests
 crispy-bootstrap5==2024.2
     # via -r requirements.in
-cryptography==42.0.4
+cryptography==43.0.1
     # via pyopenssl
 dj-database-url==2.2.0
     # via -r requirements.in
