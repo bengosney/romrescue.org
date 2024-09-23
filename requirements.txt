@@ -259,7 +259,7 @@ six==1.16.0
     #   vishap
 sniffio==1.3.0
     # via trio
-sorl-thumbnail==12.10.0
+sorl-thumbnail==12.11.0
     # via -r requirements.in
 sortedcontainers==2.4.0
     # via trio
