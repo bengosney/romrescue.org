@@ -301,7 +301,7 @@ websocket-client==1.8.0
     # via selenium
 werkzeug==3.0.6
     # via -r requirements.in
-whitenoise==6.8.1
+whitenoise==6.8.2
     # via -r requirements.in
 wsproto==1.2.0
     # via trio-websocket
