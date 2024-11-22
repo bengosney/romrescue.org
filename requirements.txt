@@ -236,7 +236,7 @@ requests-oauthlib==1.3.1
     # via google-auth-oauthlib
 rjsmin==1.2.2
     # via django-compressor
-rollbar==1.0.0
+rollbar==1.1.0
     # via -r requirements.in
 rsa==4.9
     # via
