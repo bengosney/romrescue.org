@@ -38,7 +38,7 @@ colorama==0.4.6
     # via
     #   commitizen
     #   icecream
-commitizen==3.31.0
+commitizen==4.0.0
     # via -r requirements.dev.in
 coverage==7.6.8
     # via -r requirements.dev.in
@@ -185,6 +185,7 @@ typing-extensions==4.9.0
     #   -c requirements.txt
     #   astroid
     #   black
+    #   commitizen
     #   faker
 virtualenv==20.24.2
     # via pre-commit
