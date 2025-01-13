@@ -187,7 +187,7 @@ typing-extensions==4.9.0
     #   black
     #   commitizen
     #   faker
-virtualenv==20.24.2
+virtualenv==20.26.6
     # via pre-commit
 wcwidth==0.2.6
     # via prompt-toolkit
