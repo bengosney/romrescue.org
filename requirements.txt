@@ -14,7 +14,7 @@ attrs==23.1.0
     #   trio
 babel==2.17.0
     # via -r requirements.in
-beautifulsoup4==4.12.3
+beautifulsoup4==4.13.1
     # via -r requirements.in
 bleach==6.0.0
     # via django-fobi
@@ -278,6 +278,7 @@ trio-websocket==0.10.3
 typing-extensions==4.9.0
     # via
     #   asgiref
+    #   beautifulsoup4
     #   dj-database-url
     #   django-solo
     #   pyopenssl
