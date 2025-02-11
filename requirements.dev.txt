@@ -57,7 +57,7 @@ exceptiongroup==1.1.2
     #   pytest
 executing==2.1.0
     # via icecream
-faker==36.0.0
+faker==36.1.0
     # via -r requirements.dev.in
 filelock==3.12.2
     # via virtualenv
@@ -146,7 +146,6 @@ python-dateutil==2.8.2
     # via
     #   -c requirements.txt
     #   -r requirements.dev.in
-    #   faker
 pyyaml==6.0.1
     # via
     #   bandit
@@ -186,6 +185,8 @@ typing-extensions==4.9.0
     #   astroid
     #   black
     #   commitizen
+tzdata==2025.1
+    # via faker
 virtualenv==20.26.6
     # via pre-commit
 wcwidth==0.2.6
