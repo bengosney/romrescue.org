@@ -52,7 +52,7 @@ eradicate==2.3.0
     # via -r requirements.dev.in
 executing==2.1.0
     # via icecream
-faker==37.0.1
+faker==37.0.2
     # via -r requirements.dev.in
 filelock==3.12.2
     # via virtualenv
