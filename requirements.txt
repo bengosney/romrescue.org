@@ -88,7 +88,7 @@ django-crispy-forms==2.3
     # via
     #   -r requirements.in
     #   crispy-bootstrap5
-django-debug-toolbar==5.0.1
+django-debug-toolbar==5.1.0
     # via -r requirements.in
 django-extensions==3.2.3
     # via -r requirements.in
@@ -141,9 +141,7 @@ entrypoints==0.4
 enum34==1.1.10
     # via -r requirements.in
 exceptiongroup==1.1.2
-    # via
-    #   trio
-    #   trio-websocket
+    # via trio-websocket
 funcsigs==1.0.2
     # via -r requirements.in
 google-auth==2.22.0
@@ -277,10 +275,8 @@ trio-websocket==0.10.3
     # via selenium
 typing-extensions==4.9.0
     # via
-    #   asgiref
     #   beautifulsoup4
     #   dj-database-url
-    #   django-solo
     #   pyopenssl
     #   selenium
 unicodecsv==0.14.1
