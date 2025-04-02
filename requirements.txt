@@ -46,7 +46,7 @@ cryptography==44.0.1
     # via pyopenssl
 dj-database-url==2.3.0
     # via -r requirements.in
-django==5.0.11
+django==5.0.14
     # via
     #   -r requirements.in
     #   crispy-bootstrap5
