@@ -92,7 +92,7 @@ django-debug-toolbar==5.1.0
     # via -r requirements.in
 django-extensions==4.1
     # via -r requirements.in
-django-extra-views==0.15.0
+django-extra-views==0.16.0
     # via -r requirements.in
 django-fobi==0.19.9
     # via -r requirements.in
