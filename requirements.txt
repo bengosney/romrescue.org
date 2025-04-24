@@ -154,7 +154,7 @@ gspread==6.2.0
     # via -r requirements.in
 gunicorn==23.0.0
     # via -r requirements.in
-h11==0.14.0
+h11==0.16.0
     # via wsproto
 httplib2==0.22.0
     # via oauth2client
