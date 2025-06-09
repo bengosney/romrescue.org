@@ -38,7 +38,7 @@ colorama==0.4.6
     # via
     #   commitizen
     #   icecream
-commitizen==4.8.2
+commitizen==4.8.3
     # via -r requirements.dev.in
 coverage==7.8.2
     # via -r requirements.dev.in
@@ -66,6 +66,8 @@ icecream==2.1.4
     # via -r requirements.dev.in
 identify==2.5.26
     # via pre-commit
+importlib-metadata==8.7.0
+    # via commitizen
 iniconfig==2.0.0
     # via pytest
 jinja2==3.1.6
@@ -176,6 +178,8 @@ wheel==0.41.0
     # via pip-tools
 wrapt==1.15.0
     # via astroid
+zipp==3.23.0
+    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
