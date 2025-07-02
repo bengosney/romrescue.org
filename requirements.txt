@@ -44,7 +44,7 @@ crispy-bootstrap5==2025.6
     # via -r requirements.in
 cryptography==44.0.1
     # via pyopenssl
-dj-database-url==3.0.0
+dj-database-url==3.0.1
     # via -r requirements.in
 django==5.0.14
     # via
@@ -276,7 +276,6 @@ trio-websocket==0.10.3
 typing-extensions==4.9.0
     # via
     #   beautifulsoup4
-    #   dj-database-url
     #   pyopenssl
     #   selenium
 unicodecsv==0.14.1
