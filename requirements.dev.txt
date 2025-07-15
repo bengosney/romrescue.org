@@ -12,7 +12,7 @@ asttokens==2.2.1
     # via icecream
 attrs==23.1.0
     # via
-    #   -c /home/dependabot/dependabot-updater/tmp/20250714-1447-528n4m/dependabot_20250714-1447-p2uhxo/requirements.txt
+    #   -c requirements.txt
     #   hypothesis
 autoflake==2.3.1
     # via -r requirements.dev.in
@@ -28,7 +28,7 @@ cfgv==3.3.1
     # via pre-commit
 charset-normalizer==3.2.0
     # via
-    #   -c /home/dependabot/dependabot-updater/tmp/20250714-1447-528n4m/dependabot_20250714-1447-p2uhxo/requirements.txt
+    #   -c requirements.txt
     #   commitizen
 click==8.1.6
     # via
@@ -60,7 +60,7 @@ flake8==6.1.0
     # via flake8-django
 flake8-django==1.4
     # via -r requirements.dev.in
-hypothesis==6.135.30
+hypothesis==6.135.31
     # via -r requirements.dev.in
 icecream==2.1.5
     # via -r requirements.dev.in
@@ -78,7 +78,7 @@ markdown-it-py==3.0.0
     # via rich
 markupsafe==2.1.3
     # via
-    #   -c /home/dependabot/dependabot-updater/tmp/20250714-1447-528n4m/dependabot_20250714-1447-p2uhxo/requirements.txt
+    #   -c requirements.txt
     #   jinja2
 mccabe==0.7.0
     # via flake8
@@ -94,7 +94,7 @@ nose==1.3.7
     # via django-nose
 packaging==23.1
     # via
-    #   -c /home/dependabot/dependabot-updater/tmp/20250714-1447-528n4m/dependabot_20250714-1447-p2uhxo/requirements.txt
+    #   -c requirements.txt
     #   black
     #   build
     #   commitizen
@@ -142,7 +142,7 @@ pytest-django==4.11.1
     # via -r requirements.dev.in
 python-dateutil==2.8.2
     # via
-    #   -c /home/dependabot/dependabot-updater/tmp/20250714-1447-528n4m/dependabot_20250714-1447-p2uhxo/requirements.txt
+    #   -c requirements.txt
     #   -r requirements.dev.in
 pyyaml==6.0.1
     # via
@@ -155,12 +155,12 @@ rich==13.5.0
     # via bandit
 six==1.16.0
     # via
-    #   -c /home/dependabot/dependabot-updater/tmp/20250714-1447-528n4m/dependabot_20250714-1447-p2uhxo/requirements.txt
+    #   -c requirements.txt
     #   asttokens
     #   python-dateutil
 sortedcontainers==2.4.0
     # via
-    #   -c /home/dependabot/dependabot-updater/tmp/20250714-1447-528n4m/dependabot_20250714-1447-p2uhxo/requirements.txt
+    #   -c requirements.txt
     #   hypothesis
 stevedore==5.1.0
     # via bandit
