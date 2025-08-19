@@ -62,7 +62,7 @@ flake8-django==1.4
     # via -r requirements.dev.in
 hypothesis==6.138.1
     # via -r requirements.dev.in
-icecream==2.1.6
+icecream==2.1.7
     # via -r requirements.dev.in
 identify==2.5.26
     # via pre-commit
