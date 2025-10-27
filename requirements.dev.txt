@@ -50,7 +50,7 @@ distlib==0.3.7
     # via virtualenv
 django-nose==1.4.7
     # via -r requirements.dev.in
-eradicate==3.0.0
+eradicate==3.0.1
     # via -r requirements.dev.in
 executing==2.1.0
     # via icecream
