@@ -10,10 +10,6 @@ astroid==2.15.6
     # via flake8-django
 asttokens==2.2.1
     # via icecream
-attrs==23.1.0
-    # via
-    #   -c requirements.txt
-    #   hypothesis
 autoflake==2.3.1
     # via -r requirements.dev.in
 autopep8==2.2.0
@@ -62,7 +58,7 @@ flake8==6.1.0
     # via flake8-django
 flake8-django==1.4
     # via -r requirements.dev.in
-hypothesis==6.142.5
+hypothesis==6.145.0
     # via -r requirements.dev.in
 icecream==2.1.8
     # via -r requirements.dev.in
