@@ -16,7 +16,7 @@ autopep8==2.2.0
     # via -r requirements.dev.in
 bandit==1.8.6
     # via -r requirements.dev.in
-black==25.9.0
+black==25.11.0
     # via -r requirements.dev.in
 build==1.0.3
     # via pip-tools
@@ -142,7 +142,7 @@ python-dateutil==2.8.2
     # via
     #   -c requirements.txt
     #   -r requirements.dev.in
-pytokens==0.1.10
+pytokens==0.3.0
     # via black
 pyyaml==6.0.1
     # via
