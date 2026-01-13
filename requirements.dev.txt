@@ -170,7 +170,7 @@ tomlkit==0.12.1
     # via commitizen
 tzdata==2025.1
     # via faker
-virtualenv==20.26.6
+virtualenv==20.36.1
     # via pre-commit
 wcwidth==0.2.6
     # via prompt-toolkit
