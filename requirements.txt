@@ -71,7 +71,7 @@ django==5.0.14
     #   django-treebeard
     #   django-widget-tweaks
     #   easy-thumbnails
-django-admin-sortable2==2.3
+django-admin-sortable2==2.3.1
     # via -r requirements.in
 django-appconf==1.0.5
     # via
