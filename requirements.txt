@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.in
 #
-asgiref==3.7.2
+asgiref==3.11.1
     # via django
 asn1crypto==1.5.1
     # via -r requirements.in
@@ -46,7 +46,7 @@ cryptography==45.0.7
     # via pyopenssl
 dj-database-url==3.1.0
     # via -r requirements.in
-django==5.0.14
+django==5.2.11
     # via
     #   -r requirements.in
     #   crispy-bootstrap5
@@ -129,7 +129,7 @@ django-tables2==2.8.0
     # via -r requirements.in
 django-tag-parser==3.2
     # via django-polymorphic-tree
-django-treebeard==4.8.0
+django-treebeard==5.0.1
     # via -r requirements.in
 django-vanilla-views==3.0.0
     # via -r requirements.in
