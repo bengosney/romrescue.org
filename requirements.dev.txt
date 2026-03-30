@@ -123,7 +123,7 @@ pyflakes==3.1.0
     # via
     #   autoflake
     #   flake8
-pygments==2.15.1
+pygments==2.20.0
     # via
     #   icecream
     #   pytest
