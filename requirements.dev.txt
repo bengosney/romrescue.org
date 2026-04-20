@@ -99,7 +99,7 @@ pathspec==1.0.3
     # via black
 pbr==5.11.1
     # via stevedore
-pip-chill==1.0.3
+pip-chill==1.0.5
     # via -r requirements.dev.in
 pip-tools==7.5.2
     # via -r requirements.dev.in
