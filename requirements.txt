@@ -34,7 +34,7 @@ certifi==2024.7.4
     # via
     #   requests
     #   selenium
-cffi==1.15.1
+cffi==2.0.0
     # via
     #   brotlipy
     #   cryptography
@@ -42,7 +42,7 @@ charset-normalizer==3.2.0
     # via requests
 crispy-bootstrap5==2025.6
     # via -r requirements.in
-cryptography==45.0.7
+cryptography==49.0.0
     # via pyopenssl
 dj-database-url==3.1.0
     # via -r requirements.in
@@ -216,7 +216,7 @@ pycountry==24.6.1
     # via -r requirements.in
 pycparser==2.21
     # via cffi
-pyopenssl==25.3.0
+pyopenssl==26.3.0
     # via -r requirements.in
 pyparsing==3.1.1
     # via httplib2
