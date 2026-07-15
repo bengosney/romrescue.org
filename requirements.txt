@@ -99,7 +99,7 @@ django-fobi==0.19.9
     # via -r requirements.in
 django-formtools==2.4.1
     # via django-fobi
-django-haystack==3.3.0
+django-haystack==3.4.0
     # via -r requirements.in
 django-image-cropping==1.7
     # via -r requirements.in
