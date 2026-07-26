@@ -157,7 +157,7 @@ gunicorn==25.0.2
     # via -r requirements.in
 h11==0.16.0
     # via wsproto
-httplib2==0.22.0
+httplib2==0.32.0
     # via oauth2client
 idna==3.7
     # via
