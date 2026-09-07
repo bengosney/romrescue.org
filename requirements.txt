@@ -125,7 +125,7 @@ django-solo==2.5.1
     # via -r requirements.in
 django-storages==1.14.6
     # via -r requirements.in
-django-tables2==2.8.0
+django-tables2==3.0.1
     # via -r requirements.in
 django-tag-parser==3.2
     # via django-polymorphic-tree
