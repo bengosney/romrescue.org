@@ -165,7 +165,7 @@ idna==3.7
     #   trio
 ipaddress==1.0.23
     # via -r requirements.in
-isort==7.0.0
+isort==9.0.1
     # via -r requirements.in
 jmespath==1.0.1
     # via
@@ -173,6 +173,8 @@ jmespath==1.0.1
     #   botocore
 markupsafe==2.1.3
     # via werkzeug
+mypy-extensions==1.1.0
+    # via isort
 oauth2client==4.1.3
     # via -r requirements.in
 oauthlib==3.2.2
