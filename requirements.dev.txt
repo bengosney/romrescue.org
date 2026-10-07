@@ -52,8 +52,10 @@ executing==2.1.0
     # via icecream
 faker==40.1.2
     # via -r requirements.dev.in
-filelock==3.20.3
-    # via virtualenv
+filelock==3.32.7
+    # via
+    #   python-discovery
+    #   virtualenv
 flake8==6.1.0
     # via flake8-django
 flake8-django==1.4
@@ -142,6 +144,8 @@ python-dateutil==2.8.2
     # via
     #   -c requirements.txt
     #   -r requirements.dev.in
+python-discovery==1.6.1
+    # via virtualenv
 pytokens==0.3.0
     # via black
 pyyaml==6.0.1
@@ -168,7 +172,7 @@ termcolor==2.3.0
     # via commitizen
 tomlkit==0.12.1
     # via commitizen
-virtualenv==20.36.1
+virtualenv==21.7.13
     # via pre-commit
 wcwidth==0.2.6
     # via prompt-toolkit
